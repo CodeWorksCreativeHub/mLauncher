@@ -2435,11 +2435,7 @@ class SettingsFragment : BaseFragment() {
 
                     Spacer(modifier = Modifier.height(16.dp))
 
-                    val versionName =
-                        requireContext().packageManager.getPackageInfo(
-                            requireContext().packageName,
-                            0
-                        ).versionName
+                    val versionName = getLocalizedString(R.string.app_version)
 
                     SettingsHomeItem(
                         title = getLocalizedString(R.string.advanced_settings_app_info_title),
