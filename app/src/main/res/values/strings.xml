@@ -62,11 +62,6 @@
     <string name="settings_exit_mlauncher_description">Switch to your default launcher temporarily.</string>
     <string name="settings_exit_mlauncher_dialog">Choose a launcher</string>
 
-
-    <string name="settings_donation_title">Donations</string>
-    <string name="settings_donation_description">Support our work by making a donation.</string>
-    <string name="settings_donation_dialog">Support Us</string>
-
     <!-- Strings used for features settings -->
     <string name="features_settings_title">Features</string>
 
@@ -238,7 +233,10 @@
     <string name="advanced_settings_app_info_description">%1$s</string>
 
     <string name="advanced_settings_set_as_default_launcher">Set as Default Launcher</string>
+    <string name="advanced_settings_set_as_default_launcher_description">Make Multi Launcher your default home app.</string>
     <string name="advanced_settings_change_default_launcher">Change Default Launcher</string>
+    <string name="advanced_settings_change_default_launcher_description">Choose a different launcher as your default.</string>
+
 
     <string name="advanced_settings_restart_title">Restart Launcher</string>
     <string name="advanced_settings_restart_description">Have you tried turning it on and off?</string>
@@ -274,6 +272,10 @@
     <string name="advanced_settings_share_application_title">Share Application</string>
     <string name="advanced_settings_share_application_description">Elevate your experience with %1$s!</string>
     <string name="advanced_settings_share_application_description_addon">Get it now on %1$s and see what everyone is talking about! %2$s\n</string>
+
+
+    <!-- Strings used for about settings -->
+    <string name="about_settings_title">About %1$s</string>
 
 
     <!-- Strings used for expert settings -->
@@ -442,6 +444,9 @@
     <string name="settings_applist_buttons_title">App List Buttons</string>
     <string name="settings_applist_buttons_option">Select items to display</string>
 
+    <string name="settings_source_code">Source Code</string>
+    <string name="settings_donations">Donations</string>
+    <string name="settings_credits">Credits</string>
 
     <string-array name="priorities">
         <item>Low</item>

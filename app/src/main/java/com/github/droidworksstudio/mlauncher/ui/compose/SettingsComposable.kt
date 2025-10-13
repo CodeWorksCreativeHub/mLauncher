@@ -1,11 +1,14 @@
 package com.github.droidworksstudio.mlauncher.ui.compose
 
+import android.text.Html
+import android.text.method.LinkMovementMethod
 import android.util.TypedValue
 import android.view.View
 import androidx.annotation.DrawableRes
 import androidx.appcompat.widget.SwitchCompat
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -29,7 +32,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.toArgb
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
@@ -77,7 +79,10 @@ object SettingsComposable {
                 factory = {
                     FontAppCompatTextView(it).apply {
                         text = title
-                        textSize = fontSizeSp
+                        setTextSize(
+                            TypedValue.COMPLEX_UNIT_SP,
+                            fontSizeSp
+                        )
                         setTextColor(fontColor.toArgb()) // Optional
                     }
                 },
@@ -92,13 +97,13 @@ object SettingsComposable {
     fun TopMainHeader(
         @DrawableRes iconRes: Int,
         title: String,
+        description: String? = null,
         iconSize: Dp = 96.dp,
-        fontSize: TextUnit = 24.sp,
+        titleFontSize: TextUnit = 24.sp,
+        descriptionFontSize: TextUnit = 14.sp,
         fontColor: Color = SettingsTheme.typography.title.color,
         onIconClick: (() -> Unit)? = null // Optional click callback
     ) {
-        val fontSizeSp = fontSize.value
-
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -120,13 +125,34 @@ object SettingsComposable {
                 factory = { context ->
                     FontAppCompatTextView(context).apply {
                         text = title
-                        textSize = fontSizeSp
+                        setTextSize(
+                            TypedValue.COMPLEX_UNIT_SP,
+                            if (titleFontSize != TextUnit.Unspecified) titleFontSize.value else 24f
+                        )
                         setTextColor(fontColor.toArgb())
                         setPadding(0, 0, 0, 24)
                     }
                 },
                 modifier = Modifier.wrapContentSize()
             )
+
+            description?.let {
+                Spacer(modifier = Modifier.height(4.dp))
+                AndroidView(
+                    factory = { context ->
+                        FontAppCompatTextView(context).apply {
+                            text = Html.fromHtml(it, Html.FROM_HTML_MODE_LEGACY)
+                            setTextColor(fontColor.toArgb())
+                            setTextSize(
+                                TypedValue.COMPLEX_UNIT_SP,
+                                if (descriptionFontSize != TextUnit.Unspecified) descriptionFontSize.value else 14f
+                            )
+                            movementMethod = LinkMovementMethod.getInstance()
+                        }
+                    },
+                    modifier = Modifier.wrapContentHeight()
+                )
+            }
         }
     }
 
@@ -134,7 +160,7 @@ object SettingsComposable {
     fun SettingsHomeItem(
         title: String,
         description: String? = null,
-        imageVector: ImageVector,
+        @DrawableRes iconRes: Int,
         onClick: () -> Unit = {},
         onMultiClick: (Int) -> Unit = {}, // now takes tap count
         enableMultiClick: Boolean = false,
@@ -187,9 +213,8 @@ object SettingsComposable {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Image(
-                imageVector = imageVector,
+                painter = painterResource(iconRes),
                 contentDescription = title,
-                colorFilter = ColorFilter.tint(SettingsTheme.color.image),
                 modifier = Modifier.size(iconSize)
             )
 
@@ -225,6 +250,145 @@ object SettingsComposable {
                         },
                         modifier = Modifier.wrapContentHeight()
                     )
+                }
+            }
+        }
+    }
+
+    @Composable
+    fun TitleWithHtmlLink(
+        title: String,
+        description: String? = null,
+        titleFontSize: TextUnit = 24.sp,
+        descriptionFontSize: TextUnit = 18.sp,
+        titleColor: Color = SettingsTheme.typography.title.color,
+        descriptionColor: Color = SettingsTheme.typography.title.color
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            AndroidView(
+                factory = { ctx ->
+                    FontAppCompatTextView(ctx).apply {
+                        text = title
+                        setTextColor(titleColor.toArgb())
+                        setTextSize(
+                            TypedValue.COMPLEX_UNIT_SP,
+                            if (titleFontSize != TextUnit.Unspecified) titleFontSize.value else 24f
+                        )
+                        movementMethod = LinkMovementMethod.getInstance()
+                    }
+                },
+                modifier = Modifier.wrapContentHeight()
+            )
+
+            description?.let {
+                Spacer(modifier = Modifier.height(4.dp))
+                AndroidView(
+                    factory = { context ->
+                        FontAppCompatTextView(context).apply {
+                            text = Html.fromHtml(it, Html.FROM_HTML_MODE_LEGACY)
+                            setTextColor(descriptionColor.toArgb())
+                            setTextSize(
+                                TypedValue.COMPLEX_UNIT_SP,
+                                if (descriptionFontSize != TextUnit.Unspecified) descriptionFontSize.value else 14f
+                            )
+                            movementMethod = LinkMovementMethod.getInstance()
+                        }
+                    },
+                    modifier = Modifier.wrapContentHeight()
+                )
+            }
+        }
+    }
+
+    @Composable
+    fun TitleWithHtmlLinks(
+        title: String,
+        descriptions: List<String> = emptyList(),
+        titleFontSize: TextUnit = 24.sp,
+        descriptionFontSize: TextUnit = 18.sp,
+        titleColor: Color = SettingsTheme.typography.title.color,
+        descriptionColor: Color = SettingsTheme.typography.title.color,
+        columns: Boolean = false // if true, use Column for links
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            // Title
+            AndroidView(
+                factory = { ctx ->
+                    FontAppCompatTextView(ctx).apply {
+                        text = title
+                        setTextColor(titleColor.toArgb())
+                        setTextSize(
+                            TypedValue.COMPLEX_UNIT_SP,
+                            if (titleFontSize != TextUnit.Unspecified) titleFontSize.value else 24f
+                        )
+                    }
+                },
+                modifier = Modifier.wrapContentHeight()
+            )
+
+            if (descriptions.isNotEmpty()) {
+                Spacer(modifier = Modifier.height(4.dp))
+
+                if (columns) {
+                    // Use Column layout for links
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        descriptions.forEach { htmlLink ->
+                            AndroidView(
+                                factory = { ctx ->
+                                    FontAppCompatTextView(ctx).apply {
+                                        text = Html.fromHtml(htmlLink, Html.FROM_HTML_MODE_LEGACY)
+                                        setTextColor(descriptionColor.toArgb())
+                                        setTextSize(
+                                            TypedValue.COMPLEX_UNIT_SP,
+                                            if (descriptionFontSize != TextUnit.Unspecified) descriptionFontSize.value else 14f
+                                        )
+                                        movementMethod = LinkMovementMethod.getInstance()
+                                    }
+                                },
+                                modifier = Modifier
+                                    .wrapContentHeight()
+                                    .padding(vertical = 2.dp)
+                            )
+                        }
+                    }
+                } else {
+                    // Default: Row layout for links
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.Center,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        descriptions.forEach { htmlLink ->
+                            AndroidView(
+                                factory = { ctx ->
+                                    FontAppCompatTextView(ctx).apply {
+                                        text = Html.fromHtml(htmlLink, Html.FROM_HTML_MODE_LEGACY)
+                                        setTextColor(descriptionColor.toArgb())
+                                        setTextSize(
+                                            TypedValue.COMPLEX_UNIT_SP,
+                                            if (descriptionFontSize != TextUnit.Unspecified) descriptionFontSize.value else 14f
+                                        )
+                                        movementMethod = LinkMovementMethod.getInstance()
+                                    }
+                                },
+                                modifier = Modifier
+                                    .wrapContentHeight()
+                                    .padding(horizontal = 12.dp)
+                            )
+                        }
+                    }
                 }
             }
         }

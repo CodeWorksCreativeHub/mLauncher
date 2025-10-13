@@ -35,11 +35,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
@@ -52,7 +50,6 @@ import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.github.droidworksstudio.common.AppLogger
-import com.github.droidworksstudio.common.DonationDialog
 import com.github.droidworksstudio.common.getLocalizedString
 import com.github.droidworksstudio.common.isBiometricEnabled
 import com.github.droidworksstudio.common.isGestureNavigationEnabled
@@ -98,6 +95,8 @@ import com.github.droidworksstudio.mlauncher.ui.compose.SettingsComposable.Setti
 import com.github.droidworksstudio.mlauncher.ui.compose.SettingsComposable.SettingsSelect
 import com.github.droidworksstudio.mlauncher.ui.compose.SettingsComposable.SettingsSwitch
 import com.github.droidworksstudio.mlauncher.ui.compose.SettingsComposable.SettingsTitle
+import com.github.droidworksstudio.mlauncher.ui.compose.SettingsComposable.TitleWithHtmlLink
+import com.github.droidworksstudio.mlauncher.ui.compose.SettingsComposable.TitleWithHtmlLinks
 import com.github.droidworksstudio.mlauncher.ui.compose.SettingsComposable.TopMainHeader
 import com.github.droidworksstudio.mlauncher.ui.iconpack.CustomIconSelectionActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -334,10 +333,12 @@ class SettingsFragment : BaseFragment() {
         }
 
         // Advanced Settings
-        val changeLauncherText = if (ismlauncherDefault(requireContext())) {
-            R.string.advanced_settings_change_default_launcher
+        val (changeLauncherText, changeLauncherTextDescription) = if (ismlauncherDefault(requireContext())) {
+            R.string.advanced_settings_change_default_launcher to
+                    R.string.advanced_settings_change_default_launcher_description
         } else {
-            R.string.advanced_settings_set_as_default_launcher
+            R.string.advanced_settings_set_as_default_launcher to
+                    R.string.advanced_settings_set_as_default_launcher_description
         }
 
         // Experimental Settings
@@ -372,7 +373,7 @@ class SettingsFragment : BaseFragment() {
                     SettingsHomeItem(
                         title = getLocalizedString(R.string.settings_features_title),
                         description = getLocalizedString(R.string.settings_features_description),
-                        imageVector = ImageVector.vectorResource(id = R.drawable.ic_feature),
+                        iconRes = R.drawable.ic_feature,
                         titleFontSize = titleFontSize,
                         descriptionFontSize = descriptionFontSize,
                         iconSize = iconSize,
@@ -383,7 +384,7 @@ class SettingsFragment : BaseFragment() {
                     SettingsHomeItem(
                         title = getLocalizedString(R.string.settings_look_feel_title),
                         description = getLocalizedString(R.string.settings_look_feel_description),
-                        imageVector = ImageVector.vectorResource(id = R.drawable.ic_look_feel),
+                        iconRes = R.drawable.ic_look_feel,
                         titleFontSize = titleFontSize,
                         descriptionFontSize = descriptionFontSize,
                         iconSize = iconSize,
@@ -394,7 +395,7 @@ class SettingsFragment : BaseFragment() {
                     SettingsHomeItem(
                         title = getLocalizedString(R.string.settings_gestures_title),
                         description = getLocalizedString(R.string.settings_gestures_description),
-                        imageVector = ImageVector.vectorResource(id = R.drawable.ic_gestures),
+                        iconRes = R.drawable.ic_gestures,
                         titleFontSize = titleFontSize,
                         descriptionFontSize = descriptionFontSize,
                         iconSize = iconSize,
@@ -405,7 +406,7 @@ class SettingsFragment : BaseFragment() {
                     SettingsHomeItem(
                         title = getLocalizedString(R.string.settings_notes_title),
                         description = getLocalizedString(R.string.settings_notes_description),
-                        imageVector = ImageVector.vectorResource(id = R.drawable.ic_notes),
+                        iconRes = R.drawable.ic_notes,
                         titleFontSize = titleFontSize,
                         descriptionFontSize = descriptionFontSize,
                         iconSize = iconSize,
@@ -416,7 +417,7 @@ class SettingsFragment : BaseFragment() {
                     if (PrivateSpaceManager(context).isPrivateSpaceSetUp()) {
                         SettingsHomeItem(
                             title = getLocalizedString(R.string.private_space, getLocalizedString(setPrivateSpacesStatus)),
-                            imageVector = ImageVector.vectorResource(id = setPrivateSpacesIcon),
+                            iconRes = setPrivateSpacesIcon,
                             titleFontSize = titleFontSize,
                             descriptionFontSize = descriptionFontSize,
                             iconSize = iconSize,
@@ -437,7 +438,7 @@ class SettingsFragment : BaseFragment() {
                     SettingsHomeItem(
                         title = getLocalizedString(R.string.settings_favorite_apps_title),
                         description = getLocalizedString(R.string.settings_favorite_apps_description),
-                        imageVector = ImageVector.vectorResource(id = R.drawable.ic_favorite),
+                        iconRes = R.drawable.ic_favorite,
                         titleFontSize = titleFontSize,
                         descriptionFontSize = descriptionFontSize,
                         iconSize = iconSize,
@@ -447,7 +448,7 @@ class SettingsFragment : BaseFragment() {
                     SettingsHomeItem(
                         title = getLocalizedString(R.string.settings_hidden_apps_title),
                         description = getLocalizedString(R.string.settings_hidden_apps_description),
-                        imageVector = ImageVector.vectorResource(id = R.drawable.ic_hidden),
+                        iconRes = R.drawable.ic_hidden,
                         titleFontSize = titleFontSize,
                         descriptionFontSize = descriptionFontSize,
                         iconSize = iconSize,
@@ -457,7 +458,7 @@ class SettingsFragment : BaseFragment() {
                     SettingsHomeItem(
                         title = getLocalizedString(R.string.settings_advanced_title),
                         description = getLocalizedString(R.string.settings_advanced_description),
-                        imageVector = ImageVector.vectorResource(id = R.drawable.ic_advanced),
+                        iconRes = R.drawable.ic_advanced,
                         titleFontSize = titleFontSize,
                         descriptionFontSize = descriptionFontSize,
                         iconSize = iconSize,
@@ -468,7 +469,7 @@ class SettingsFragment : BaseFragment() {
                         SettingsHomeItem(
                             title = getLocalizedString(R.string.settings_expert_title),
                             description = getLocalizedString(R.string.settings_expert_description),
-                            imageVector = ImageVector.vectorResource(id = R.drawable.ic_experimental),
+                            iconRes = R.drawable.ic_experimental,
                             titleFontSize = titleFontSize,
                             descriptionFontSize = descriptionFontSize,
                             iconSize = iconSize,
@@ -479,15 +480,12 @@ class SettingsFragment : BaseFragment() {
                     Spacer(modifier = Modifier.weight(1f))
 
                     SettingsHomeItem(
-                        title = getLocalizedString(R.string.settings_donation_title),
-                        description = getLocalizedString(R.string.settings_donation_description),
-                        imageVector = ImageVector.vectorResource(id = R.drawable.ic_donation),
+                        title = getLocalizedString(R.string.about_settings_title, getLocalizedString(R.string.app_name)),
+                        iconRes = R.drawable.ic_toast,
                         titleFontSize = titleFontSize,
                         descriptionFontSize = descriptionFontSize,
                         iconSize = iconSize,
-                        onClick = {
-                            DonationDialog(context).show(getLocalizedString(R.string.settings_donation_dialog))
-                        },
+                        onClick = { currentScreen = "about" },
                     )
 
                     if (isGestureNavigationEnabled(context)) {
@@ -2442,7 +2440,7 @@ class SettingsFragment : BaseFragment() {
                         description = getLocalizedString(R.string.advanced_settings_app_info_description).format(
                             versionName
                         ),
-                        imageVector = ImageVector.vectorResource(id = R.drawable.ic_app_info),
+                        iconRes = R.drawable.ic_app_info,
                         titleFontSize = titleFontSize,
                         descriptionFontSize = descriptionFontSize,
                         iconSize = iconSize,
@@ -2469,7 +2467,8 @@ class SettingsFragment : BaseFragment() {
 
                     SettingsHomeItem(
                         title = getLocalizedString(changeLauncherText),
-                        imageVector = ImageVector.vectorResource(id = R.drawable.ic_change_default_launcher),
+                        description = getLocalizedString(changeLauncherTextDescription),
+                        iconRes = R.drawable.ic_change_default_launcher,
                         titleFontSize = titleFontSize,
                         descriptionFontSize = descriptionFontSize,
                         iconSize = iconSize,
@@ -2483,7 +2482,7 @@ class SettingsFragment : BaseFragment() {
                         description = getLocalizedString(R.string.advanced_settings_restart_description).format(
                             versionName
                         ),
-                        imageVector = ImageVector.vectorResource(id = R.drawable.ic_restart),
+                        iconRes = R.drawable.ic_restart,
                         titleFontSize = titleFontSize,
                         descriptionFontSize = descriptionFontSize,
                         iconSize = iconSize,
@@ -2495,7 +2494,7 @@ class SettingsFragment : BaseFragment() {
                     SettingsHomeItem(
                         title = getLocalizedString(R.string.settings_exit_mlauncher_title),
                         description = getLocalizedString(R.string.settings_exit_mlauncher_description),
-                        imageVector = ImageVector.vectorResource(id = R.drawable.ic_exit),
+                        iconRes = R.drawable.ic_exit,
                         titleFontSize = titleFontSize,
                         descriptionFontSize = descriptionFontSize,
                         iconSize = iconSize,
@@ -2507,7 +2506,7 @@ class SettingsFragment : BaseFragment() {
                     SettingsHomeItem(
                         title = getLocalizedString(R.string.advanced_settings_backup_restore_title),
                         description = getLocalizedString(R.string.advanced_settings_backup_restore_description),
-                        imageVector = ImageVector.vectorResource(id = R.drawable.ic_backup_restore),
+                        iconRes = R.drawable.ic_backup_restore,
                         titleFontSize = titleFontSize,
                         descriptionFontSize = descriptionFontSize,
                         iconSize = iconSize,
@@ -2519,7 +2518,7 @@ class SettingsFragment : BaseFragment() {
                     SettingsHomeItem(
                         title = getLocalizedString(R.string.advanced_settings_theme_title),
                         description = getLocalizedString(R.string.advanced_settings_theme_description),
-                        imageVector = ImageVector.vectorResource(id = R.drawable.ic_theme),
+                        iconRes = R.drawable.ic_theme,
                         titleFontSize = titleFontSize,
                         descriptionFontSize = descriptionFontSize,
                         iconSize = iconSize,
@@ -2531,7 +2530,7 @@ class SettingsFragment : BaseFragment() {
                     SettingsHomeItem(
                         title = getLocalizedString(R.string.advanced_settings_wotd_title),
                         description = getLocalizedString(R.string.advanced_settings_wotd_description),
-                        imageVector = ImageVector.vectorResource(id = R.drawable.ic_word_of_the_day),
+                        iconRes = R.drawable.ic_word_of_the_day,
                         titleFontSize = titleFontSize,
                         descriptionFontSize = descriptionFontSize,
                         iconSize = iconSize,
@@ -2540,9 +2539,11 @@ class SettingsFragment : BaseFragment() {
                         }
                     )
 
+                    Spacer(modifier = Modifier.weight(1f))
+
                     SettingsHomeItem(
                         title = getLocalizedString(R.string.advanced_settings_help_feedback_title),
-                        imageVector = ImageVector.vectorResource(id = R.drawable.ic_help_feedback),
+                        iconRes = R.drawable.ic_help_feedback,
                         titleFontSize = titleFontSize,
                         descriptionFontSize = descriptionFontSize,
                         iconSize = iconSize,
@@ -2553,7 +2554,7 @@ class SettingsFragment : BaseFragment() {
 
                     SettingsHomeItem(
                         title = getLocalizedString(R.string.advanced_settings_community_support_title),
-                        imageVector = ImageVector.vectorResource(id = R.drawable.ic_community),
+                        iconRes = R.drawable.ic_community,
                         titleFontSize = titleFontSize,
                         descriptionFontSize = descriptionFontSize,
                         iconSize = iconSize,
@@ -2564,7 +2565,7 @@ class SettingsFragment : BaseFragment() {
 
                     SettingsHomeItem(
                         title = getLocalizedString(R.string.advanced_settings_share_application_title),
-                        imageVector = ImageVector.vectorResource(id = R.drawable.ic_share_app),
+                        iconRes = R.drawable.ic_share_app,
                         titleFontSize = titleFontSize,
                         descriptionFontSize = descriptionFontSize,
                         iconSize = iconSize,
@@ -2582,6 +2583,64 @@ class SettingsFragment : BaseFragment() {
                     } else {
                         Spacer(modifier = Modifier.height(dimensionResource(R.dimen.bottom_margin_3_button_nav)))
                     }
+                }
+
+                "about" -> {
+                    BackHandler {
+                        currentScreen = "main"
+                    }
+
+                    PageHeader(
+                        iconRes = R.drawable.ic_back,
+                        title = getLocalizedString(R.string.about_settings_title, getLocalizedString(R.string.app_name)),
+                        onClick = {
+                            currentScreen = "main"
+                        }
+                    )
+
+                    Spacer(modifier = Modifier.height(26.dp))
+
+                    TopMainHeader(
+                        iconRes = R.drawable.app_launcher,
+                        title = getLocalizedString(R.string.app_name),
+                        description = getLocalizedString(R.string.created_by)
+                    )
+
+                    Spacer(modifier = Modifier.height(16.dp))
+
+                    TitleWithHtmlLink(
+                        title = getLocalizedString(R.string.settings_source_code),
+                        description = getLocalizedString(R.string.github_link),
+                    )
+
+                    Spacer(modifier = Modifier.height(16.dp))
+
+                    TitleWithHtmlLinks(
+                        title = getLocalizedString(R.string.settings_donations),
+                        descriptions = listOf(
+                            getLocalizedString(R.string.sponsor_link),
+                            getLocalizedString(R.string.coffee_link),
+                            getLocalizedString(R.string.libera_link)
+                        )
+                    )
+
+                    Spacer(modifier = Modifier.weight(1f))
+
+                    TitleWithHtmlLinks(
+                        title = getLocalizedString(R.string.settings_credits),
+                        descriptions = listOf(
+                            getLocalizedString(R.string.weather_link),
+                            getLocalizedString(R.string.forked_link),
+                        ),
+                        columns = true
+                    )
+
+                    if (isGestureNavigationEnabled(context)) {
+                        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.bottom_margin_gesture_nav)))
+                    } else {
+                        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.bottom_margin_3_button_nav)))
+                    }
+
                 }
 
                 "expert" -> {
