@@ -12,6 +12,10 @@ All notable changes to this project will be documented in this file. See [conven
 
 * Use theme attribute for icon colors ([b1078974](https://github.com/DroidWorksStudio/mLauncher/commit/b1078974))
 
+### :wrench: Code Quality:
+
+* Replace donation dialog with About screen ([2140e87f](https://github.com/DroidWorksStudio/mLauncher/commit/2140e87f))
+
 ## [Multi Launcher 1.11.2 Build 1](https://github.com/DroidWorksStudio/mLauncher/tree/1.11.2.1) - (13, October 2025)
 
 ### :sparkles: Enhancements:
