@@ -44,9 +44,6 @@
     <string name="settings_exit_mlauncher_title">צא מ-MultiLauncher</string>
     <string name="settings_exit_mlauncher_description">עבור למפעיל ברירת המחדל שלך באופן זמני.</string>
     <string name="settings_exit_mlauncher_dialog">בחר משגר</string>
-    <string name="settings_donation_title">תרומות</string>
-    <string name="settings_donation_description">תמכו בפעילות שלנו על ידי תרומה.</string>
-    <string name="settings_donation_dialog">תמכו בנו</string>
     <!-- Strings used for features settings -->
     <string name="features_settings_title">תכונות</string>
     <string name="personalization">התאמה אישית</string>
@@ -179,7 +176,9 @@
     <string name="advanced_settings_app_info_title">מידע על היישום</string>
     <string name="advanced_settings_app_info_description">%1$s</string>
     <string name="advanced_settings_set_as_default_launcher">הגדר כמשגר ברירת מחדל</string>
+    <string name="advanced_settings_set_as_default_launcher_description">Make Multi Launcher your default home app.</string>
     <string name="advanced_settings_change_default_launcher">שנה את משגר ברירת המחדל</string>
+    <string name="advanced_settings_change_default_launcher_description">Choose a different launcher as your default.</string>
     <string name="advanced_settings_restart_title">הפעל מחדש את המשגר</string>
     <string name="advanced_settings_restart_description">ניסית להדליק ולכבות?</string>
     <string name="advanced_settings_backup_restore_title">גיבוי/שחזור</string>
@@ -205,6 +204,8 @@
     <string name="advanced_settings_share_application_title">שתף את היישום</string>
     <string name="advanced_settings_share_application_description">שפר את החוויה שלך עם %1$s!</string>
     <string name="advanced_settings_share_application_description_addon">השג אותו עכשיו ב- %1$s וראה על מה כולם מדברים! %2$s\n</string>
+    <!-- Strings used for about settings -->
+    <string name="about_settings_title">About %1$s</string>
     <!-- Strings used for expert settings -->
     <string name="expert_settings_title">מוּמחֶה</string>
     <string name="toggleable_items">פריטים הניתנים להחלפה</string>
@@ -348,6 +349,9 @@
     <string name="settings_home_buttons_option">בחירת פריטים להצגה</string>
     <string name="settings_applist_buttons_title">כפתורי רשימת אפליקציות</string>
     <string name="settings_applist_buttons_option">בחירת פריטים להצגה</string>
+    <string name="settings_source_code">Source Code</string>
+    <string name="settings_donations">Donations</string>
+    <string name="settings_credits">Credits</string>
     <string-array name="priorities">
         <item>נָמוּך</item>
         <item>בֵּינוֹנִי</item>
