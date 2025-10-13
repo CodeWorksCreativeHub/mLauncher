@@ -83,13 +83,13 @@
             android:name=".ui.onboarding.OnboardingActivity"
             android:enabled="true"
             android:excludeFromRecents="true"
-            android:exported="true"
+            android:exported="false"
             android:launchMode="singleTask" /> <!-- CRASH REPORT ACTIVITY -->
         <activity
             android:name=".CrashReportActivity"
             android:enabled="true"
             android:excludeFromRecents="true"
-            android:exported="true" /> <!-- ICON PACK ACTIVITIES -->
+            android:exported="false" /> <!-- ICON PACK ACTIVITIES -->
         <activity
             android:name=".ui.iconpack.ApplyIconPackActivity"
             android:excludeFromRecents="true"
@@ -163,7 +163,7 @@
             android:exported="false" />
         <receiver
             android:name=".ui.widgets.home.HomeAppsWidgetProvider"
-            android:exported="true"
+            android:exported="false"
             android:label="@string/widget_home_name">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />

@@ -211,8 +211,18 @@ class ResizableWidgetWrapper(
     private var activeResizeHandle: String? = null
 
     private fun attachResizeAndDragHandlers() {
-        val handles = listOf(topHandle, bottomHandle, leftHandle, rightHandle, topLeftHandle, topRightHandle, bottomLeftHandle, bottomRightHandle)
-        val sides = listOf("TOP", "BOTTOM", "LEFT", "RIGHT", "TOP_LEFT", "TOP_RIGHT", "BOTTOM_LEFT", "BOTTOM_RIGHT")
+        val handles = listOf(
+            topHandle, bottomHandle, leftHandle, rightHandle,
+            topLeftHandle, topRightHandle, bottomLeftHandle, bottomRightHandle
+        )
+        val sides = listOf(
+            "TOP", "BOTTOM", "LEFT", "RIGHT",
+            "TOP_LEFT", "TOP_RIGHT", "BOTTOM_LEFT", "BOTTOM_RIGHT"
+        )
+
+        val parentView = parent as? View
+        val parentWidth = parentView?.width ?: Int.MAX_VALUE
+        val parentHeight = parentView?.height ?: Int.MAX_VALUE
 
         // --- Attach resize listeners to handles ---
         handles.zip(sides).forEach { (handle, side) ->
@@ -237,60 +247,99 @@ class ResizableWidgetWrapper(
                             when (resizeSide) {
                                 // --- Edge handles ---
                                 "TOP" -> {
-                                    val newHeight = (lp.height - dy).toInt().coerceAtLeast(minSize)
-                                    translationY += dy
+                                    val maxHeight = lp.height + translationY
+                                    val newHeight = (lp.height - dy).toInt()
+                                        .coerceAtLeast(minSize)
+                                        .coerceAtMost(maxHeight.coerceAtMost(parentHeight.toFloat()).toInt())
+                                    val actualDy = lp.height - newHeight
+                                    translationY += actualDy
                                     lp.height = newHeight
                                 }
 
                                 "BOTTOM" -> {
-                                    lp.height = (lp.height + dy).toInt().coerceAtLeast(minSize)
+                                    val maxHeight = parentHeight - top
+                                    lp.height = (lp.height + dy).toInt()
+                                        .coerceAtLeast(minSize)
+                                        .coerceAtMost(maxHeight)
                                 }
 
                                 "LEFT" -> {
-                                    val newWidth = (lp.width - dx).toInt().coerceAtLeast(minSize)
-                                    translationX += dx
+                                    val maxWidth = lp.width + translationX
+                                    val newWidth = (lp.width - dx).toInt()
+                                        .coerceAtLeast(minSize)
+                                        .coerceAtMost(maxWidth.coerceAtMost(parentWidth.toFloat()).toInt())
+                                    val actualDx = lp.width - newWidth
+                                    translationX += actualDx
                                     lp.width = newWidth
                                 }
 
                                 "RIGHT" -> {
-                                    lp.width = (lp.width + dx).toInt().coerceAtLeast(minSize)
+                                    val maxWidth = parentWidth - left
+                                    lp.width = (lp.width + dx).toInt()
+                                        .coerceAtLeast(minSize)
+                                        .coerceAtMost(maxWidth)
                                 }
 
                                 // --- Corner handles ---
                                 "TOP_LEFT" -> {
-                                    val newWidth = (lp.width - dx).toInt().coerceAtLeast(minSize)
-                                    val newHeight = (lp.height - dy).toInt().coerceAtLeast(minSize)
-                                    translationX += dx
-                                    translationY += dy
-                                    lp.width = newWidth
+                                    val maxHeight = lp.height + translationY
+                                    val maxWidth = lp.width + translationX
+                                    val newHeight = (lp.height - dy).toInt()
+                                        .coerceAtLeast(minSize)
+                                        .coerceAtMost(maxHeight.coerceAtMost(parentHeight.toFloat()).toInt())
+                                    val newWidth = (lp.width - dx).toInt()
+                                        .coerceAtLeast(minSize)
+                                        .coerceAtMost(maxWidth.coerceAtMost(parentWidth.toFloat()).toInt())
+                                    val actualDy = lp.height - newHeight
+                                    val actualDx = lp.width - newWidth
+                                    translationY += actualDy
+                                    translationX += actualDx
                                     lp.height = newHeight
+                                    lp.width = newWidth
                                 }
 
                                 "TOP_RIGHT" -> {
-                                    val newWidth = (lp.width + dx).toInt().coerceAtLeast(minSize)
-                                    val newHeight = (lp.height - dy).toInt().coerceAtLeast(minSize)
-                                    translationY += dy
-                                    lp.width = newWidth
+                                    val maxHeight = lp.height + translationY
+                                    val maxWidth = parentWidth - left
+                                    val newHeight = (lp.height - dy).toInt()
+                                        .coerceAtLeast(minSize)
+                                        .coerceAtMost(maxHeight.coerceAtMost(parentHeight.toFloat()).toInt())
+                                    val newWidth = (lp.width + dx).toInt()
+                                        .coerceAtLeast(minSize)
+                                        .coerceAtMost(maxWidth)
+                                    translationY += lp.height - newHeight
                                     lp.height = newHeight
+                                    lp.width = newWidth
                                 }
 
                                 "BOTTOM_LEFT" -> {
-                                    val newWidth = (lp.width - dx).toInt().coerceAtLeast(minSize)
-                                    val newHeight = (lp.height + dy).toInt().coerceAtLeast(minSize)
-                                    translationX += dx
-                                    lp.width = newWidth
+                                    val maxHeight = parentHeight - top
+                                    val maxWidth = lp.width + translationX
+                                    val newHeight = (lp.height + dy).toInt()
+                                        .coerceAtLeast(minSize)
+                                        .coerceAtMost(maxHeight)
+                                    val newWidth = (lp.width - dx).toInt()
+                                        .coerceAtLeast(minSize)
+                                        .coerceAtMost(maxWidth.coerceAtMost(parentWidth.toFloat()).toInt())
+                                    translationX += lp.width - newWidth
                                     lp.height = newHeight
+                                    lp.width = newWidth
                                 }
 
                                 "BOTTOM_RIGHT" -> {
-                                    lp.width = (lp.width + dx).toInt().coerceAtLeast(minSize)
-                                    lp.height = (lp.height + dy).toInt().coerceAtLeast(minSize)
+                                    val maxHeight = parentHeight - top
+                                    val maxWidth = parentWidth - left
+                                    lp.height = (lp.height + dy).toInt()
+                                        .coerceAtLeast(minSize)
+                                        .coerceAtMost(maxHeight)
+                                    lp.width = (lp.width + dx).toInt()
+                                        .coerceAtLeast(minSize)
+                                        .coerceAtMost(maxWidth)
                                 }
                             }
 
                             layoutParams = lp
                             fillHostView(lp.width, lp.height)
-
                             lastX = event.rawX
                             lastY = event.rawY
                         }
@@ -592,6 +641,7 @@ class ResizableWidgetWrapper(
         // Settings (only if widget has a config activity)
         widgetInfo.configure?.let { configureComponent ->
             addMenuItem(getLocalizedString(R.string.widgets_settings)) {
+
                 val intent = Intent().apply {
                     component = configureComponent
                     putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, hostView.appWidgetId)

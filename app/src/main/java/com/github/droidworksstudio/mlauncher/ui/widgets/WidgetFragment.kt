@@ -358,9 +358,25 @@ class WidgetFragment : Fragment() {
     }
 
     private fun showCustomWidgetPicker() {
-        val widgets = appWidgetManager.installedProviders
+        val widgets = appWidgetManager.installedProviders.filter { widgetInfo ->
+            val configure = widgetInfo.configure
+            if (configure == null) return@filter true // include widgets with no config
+
+            val resolveInfo = try {
+                requireContext().packageManager.resolveActivity(
+                    Intent().apply { component = configure },
+                    PackageManager.MATCH_DEFAULT_ONLY
+                )
+            } catch (_: Exception) {
+                null
+            }
+
+            resolveInfo?.activityInfo?.exported == true
+        }
+
         val pm = requireContext().packageManager
 
+        // Group widgets by package
         val grouped = widgets.groupBy { it.provider.packageName }.map { (pkg, widgetList) ->
             val appInfo = try {
                 pm.getApplicationInfo(pkg, 0)
@@ -374,7 +390,10 @@ class WidgetFragment : Fragment() {
 
         AppLogger.d(TAG, "🧩 Showing custom widget picker with ${grouped.size} apps")
 
-        val container = LinearLayout(requireContext()).apply { orientation = LinearLayout.VERTICAL; setPadding(16, 16, 16, 16) }
+        val container = LinearLayout(requireContext()).apply {
+            orientation = LinearLayout.VERTICAL
+            setPadding(16, 16, 16, 16)
+        }
         val scrollView = ScrollView(requireContext()).apply { addView(container) }
 
         activeGridDialog?.dismiss()
@@ -405,21 +424,56 @@ class WidgetFragment : Fragment() {
             appRow.addView(labelView, LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f))
             appRow.addView(expandIcon)
 
-            val widgetContainer = LinearLayout(requireContext()).apply { orientation = LinearLayout.VERTICAL; visibility = View.GONE }
+            val widgetContainer = LinearLayout(requireContext()).apply {
+                orientation = LinearLayout.VERTICAL
+                visibility = View.GONE
+            }
+
             group.widgets.forEach { widgetInfo ->
                 val widgetLabel = widgetInfo.loadLabel(requireContext().packageManager)
-                val widgetRow = TextView(requireContext()).apply {
+
+                val cellWidth = (binding.widgetGrid.width - (GRID_COLUMNS - 1) * CELL_MARGIN) / GRID_COLUMNS
+                val cellHeight = cellWidth // assuming square cells — adjust if not
+
+                // Calculate how many cells the widget needs, rounded up
+                val (defaultCellsW, defaultCellsH) = calculateWidgetCells(
+                    widgetInfo,
+                    cellWidth,
+                    cellHeight,
+                )
+                val widgetSize = "${defaultCellsW}x${defaultCellsH}"
+
+                val widgetRow = LinearLayout(requireContext()).apply {
+                    orientation = LinearLayout.HORIZONTAL
+                    setPadding(32, 12, 12, 12)
+                    gravity = Gravity.CENTER_VERTICAL
+                }
+
+                val labelView = TextView(requireContext()).apply {
                     text = getLocalizedString(R.string.pass_a_string, widgetLabel)
                     textSize = 14f
-                    setPadding(32, 12, 12, 12)
-                    setOnClickListener {
-                        AppLogger.i(TAG, "➕ Selected widget $widgetLabel to add")
-                        addWidget(widgetInfo)
-                        bottomSheetDialog.dismiss()
-                    }
+                    layoutParams = LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f)
                 }
+
+                val sizeView = TextView(requireContext()).apply {
+                    text = widgetSize
+                    textSize = 14f
+                    gravity = Gravity.END
+                    setTypeface(null, Typeface.ITALIC)
+                }
+
+                widgetRow.addView(labelView)
+                widgetRow.addView(sizeView)
+
+                widgetRow.setOnClickListener {
+                    AppLogger.i(TAG, "➕ Selected widget $widgetLabel to add")
+                    addWidget(widgetInfo)
+                    bottomSheetDialog.dismiss()
+                }
+
                 widgetContainer.addView(widgetRow)
             }
+
 
             appRow.setOnClickListener {
                 if (widgetContainer.isVisible) {
@@ -691,7 +745,10 @@ class WidgetFragment : Fragment() {
         binding.widgetGrid.addView(wrapper)
         widgetWrappers.add(wrapper)
 
-        AppLogger.i(TAG, "🟩 Added wrapper → id=$id | wrappers=${widgetWrappers.size}")
+        AppLogger.i(
+            TAG,
+            "🟩 Added #${widgetWrappers.size} → id=${wrapper.hostView.appWidgetId} | Pinned -> col=${wrapper.currentCol}, row=${wrapper.currentRow} | Size -> width=${wrapper.width}, height=${wrapper.height} | Cells -> width=${wrapper.defaultCellsW}, height=${wrapper.defaultCellsH}"
+        )
 
         updateEmptyPlaceholder(widgetWrappers)
     }
@@ -705,8 +762,8 @@ class WidgetFragment : Fragment() {
         val savedList = widgetWrappers.mapIndexed { index, wrapper ->
             val col = ((wrapper.translationX + cellWidth / 2) / (cellWidth + CELL_MARGIN)).toInt().coerceIn(0, GRID_COLUMNS - 1)
             val row = ((wrapper.translationY + cellHeight / 2) / (cellHeight + CELL_MARGIN)).toInt().coerceAtLeast(0)
-            val cellsW = ((wrapper.width + CELL_MARGIN) / (cellWidth + CELL_MARGIN)).coerceAtLeast(MIN_CELL_W)
-            val cellsH = ((wrapper.height + CELL_MARGIN) / (cellHeight + CELL_MARGIN)).coerceAtLeast(MIN_CELL_H)
+            val cellsW = ((wrapper.width + CELL_MARGIN) / (cellWidth + CELL_MARGIN)).coerceAtLeast(wrapper.defaultCellsW)
+            val cellsH = ((wrapper.height + CELL_MARGIN) / (cellHeight + CELL_MARGIN)).coerceAtLeast(wrapper.defaultCellsH)
             val widgetWidth = (cellWidth * cellsW).coerceAtLeast(cellWidth)
             val widgetHeight = (cellHeight * cellsH).coerceAtLeast(cellHeight)
 
