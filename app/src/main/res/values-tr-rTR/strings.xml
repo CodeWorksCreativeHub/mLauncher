@@ -44,9 +44,6 @@
     <string name="settings_exit_mlauncher_title">MultiLauncher\'dan çık</string>
     <string name="settings_exit_mlauncher_description">Geçici olarak varsayılan başlatıcınıza geçin.</string>
     <string name="settings_exit_mlauncher_dialog">Bir başlatıcı seçin</string>
-    <string name="settings_donation_title">Bağışlar</string>
-    <string name="settings_donation_description">Bağış yaparak çalışmalarımızı destekleyin.</string>
-    <string name="settings_donation_dialog">Bizi Destekleyin</string>
     <!-- Strings used for features settings -->
     <string name="features_settings_title">Özellikler</string>
     <string name="personalization">Kişiselleştirme</string>
@@ -179,7 +176,9 @@
     <string name="advanced_settings_app_info_title">Uygulama Bilgileri</string>
     <string name="advanced_settings_app_info_description">%1$s</string>
     <string name="advanced_settings_set_as_default_launcher">Varsayılan başlatıcı olarak ayarla</string>
+    <string name="advanced_settings_set_as_default_launcher_description">Make Multi Launcher your default home app.</string>
     <string name="advanced_settings_change_default_launcher">Varsayılan başlatıcıyı değiştir</string>
+    <string name="advanced_settings_change_default_launcher_description">Choose a different launcher as your default.</string>
     <string name="advanced_settings_restart_title">Başlatıcıyı yeniden başlat</string>
     <string name="advanced_settings_restart_description">Açıp kapatmayı denediniz mi?</string>
     <string name="advanced_settings_backup_restore_title">Yedekleme/Geri Yükleme</string>
@@ -205,6 +204,8 @@
     <string name="advanced_settings_share_application_title">Paylaşım Uygulaması</string>
     <string name="advanced_settings_share_application_description">%1$sile deneyiminizi bir üst seviyeye taşıyın!</string>
     <string name="advanced_settings_share_application_description_addon">Hemen %1$s adresinden edinin ve herkesin ne hakkında konuştuğunu görün! %2$s\n</string>
+    <!-- Strings used for about settings -->
+    <string name="about_settings_title">About %1$s</string>
     <!-- Strings used for expert settings -->
     <string name="expert_settings_title">Uzman</string>
     <string name="toggleable_items">Değiştirilebilir Öğeler</string>
@@ -346,6 +347,9 @@
     <string name="settings_home_buttons_option">Görüntülenecek öğeleri seçin</string>
     <string name="settings_applist_buttons_title">Uygulama Listesi Düğmeleri</string>
     <string name="settings_applist_buttons_option">Görüntülenecek öğeleri seçin</string>
+    <string name="settings_source_code">Source Code</string>
+    <string name="settings_donations">Donations</string>
+    <string name="settings_credits">Credits</string>
     <string-array name="priorities">
         <item>Düşük</item>
         <item>Orta</item>
