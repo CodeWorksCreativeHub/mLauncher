@@ -82,6 +82,34 @@ function classifyCommit(message) {
 	return null;
 }
 
+function getGitHubReleaseTitle(tag, callback) {
+    const options = {
+        hostname: "api.github.com",
+        path: `/repos/DroidWorksStudio/mLauncher/releases/tags/${tag}`,
+        method: "GET",
+        headers: {
+            "User-Agent": "Node.js",
+            "Accept": "application/vnd.github.v3+json"
+        },
+    };
+
+    const req = https.request(options, (res) => {
+        let data = "";
+        res.on("data", (chunk) => data += chunk);
+        res.on("end", () => {
+            if (res.statusCode >= 200 && res.statusCode < 300) {
+                const json = JSON.parse(data);
+                callback(null, json.name || tag); // release title
+            } else {
+                callback(new Error(`GitHub API returned ${res.statusCode}: ${data}`));
+            }
+        });
+    });
+
+    req.on("error", (e) => callback(e));
+    req.end();
+}
+
 // Get latest tag
 const allTags = run("git tag --sort=-creatordate").split("\n");
 const latestTag = allTags[0];
@@ -108,52 +136,53 @@ for (const c of commits) {
 }
 
 // Build plain message
-let discordMessage = `## Multi Launcher ${latestTag}\n\n`;
+// Fetch release title and then build/send Discord message
+getGitHubReleaseTitle(latestTag, (err, releaseTitle) => {
+    if (err) return console.error("Error fetching release:", err);
 
-for (const group of GROUP_ORDER) {
-	if (!groups[group] || groups[group].length === 0) continue;
-	discordMessage += `${group}\n${groups[group].join("\n")}\n\n`;
-}
+    // Build Discord message AFTER fetching release title
+    let discordMessage = `## ${releaseTitle}\n\n`;
 
-// Fallback
-if (!commits.length) discordMessage += "No commits found.";
+    for (const group of GROUP_ORDER) {
+        if (!groups[group] || groups[group].length === 0) continue;
+        discordMessage += `${group}\n${groups[group].join("\n")}\n\n`;
+    }
 
-// Append Discord Role mention
-discordMessage += `<@&${process.env.DISCORD_ROLEID}>\n\n`;
+    if (!commits.length) discordMessage += "No commits found.";
 
-// Append download link
-discordMessage += `:arrow_down:  [Direct APK Download](<${REPO_URL}/releases/download/${latestTag}/MultiLauncher-${latestTag}-Signed.apk>)  :arrow_down:\n\n`;
+    discordMessage += `<@&${process.env.DISCORD_ROLEID}>\n\n`;
+    discordMessage += `:arrow_down:  [Direct APK Download](${REPO_URL}/releases/download/${latestTag}/MultiLauncher-${latestTag}-Signed.apk)  :arrow_down:\n\n`;
 
-// Send to Discord
-const payload = JSON.stringify({
-	content: discordMessage,
-	username: "Multi Launcher Updates",
-	avatar_url: "https://github.com/DroidWorksStudio/mLauncher/blob/main/fastlane/metadata/android/en-US/images/icon.png?raw=true",
+    const payload = JSON.stringify({
+        content: discordMessage,
+        username: "Multi Launcher Updates",
+        avatar_url: "https://github.com/DroidWorksStudio/mLauncher/blob/main/fastlane/metadata/android/en-US/images/icon.png?raw=true",
+    });
+
+    const url = new URL(WEBHOOK_URL);
+    const options = {
+        hostname: url.hostname,
+        path: url.pathname + url.search,
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Content-Length": payload.length,
+        },
+    };
+
+    const req = https.request(options, (res) => {
+        let data = "";
+        res.on("data", (chunk) => (data += chunk));
+        res.on("end", () => {
+            if (res.statusCode >= 200 && res.statusCode < 300) {
+                console.log("✅ Release posted to Discord!");
+            } else {
+                console.error("Failed to post:", res.statusCode, data);
+            }
+        });
+    });
+
+    req.on("error", (e) => console.error("Error:", e));
+    req.write(payload);
+    req.end();
 });
-
-const url = new URL(WEBHOOK_URL);
-const options = {
-	hostname: url.hostname,
-	path: url.pathname + url.search,
-	method: "POST",
-	headers: {
-		"Content-Type": "application/json",
-		"Content-Length": payload.length,
-	},
-};
-
-const req = https.request(options, (res) => {
-	let data = "";
-	res.on("data", (chunk) => (data += chunk));
-	res.on("end", () => {
-		if (res.statusCode >= 200 && res.statusCode < 300) {
-			console.log("✅ Release posted to Discord!");
-		} else {
-			console.error("Failed to post:", res.statusCode, data);
-		}
-	});
-});
-
-req.on("error", (e) => console.error("Error:", e));
-req.write(payload);
-req.end();
