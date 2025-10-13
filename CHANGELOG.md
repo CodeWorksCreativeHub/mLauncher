@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [1.11.2.1 → Unreleased](https://github.com/DroidWorksStudio/mLauncher/tree/main) - In Development
+
+### :sparkles: Enhancements:
+
+* Use GitHub release title for notifications ([bf8abe14](https://github.com/DroidWorksStudio/mLauncher/commit/bf8abe14))
+
 ## [Multi Launcher 1.11.2 Build 1](https://github.com/DroidWorksStudio/mLauncher/tree/1.11.2.1) - (13, October 2025)
 
 ### :sparkles: Enhancements:
