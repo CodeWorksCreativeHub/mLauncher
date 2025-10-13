@@ -44,9 +44,6 @@
     <string name="settings_exit_mlauncher_title">MultiLauncher beenden</string>
     <string name="settings_exit_mlauncher_description">Wechseln Sie vorübergehend zu Ihrem Standard-Launcher.</string>
     <string name="settings_exit_mlauncher_dialog">Wählen Sie einen Launcher</string>
-    <string name="settings_donation_title">Spenden</string>
-    <string name="settings_donation_description">Unterstützen Sie unsere Arbeit mit einer Spende.</string>
-    <string name="settings_donation_dialog">Unterstützen Sie uns</string>
     <!-- Strings used for features settings -->
     <string name="features_settings_title">Merkmale</string>
     <string name="personalization">Personalisierung</string>
@@ -179,7 +176,9 @@
     <string name="advanced_settings_app_info_title">App-Informationen</string>
     <string name="advanced_settings_app_info_description">%1$s</string>
     <string name="advanced_settings_set_as_default_launcher">Als Standard-Launcher festlegen</string>
+    <string name="advanced_settings_set_as_default_launcher_description">Make Multi Launcher your default home app.</string>
     <string name="advanced_settings_change_default_launcher">Standard-Launcher ändern</string>
+    <string name="advanced_settings_change_default_launcher_description">Choose a different launcher as your default.</string>
     <string name="advanced_settings_restart_title">Launcher neu starten</string>
     <string name="advanced_settings_restart_description">Haben Sie versucht, es ein- und auszuschalten?</string>
     <string name="advanced_settings_backup_restore_title">Sichern/Wiederherstellen</string>
@@ -205,6 +204,8 @@
     <string name="advanced_settings_share_application_title">Anwendung teilen</string>
     <string name="advanced_settings_share_application_description">Erweitern Sie Ihr Erlebnis mit %1$s!</string>
     <string name="advanced_settings_share_application_description_addon">Hol es dir jetzt auf %1$s und sieh, worüber alle reden! %2$s\n</string>
+    <!-- Strings used for about settings -->
+    <string name="about_settings_title">About %1$s</string>
     <!-- Strings used for expert settings -->
     <string name="expert_settings_title">Experte</string>
     <string name="toggleable_items">Umschaltbare Elemente</string>
@@ -346,6 +347,9 @@
     <string name="settings_home_buttons_option">Auswählen der anzuzeigenden Elemente</string>
     <string name="settings_applist_buttons_title">Schaltflächen für die App-Liste</string>
     <string name="settings_applist_buttons_option">Auswählen der anzuzeigenden Elemente</string>
+    <string name="settings_source_code">Source Code</string>
+    <string name="settings_donations">Donations</string>
+    <string name="settings_credits">Credits</string>
     <string-array name="priorities">
         <item>Niedrig</item>
         <item>Medium</item>
