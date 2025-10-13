@@ -8,6 +8,10 @@ All notable changes to this project will be documented in this file. See [conven
 
 * Allow adding widgets outside of edit mode ([188953c0](https://github.com/DroidWorksStudio/mLauncher/commit/188953c0))
 
+### :bug: Bug Fixes:
+
+* Improve widget resizing and selection ([2525d34c](https://github.com/DroidWorksStudio/mLauncher/commit/2525d34c))
+
 ### :wrench: Code Quality:
 
 * Improve widget resizing logic ([077fac43](https://github.com/DroidWorksStudio/mLauncher/commit/077fac43))
