@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
-## [Multi Launcher ‧ Home Screen 1.11.2 Build 1](https://github.com/DroidWorksStudio/mLauncher/tree/1.11.2.1) - (13, October 2025)
+## [Multi Launcher 1.11.2 Build 1](https://github.com/DroidWorksStudio/mLauncher/tree/1.11.2.1) - (13, October 2025)
 
 ### :sparkles: Enhancements:
 
@@ -24,7 +24,7 @@ All notable changes to this project will be documented in this file. See [conven
 * Bump com.google.devtools.ksp in the all-gradle group ([#929](https://github.com/DroidWorksStudio/mLauncher/pull/929)) ([72f4c5d5](https://github.com/DroidWorksStudio/mLauncher/commit/72f4c5d5))
 * Update Compose and Room library versions ([5f0dc5bc](https://github.com/DroidWorksStudio/mLauncher/commit/5f0dc5bc))
 
-## [Multi Launcher ‧ Home Screen 1.11.2 Build 0](https://github.com/DroidWorksStudio/mLauncher/tree/1.11.2.0) - (09, October 2025)
+## [Multi Launcher 1.11.2 Build 0](https://github.com/DroidWorksStudio/mLauncher/tree/1.11.2.0) - (09, October 2025)
 
 ### :sparkles: Enhancements:
 
@@ -49,7 +49,7 @@ All notable changes to this project will be documented in this file. See [conven
 * Updated Language Files. ([#925](https://github.com/DroidWorksStudio/mLauncher/pull/925)) ([dbbd0cf1](https://github.com/DroidWorksStudio/mLauncher/commit/dbbd0cf1))
 * Updated Language Files. ([#924](https://github.com/DroidWorksStudio/mLauncher/pull/924)) ([b55821fe](https://github.com/DroidWorksStudio/mLauncher/commit/b55821fe))
 
-## [Multi Launcher ‧ Home Screen 1.11.1 Build 6](https://github.com/DroidWorksStudio/mLauncher/tree/1.11.1.6) - (08, October 2025)
+## [Multi Launcher 1.11.1 Build 6](https://github.com/DroidWorksStudio/mLauncher/tree/1.11.1.6) - (08, October 2025)
 
 ### :sparkles: Enhancements:
 
@@ -79,7 +79,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 * Add comments and cleanup AndroidManifest.xml ([25fee006](https://github.com/DroidWorksStudio/mLauncher/commit/25fee006))
 
-## [Multi Launcher ‧ Home Screen 1.11.1 Build 5](https://github.com/DroidWorksStudio/mLauncher/tree/1.11.1.5) - (05, October 2025)
+## [Multi Launcher 1.11.1 Build 5](https://github.com/DroidWorksStudio/mLauncher/tree/1.11.1.5) - (05, October 2025)
 
 ### :sparkles: Enhancements:
 
@@ -106,7 +106,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 * Add icons to changelog group titles ([6fa851d1](https://github.com/DroidWorksStudio/mLauncher/commit/6fa851d1))
 
-## [Multi Launcher ‧ Home Screen 1.11.1 Build 4](https://github.com/DroidWorksStudio/mLauncher/tree/1.11.1.4) - (03, October 2025)
+## [Multi Launcher 1.11.1 Build 4](https://github.com/DroidWorksStudio/mLauncher/tree/1.11.1.4) - (03, October 2025)
 
 ### :sparkles: Enhancements:
 
@@ -148,7 +148,7 @@ All notable changes to this project will be documented in this file. See [conven
 * Bump the all-gradle group across 1 directory with 12 updates ([#911](https://github.com/DroidWorksStudio/mLauncher/pull/911)) ([a9ccdc2b](https://github.com/DroidWorksStudio/mLauncher/commit/a9ccdc2b))
 * Bump actions/cache in the all-actions group ([#910](https://github.com/DroidWorksStudio/mLauncher/pull/910)) ([66d9119d](https://github.com/DroidWorksStudio/mLauncher/commit/66d9119d))
 
-## [Multi Launcher ‧ Home Screen 1.11.1 Build 3](https://github.com/DroidWorksStudio/mLauncher/tree/1.11.1.3) - (21, September 2025)
+## [Multi Launcher 1.11.1 Build 3](https://github.com/DroidWorksStudio/mLauncher/tree/1.11.1.3) - (21, September 2025)
 
 ### :bug: Bug Fixes:
 
