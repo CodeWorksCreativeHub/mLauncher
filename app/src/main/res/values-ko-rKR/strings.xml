@@ -44,9 +44,6 @@
     <string name="settings_exit_mlauncher_title">MultiLauncher 종료</string>
     <string name="settings_exit_mlauncher_description">일시적으로 기본 런처로 전환합니다.</string>
     <string name="settings_exit_mlauncher_dialog">런처를 선택하세요</string>
-    <string name="settings_donation_title">기부금</string>
-    <string name="settings_donation_description">기부를 통해 우리의 활동을 지원해 주세요.</string>
-    <string name="settings_donation_dialog">우리를 지원해주세요</string>
     <!-- Strings used for features settings -->
     <string name="features_settings_title">특징</string>
     <string name="personalization">개인화</string>
@@ -179,7 +176,9 @@
     <string name="advanced_settings_app_info_title">앱 정보</string>
     <string name="advanced_settings_app_info_description">%1$s</string>
     <string name="advanced_settings_set_as_default_launcher">Set as default launcher</string>
+    <string name="advanced_settings_set_as_default_launcher_description">Make Multi Launcher your default home app.</string>
     <string name="advanced_settings_change_default_launcher">Change default launcher</string>
+    <string name="advanced_settings_change_default_launcher_description">Choose a different launcher as your default.</string>
     <string name="advanced_settings_restart_title">런처 재시작</string>
     <string name="advanced_settings_restart_description">켜고 끄는 걸 시도해 보셨나요?</string>
     <string name="advanced_settings_backup_restore_title">백업/복원</string>
@@ -205,6 +204,8 @@
     <string name="advanced_settings_share_application_title">공유 응용 프로그램</string>
     <string name="advanced_settings_share_application_description">%1$s로 더욱 향상된 경험을 느껴보세요!</string>
     <string name="advanced_settings_share_application_description_addon">지금 %1$s 에서 받아보시고 모두가 무슨 이야기를 하는지 확인해보세요! %2$s\n</string>
+    <!-- Strings used for about settings -->
+    <string name="about_settings_title">About %1$s</string>
     <!-- Strings used for expert settings -->
     <string name="expert_settings_title">전문가</string>
     <string name="toggleable_items">토글 가능한 항목</string>
@@ -346,6 +347,9 @@
     <string name="settings_home_buttons_option">표시할 항목을 선택하세요</string>
     <string name="settings_applist_buttons_title">앱 목록 버튼</string>
     <string name="settings_applist_buttons_option">표시할 항목을 선택하세요</string>
+    <string name="settings_source_code">Source Code</string>
+    <string name="settings_donations">Donations</string>
+    <string name="settings_credits">Credits</string>
     <string-array name="priorities">
         <item>낮은</item>
         <item>중간</item>
