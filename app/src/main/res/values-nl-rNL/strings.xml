@@ -44,9 +44,6 @@
     <string name="settings_exit_mlauncher_title">MultiLauncher verlaten</string>
     <string name="settings_exit_mlauncher_description">Schakel tijdelijk over naar uw standaard launcher.</string>
     <string name="settings_exit_mlauncher_dialog">Kies een launcher</string>
-    <string name="settings_donation_title">Donaties</string>
-    <string name="settings_donation_description">Steun ons werk door een donatie te doen.</string>
-    <string name="settings_donation_dialog">Steun ons</string>
     <!-- Strings used for features settings -->
     <string name="features_settings_title">Functies</string>
     <string name="personalization">Personalisatie</string>
@@ -179,7 +176,9 @@
     <string name="advanced_settings_app_info_title">App informatie</string>
     <string name="advanced_settings_app_info_description">%1$s</string>
     <string name="advanced_settings_set_as_default_launcher">Instellen als standaard launcher</string>
+    <string name="advanced_settings_set_as_default_launcher_description">Make Multi Launcher your default home app.</string>
     <string name="advanced_settings_change_default_launcher">Standaard launcher wijzigen</string>
+    <string name="advanced_settings_change_default_launcher_description">Choose a different launcher as your default.</string>
     <string name="advanced_settings_restart_title">Herstart Launcher</string>
     <string name="advanced_settings_restart_description">Heb je geprobeerd het uit en aan te zetten?</string>
     <string name="advanced_settings_backup_restore_title">Back-up/Herstellen</string>
@@ -205,6 +204,8 @@
     <string name="advanced_settings_share_application_title">Deel applicatie</string>
     <string name="advanced_settings_share_application_description">Verbeter uw ervaring met %1$s!</string>
     <string name="advanced_settings_share_application_description_addon">Download het nu op %1$s en zie waar iedereen het over heeft! %2$s\n</string>
+    <!-- Strings used for about settings -->
+    <string name="about_settings_title">About %1$s</string>
     <!-- Strings used for expert settings -->
     <string name="expert_settings_title">Deskundige</string>
     <string name="toggleable_items">Schakelbare items</string>
@@ -346,6 +347,9 @@
     <string name="settings_home_buttons_option">Selecteer items om weer te geven</string>
     <string name="settings_applist_buttons_title">App-lijstknoppen</string>
     <string name="settings_applist_buttons_option">Selecteer items om weer te geven</string>
+    <string name="settings_source_code">Source Code</string>
+    <string name="settings_donations">Donations</string>
+    <string name="settings_credits">Credits</string>
     <string-array name="priorities">
         <item>Laag</item>
         <item>Medium</item>
