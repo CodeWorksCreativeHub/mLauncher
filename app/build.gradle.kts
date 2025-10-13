@@ -10,11 +10,11 @@ plugins {
 val major = 1
 val minor = 11
 val patch = 2
-val build = 1
+val build = 2
 
 val type = 0 // 1=beta, 2=alpha else=production
 
-val baseVersionName = "$major.$minor.$patch.$build"
+val baseVersionName = "$major.$minor.$patch"
 
 val versionCodeInt =
     (String.format("%02d", major) + String.format("%02d", minor) + String.format(
@@ -23,9 +23,9 @@ val versionCodeInt =
     ) + String.format("%02d", build)).toInt()
 
 val versionNameStr = when (type) {
-    1 -> "$baseVersionName-beta"
-    2 -> "$baseVersionName-alpha"
-    else -> baseVersionName
+    1 -> "$baseVersionName-beta build $build"
+    2 -> "$baseVersionName-alpha build $build"
+    else -> "$baseVersionName build $build"
 }
 
 val applicationName = when (type) {
