@@ -17,6 +17,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 ### :building_construction: Build:
 
+* Bump com.google.devtools.ksp in the all-gradle group ([#929](https://github.com/DroidWorksStudio/mLauncher/pull/929)) ([72f4c5d5](https://github.com/DroidWorksStudio/mLauncher/commit/72f4c5d5))
 * Update Compose and Room library versions ([5f0dc5bc](https://github.com/DroidWorksStudio/mLauncher/commit/5f0dc5bc))
 
 ## [1110200 (1.11.2.0) - Multi Launcher ‧ Home Screen](https://github.com/DroidWorksStudio/mLauncher/tree/1.11.2.0) - (09, October 2025)
