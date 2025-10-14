@@ -15,6 +15,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 ### :wrench: Code Quality:
 
+* Generalize and streamline list building logic ([486b61ca](https://github.com/DroidWorksStudio/mLauncher/commit/486b61ca))
 * Replace donation dialog with About screen ([2140e87f](https://github.com/DroidWorksStudio/mLauncher/commit/2140e87f))
 
 ### :globe_with_meridians: Localization:
