@@ -27,6 +27,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.SearchView
 import androidx.core.net.toUri
 import androidx.core.view.isVisible
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -647,89 +648,71 @@ class AppDrawerFragment : BaseFragment() {
         contactAdapter: ContactDrawerAdapter,
         profileFilter: String? = null // "PRIVATE", "WORK", "SYSTEM", "USER", or null for all
     ) {
-        viewModel.hiddenApps.observe(viewLifecycleOwner) {
-            if (flag != AppDrawerFlag.HiddenApps) return@observe
-            it?.let { appList ->
-                binding.listEmptyHint.isVisible = appList.isEmpty()
-                populateAppList(appList, appAdapter)
+        fun <T> observeList(
+            liveData: LiveData<List<T>?>,
+            currentList: List<T>,
+            onPopulate: (List<T>) -> Unit,
+            skipCondition: () -> Boolean = { false }
+        ) {
+            liveData.observe(viewLifecycleOwner) { newList ->
+                if (skipCondition() || newList == currentList) return@observe
+                newList?.let {
+                    binding.listEmptyHint.isVisible = it.isEmpty()
+                    binding.sidebarContainer.isVisible = prefs.showAZSidebar
+                    onPopulate(it)
+                }
             }
         }
 
-        // Observe contacts
-        viewModel.contactList.observe(viewLifecycleOwner) { rawContactList ->
-            if (rawContactList == contactAdapter.contactsList) return@observe
-            if (binding.menuView.displayedChild != 0) return@observe
+        // 🔹 Observe hidden apps
+        observeList(
+            viewModel.hiddenApps, appAdapter.appsList,
+            onPopulate = { populateAppList(it, appAdapter) },
+            skipCondition = { flag != AppDrawerFlag.HiddenApps }
+        )
 
-            AppLogger.d("Contacts", "Loaded ${rawContactList?.size ?: 0} contacts")
+        // 🔹 Observe contacts
+        observeList(
+            viewModel.contactList, contactAdapter.contactsList,
+            onPopulate = { populateContactList(it, contactAdapter) },
+            skipCondition = { binding.menuView.displayedChild != 0 }
+        )
 
-            rawContactList?.let {
-                binding.listEmptyHint.isVisible = it.isEmpty()
-                binding.sidebarContainer.isVisible = prefs.showAZSidebar
-                populateContactList(it, contactAdapter)
-            }
-        }
-
-        // Observe apps
+        // 🔹 Observe apps
         viewModel.appList.observe(viewLifecycleOwner) { rawAppList ->
             if (flag == AppDrawerFlag.HiddenApps) return@observe
-            if (rawAppList == appAdapter.appsList) return@observe
-            if (binding.menuView.displayedChild != 0) return@observe
+            if (rawAppList == appAdapter.appsList || binding.menuView.displayedChild != 0) return@observe
 
             AppLogger.d("Apps", "Loaded ${rawAppList?.size ?: 0} raw apps")
-
             rawAppList?.let { list ->
-                // 🔹 The apps already have profileType set in the deferreds fetch
-                val classifiedList = list
+                val appsByProfile = list.groupBy { it.profileType }
+                val allProfiles = listOf("SYSTEM", "PRIVATE", "WORK", "USER")
 
-                AppLogger.d("AppClassify", "Classified ${classifiedList.size} apps by profile type")
-
-                // 🔹 Group apps by type
-                val systemApps = classifiedList.filter { it.profileType == "SYSTEM" }
-                val workApps = classifiedList.filter { it.profileType == "WORK" }
-                val privateApps = classifiedList.filter { it.profileType == "PRIVATE" }
-                val userApps = classifiedList.filter { it.profileType == "USER" }
-
-                val mergedList = mutableListOf<AppListItem>()
-
-                AppLogger.d(
-                    "AppMerge",
-                    "System=${systemApps.size}, Work=${workApps.size}, Private=${privateApps.size}, User=${userApps.size}"
-                )
-
-                // 🔹 Only add sections based on profileFilter
-                fun shouldInclude(type: String) = profileFilter == null || profileFilter.equals(type, ignoreCase = true)
-
-                if (shouldInclude("SYSTEM") && systemApps.isNotEmpty()) {
-                    AppLogger.d("AppMerge", "Adding ${systemApps.size} system apps")
-                    mergedList.addAll(systemApps)
+                // Update prefs counters
+                allProfiles.forEach { profile ->
+                    prefs.setProfileCounter(profile, appsByProfile[profile]?.size ?: 0)
                 }
 
-                if (shouldInclude("PRIVATE") && privateApps.isNotEmpty()) {
-                    AppLogger.d("AppMerge", "Adding ${privateApps.size} private apps")
-                    mergedList.addAll(privateApps)
-                }
-
-                if (shouldInclude("WORK") && workApps.isNotEmpty()) {
-                    AppLogger.d("AppMerge", "Adding ${workApps.size} work apps")
-                    mergedList.addAll(workApps)
-                }
-
-                if (shouldInclude("USER") && userApps.isNotEmpty()) {
-                    AppLogger.d("AppMerge", "Adding ${userApps.size} user apps")
-                    mergedList.addAll(userApps)
+                // Merge apps based on filter
+                val mergedList = allProfiles.flatMap { profile ->
+                    val apps = appsByProfile[profile].orEmpty()
+                    if (apps.isNotEmpty() && (profileFilter == null || profileFilter.equals(profile, true))) {
+                        AppLogger.d("AppMerge", "Adding ${apps.size} $profile apps")
+                        apps
+                    } else emptyList()
                 }
 
                 AppLogger.d("AppMerge", "Final merged list (${mergedList.size} apps)")
 
-                // 🔹 Update UI
                 binding.listEmptyHint.isVisible = mergedList.isEmpty()
                 binding.sidebarContainer.isVisible = prefs.showAZSidebar
                 populateAppList(mergedList, appAdapter)
             }
         }
 
+        // 🔹 Observe first open
         viewModel.firstOpen.observe(viewLifecycleOwner) {
-            if (it) binding.appDrawerTip.isVisible = true
+            binding.appDrawerTip.isVisible = it
         }
     }
 
