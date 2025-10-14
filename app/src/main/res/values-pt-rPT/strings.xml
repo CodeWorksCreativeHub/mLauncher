@@ -176,9 +176,9 @@
     <string name="advanced_settings_app_info_title">Informações do aplicativo</string>
     <string name="advanced_settings_app_info_description">%1$s</string>
     <string name="advanced_settings_set_as_default_launcher">Definido como lançador padrão</string>
-    <string name="advanced_settings_set_as_default_launcher_description">Make Multi Launcher your default home app.</string>
+    <string name="advanced_settings_set_as_default_launcher_description">Faça do Multi Launcher a sua aplicação inicial padrão.</string>
     <string name="advanced_settings_change_default_launcher">Alterar lançador padrão</string>
-    <string name="advanced_settings_change_default_launcher_description">Choose a different launcher as your default.</string>
+    <string name="advanced_settings_change_default_launcher_description">Escolha um inicializador diferente como padrão.</string>
     <string name="advanced_settings_restart_title">Reiniciar o Launcher</string>
     <string name="advanced_settings_restart_description">Você já tentou ligar e desligar?</string>
     <string name="advanced_settings_backup_restore_title">Backup/Restauração</string>
@@ -205,7 +205,7 @@
     <string name="advanced_settings_share_application_description">Eleve sua experiência com %1$s!</string>
     <string name="advanced_settings_share_application_description_addon">Baixe agora em %1$s e veja o que todo mundo está falando! %2$s\n</string>
     <!-- Strings used for about settings -->
-    <string name="about_settings_title">About %1$s</string>
+    <string name="about_settings_title">Sobre %1$s</string>
     <!-- Strings used for expert settings -->
     <string name="expert_settings_title">Especialista</string>
     <string name="toggleable_items">Itens alternáveis</string>
@@ -347,9 +347,9 @@
     <string name="settings_home_buttons_option">Selecione os itens a apresentar</string>
     <string name="settings_applist_buttons_title">Botões da lista de aplicações</string>
     <string name="settings_applist_buttons_option">Selecione os itens a apresentar</string>
-    <string name="settings_source_code">Source Code</string>
-    <string name="settings_donations">Donations</string>
-    <string name="settings_credits">Credits</string>
+    <string name="settings_source_code">Código-fonte</string>
+    <string name="settings_donations">Doações</string>
+    <string name="settings_credits">Créditos</string>
     <string-array name="priorities">
         <item>Baixo</item>
         <item>Médio</item>
