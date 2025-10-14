@@ -19,143 +19,6 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import java.lang.reflect.ParameterizedType
 
-private const val PREFS_FILENAME = "app.mlauncher.prefs"
-private const val PREFS_JUNK_FILENAME = "app.mlauncher.prefs.junk"
-private const val PREFS_ONBOARDING_FILENAME = "app.mlauncher.prefs.onboarding"
-
-private const val APP_VERSION = "APP_VERSION"
-private const val LOCK_ORIENTATION = "LOCK_ORIENTATION"
-private const val LOCK_ORIENTATION_PORTRAIT = "LOCK_ORIENTATION_PORTRAIT"
-private const val HAPTIC_FEEDBACK = "HAPTIC_FEEDBACK"
-private const val FIRST_OPEN = "FIRST_OPEN"
-private const val FIRST_SETTINGS_OPEN = "FIRST_SETTINGS_OPEN"
-private const val HOME_APPS_NUM = "HOME_APPS_NUM"
-private const val HOME_PAGES_NUM = "HOME_PAGES_NUM"
-private const val HOME_PAGES_PAGER = "HOME_PAGES_PAGER"
-private const val AUTO_SHOW_KEYBOARD = "AUTO_SHOW_KEYBOARD"
-private const val AUTO_OPEN_APP = "AUTO_OPEN_APP"
-private const val OPEN_APP_ON_ENTER = "OPEN_APP_ON_ENTER"
-private const val RECENT_APPS_DISPLAYED = "RECENT_APPS_DISPLAYED"
-private const val ICON_RAINBOW_COLORS = "ICON_RAINBOW_COLORS"
-private const val RECENT_COUNTER = "RECENT_COUNTER"
-private const val FILTER_STRENGTH = "FILTER_STRENGTH"
-private const val SHORT_SWIPE_THRESHOLD = "SHORT_SWIPE_THRESHOLD"
-private const val LONG_SWIPE_THRESHOLD = "LONG_SWIPE_THRESHOLD"
-private const val ENABLE_FILTER_STRENGTH = "ENABLE_FILTER_STRENGTH"
-private const val HOME_ALIGNMENT = "HOME_ALIGNMENT"
-private const val HOME_ALIGNMENT_BOTTOM = "HOME_ALIGNMENT_BOTTOM"
-private const val HOME_CLICK_AREA = "HOME_CLICK_AREA"
-private const val DRAWER_ALIGNMENT = "DRAWER_ALIGNMENT"
-private const val CLOCK_ALIGNMENT = "CLOCK_ALIGNMENT"
-private const val DATE_ALIGNMENT = "DATE_ALIGNMENT"
-private const val ALARM_ALIGNMENT = "ALARM_ALIGNMENT"
-private const val DAILY_WORD_ALIGNMENT = "DAILY_WORD_ALIGNMENT"
-private const val SHOW_BACKGROUND = "SHOW_BACKGROUND"
-private const val STATUS_BAR = "STATUS_BAR"
-private const val NAVIGATION_BAR = "NAVIGATION_BAR"
-private const val SHOW_BATTERY = "SHOW_BATTERY"
-private const val SHOW_BATTERY_ICON = "SHOW_BATTERY_ICON"
-private const val SHOW_WEATHER = "SHOW_WEATHER"
-private const val GPS_LOCATION = "GPS_LOCATION"
-private const val SHOW_AZSIDEBAR = "SHOW_AZSIDEBAR"
-private const val SHOW_DATE = "SHOW_DATE"
-private const val HOME_LOCKED = "HOME_LOCKED"
-private const val SETTINGS_LOCKED = "SETTINGS_LOCKED"
-private const val HIDE_SEARCH_VIEW = "HIDE_SEARCH_VIEW"
-private const val AUTO_EXPAND_NOTES = "AUTO_EXPAND_NOTES"
-private const val CLICK_EDIT_DELETE = "CLICK_EDIT_DELETE"
-private const val SHOW_CLOCK = "SHOW_CLOCK"
-private const val SHOW_CLOCK_FORMAT = "SHOW_CLOCK_FORMAT"
-private const val SHOW_ALARM = "SHOW_ALARM"
-private const val SHOW_DAILY_WORD = "SHOW_DAILY_WORD"
-private const val SHOW_FLOATING = "SHOW_FLOATING"
-private const val ICON_PACK_HOME = "ICON_PACK_HOME"
-private const val CUSTOM_ICON_PACK_HOME = "CUSTOM_ICON_PACK_HOME"
-private const val ICON_PACK_APP_LIST = "ICON_PACK_APP_LIST"
-private const val CUSTOM_ICON_PACK_APP_LIST = "CUSTOM_ICON_PACK_APP_LIST"
-private const val WORD_LIST = "WORD_LIST"
-private const val SEARCH_START = "SEARCH_START"
-private const val SWIPE_UP_ACTION = "SWIPE_UP_ACTION"
-private const val SWIPE_DOWN_ACTION = "SWIPE_DOWN_ACTION"
-private const val SWIPE_RIGHT_ACTION = "SWIPE_RIGHT_ACTION"
-private const val SWIPE_LEFT_ACTION = "SWIPE_LEFT_ACTION"
-private const val LONG_SWIPE_UP_ACTION = "LONG_SWIPE_UP_ACTION"
-private const val LONG_SWIPE_DOWN_ACTION = "LONG_SWIPE_DOWN_ACTION"
-private const val LONG_SWIPE_RIGHT_ACTION = "LONG_SWIPE_RIGHT_ACTION"
-private const val LONG_SWIPE_LEFT_ACTION = "LONG_SWIPE_LEFT_ACTION"
-private const val CLICK_CLOCK_ACTION = "CLICK_CLOCK_ACTION"
-private const val CLICK_APP_USAGE_ACTION = "CLICK_APP_USAGE_ACTION"
-private const val CLICK_FLOATING_ACTION = "CLICK_FLOATING_ACTION"
-private const val CLICK_DATE_ACTION = "CLICK_DATE_ACTION"
-private const val DOUBLE_TAP_ACTION = "DOUBLE_TAP_ACTION"
-private const val HIDDEN_APPS = "HIDDEN_APPS"
-private const val LOCKED_APPS = "LOCKED_APPS"
-private const val PINNED_APPS = "PINNED_APPS"
-private const val HIDDEN_CONTACTS = "HIDDEN_CONTACTS"
-private const val PINNED_CONTACTS = "PINNED_CONTACTS"
-private const val SEARCH_ENGINE = "SEARCH_ENGINE"
-private const val LAUNCHER_FONT = "LAUNCHER_FONT"
-private const val APP_NAME = "APP_NAME"
-private const val APP_PACKAGE = "APP_PACKAGE"
-private const val APP_USER = "APP_USER"
-private const val APP_ALIAS = "APP_ALIAS"
-private const val APP_ACTIVITY = "APP_ACTIVITY"
-private const val APP_USAGE_STATS = "APP_USAGE_STATS"
-private const val APP_OPACITY = "APP_OPACITY"
-private const val APP_LANGUAGE = "APP_LANGUAGE"
-private const val APP_THEME = "APP_THEME"
-private const val TEMP_UNIT = "TEMP_UNIT"
-private const val SHORT_SWIPE_UP = "SHORT_SWIPE_UP"
-private const val SHORT_SWIPE_DOWN = "SHORT_SWIPE_DOWN"
-private const val SHORT_SWIPE_LEFT = "SHORT_SWIPE_LEFT"
-private const val SHORT_SWIPE_RIGHT = "SHORT_SWIPE_RIGHT"
-private const val LONG_SWIPE_UP = "LONG_SWIPE_UP"
-private const val LONG_SWIPE_DOWN = "LONG_SWIPE_DOWN"
-private const val LONG_SWIPE_LEFT = "LONG_SWIPE_LEFT"
-private const val LONG_SWIPE_RIGHT = "LONG_SWIPE_RIGHT"
-private const val CLICK_CLOCK = "CLICK_CLOCK"
-private const val CLICK_USAGE = "CLICK_USAGE"
-private const val CLICK_FLOATING = "CLICK_FLOATING"
-private const val CLICK_DATE = "CLICK_DATE"
-private const val DOUBLE_TAP = "DOUBLE_TAP"
-private const val APP_SIZE_TEXT = "APP_SIZE_TEXT"
-private const val DATE_SIZE_TEXT = "DATE_SIZE_TEXT"
-private const val CLOCK_SIZE_TEXT = "CLOCK_SIZE_TEXT"
-private const val ALARM_SIZE_TEXT = "ALARM_SIZE_TEXT"
-private const val DAILY_WORD_SIZE_TEXT = "DAILY_WORD_SIZE_TEXT"
-private const val BATTERY_SIZE_TEXT = "BATTERY_SIZE_TEXT"
-private const val TEXT_SIZE_SETTINGS = "TEXT_SIZE_SETTINGS"
-private const val TEXT_PADDING_SIZE = "TEXT_PADDING_SIZE"
-
-private const val BACKGROUND_COLOR = "BACKGROUND_COLOR"
-private const val APP_COLOR = "APP_COLOR"
-private const val DATE_COLOR = "DATE_COLOR"
-private const val ALARM_CLOCK_COLOR = "ALARM_CLOCK_COLOR"
-private const val CLOCK_COLOR = "CLOCK_COLOR"
-private const val BATTERY_COLOR = "BATTERY_COLOR"
-private const val DAILY_WORD_COLOR = "DAILY_WORD_COLOR"
-private const val SHORTCUT_ICONS_COLOR = "SHORTCUT_ICONS_COLOR"
-
-private const val NOTES_BACKGROUND_COLOR = "NOTES_BACKGROUND_COLOR"
-private const val BUBBLE_BACKGROUND_COLOR = "BUBBLE_BACKGROUND_COLOR"
-private const val BUBBLE_MESSAGE_COLOR = "BUBBLE_MESSAGE_COLOR"
-private const val BUBBLE_TIMEDATE_COLOR = "BUBBLE_TIMEDATE_COLOR"
-private const val BUBBLE_CATEGORY_COLOR = "BUBBLE_CATEGORY_COLOR"
-
-private const val INPUT_MESSAGE_COLOR = "INPUT_MESSAGE_COLOR"
-private const val INPUT_MESSAGEHINT_COLOR = "INPUT_MESSAGEHINT_COLOR"
-
-private const val WEATHER_LATITUDE = "WEATHER_LATITUDE"
-private const val WEATHER_LONGITUDE = "WEATHER_LONGITUDE"
-private const val WEATHER_LOCATION = "WEATHER_LOCATION"
-
-private const val NOTES_MESSAGES = "NOTES_MESSAGES"
-private const val NOTES_CATEGORY = "NOTES_CATEGORY"
-private const val NOTES_PRIORITY = "NOTES_PRIORITY"
-
-private const val ONBOARDING_COMPLETED = "ONBOARDING_COMPLETED"
-private const val EXPERT_OPTIONS = "EXPERT_OPTIONS"
-
 class Prefs(val context: Context) {
     // Build Moshi instance once (ideally a singleton)
     val moshi: Moshi = Moshi.Builder().build()
@@ -166,9 +29,8 @@ class Prefs(val context: Context) {
     val messageWrongListType: ParameterizedType = Types.newParameterizedType(List::class.java, MessageWrong::class.java)
     val messageWrongAdapter: JsonAdapter<List<MessageWrong>> = moshi.adapter(messageWrongListType)
 
-    internal val prefsNormal: SharedPreferences = context.getSharedPreferences(PREFS_FILENAME, 0)
-    internal val prefsJunk: SharedPreferences = context.getSharedPreferences(PREFS_JUNK_FILENAME, 0)
-    internal val prefsOnboarding: SharedPreferences = context.getSharedPreferences(PREFS_ONBOARDING_FILENAME, 0)
+    internal val prefsNormal: SharedPreferences = context.getSharedPreferences(PREFS_FILENAME, Context.MODE_PRIVATE)
+    internal val prefsOnboarding: SharedPreferences = context.getSharedPreferences(PREFS_ONBOARDING_FILENAME, Context.MODE_PRIVATE)
     internal val pinnedAppsKey = PINNED_APPS
 
     fun saveToString(): String {
@@ -970,11 +832,11 @@ class Prefs(val context: Context) {
     }
 
     fun setProfileCounter(profile: String, counter: Int) {
-        prefsJunk.edit { putInt(profile, counter) }
+        prefsNormal.edit { putInt(profile, counter) }
     }
 
     fun getProfileCounter(profile: String): Int {
-        return prefsJunk.getInt(profile, 0)
+        return prefsNormal.getInt(profile, 0)
     }
 
     fun getAppTag(appPackage: String, userHandle: UserHandle? = null): String {
