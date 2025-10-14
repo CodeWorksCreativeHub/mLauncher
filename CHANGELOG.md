@@ -16,6 +16,10 @@ All notable changes to this project will be documented in this file. See [conven
 
 * Replace donation dialog with About screen ([2140e87f](https://github.com/DroidWorksStudio/mLauncher/commit/2140e87f))
 
+### :globe_with_meridians: Localization:
+
+* Updated Language Files. ([#931](https://github.com/DroidWorksStudio/mLauncher/pull/931)) ([3738c597](https://github.com/DroidWorksStudio/mLauncher/commit/3738c597))
+
 ## [Multi Launcher 1.11.2 Build 1](https://github.com/DroidWorksStudio/mLauncher/tree/1.11.2.1) - (13, October 2025)
 
 ### :sparkles: Enhancements:
