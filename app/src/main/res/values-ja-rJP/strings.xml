@@ -176,9 +176,9 @@
     <string name="advanced_settings_app_info_title">アプリ情報</string>
     <string name="advanced_settings_app_info_description">%1$s</string>
     <string name="advanced_settings_set_as_default_launcher">デフォルトのランチャーに設定</string>
-    <string name="advanced_settings_set_as_default_launcher_description">Make Multi Launcher your default home app.</string>
+    <string name="advanced_settings_set_as_default_launcher_description">Multi Launcher をデフォルトのホーム アプリにします。</string>
     <string name="advanced_settings_change_default_launcher">デフォルトのランチャーを変更する</string>
-    <string name="advanced_settings_change_default_launcher_description">Choose a different launcher as your default.</string>
+    <string name="advanced_settings_change_default_launcher_description">デフォルトとして別のランチャーを選択します。</string>
     <string name="advanced_settings_restart_title">ランチャーを再起動</string>
     <string name="advanced_settings_restart_description">オンとオフを切り替えてみましたか?</string>
     <string name="advanced_settings_backup_restore_title">バックアップ/復元</string>
@@ -205,7 +205,7 @@
     <string name="advanced_settings_share_application_description">%1$sで体験を向上させましょう!</string>
     <string name="advanced_settings_share_application_description_addon">今すぐ %1$s で入手して、みんなが何を話しているか見てみましょう! %2$s\n</string>
     <!-- Strings used for about settings -->
-    <string name="about_settings_title">About %1$s</string>
+    <string name="about_settings_title">%1$sについて</string>
     <!-- Strings used for expert settings -->
     <string name="expert_settings_title">専門家</string>
     <string name="toggleable_items">切り替え可能なアイテム</string>
@@ -347,9 +347,9 @@
     <string name="settings_home_buttons_option">表示する項目を選択</string>
     <string name="settings_applist_buttons_title">アプリリストボタン</string>
     <string name="settings_applist_buttons_option">表示する項目を選択</string>
-    <string name="settings_source_code">Source Code</string>
-    <string name="settings_donations">Donations</string>
-    <string name="settings_credits">Credits</string>
+    <string name="settings_source_code">ソースコード</string>
+    <string name="settings_donations">寄付</string>
+    <string name="settings_credits">クレジット</string>
     <string-array name="priorities">
         <item>低い</item>
         <item>中くらい</item>
