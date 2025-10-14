@@ -7,12 +7,8 @@ package com.github.droidworksstudio.mlauncher.ui.adapter
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
-import android.content.pm.LauncherApps
 import android.graphics.drawable.Drawable
-import android.os.Build
-import android.os.Process
 import android.os.UserHandle
-import android.os.UserManager
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
@@ -47,7 +43,6 @@ import com.github.droidworksstudio.mlauncher.helper.IconPackHelper.getSafeAppIco
 import com.github.droidworksstudio.mlauncher.helper.dp2px
 import com.github.droidworksstudio.mlauncher.helper.getSystemIcons
 import com.github.droidworksstudio.mlauncher.helper.utils.BiometricHelper
-import com.github.droidworksstudio.mlauncher.helper.utils.PrivateSpaceManager
 import com.github.droidworksstudio.mlauncher.helper.utils.visibleHideLayouts
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -471,23 +466,6 @@ class AppDrawerAdapter(
             appTitle.layoutParams = params
 
             // add icon next to app name to indicate that this app is installed on another profile
-            val launcherApps =
-                context.getSystemService(Context.LAUNCHER_APPS_SERVICE) as LauncherApps
-            val isPrivateSpace = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
-                val userInfo = launcherApps.getLauncherUserInfo(appListItem.user)
-                val isPrivate = userInfo?.userType == UserManager.USER_TYPE_PROFILE_PRIVATE
-                isPrivate
-            } else {
-                val supported = PrivateSpaceManager(context).isPrivateSpaceSupported()
-                supported
-            }
-
-            val isWorkProfile = appListItem.user != Process.myUserHandle() && !isPrivateSpace
-            AppLogger.d(
-                "ProfileCheck",
-                "isWorkProfile: $isWorkProfile, isPrivateSpace: $isPrivateSpace, appUser: ${appListItem.user}, appLabel:  ${appListItem.label}"
-            )
-
             val packageName = appListItem.activityPackage
 
             // Use a placeholder icon
@@ -508,11 +486,7 @@ class AppDrawerAdapter(
                         val icon = withContext(Dispatchers.IO) {
                             // Get icon as before
                             val iconPackPackage = prefs.customIconPackAppList
-                            val iconPackage = if (isPrivateSpace || isWorkProfile) {
-                                IconCacheTarget.APP_LIST
-                            } else {
-                                IconCacheTarget.APP_LIST
-                            }
+                            val iconPackage = IconCacheTarget.APP_LIST
                             val nonNullDrawable: Drawable = getSafeAppIcon(
                                 context = context,
                                 packageName = packageName,

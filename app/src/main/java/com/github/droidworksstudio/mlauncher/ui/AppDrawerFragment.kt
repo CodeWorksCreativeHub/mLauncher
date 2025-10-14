@@ -7,7 +7,6 @@ package com.github.droidworksstudio.mlauncher.ui
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.content.pm.LauncherApps
 import android.os.Build
 import android.os.Bundle
 import android.os.UserHandle
@@ -29,7 +28,6 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.net.toUri
 import androidx.core.view.isVisible
 import androidx.lifecycle.MediatorLiveData
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -647,100 +645,88 @@ class AppDrawerFragment : BaseFragment() {
         viewModel: MainViewModel,
         appAdapter: AppDrawerAdapter,
         contactAdapter: ContactDrawerAdapter,
-        profileFilter: String? = null // 🔹 pass "PRIVATE", "WORK", "SYSTEM", or null for all
+        profileFilter: String? = null // "PRIVATE", "WORK", "SYSTEM", "USER", or null for all
     ) {
-        viewModel.hiddenApps.observe(viewLifecycleOwner, Observer {
-            if (flag != AppDrawerFlag.HiddenApps) return@Observer
+        viewModel.hiddenApps.observe(viewLifecycleOwner) {
+            if (flag != AppDrawerFlag.HiddenApps) return@observe
             it?.let { appList ->
                 binding.listEmptyHint.isVisible = appList.isEmpty()
                 populateAppList(appList, appAdapter)
             }
-        })
+        }
 
         // Observe contacts
-        viewModel.contactList.observe(viewLifecycleOwner, Observer { rawContactList ->
-            if (rawContactList == contactAdapter.contactsList) return@Observer
-            if (binding.menuView.displayedChild != 0) return@Observer
+        viewModel.contactList.observe(viewLifecycleOwner) { rawContactList ->
+            if (rawContactList == contactAdapter.contactsList) return@observe
+            if (binding.menuView.displayedChild != 0) return@observe
 
-            AppLogger.d("rawContactList", "Contact list: $rawContactList")
+            AppLogger.d("Contacts", "Loaded ${rawContactList?.size ?: 0} contacts")
 
             rawContactList?.let {
                 binding.listEmptyHint.isVisible = it.isEmpty()
                 binding.sidebarContainer.isVisible = prefs.showAZSidebar
                 populateContactList(it, contactAdapter)
             }
-        })
-
+        }
 
         // Observe apps
-        viewModel.appList.observe(viewLifecycleOwner, Observer { rawAppList ->
-            if (flag == AppDrawerFlag.HiddenApps) return@Observer
-            if (rawAppList == appAdapter.appsList) return@Observer
-            if (binding.menuView.displayedChild != 0) return@Observer
+        viewModel.appList.observe(viewLifecycleOwner) { rawAppList ->
+            if (flag == AppDrawerFlag.HiddenApps) return@observe
+            if (rawAppList == appAdapter.appsList) return@observe
+            if (binding.menuView.displayedChild != 0) return@observe
 
-            AppLogger.d("rawAppList", "Contact list: $rawAppList")
+            AppLogger.d("Apps", "Loaded ${rawAppList?.size ?: 0} raw apps")
 
-            rawAppList?.let {
-                val userManager = requireContext().getSystemService(Context.USER_SERVICE) as UserManager
-                val launcherApps = requireContext().getSystemService(Context.LAUNCHER_APPS_SERVICE) as LauncherApps
+            rawAppList?.let { list ->
+                // 🔹 The apps already have profileType set in the deferreds fetch
+                val classifiedList = list
 
-                val classifiedList = rawAppList.map { app ->
-                    val isPrivate = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
-                        val userInfo = launcherApps.getLauncherUserInfo(app.user)
-                        userInfo?.userType == UserManager.USER_TYPE_PROFILE_PRIVATE
-                    } else false
+                AppLogger.d("AppClassify", "Classified ${classifiedList.size} apps by profile type")
 
-                    val isWork = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                        userManager.isManagedProfile && !isPrivate
-                    } else false
-
-                    val isSystemUser = userManager.isSystemUser
-
-                    val profileType = when {
-                        isPrivate -> "PRIVATE"
-                        isWork -> "WORK"
-                        isSystemUser -> "SYSTEM"
-                        else -> "NULL"
-                    }
-
-                    app.copy(profileType = profileType)
-                }
-
-                AppLogger.d("classifiedList", "Classified app list: $classifiedList")
-
-                // 🔹 Filter by requested profile type
-                val filteredList = when (profileFilter) {
-                    "PRIVATE" -> classifiedList.filter { it.profileType == "PRIVATE" }
-                    "WORK" -> classifiedList.filter { it.profileType == "WORK" }
-                    "SYSTEM" -> classifiedList.filter { it.profileType == "SYSTEM" }
-                    else -> classifiedList // no filter, show all
-                }
-
-                // 🔹 Build merged list with headers, but only from filtered apps
-                val systemApps = filteredList.filter { it.profileType == "SYSTEM" }
-                val workApps = filteredList.filter { it.profileType == "WORK" }
-                val privateApps = filteredList.filter { it.profileType == "PRIVATE" }
+                // 🔹 Group apps by type
+                val systemApps = classifiedList.filter { it.profileType == "SYSTEM" }
+                val workApps = classifiedList.filter { it.profileType == "WORK" }
+                val privateApps = classifiedList.filter { it.profileType == "PRIVATE" }
+                val userApps = classifiedList.filter { it.profileType == "USER" }
 
                 val mergedList = mutableListOf<AppListItem>()
 
-                if (systemApps.isNotEmpty()) {
+                AppLogger.d(
+                    "AppMerge",
+                    "System=${systemApps.size}, Work=${workApps.size}, Private=${privateApps.size}, User=${userApps.size}"
+                )
+
+                // 🔹 Only add sections based on profileFilter
+                fun shouldInclude(type: String) = profileFilter == null || profileFilter.equals(type, ignoreCase = true)
+
+                if (shouldInclude("SYSTEM") && systemApps.isNotEmpty()) {
+                    AppLogger.d("AppMerge", "Adding ${systemApps.size} system apps")
                     mergedList.addAll(systemApps)
                 }
 
-                if (privateApps.isNotEmpty()) {
+                if (shouldInclude("PRIVATE") && privateApps.isNotEmpty()) {
+                    AppLogger.d("AppMerge", "Adding ${privateApps.size} private apps")
                     mergedList.addAll(privateApps)
                 }
 
-                if (workApps.isNotEmpty()) {
+                if (shouldInclude("WORK") && workApps.isNotEmpty()) {
+                    AppLogger.d("AppMerge", "Adding ${workApps.size} work apps")
                     mergedList.addAll(workApps)
                 }
 
-                // UI updates
+                if (shouldInclude("USER") && userApps.isNotEmpty()) {
+                    AppLogger.d("AppMerge", "Adding ${userApps.size} user apps")
+                    mergedList.addAll(userApps)
+                }
+
+                AppLogger.d("AppMerge", "Final merged list (${mergedList.size} apps)")
+
+                // 🔹 Update UI
                 binding.listEmptyHint.isVisible = mergedList.isEmpty()
                 binding.sidebarContainer.isVisible = prefs.showAZSidebar
                 populateAppList(mergedList, appAdapter)
             }
-        })
+        }
 
         viewModel.firstOpen.observe(viewLifecycleOwner) {
             if (it) binding.appDrawerTip.isVisible = true

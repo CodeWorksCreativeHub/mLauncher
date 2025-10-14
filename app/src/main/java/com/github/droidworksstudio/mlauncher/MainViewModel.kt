@@ -8,7 +8,6 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.LauncherApps
 import android.database.ContentObserver
-import android.os.Build
 import android.os.Handler
 import android.os.Looper
 import android.os.Process
@@ -521,11 +520,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                         return@async emptyList()
                     }
 
-                    val isWork = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                        userManager.isManagedProfile
-                    } else {
-                        false
-                    }
+                    val isWork = profile != Process.myUserHandle() && !isPrivate
 
                     val profileType = when {
                         isPrivate -> "PRIVATE"
