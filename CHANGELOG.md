@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [1.11.2.2 → Unreleased](https://github.com/DroidWorksStudio/mLauncher/tree/main) - In Development
+
+### :bug: Bug Fixes:
+
+* Adjust font sizes for consistency ([07046ce1](https://github.com/DroidWorksStudio/mLauncher/commit/07046ce1))
+
 ## [Multi Launcher 1.11.2 Build 2](https://github.com/DroidWorksStudio/mLauncher/tree/1.11.2.2) - (14, October 2025)
 
 ### :sparkles: Enhancements:
