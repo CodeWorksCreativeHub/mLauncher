@@ -44,9 +44,6 @@
     <string name="settings_exit_mlauncher_title">Esci da MultiLauncher</string>
     <string name="settings_exit_mlauncher_description">Passa temporaneamente al launcher predefinito.</string>
     <string name="settings_exit_mlauncher_dialog">Scegli un launcher</string>
-    <string name="settings_donation_title">Donazioni</string>
-    <string name="settings_donation_description">Sostieni il nostro lavoro facendo una donazione.</string>
-    <string name="settings_donation_dialog">Sostienici</string>
     <!-- Strings used for features settings -->
     <string name="features_settings_title">Caratteristiche</string>
     <string name="personalization">Personalizzazione</string>
@@ -179,7 +176,9 @@
     <string name="advanced_settings_app_info_title">Informazioni sull\'app</string>
     <string name="advanced_settings_app_info_description">%1$s</string>
     <string name="advanced_settings_set_as_default_launcher">Usa come launcher predefinito</string>
+    <string name="advanced_settings_set_as_default_launcher_description">Imposta Multi Launcher come app predefinita per la home.</string>
     <string name="advanced_settings_change_default_launcher">Cambia launcher predefinito</string>
+    <string name="advanced_settings_change_default_launcher_description">Scegli un launcher diverso come predefinito.</string>
     <string name="advanced_settings_restart_title">Riavvia Launcher</string>
     <string name="advanced_settings_restart_description">Hai provato ad accenderlo e spegnerlo?</string>
     <string name="advanced_settings_backup_restore_title">Backup/Ripristino</string>
@@ -205,6 +204,8 @@
     <string name="advanced_settings_share_application_title">Condividi applicazione</string>
     <string name="advanced_settings_share_application_description">Migliora la tua esperienza con %1$s!</string>
     <string name="advanced_settings_share_application_description_addon">Scaricalo ora su %1$s e scopri di cosa parlano tutti! %2$s\n</string>
+    <!-- Strings used for about settings -->
+    <string name="about_settings_title">Circa %1$s</string>
     <!-- Strings used for expert settings -->
     <string name="expert_settings_title">Esperto</string>
     <string name="toggleable_items">Elementi attivabili/disattivabili</string>
@@ -346,6 +347,9 @@
     <string name="settings_home_buttons_option">Seleziona gli elementi da visualizzare</string>
     <string name="settings_applist_buttons_title">Pulsanti dell\'elenco delle app</string>
     <string name="settings_applist_buttons_option">Seleziona gli elementi da visualizzare</string>
+    <string name="settings_source_code">Codice sorgente</string>
+    <string name="settings_donations">Donazioni</string>
+    <string name="settings_credits">Crediti</string>
     <string-array name="priorities">
         <item>Basso</item>
         <item>Medio</item>

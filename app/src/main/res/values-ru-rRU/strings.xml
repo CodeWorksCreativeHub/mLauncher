@@ -44,9 +44,6 @@
     <string name="settings_exit_mlauncher_title">Выйти из MultiLauncher</string>
     <string name="settings_exit_mlauncher_description">Временно переключитесь на средство запуска по умолчанию.</string>
     <string name="settings_exit_mlauncher_dialog">Выберите лаунчер</string>
-    <string name="settings_donation_title">Пожертвования</string>
-    <string name="settings_donation_description">Поддержите нашу работу, сделав пожертвование.</string>
-    <string name="settings_donation_dialog">Поддержите нас</string>
     <!-- Strings used for features settings -->
     <string name="features_settings_title">Функции</string>
     <string name="personalization">Персонализация</string>
@@ -179,7 +176,9 @@
     <string name="advanced_settings_app_info_title">Информация о приложении</string>
     <string name="advanced_settings_app_info_description">%1$s</string>
     <string name="advanced_settings_set_as_default_launcher">Установить как лаунчер по умолчанию</string>
+    <string name="advanced_settings_set_as_default_launcher_description">Сделайте Multi Launcher вашим домашним приложением по умолчанию.</string>
     <string name="advanced_settings_change_default_launcher">Изменить лаунчер по умолчанию</string>
+    <string name="advanced_settings_change_default_launcher_description">Выберите другой лаунчер в качестве средства по умолчанию.</string>
     <string name="advanced_settings_restart_title">Перезапустить лаунчер</string>
     <string name="advanced_settings_restart_description">Вы пробовали включать и выключать его?</string>
     <string name="advanced_settings_backup_restore_title">Резервное копирование/Восстановление</string>
@@ -205,6 +204,8 @@
     <string name="advanced_settings_share_application_title">Поделиться приложением</string>
     <string name="advanced_settings_share_application_description">Повысьте свой уровень опыта с %1$s!</string>
     <string name="advanced_settings_share_application_description_addon">Получите его сейчас на %1$s и посмотрите, о чем все говорят! %2$s\n</string>
+    <!-- Strings used for about settings -->
+    <string name="about_settings_title">О %1$s</string>
     <!-- Strings used for expert settings -->
     <string name="expert_settings_title">Эксперт</string>
     <string name="toggleable_items">Переключаемые элементы</string>
@@ -346,6 +347,9 @@
     <string name="settings_home_buttons_option">Выберите элементы для отображения</string>
     <string name="settings_applist_buttons_title">Кнопки списка приложений</string>
     <string name="settings_applist_buttons_option">Выберите элементы для отображения</string>
+    <string name="settings_source_code">Исходный код</string>
+    <string name="settings_donations">Пожертвования</string>
+    <string name="settings_credits">Кредиты</string>
     <string-array name="priorities">
         <item>Низкий</item>
         <item>Середина</item>

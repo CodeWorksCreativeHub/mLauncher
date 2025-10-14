@@ -44,9 +44,6 @@
     <string name="settings_exit_mlauncher_title">Ukončit MultiLauncher</string>
     <string name="settings_exit_mlauncher_description">Dočasně přepněte na výchozí spouštěč.</string>
     <string name="settings_exit_mlauncher_dialog">Vyberte spouštěč</string>
-    <string name="settings_donation_title">Dary</string>
-    <string name="settings_donation_description">Podpořte naši práci darem.</string>
-    <string name="settings_donation_dialog">Podpořte nás</string>
     <!-- Strings used for features settings -->
     <string name="features_settings_title">Funkce</string>
     <string name="personalization">Personalizace</string>
@@ -179,7 +176,9 @@
     <string name="advanced_settings_app_info_title">Informace o aplikaci</string>
     <string name="advanced_settings_app_info_description">%1$s</string>
     <string name="advanced_settings_set_as_default_launcher">Nastavit jako výchozí spouštěč</string>
+    <string name="advanced_settings_set_as_default_launcher_description">Nastavte si Multi Launcher jako výchozí domovskou aplikaci.</string>
     <string name="advanced_settings_change_default_launcher">Změnit výchozí spouštěč</string>
+    <string name="advanced_settings_change_default_launcher_description">Vyberte jiný spouštěč jako výchozí.</string>
     <string name="advanced_settings_restart_title">Restartujte spouštěč</string>
     <string name="advanced_settings_restart_description">Zkoušel jsi to zapnout a vypnout?</string>
     <string name="advanced_settings_backup_restore_title">Zálohování/Obnovení</string>
@@ -205,6 +204,8 @@
     <string name="advanced_settings_share_application_title">Sdílet aplikaci</string>
     <string name="advanced_settings_share_application_description">Vylepšete si zážitek s %1$s!</string>
     <string name="advanced_settings_share_application_description_addon">Stáhněte si to hned teď na %1$s a podívejte se, o čem všichni mluví! %2$s\n</string>
+    <!-- Strings used for about settings -->
+    <string name="about_settings_title">O %1$s</string>
     <!-- Strings used for expert settings -->
     <string name="expert_settings_title">Expert</string>
     <string name="toggleable_items">Přepínatelné položky</string>
@@ -346,6 +347,9 @@
     <string name="settings_home_buttons_option">Vyberte položky k zobrazení</string>
     <string name="settings_applist_buttons_title">Tlačítka seznamu aplikací</string>
     <string name="settings_applist_buttons_option">Vyberte položky k zobrazení</string>
+    <string name="settings_source_code">Zdrojový kód</string>
+    <string name="settings_donations">Dary</string>
+    <string name="settings_credits">Kredity</string>
     <string-array name="priorities">
         <item>Nízký</item>
         <item>Střední</item>

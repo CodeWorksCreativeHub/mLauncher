@@ -44,9 +44,6 @@
     <string name="settings_exit_mlauncher_title">الخروج من MultiLauncher</string>
     <string name="settings_exit_mlauncher_description">التبديل إلى المشغل الافتراضي الخاص بك مؤقتًا.</string>
     <string name="settings_exit_mlauncher_dialog">اختر مشغلًا</string>
-    <string name="settings_donation_title">التبرعات</string>
-    <string name="settings_donation_description">ادعم عملنا عن طريق التبرع.</string>
-    <string name="settings_donation_dialog">ادعمنا</string>
     <!-- Strings used for features settings -->
     <string name="features_settings_title">الميزات</string>
     <string name="personalization">التخصيص</string>
@@ -179,7 +176,9 @@
     <string name="advanced_settings_app_info_title">معلومات التطبيق</string>
     <string name="advanced_settings_app_info_description">%1$s</string>
     <string name="advanced_settings_set_as_default_launcher">تعيين كمشغل افتراضي</string>
+    <string name="advanced_settings_set_as_default_launcher_description">اجعل Multi Launcher هو تطبيقك الافتراضي على الشاشة الرئيسية.</string>
     <string name="advanced_settings_change_default_launcher">تغيير المشغل الافتراضي</string>
+    <string name="advanced_settings_change_default_launcher_description">اختر مشغلًا مختلفًا كمشغل افتراضي.</string>
     <string name="advanced_settings_restart_title">إعادة تشغيل المشغل</string>
     <string name="advanced_settings_restart_description">هل حاولت تشغيله وإيقافه؟</string>
     <string name="advanced_settings_backup_restore_title">النسخ الاحتياطي/الاستعادة</string>
@@ -205,6 +204,8 @@
     <string name="advanced_settings_share_application_title">مشاركة التطبيق</string>
     <string name="advanced_settings_share_application_description">قم بترقية تجربتك مع %1$s!</string>
     <string name="advanced_settings_share_application_description_addon">احصل عليه الآن على %1$s وشاهد ما يتحدث عنه الجميع! %2$s\n</string>
+    <!-- Strings used for about settings -->
+    <string name="about_settings_title">حول %1$s</string>
     <!-- Strings used for expert settings -->
     <string name="expert_settings_title">خبير</string>
     <string name="toggleable_items">العناصر القابلة للتبديل</string>
@@ -346,6 +347,9 @@
     <string name="settings_home_buttons_option">حدد العناصر المراد عرضها</string>
     <string name="settings_applist_buttons_title">أزرار قائمة التطبيقات</string>
     <string name="settings_applist_buttons_option">حدد العناصر المراد عرضها</string>
+    <string name="settings_source_code">الكود المصدر</string>
+    <string name="settings_donations">التبرعات</string>
+    <string name="settings_credits">الاعتمادات</string>
     <string-array name="priorities">
         <item>قليل</item>
         <item>واسطة</item>

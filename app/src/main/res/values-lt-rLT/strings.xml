@@ -44,9 +44,6 @@
     <string name="settings_exit_mlauncher_title">Išeikite iš „MultiLauncher“.</string>
     <string name="settings_exit_mlauncher_description">Laikinai perjunkite į numatytąją paleidimo priemonę.</string>
     <string name="settings_exit_mlauncher_dialog">Pasirinkite paleidimo priemonę</string>
-    <string name="settings_donation_title">Parama</string>
-    <string name="settings_donation_description">Paremkite mūsų darbą paaukodami.</string>
-    <string name="settings_donation_dialog">Paremkite mus</string>
     <!-- Strings used for features settings -->
     <string name="features_settings_title">Savybės</string>
     <string name="personalization">Personalizavimas</string>
@@ -179,7 +176,9 @@
     <string name="advanced_settings_app_info_title">Programos informacija</string>
     <string name="advanced_settings_app_info_description">%1$s</string>
     <string name="advanced_settings_set_as_default_launcher">Nustatyti kaip numatytajį darbalaukį</string>
+    <string name="advanced_settings_set_as_default_launcher_description">Padarykite „Multi Launcher“ numatytąja namų programėle.</string>
     <string name="advanced_settings_change_default_launcher">Pakeisti numatytajį darbalaukį</string>
+    <string name="advanced_settings_change_default_launcher_description">Pasirinkite kitą paleidimo priemonę kaip numatytąją.</string>
     <string name="advanced_settings_restart_title">Iš naujo paleiskite paleidimo priemonę</string>
     <string name="advanced_settings_restart_description">Ar bandėte jį įjungti ir išjungti?</string>
     <string name="advanced_settings_backup_restore_title">Atsarginė kopija / atkūrimas</string>
@@ -205,6 +204,8 @@
     <string name="advanced_settings_share_application_title">Dalintis programa</string>
     <string name="advanced_settings_share_application_description">Padidinkite savo patirtį naudodami %1$s!</string>
     <string name="advanced_settings_share_application_description_addon">Gaukite jį dabar %1$s ir pažiūrėkite, apie ką visi kalba! %2$s\n</string>
+    <!-- Strings used for about settings -->
+    <string name="about_settings_title">Apie %1$s</string>
     <!-- Strings used for expert settings -->
     <string name="expert_settings_title">Ekspertas</string>
     <string name="toggleable_items">Perjungiami elementai</string>
@@ -348,6 +349,9 @@ Jūs bet kada galite išjungti šią prieigą savo įrenginio nustatymuose.</str
     <string name="settings_home_buttons_option">Pasirinkite elementus, kuriuos norite rodyti</string>
     <string name="settings_applist_buttons_title">Programų sąrašo mygtukai</string>
     <string name="settings_applist_buttons_option">Pasirinkite elementus, kuriuos norite rodyti</string>
+    <string name="settings_source_code">Šaltinio kodas</string>
+    <string name="settings_donations">Aukos</string>
+    <string name="settings_credits">Kreditai</string>
     <string-array name="priorities">
         <item>Žemas</item>
         <item>Vidutinis</item>

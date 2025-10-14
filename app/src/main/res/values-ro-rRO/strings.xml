@@ -44,9 +44,6 @@
     <string name="settings_exit_mlauncher_title">Ieșire din MultiLauncher</string>
     <string name="settings_exit_mlauncher_description">Comută temporar la lansatorul implicit.</string>
     <string name="settings_exit_mlauncher_dialog">Alegeți un lansator</string>
-    <string name="settings_donation_title">Donații</string>
-    <string name="settings_donation_description">Sprijină munca noastră făcând o donație.</string>
-    <string name="settings_donation_dialog">Sprijiniți-ne</string>
     <!-- Strings used for features settings -->
     <string name="features_settings_title">Caracteristici</string>
     <string name="personalization">Personalizare</string>
@@ -179,7 +176,9 @@
     <string name="advanced_settings_app_info_title">Informații despre aplicație</string>
     <string name="advanced_settings_app_info_description">%1$s</string>
     <string name="advanced_settings_set_as_default_launcher">Setează ca lansator implicit</string>
+    <string name="advanced_settings_set_as_default_launcher_description">Setați Multi Launcher ca aplicație implicită pentru acasă.</string>
     <string name="advanced_settings_change_default_launcher">Schimbați lansatorul implicit</string>
+    <string name="advanced_settings_change_default_launcher_description">Alegeți un alt lansator ca implicit.</string>
     <string name="advanced_settings_restart_title">Reporniți Lansatorul</string>
     <string name="advanced_settings_restart_description">Ai încercat să-l pornești și să-l oprești?</string>
     <string name="advanced_settings_backup_restore_title">Copiere de rezervă/Restaurare</string>
@@ -205,6 +204,8 @@
     <string name="advanced_settings_share_application_title">Partajați aplicația</string>
     <string name="advanced_settings_share_application_description">Îmbunătățește-ți experiența cu %1$s!</string>
     <string name="advanced_settings_share_application_description_addon">Descarcă-l acum pe %1$s și vezi despre ce vorbește toată lumea! %2$s\n</string>
+    <!-- Strings used for about settings -->
+    <string name="about_settings_title">Despre %1$s</string>
     <!-- Strings used for expert settings -->
     <string name="expert_settings_title">Expert</string>
     <string name="toggleable_items">Elemente comutabile</string>
@@ -346,6 +347,9 @@
     <string name="settings_home_buttons_option">Selectați elementele de afișat</string>
     <string name="settings_applist_buttons_title">Butoane din lista de aplicații</string>
     <string name="settings_applist_buttons_option">Selectați elementele de afișat</string>
+    <string name="settings_source_code">Cod sursă</string>
+    <string name="settings_donations">Donații</string>
+    <string name="settings_credits">Credite</string>
     <string-array name="priorities">
         <item>Scăzut</item>
         <item>Mediu</item>
