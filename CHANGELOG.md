@@ -10,6 +10,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 ### :bug: Bug Fixes:
 
+* Simplify app profile classification and filtering ([798e3844](https://github.com/DroidWorksStudio/mLauncher/commit/798e3844))
 * Use theme attribute for icon colors ([b1078974](https://github.com/DroidWorksStudio/mLauncher/commit/b1078974))
 
 ### :wrench: Code Quality:
