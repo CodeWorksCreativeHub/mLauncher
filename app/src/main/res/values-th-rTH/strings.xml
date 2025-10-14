@@ -176,9 +176,9 @@
     <string name="advanced_settings_app_info_title">ข้อมูลแอป</string>
     <string name="advanced_settings_app_info_description">%1$s</string>
     <string name="advanced_settings_set_as_default_launcher">ตั้งเป็นตัวเรียกใช้งานเริ่มต้น</string>
-    <string name="advanced_settings_set_as_default_launcher_description">Make Multi Launcher your default home app.</string>
+    <string name="advanced_settings_set_as_default_launcher_description">ตั้ง Multi Launcher ให้เป็นแอปหลักเริ่มต้นของคุณ</string>
     <string name="advanced_settings_change_default_launcher">เปลี่ยนตัวเรียกใช้งานเริ่มต้น</string>
-    <string name="advanced_settings_change_default_launcher_description">Choose a different launcher as your default.</string>
+    <string name="advanced_settings_change_default_launcher_description">เลือกตัวเปิดใช้อื่นเป็นค่าเริ่มต้นของคุณ</string>
     <string name="advanced_settings_restart_title">รีสตาร์ทตัวเรียกใช้งาน</string>
     <string name="advanced_settings_restart_description">คุณได้ลองเปิดและปิดมันแล้วหรือยัง?</string>
     <string name="advanced_settings_backup_restore_title">การสำรองข้อมูล/กู้คืน</string>
@@ -205,7 +205,7 @@
     <string name="advanced_settings_share_application_description">ยกระดับประสบการณ์ของคุณด้วย %1$s!</string>
     <string name="advanced_settings_share_application_description_addon">รับเลยตอนนี้ที่ %1$s และดูว่าทุกคนกำลังพูดถึงอะไร! %2$s\n</string>
     <!-- Strings used for about settings -->
-    <string name="about_settings_title">About %1$s</string>
+    <string name="about_settings_title">เกี่ยวกับ %1$s</string>
     <!-- Strings used for expert settings -->
     <string name="expert_settings_title">ผู้เชี่ยวชาญ</string>
     <string name="toggleable_items">รายการที่สามารถสลับได้</string>
@@ -347,9 +347,9 @@
     <string name="settings_home_buttons_option">เลือกสินค้าที่จะแสดง</string>
     <string name="settings_applist_buttons_title">ปุ่มรายการแอป</string>
     <string name="settings_applist_buttons_option">เลือกสินค้าที่จะแสดง</string>
-    <string name="settings_source_code">Source Code</string>
-    <string name="settings_donations">Donations</string>
-    <string name="settings_credits">Credits</string>
+    <string name="settings_source_code">รหัสต้นฉบับ</string>
+    <string name="settings_donations">การบริจาค</string>
+    <string name="settings_credits">เครดิต</string>
     <string-array name="priorities">
         <item>ต่ำ</item>
         <item>ปานกลาง</item>
