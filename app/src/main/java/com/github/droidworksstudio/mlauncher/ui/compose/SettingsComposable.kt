@@ -56,7 +56,7 @@ object SettingsComposable {
         onClick: () -> Unit = {},
         iconSize: Dp = 24.dp,
         fontColor: Color = SettingsTheme.typography.title.color,
-        fontSizeSp: Float = 24f
+        titleFontSize: TextUnit = TextUnit.Unspecified
     ) {
         Row(
             modifier = Modifier
@@ -81,7 +81,7 @@ object SettingsComposable {
                         text = title
                         setTextSize(
                             TypedValue.COMPLEX_UNIT_SP,
-                            fontSizeSp
+                            if (titleFontSize != TextUnit.Unspecified) titleFontSize.value else 18f
                         )
                         setTextColor(fontColor.toArgb()) // Optional
                     }
@@ -99,8 +99,8 @@ object SettingsComposable {
         title: String,
         description: String? = null,
         iconSize: Dp = 96.dp,
-        titleFontSize: TextUnit = 24.sp,
-        descriptionFontSize: TextUnit = 14.sp,
+        titleFontSize: TextUnit = TextUnit.Unspecified,
+        descriptionFontSize: TextUnit = TextUnit.Unspecified,
         fontColor: Color = SettingsTheme.typography.title.color,
         onIconClick: (() -> Unit)? = null // Optional click callback
     ) {
@@ -127,7 +127,7 @@ object SettingsComposable {
                         text = title
                         setTextSize(
                             TypedValue.COMPLEX_UNIT_SP,
-                            if (titleFontSize != TextUnit.Unspecified) titleFontSize.value else 24f
+                            if (titleFontSize != TextUnit.Unspecified) titleFontSize.value else 18f
                         )
                         setTextColor(fontColor.toArgb())
                         setPadding(0, 0, 0, 24)
@@ -145,7 +145,7 @@ object SettingsComposable {
                             setTextColor(fontColor.toArgb())
                             setTextSize(
                                 TypedValue.COMPLEX_UNIT_SP,
-                                if (descriptionFontSize != TextUnit.Unspecified) descriptionFontSize.value else 14f
+                                if (descriptionFontSize != TextUnit.Unspecified) descriptionFontSize.value else 12f
                             )
                             movementMethod = LinkMovementMethod.getInstance()
                         }
@@ -228,7 +228,7 @@ object SettingsComposable {
                             setTextColor(fontColor.toArgb())
                             setTextSize(
                                 TypedValue.COMPLEX_UNIT_SP,
-                                if (titleFontSize != TextUnit.Unspecified) titleFontSize.value else 16f
+                                if (titleFontSize != TextUnit.Unspecified) titleFontSize.value else 18f
                             )
                         }
                     },
@@ -244,7 +244,7 @@ object SettingsComposable {
                                 setTextColor(fontColor.toArgb())
                                 setTextSize(
                                     TypedValue.COMPLEX_UNIT_SP,
-                                    if (descriptionFontSize != TextUnit.Unspecified) descriptionFontSize.value else 14f
+                                    if (descriptionFontSize != TextUnit.Unspecified) descriptionFontSize.value else 12f
                                 )
                             }
                         },
@@ -259,8 +259,8 @@ object SettingsComposable {
     fun TitleWithHtmlLink(
         title: String,
         description: String? = null,
-        titleFontSize: TextUnit = 24.sp,
-        descriptionFontSize: TextUnit = 18.sp,
+        titleFontSize: TextUnit = TextUnit.Unspecified,
+        descriptionFontSize: TextUnit = TextUnit.Unspecified,
         titleColor: Color = SettingsTheme.typography.title.color,
         descriptionColor: Color = SettingsTheme.typography.title.color
     ) {
@@ -277,7 +277,7 @@ object SettingsComposable {
                         setTextColor(titleColor.toArgb())
                         setTextSize(
                             TypedValue.COMPLEX_UNIT_SP,
-                            if (titleFontSize != TextUnit.Unspecified) titleFontSize.value else 24f
+                            if (titleFontSize != TextUnit.Unspecified) titleFontSize.value else 18f
                         )
                         movementMethod = LinkMovementMethod.getInstance()
                     }
@@ -294,7 +294,7 @@ object SettingsComposable {
                             setTextColor(descriptionColor.toArgb())
                             setTextSize(
                                 TypedValue.COMPLEX_UNIT_SP,
-                                if (descriptionFontSize != TextUnit.Unspecified) descriptionFontSize.value else 14f
+                                if (descriptionFontSize != TextUnit.Unspecified) descriptionFontSize.value else 12f
                             )
                             movementMethod = LinkMovementMethod.getInstance()
                         }
@@ -309,8 +309,8 @@ object SettingsComposable {
     fun TitleWithHtmlLinks(
         title: String,
         descriptions: List<String> = emptyList(),
-        titleFontSize: TextUnit = 24.sp,
-        descriptionFontSize: TextUnit = 18.sp,
+        titleFontSize: TextUnit = TextUnit.Unspecified,
+        descriptionFontSize: TextUnit = TextUnit.Unspecified,
         titleColor: Color = SettingsTheme.typography.title.color,
         descriptionColor: Color = SettingsTheme.typography.title.color,
         columns: Boolean = false // if true, use Column for links
@@ -329,7 +329,7 @@ object SettingsComposable {
                         setTextColor(titleColor.toArgb())
                         setTextSize(
                             TypedValue.COMPLEX_UNIT_SP,
-                            if (titleFontSize != TextUnit.Unspecified) titleFontSize.value else 24f
+                            if (titleFontSize != TextUnit.Unspecified) titleFontSize.value else 18f
                         )
                     }
                 },
@@ -337,7 +337,7 @@ object SettingsComposable {
             )
 
             if (descriptions.isNotEmpty()) {
-                Spacer(modifier = Modifier.height(4.dp))
+//                Spacer(modifier = Modifier.height(4.dp))
 
                 if (columns) {
                     // Use Column layout for links
@@ -352,7 +352,7 @@ object SettingsComposable {
                                         setTextColor(descriptionColor.toArgb())
                                         setTextSize(
                                             TypedValue.COMPLEX_UNIT_SP,
-                                            if (descriptionFontSize != TextUnit.Unspecified) descriptionFontSize.value else 14f
+                                            if (descriptionFontSize != TextUnit.Unspecified) descriptionFontSize.value else 12f
                                         )
                                         movementMethod = LinkMovementMethod.getInstance()
                                     }
@@ -378,7 +378,7 @@ object SettingsComposable {
                                         setTextColor(descriptionColor.toArgb())
                                         setTextSize(
                                             TypedValue.COMPLEX_UNIT_SP,
-                                            if (descriptionFontSize != TextUnit.Unspecified) descriptionFontSize.value else 14f
+                                            if (descriptionFontSize != TextUnit.Unspecified) descriptionFontSize.value else 12f
                                         )
                                         movementMethod = LinkMovementMethod.getInstance()
                                     }
@@ -401,7 +401,7 @@ object SettingsComposable {
         fontSize: TextUnit = TextUnit.Unspecified,
         onClick: () -> Unit = {}
     ) {
-        val resolvedFontSizeSp = if (fontSize != TextUnit.Unspecified) fontSize.value else 20f
+        val resolvedFontSizeSp = if (fontSize != TextUnit.Unspecified) fontSize.value else 18f
         val fontColor = SettingsTheme.typography.header.color
 
         AndroidView(
@@ -439,7 +439,7 @@ object SettingsComposable {
         var isChecked by remember { mutableStateOf(defaultState) }
 
         // Extract font size and color from theme safely in composable scope
-        val resolvedFontSizeSp = if (fontSize != TextUnit.Unspecified) fontSize.value else 16f
+        val resolvedFontSizeSp = if (fontSize != TextUnit.Unspecified) fontSize.value else 14f
         val fontColor = SettingsTheme.typography.title.color
 
         Row(

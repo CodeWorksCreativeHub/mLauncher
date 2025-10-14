@@ -362,6 +362,8 @@ class SettingsFragment : BaseFragment() {
                     TopMainHeader(
                         iconRes = R.drawable.app_launcher,
                         title = getLocalizedString(R.string.settings_name),
+                        titleFontSize = titleFontSize,
+                        descriptionFontSize = descriptionFontSize,
                         onIconClick = {
                             dialogBuilder.showDeviceStatsBottomSheet(
                                 context = context,
@@ -2593,6 +2595,7 @@ class SettingsFragment : BaseFragment() {
                     PageHeader(
                         iconRes = R.drawable.ic_back,
                         title = getLocalizedString(R.string.about_settings_title, getLocalizedString(R.string.app_name)),
+                        
                         onClick = {
                             currentScreen = "main"
                         }
@@ -2603,7 +2606,9 @@ class SettingsFragment : BaseFragment() {
                     TopMainHeader(
                         iconRes = R.drawable.app_launcher,
                         title = getLocalizedString(R.string.app_name),
-                        description = getLocalizedString(R.string.created_by)
+                        description = getLocalizedString(R.string.created_by),
+                        titleFontSize = titleFontSize,
+                        descriptionFontSize = descriptionFontSize
                     )
 
                     Spacer(modifier = Modifier.height(16.dp))
@@ -2611,6 +2616,8 @@ class SettingsFragment : BaseFragment() {
                     TitleWithHtmlLink(
                         title = getLocalizedString(R.string.settings_source_code),
                         description = getLocalizedString(R.string.github_link),
+                        titleFontSize = titleFontSize,
+                        descriptionFontSize = descriptionFontSize
                     )
 
                     Spacer(modifier = Modifier.height(16.dp))
@@ -2621,7 +2628,9 @@ class SettingsFragment : BaseFragment() {
                             getLocalizedString(R.string.sponsor_link),
                             getLocalizedString(R.string.coffee_link),
                             getLocalizedString(R.string.libera_link)
-                        )
+                        ),
+                        titleFontSize = titleFontSize,
+                        descriptionFontSize = descriptionFontSize
                     )
 
                     Spacer(modifier = Modifier.weight(1f))
@@ -2632,6 +2641,8 @@ class SettingsFragment : BaseFragment() {
                             getLocalizedString(R.string.weather_link),
                             getLocalizedString(R.string.forked_link),
                         ),
+                        titleFontSize = titleFontSize,
+                        descriptionFontSize = descriptionFontSize,
                         columns = true
                     )
 
