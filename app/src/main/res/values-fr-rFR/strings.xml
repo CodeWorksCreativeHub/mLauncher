@@ -176,9 +176,9 @@
     <string name="advanced_settings_app_info_title">Informations sur l\'application</string>
     <string name="advanced_settings_app_info_description">%1$s</string>
     <string name="advanced_settings_set_as_default_launcher">Définir comme lanceur par défaut</string>
-    <string name="advanced_settings_set_as_default_launcher_description">Make Multi Launcher your default home app.</string>
+    <string name="advanced_settings_set_as_default_launcher_description">Faites de Multi Launcher votre application d’accueil par défaut.</string>
     <string name="advanced_settings_change_default_launcher">Changer le lanceur par défaut</string>
-    <string name="advanced_settings_change_default_launcher_description">Choose a different launcher as your default.</string>
+    <string name="advanced_settings_change_default_launcher_description">Choisissez un lanceur différent par défaut.</string>
     <string name="advanced_settings_restart_title">Redémarrer le lanceur</string>
     <string name="advanced_settings_restart_description">Avez-vous essayé de l\'allumer et de l\'éteindre ?</string>
     <string name="advanced_settings_backup_restore_title">Sauvegarde/Restauration</string>
@@ -205,7 +205,7 @@
     <string name="advanced_settings_share_application_description">Améliorez votre expérience avec %1$s!</string>
     <string name="advanced_settings_share_application_description_addon">Obtenez-le maintenant sur %1$s et voyez de quoi tout le monde parle ! %2$s\n</string>
     <!-- Strings used for about settings -->
-    <string name="about_settings_title">About %1$s</string>
+    <string name="about_settings_title">À propos de %1$s</string>
     <!-- Strings used for expert settings -->
     <string name="expert_settings_title">Expert</string>
     <string name="toggleable_items">Éléments commutables</string>
@@ -347,9 +347,9 @@
     <string name="settings_home_buttons_option">Sélectionnez les éléments à afficher</string>
     <string name="settings_applist_buttons_title">Boutons de la liste des applications</string>
     <string name="settings_applist_buttons_option">Sélectionnez les éléments à afficher</string>
-    <string name="settings_source_code">Source Code</string>
-    <string name="settings_donations">Donations</string>
-    <string name="settings_credits">Credits</string>
+    <string name="settings_source_code">Code source</string>
+    <string name="settings_donations">Dons</string>
+    <string name="settings_credits">Crédits</string>
     <string-array name="priorities">
         <item>Faible</item>
         <item>Moyen</item>
