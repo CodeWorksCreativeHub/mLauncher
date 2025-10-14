@@ -176,9 +176,9 @@
     <string name="advanced_settings_app_info_title">Informacje o aplikacji</string>
     <string name="advanced_settings_app_info_description">%1$s</string>
     <string name="advanced_settings_set_as_default_launcher">Ustaw jako domyślny launcher</string>
-    <string name="advanced_settings_set_as_default_launcher_description">Make Multi Launcher your default home app.</string>
+    <string name="advanced_settings_set_as_default_launcher_description">Ustaw Multi Launcher jako domyślną aplikację domową.</string>
     <string name="advanced_settings_change_default_launcher">Zmień domyślny launcher</string>
-    <string name="advanced_settings_change_default_launcher_description">Choose a different launcher as your default.</string>
+    <string name="advanced_settings_change_default_launcher_description">Wybierz inny program uruchamiający jako domyślny.</string>
     <string name="advanced_settings_restart_title">Uruchom ponownie program uruchamiający</string>
     <string name="advanced_settings_restart_description">Czy próbowałeś włączać i wyłączać?</string>
     <string name="advanced_settings_backup_restore_title">Kopia zapasowa/Przywracanie</string>
@@ -205,7 +205,7 @@
     <string name="advanced_settings_share_application_description">Podnieś swoje doświadczenie z %1$s!</string>
     <string name="advanced_settings_share_application_description_addon">Pobierz teraz na %1$s i zobacz, o czym wszyscy mówią! %2$s\n</string>
     <!-- Strings used for about settings -->
-    <string name="about_settings_title">About %1$s</string>
+    <string name="about_settings_title">Około %1$s</string>
     <!-- Strings used for expert settings -->
     <string name="expert_settings_title">Ekspert</string>
     <string name="toggleable_items">Elementy przełączalne</string>
@@ -347,9 +347,9 @@
     <string name="settings_home_buttons_option">Wybierz elementy do wyświetlenia</string>
     <string name="settings_applist_buttons_title">Przyciski listy aplikacji</string>
     <string name="settings_applist_buttons_option">Wybierz elementy do wyświetlenia</string>
-    <string name="settings_source_code">Source Code</string>
-    <string name="settings_donations">Donations</string>
-    <string name="settings_credits">Credits</string>
+    <string name="settings_source_code">Kod źródłowy</string>
+    <string name="settings_donations">Darowizny</string>
+    <string name="settings_credits">Kredyty</string>
     <string-array name="priorities">
         <item>Niski</item>
         <item>Średni</item>
