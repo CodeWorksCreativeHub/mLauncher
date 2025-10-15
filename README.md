@@ -16,10 +16,10 @@
         </tr>
     </table>
     <p>
-        <a href='https://apt.izzysoft.de/fdroid/index/apk/app.mlauncher'><img src='https://droidworksstudio.github.io/mLauncher/IzzyOnDroid.png' width="150" alt="IzzyOnDroid"></a>
+        <a href='https://apt.izzysoft.de/fdroid/index/apk/app.mlauncher'><img src='https://codeworkscreativehub.github.io/mLauncher/IzzyOnDroid.png' width="150" alt="IzzyOnDroid"></a>
         <a href='http://apps.obtainium.imranr.dev/redirect.html?r=obtainium://add/https://github.com/CodeWorksCreativeHub/mLauncher'><img src='https://codeworkscreativehub.github.io/mLauncher/obtanium.png' width="150" alt="Obtanium"></a>
-	<a href='https://play.google.com/store/apps/details?id=app.mlauncher'><img src='https://droidworksstudio.github.io/mLauncher/google_play.png' width="150" alt="Obtanium"></a>	    
-	<a href='https://f-droid.org/packages/app.mlauncher'><img src='https://droidworksstudio.github.io/mLauncher/fdroid.png' width="150" alt="fDroid"></a>
+	<a href='https://play.google.com/store/apps/details?id=app.mlauncher'><img src='https://codeworkscreativehub.github.io/mLauncher/google_play.png' width="150" alt="Obtanium"></a>	    
+	<a href='https://f-droid.org/packages/app.mlauncher'><img src='https://codeworkscreativehub.github.io/mLauncher/fdroid.png' width="150" alt="fDroid"></a>
     </p>
     <div align='center'>
         <p>
