@@ -17,11 +17,11 @@ body:
       options:
         - label: "I have written the bug report in English with a clear, descriptive title."
           required: true
-        - label: "I confirmed there are **no existing bug reports** — [open](https://github.com/DroidWorksStudio/mLauncher/issues) or [closed](https://github.com/DroidWorksStudio/mLauncher/issues?q=is%3Aissue+is%3Aclosed) — that already cover this issue."
+        - label: "I confirmed there are **no existing bug reports** — [open](https://github.com/CodeworksCreativeHub/mLauncher/issues) or [closed](https://github.com/CodeworksCreativeHub/mLauncher/issues?q=is%3Aissue+is%3Aclosed) — that already cover this issue."
           required: true
-        - label: "I reviewed the [Known Issues](https://github.com/DroidWorksStudio/mLauncher/blob/main/KnownIssues.md) and this bug is not listed."
+        - label: "I reviewed the [Known Issues](https://github.com/CodeworksCreativeHub/mLauncher/blob/main/KnownIssues.md) and this bug is not listed."
           required: true
-        - label: "I checked the [CHANGELOG](https://github.com/DroidWorksStudio/mLauncher/blob/main/CHANGELOG.md) to ensure the bug hasn’t already been fixed."
+        - label: "I checked the [CHANGELOG](https://github.com/CodeworksCreativeHub/mLauncher/blob/main/CHANGELOG.md) to ensure the bug hasn’t already been fixed."
           required: true
         - label: "I reproduced the bug on the **latest GitHub release**."
           required: true

@@ -19,7 +19,7 @@ body:
           required: true
         - label: "I have tested the latest release from GitHub to confirm that the issue still exists."
           required: true
-        - label: "I have checked the [changelogs](https://github.com/DroidWorksStudio/mLauncher/blob/main/CHANGELOG.md) to ensure this crash hasn't already been addressed."
+        - label: "I have checked the [changelogs](https://github.com/CodeworksCreativeHub/mLauncher/blob/main/CHANGELOG.md) to ensure this crash hasn't already been addressed."
           required: true
         - label: "I have provided clear steps to reproduce the crash, if possible."
           required: true

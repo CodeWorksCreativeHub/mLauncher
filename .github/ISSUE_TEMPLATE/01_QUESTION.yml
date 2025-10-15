@@ -16,9 +16,9 @@ body:
       options:
         - label: "I have clearly stated my question in English with a descriptive title."
           required: true
-        - label: "I have searched the [open](https://github.com/DroidWorksStudio/mLauncher/issues) and [closed](https://github.com/DroidWorksStudio/mLauncher/issues?q=is%3Aissue+is%3Aclosed) issues to ensure this question hasn’t already been answered."
+        - label: "I have searched the [open](https://github.com/CodeworksCreativeHub/mLauncher/issues) and [closed](https://github.com/CodeworksCreativeHub/mLauncher/issues?q=is%3Aissue+is%3Aclosed) issues to ensure this question hasn’t already been answered."
           required: true
-        - label: "I have read through the [WIKI](https://github.com/DroidWorksStudio/mLauncher/wiki) for existing documentation."
+        - label: "I have read through the [WIKI](https://github.com/CodeworksCreativeHub/mLauncher/wiki) for existing documentation."
           required: true
         - label: "I have provided enough context and background for others to understand my question."
           required: true
