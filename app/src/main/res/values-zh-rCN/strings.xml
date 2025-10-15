@@ -83,8 +83,5 @@
     <string name="settings_features_description">提高您的生产力。</string>
     <string name="settings_gestures_title">手势</string>
     <string name="settings_hidden_apps_title">隐藏的应用</string>
-    <string name="settings_hidden_apps_description"></string>
-    <string name="accessibility_service_name"></string>
-    <string name="accessibility_service_description"></string>
     <string name="toast_private_space_default_home_screen">MultiLauncher 需要作为默认启动器才能访问私人空间。</string>
 </resources>
