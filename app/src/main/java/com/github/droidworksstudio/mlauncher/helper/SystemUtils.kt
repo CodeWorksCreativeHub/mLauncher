@@ -215,7 +215,7 @@ fun ismlauncherDefault(context: Context): Boolean {
 }
 
 fun helpFeedbackButton(context: Context) {
-    val uri = "https://github.com/CodeworksCreativeHub/mLauncher".toUri()
+    val uri = "https://github.com/CodeWorksCreativeHub/mLauncher".toUri()
     val intent = Intent(Intent.ACTION_VIEW, uri)
     context.startActivity(intent)
 }

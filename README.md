@@ -17,22 +17,22 @@
     </table>
     <p>
         <a href='https://apt.izzysoft.de/fdroid/index/apk/app.mlauncher'><img src='https://droidworksstudio.github.io/mLauncher/IzzyOnDroid.png' width="150" alt="IzzyOnDroid"></a>
-        <a href='http://apps.obtainium.imranr.dev/redirect.html?r=obtainium://add/https://github.com/CodeworksCreativeHub/mLauncher'><img src='https://droidworksstudio.github.io/mLauncher/obtanium.png' width="150" alt="Obtanium"></a>
+        <a href='http://apps.obtainium.imranr.dev/redirect.html?r=obtainium://add/https://github.com/CodeWorksCreativeHub/mLauncher'><img src='https://droidworksstudio.github.io/mLauncher/obtanium.png' width="150" alt="Obtanium"></a>
 	<a href='https://play.google.com/store/apps/details?id=app.mlauncher'><img src='https://droidworksstudio.github.io/mLauncher/google_play.png' width="150" alt="Obtanium"></a>	    
 	<a href='https://f-droid.org/packages/app.mlauncher'><img src='https://droidworksstudio.github.io/mLauncher/fdroid.png' width="150" alt="fDroid"></a>
     </p>
     <div align='center'>
         <p>
             <img src='https://img.shields.io/badge/Android-SDK_36-BD93F9?style=flat-square&logo=android&logoColor=white' alt="SDK-36">
-            <a href='https://github.com/CodeworksCreativeHub/mLauncher/blob/main/LICENSE'><img src='https://img.shields.io/github/license/CodeworksCreativeHub/mLauncher?color=BD93F9&style=flat-square' alt="LICENSE"></a>
+            <a href='https://github.com/CodeWorksCreativeHub/mLauncher/blob/main/LICENSE'><img src='https://img.shields.io/github/license/CodeWorksCreativeHub/mLauncher?color=BD93F9&style=flat-square' alt="LICENSE"></a>
             <br>
-            <a href='https://github.com/CodeworksCreativeHub/mLauncher/releases/latest'><img src='https://img.shields.io/github/downloads/CodeworksCreativeHub/mLauncher/total?color=50FA7B&style=flat-square&label=Overall&logo=github' alt="releases"></a>
-            <a href='https://github.com/CodeworksCreativeHub/mLauncher/releases/latest'><img src="https://img.shields.io/github/downloads/CodeworksCreativeHub/mLauncher/latest/total?color=50FA7B&style=flat-square&label=Latest&logo=github" alt="GitHub Downloads (all assets, latest release)"></a>
+            <a href='https://github.com/CodeWorksCreativeHub/mLauncher/releases/latest'><img src='https://img.shields.io/github/downloads/CodeWorksCreativeHub/mLauncher/total?color=50FA7B&style=flat-square&label=Overall&logo=github' alt="releases"></a>
+            <a href='https://github.com/CodeWorksCreativeHub/mLauncher/releases/latest'><img src="https://img.shields.io/github/downloads/CodeWorksCreativeHub/mLauncher/latest/total?color=50FA7B&style=flat-square&label=Latest&logo=github" alt="GitHub Downloads (all assets, latest release)"></a>
 			<br>
 			<a href='https://play.google.com/store/apps/details?id=app.mlauncher'><img src='https://img.shields.io/endpoint?url=https%3A%2F%2Fplay.cuzi.workers.dev%2Fplay%3Fi%3Dapp.mlauncher%26gl%3DUK%26hl%3Den%26l%3D%24name%26m%3D%24totalinstalls&color=50FA7B&style=flat-square&label=Google%20Play&logo=googleplay' alt='Google Play'></a>
             <br>
 	    	<a href='https://apt.izzysoft.de/fdroid/index/apk/app.mlauncher'><img alt="IzzyOnDroid (including pre-releases)" src="https://img.shields.io/endpoint?url=https://apt.izzysoft.de/fdroid/api/v1/shield/app.mlauncher&color=FFB86C&style=flat-square&label=IzzyOnDroid"></a>
-            <a href='https://github.com/CodeworksCreativeHub/mLauncher/releases/latest'><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/CodeworksCreativeHub/mLauncher?color=FFB86C&style=flat-square&label=Github"></a>
+            <a href='https://github.com/CodeWorksCreativeHub/mLauncher/releases/latest'><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/CodeWorksCreativeHub/mLauncher?color=FFB86C&style=flat-square&label=Github"></a>
 	    	<br>
 			<a href='https://play.google.com/store/apps/details?id=app.mlauncher'><img src='https://img.shields.io/endpoint?url=https%3A%2F%2Fplay.cuzi.workers.dev%2Fplay%3Fi%3Dapp.mlauncher%26gl%3DUK%26hl%3Den%26l%3D%24name%26m%3D%24version&color=FFB86C&style=flat-square&label=Google%20Play' alt='Google Play'></a>
             <a href='https://gitlab.com/fdroid/fdroiddata/-/blob/master/metadata/app.mlauncher.yml'><img alt="F-Droid (including pre-releases)" src="https://img.shields.io/f-droid/v/app.mlauncher?color=FFB86C&style=flat-square&label=F-Droid"></a>
@@ -44,8 +44,8 @@
 
 - Chat with us at [mLauncher](https://discord.com/invite/modmydevice) on discord.
 - This application can be found
-  on [Play Store](https://play.google.com/store/apps/details?id=app.mlauncher), [GitHub](https://github.com/CodeworksCreativeHub/mLauncher/releases/), [IzzyOnDroid](https://apt.izzysoft.de/fdroid/index/apk/app.mlauncher) & [F-Droid](https://f-droid.org/packages/app.mlauncher/).
-- The latest stable version is available on the [main](https://github.com/CodeworksCreativeHub/mLauncher/tree/main) branch, which can be cloned to build
+  on [Play Store](https://play.google.com/store/apps/details?id=app.mlauncher), [GitHub](https://github.com/CodeWorksCreativeHub/mLauncher/releases/), [IzzyOnDroid](https://apt.izzysoft.de/fdroid/index/apk/app.mlauncher) & [F-Droid](https://f-droid.org/packages/app.mlauncher/).
+- The latest stable version is available on the [main](https://github.com/CodeWorksCreativeHub/mLauncher/tree/main) branch, which can be cloned to build
   the application independently.
 - The **original** version of the application is also accessible on
   the [Play Store](https://play.google.com/store/apps/details?id=app.olauncher), [F-Droid](https://f-droid.org/fr/packages/app.olauncher/) & [GitHub](https://github.com/tanujnotes/Olauncher).
@@ -119,12 +119,12 @@ your hard work and dedication. Thank you all for your invaluable contributions!
 ## Contribute
 
 - If you are unhappy with any part of the app or feel like missing something, you can open a pull request or an [**issue
-  **](https://github.com/CodeworksCreativeHub/mLauncher/issues/new/choose) as you like.
+  **](https://github.com/CodeWorksCreativeHub/mLauncher/issues/new/choose) as you like.
     - Please go through the issues marked as `Bug report`, `Crash report` or `Feature request`.
     - Please can we discuss before sending pull requests.
     - Make pull requests to `main` branch.
 - Any help in translating mLauncher into other languages is greatly appreciated. If you don't know how to perform a pull request, feel free to check
-  out our dedicated [**Wiki**](https://github.com/CodeworksCreativeHub/mLauncher/wiki).
+  out our dedicated [**Wiki**](https://github.com/CodeWorksCreativeHub/mLauncher/wiki).
 
 ## License
 

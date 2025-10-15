@@ -17,13 +17,13 @@ body:
       options:
         - label: "I have written the feature request in English with a clear and descriptive title."
           required: true
-        - label: "I confirmed there are **no existing feature requests** - [open](https://github.com/CodeworksCreativeHub/mLauncher/issues) or [closed](https://github.com/CodeworksCreativeHub/mLauncher/issues?q=is%3Aissue+is%3Aclosed) - that already suggest this idea."
+        - label: "I confirmed there are **no existing feature requests** - [open](https://github.com/CodeWorksCreativeHub/mLauncher/issues) or [closed](https://github.com/CodeWorksCreativeHub/mLauncher/issues?q=is%3Aissue+is%3Aclosed) - that already suggest this idea."
           required: true
-        - label: "I have reviewed the [WIKI](https://github.com/CodeworksCreativeHub/mLauncher/wiki) to ensure the feature does not already exist."
+        - label: "I have reviewed the [WIKI](https://github.com/CodeWorksCreativeHub/mLauncher/wiki) to ensure the feature does not already exist."
           required: true
-        - label: "I have checked the [latest GitHub release](https://github.com/CodeworksCreativeHub/mLauncher/releases) to confirm the feature hasn't already been added."
+        - label: "I have checked the [latest GitHub release](https://github.com/CodeWorksCreativeHub/mLauncher/releases) to confirm the feature hasn't already been added."
           required: true
-        - label: "I verified this feature is not already mentioned in the [changelogs](https://github.com/CodeworksCreativeHub/mLauncher/blob/main/CHANGELOG.md)."
+        - label: "I verified this feature is not already mentioned in the [changelogs](https://github.com/CodeWorksCreativeHub/mLauncher/blob/main/CHANGELOG.md)."
           required: true
         - label: "I clearly explained the feature, its use case, and why it would benefit the project."
           required: true
