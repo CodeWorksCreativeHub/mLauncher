@@ -2,7 +2,7 @@
 
 This document lists known issues in the project and possible workarounds.
 
-## 1.10.3.2 - mLauncher [Release Notes](https://github.com/DroidWorksStudio/mLauncher/releases/tag/1.10.3.2) / 1.10.3.3 - mLauncher [Release Notes](https://github.com/DroidWorksStudio/mLauncher/releases/tag/1.10.3.3)
+## 1.10.3.2 - mLauncher [Release Notes](https://github.com/CodeworksCreativeHub/mLauncher/releases/tag/1.10.3.2) / 1.10.3.3 - mLauncher [Release Notes](https://github.com/CodeworksCreativeHub/mLauncher/releases/tag/1.10.3.3)
 
 ### ⚠️ Icon Pack Compatibility Issue
 
@@ -18,14 +18,13 @@ If you skip this step, icons may not load or apply correctly.
 
 We're aware of the issue and will aim to improve icon pack handling in future updates.
 
-
-## 1.7.5 - mLauncher [Release Notes](https://github.com/DroidWorksStudio/mLauncher/releases/tag/1.7.5)
+## 1.7.5 - mLauncher [Release Notes](https://github.com/CodeworksCreativeHub/mLauncher/releases/tag/1.7.5)
 
 ### 📱 Issue: Icons and Usage Problems
 
 - **Cause:** The usage prevents the icons from functioning properly. If you want the icons to work, avoid using the "usage" feature. I'm unsure if I'll fix this issue.
 
-## 1.7.4 - mLauncher [Release Notes](https://github.com/DroidWorksStudio/mLauncher/releases/tag/1.7.4)
+## 1.7.4 - mLauncher [Release Notes](https://github.com/CodeworksCreativeHub/mLauncher/releases/tag/1.7.4)
 
 ### 🛠️ Issue: `isManagedProfile()` Requires API 30+
 
@@ -34,7 +33,7 @@ We're aware of the issue and will aim to improve icon pack handling in future up
   versions below 30. For an example, see the implementation in [
   `AppDrawerAdapter.kt`](./app/src/main/java/com/github/droidworksstudio/mlauncher/ui/AppDrawerAdapter.kt).
 
-## 1.7.3 - mLauncher [Release Notes](https://github.com/DroidWorksStudio/mLauncher/releases/tag/1.7.3)
+## 1.7.3 - mLauncher [Release Notes](https://github.com/CodeworksCreativeHub/mLauncher/releases/tag/1.7.3)
 
 ### 🚨 Issue: `NoSuchMethodError` for `getLauncherUserInfo()`
 
@@ -60,4 +59,4 @@ We're aware of the issue and will aim to improve icon pack handling in future up
 
 #### Reporting Issues
 
-If you encounter additional issues, please open a [GitHub Issue](https://github.com/DroidWorksStudio/mLauncher/issues) or contribute a fix.
+If you encounter additional issues, please open a [GitHub Issue](https://github.com/CodeworksCreativeHub/mLauncher/issues) or contribute a fix.

@@ -4,7 +4,7 @@ const https = require("https");
 const { execSync } = require("child_process");
 
 const WEBHOOK_URL = process.env.DISCORD_WEBHOOK_URL;
-const REPO_URL = "https://github.com/DroidWorksStudio/mLauncher";
+const REPO_URL = "https://github.com/CodeworksCreativeHub/mLauncher";
 
 // Commit parsing rules
 const commitParsers = [
@@ -86,7 +86,7 @@ function classifyCommit(message) {
 function getReleaseTitle(tag) {
     const options = {
         hostname: "api.github.com",
-        path: `/repos/DroidWorksStudio/mLauncher/releases/tags/${tag}`,
+        path: `/repos/CodeworksCreativeHub/mLauncher/releases/tags/${tag}`,
         method: "GET",
         headers: { "User-Agent": "Node.js" },
     };
@@ -156,7 +156,7 @@ function getReleaseTitle(tag) {
         const payload = JSON.stringify({
             content: discordMessage,
             username: "Multi Launcher Updates",
-            avatar_url: "https://github.com/DroidWorksStudio/mLauncher/blob/main/fastlane/metadata/android/en-US/images/icon.png?raw=true",
+            avatar_url: "https://github.com/CodeworksCreativeHub/mLauncher/blob/main/fastlane/metadata/android/en-US/images/icon.png?raw=true",
         });
 
         const url = new URL(WEBHOOK_URL);
