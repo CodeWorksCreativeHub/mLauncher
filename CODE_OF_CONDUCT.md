@@ -1,111 +1,99 @@
 # Contributor Code of Conduct
 
+## Quick Reference
+
+- **Be respectful**: Treat everyone with kindness, empathy, and inclusivity.  
+- **No harassment**: Violence, threats, sexual content, trolling, or doxxing are strictly prohibited.  
+- **Report issues**: If you see something wrong, report anonymously to wayne6324@gmail.com.  
+- **Consequences**: Violations may result in warnings, temporary bans, or permanent bans.  
+- **Maintain confidentiality**: Reporters’ identities are protected.  
+- **Project leadership enforces**: Maintainers may remove or reject contributions that violate this Code.
+
+---
+
 ## Our Pledge
 
 We as members, contributors, and leaders pledge to make participation in our
 community a harassment-free experience for everyone, regardless of age, body
 size, visible or invisible disability, ethnicity, sex characteristics, gender
 identity and expression, level of experience, education, socio-economic status,
-nationality, personal appearance, race, religion, or sexual identity
-and orientation.
+nationality, personal appearance, race, religion, or sexual orientation.
 
 We pledge to act and interact in ways that contribute to an open, welcoming,
 diverse, inclusive, and healthy community.
 
 ## Our Standards
 
-Examples of behavior that contributes to a positive environment for our
-community include:
+Examples of behavior that contributes to a positive environment include:
 
-- Using welcoming and inclusive language
-- Demonstrating empathy and kindness toward other people
-- Being respectful of differing opinions, viewpoints, and experiences
-- Gracefully accepting constructive criticism
-- Attempting collaboration before conflict
-- Accepting responsibility and apologizing to those affected by our mistakes,
-  and learning from the experience
-- Focusing on what is best not just for us as individuals, but for the
-  overall community
-- Showing empathy towards other community members
+- Using welcoming and inclusive language  
+- Demonstrating empathy and kindness toward others  
+- Being respectful of differing opinions and experiences  
+- Gracefully accepting constructive criticism  
+- Attempting collaboration before conflict  
+- Accepting responsibility and apologizing for mistakes  
+- Focusing on the overall well-being of the community  
 
-Examples of unacceptable behavior by participants include:
+Unacceptable behavior includes:
 
-- Violence, threats of violence, or inciting others to commit self-harm
-- The use of sexualized language or imagery, and sexual attention or
-  advances of any kind
-- Trolling, intentionally spreading misinformation, insulting/derogatory
-  comments, and personal or political attacks
-- Public or private harassment
-- Publishing others' private information, such as a physical or email
-  address, without their explicit permission
-- Abuse of the reporting process to intentionally harass or exclude others
-- Advocating for, or encouraging, any of the above behavior
-- Other conduct which could reasonably be considered inappropriate in a
-  professional setting
+- Violence, threats of violence, or self-harm encouragement  
+- Sexualized language, imagery, or attention of any kind  
+- Trolling, misinformation, personal attacks, or harassment  
+- Publishing others' private information without permission  
+- Abuse of the reporting process to target others  
+- Advocating for, or encouraging, any of the above behavior  
+- Any other conduct that could be considered inappropriate in a professional setting  
 
 ## Our Responsibilities
 
-Project maintainers are responsible for clarifying the standards of acceptable behavior and are expected to take appropriate and fair corrective action in response to any instances of unacceptable behavior.
-
-Project maintainers have the right and responsibility to remove, edit, or reject comments, commits, code, wiki edits, issues, and other contributions that are not aligned to this Code of Conduct, or to ban temporarily or permanently any contributor for other behaviors that they deem inappropriate, threatening, offensive, or harmful.
+Project maintainers are responsible for clarifying acceptable behavior and
+taking fair corrective action when standards are violated. They may remove,
+edit, or reject contributions that violate this Code of Conduct or ban
+contributors when necessary.
 
 ## Scope
 
-This Code of Conduct applies both within project spaces and in public spaces when an individual is representing the project or its community. Examples of representing a project or community include using an official project e-mail address, posting via an official social media account, or acting as an appointed representative at an online or offline event. Representation of a project may be further defined and clarified by project maintainers.
+This Code of Conduct applies both within project spaces and in public spaces
+when representing the project. Representation includes using official project
+email addresses, social media accounts, or acting as a project representative
+at online or offline events.
 
 ## Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting us anonymously at wayne6324@gmail.com. All complaints will be reviewed and investigated and will result in a response that is deemed necessary and appropriate to the circumstances. The project team is obligated to maintain confidentiality with regard to the reporter of an incident.
+Incidents of unacceptable behavior may be reported anonymously at
+wayne6324@gmail.com. All complaints will be reviewed and investigated, and
+responses will be appropriate to the circumstances. Reporter confidentiality
+will be maintained.
 
-Project maintainers who do not follow or enforce the Code of Conduct in good faith may face temporary or permanent repercussions as determined by other members of the project's leadership.
+Project maintainers who fail to enforce the Code of Conduct in good faith may
+face temporary or permanent repercussions from the project's leadership.
 
-If you are unsure whether an incident is a violation, or whether the space where the incident took place is covered by our Code of Conduct, **we encourage you to still report it**. We would prefer to have a few extra reports where we decide to take no action, than to leave an incident go unnoticed and unresolved that may result in an individual or group to feel like they can no longer participate in the community. Reports deemed as not a violation will also allow us to improve our Code of Conduct and processes surrounding it. If you witness a dangerous situation or someone in distress, we encourage you to report even if you are only an observer.
+If you are unsure whether an incident is a violation, we encourage you to
+report it. Reports help improve our Code of Conduct and community processes.
 
 ## Enforcement Guidelines
 
-Project maintainers will follow these Community Impact Guidelines in determining
-the consequences for any action they deem in violation of this Code of Conduct:
+Project maintainers will follow these guidelines when determining consequences:
 
 ### 1. Correction
 
-**Community Impact**: Use of inappropriate language or other behavior deemed
-unprofessional or unwelcome in the community.
-
-**Consequence**: A private, written warning from project maintainers, providing
-clarity around the nature of the violation and an explanation of why the
-behavior was inappropriate. A public apology may be requested.
+**Community Impact**: Minor unprofessional or unwelcome behavior  
+**Consequence**: Private written warning with clarity on the violation; public apology may be requested.
 
 ### 2. Warning
 
-**Community Impact**: A violation through a single incident or series
-of actions.
-
-**Consequence**: A warning with consequences for continued behavior. No
-interaction with the people involved, including unsolicited interaction with
-those enforcing the Code of Conduct, for a specified period of time. This
-includes avoiding interactions in community spaces as well as external channels
-like social media. Violating these terms may lead to a temporary or
-permanent ban.
+**Community Impact**: Single or repeated violation  
+**Consequence**: Warning with restricted interactions with those involved or enforcing the Code; may lead to temporary or permanent ban if violated.
 
 ### 3. Temporary Ban
 
-**Community Impact**: A serious violation of community standards, including
-sustained inappropriate behavior.
-
-**Consequence**: A temporary ban from any sort of interaction or public
-communication with the community for a specified period of time. No public or
-private interaction with the people involved, including unsolicited interaction
-with those enforcing the Code of Conduct, is allowed during this period.
-Violating these terms may lead to a permanent ban.
+**Community Impact**: Serious or sustained violation  
+**Consequence**: Temporary ban from community interactions; no contact with involved parties or enforcers. Violation may lead to permanent ban.
 
 ### 4. Permanent Ban
 
-**Community Impact**: Demonstrating a pattern of violation of community
-standards, including sustained inappropriate behavior,  harassment of an
-individual, or aggression toward or disparagement of classes of individuals.
-
-**Consequence**: A permanent ban from any sort of public interaction within
-the community.
+**Community Impact**: Pattern of violations, harassment, or aggression  
+**Consequence**: Permanent ban from all public community interactions.
 
 ## Attribution
 
