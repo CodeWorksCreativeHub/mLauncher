@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [1.11.2.3 → Unreleased](https://github.com/CodeWorksCreativeHub/mLauncher/tree/main) - In Development
+
+### :sparkles: Enhancements:
+
+* Configure Room schema for WidgetDatabase ([802c1b1a](https://github.com/CodeWorksCreativeHub/mLauncher/commit/802c1b1a))
+
 ## [Multi Launcher 1.11.2 Build 3](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.3) - (16, October 2025)
 
 ### :sparkles: Enhancements:
