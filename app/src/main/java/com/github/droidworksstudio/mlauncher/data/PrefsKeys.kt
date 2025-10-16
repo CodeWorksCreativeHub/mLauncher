@@ -11,6 +11,7 @@ internal const val LOCK_ORIENTATION_PORTRAIT = "LOCK_ORIENTATION_PORTRAIT"
 internal const val HAPTIC_FEEDBACK = "HAPTIC_FEEDBACK"
 internal const val FIRST_OPEN = "FIRST_OPEN"
 internal const val FIRST_SETTINGS_OPEN = "FIRST_SETTINGS_OPEN"
+internal const val FORCE_COLORED_WALLPAPER = "FORCE_COLORED_WALLPAPER"
 
 // Home & Drawer
 internal const val HOME_APPS_NUM = "HOME_APPS_NUM"

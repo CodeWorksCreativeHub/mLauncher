@@ -495,7 +495,6 @@ object SettingsComposable {
         onClick: () -> Unit = {},
     ) {
         val fontSizeSp = fontSize.value
-        val fontColorInt = fontColor.toArgb()
 
         Row(
             modifier = Modifier
@@ -507,7 +506,6 @@ object SettingsComposable {
                 factory = { context ->
                     FontAppCompatTextView(context).apply {
                         setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSizeSp)
-                        setTextColor(fontColorInt)
                     }
                 },
                 modifier = Modifier
@@ -515,6 +513,7 @@ object SettingsComposable {
                     .wrapContentHeight(),
                 update = { textView ->
                     textView.text = title
+                    textView.setTextColor(fontColor.toArgb()) // <- update color here
                 }
             )
 
@@ -522,16 +521,15 @@ object SettingsComposable {
                 factory = { context ->
                     FontAppCompatTextView(context).apply {
                         setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSizeSp)
-                        setTextColor(fontColorInt)
                         setOnClickListener { onClick() }
                     }
                 },
                 modifier = Modifier.wrapContentSize(),
                 update = { textView ->
-                    textView.text = option  // update text on recomposition
+                    textView.text = option
+                    textView.setTextColor(fontColor.toArgb()) // <- update color here
                 }
             )
-
         }
     }
 }

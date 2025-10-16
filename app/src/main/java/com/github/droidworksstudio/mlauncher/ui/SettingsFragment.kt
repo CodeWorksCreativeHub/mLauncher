@@ -344,6 +344,7 @@ class SettingsFragment : BaseFragment() {
         // Experimental Settings
         var toggledExpertOptions by remember { mutableStateOf(prefs.enableExpertOptions) }
         var selectedSettingsSize by remember { mutableIntStateOf(prefs.settingsSize) }
+        var toggledForceWallpaper by remember { mutableStateOf(prefs.forceWallpaper) }
         var toggledSettingsLocked by remember { mutableStateOf(prefs.settingsLocked) }
         var toggledLockOrientation by remember { mutableStateOf(prefs.lockOrientation) }
         var toggledHapticFeedback by remember { mutableStateOf(prefs.hapticFeedback) }
@@ -1393,7 +1394,7 @@ class SettingsFragment : BaseFragment() {
                         title = getLocalizedString(R.string.background_color),
                         option = hexBackgroundColor,
                         fontSize = titleFontSize,
-                        fontColor = Color(hexBackgroundColor.toColorInt()),
+                        fontColor = Color(selectedBackgroundColor),
                         onClick = {
                             dialogBuilder.showColorPickerBottomSheet(
                                 context = requireContext(),
@@ -2595,7 +2596,7 @@ class SettingsFragment : BaseFragment() {
                     PageHeader(
                         iconRes = R.drawable.ic_back,
                         title = getLocalizedString(R.string.about_settings_title, getLocalizedString(R.string.app_name)),
-                        
+
                         onClick = {
                             currentScreen = "main"
                         }
@@ -2716,6 +2717,17 @@ class SettingsFragment : BaseFragment() {
                             val currentOrientation = resources.configuration.orientation
                             prefs.lockOrientationPortrait = currentOrientation == Configuration.ORIENTATION_PORTRAIT
                             AppReloader.restartApp(requireContext())
+                        }
+                    )
+
+                    SettingsSwitch(
+                        text = getLocalizedString(R.string.force_colored_wallpaper),
+                        fontSize = titleFontSize,
+                        defaultState = toggledForceWallpaper,
+
+                        onCheckedChange = {
+                            toggledForceWallpaper = !prefs.forceWallpaper
+                            prefs.forceWallpaper = toggledForceWallpaper
                         }
                     )
 

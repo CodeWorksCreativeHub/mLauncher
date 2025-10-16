@@ -95,6 +95,7 @@
     <string name="pages_on_home_screen">Number of Pages</string>
     <string name="enable_home_pager">Enable Home Pager</string>
     <string name="enable_app_timer">Enable App Timer</string>
+    <string name="force_colored_wallpaper">Force Colored Wallpaper</string>
 
     <string name="info_tiles">Info Tiles</string>
 

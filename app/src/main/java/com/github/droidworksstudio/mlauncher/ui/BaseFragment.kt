@@ -1,7 +1,9 @@
 package com.github.droidworksstudio.mlauncher.ui
 
+import android.app.WallpaperManager
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.graphics.createBitmap
 import androidx.fragment.app.Fragment
 import com.github.droidworksstudio.mlauncher.data.Constants
 import com.github.droidworksstudio.mlauncher.data.Prefs
@@ -27,6 +29,24 @@ open class BaseFragment : Fragment() {
             Constants.Theme.System -> AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
         }
         AppCompatDelegate.setDefaultNightMode(themeMode)
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        if (prefs.forceWallpaper) {
+            val wallpaperManager = WallpaperManager.getInstance(requireContext())
+            val backgroundColor = prefs.backgroundColor
+
+            // Create a solid color bitmap
+            val bitmap = createBitmap(1, 1).apply {
+                eraseColor(backgroundColor)
+            }
+
+            // Set the wallpaper
+            wallpaperManager.setBitmap(bitmap, null, true, WallpaperManager.FLAG_SYSTEM) // home
+            wallpaperManager.setBitmap(bitmap, null, true, WallpaperManager.FLAG_LOCK)   // lock
+        }
     }
 }
 
