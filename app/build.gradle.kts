@@ -132,6 +132,10 @@ kotlin {
     }
 }
 
+// KSP configuration
+ksp {
+    arg("room.schemaLocation", "$projectDir/schemas")
+}
 
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
