@@ -19,8 +19,6 @@ body:
           required: true
         - label: "I confirmed there are **no existing bug reports** — [open](https://github.com/CodeWorksCreativeHub/mLauncher/issues) or [closed](https://github.com/CodeWorksCreativeHub/mLauncher/issues?q=is%3Aissue+is%3Aclosed) — that already cover this issue."
           required: true
-        - label: "I reviewed the [Known Issues](https://github.com/CodeWorksCreativeHub/mLauncher/blob/main/KnownIssues.md) and this bug is not listed."
-          required: true
         - label: "I checked the [CHANGELOG](https://github.com/CodeWorksCreativeHub/mLauncher/blob/main/CHANGELOG.md) to ensure the bug hasn’t already been fixed."
           required: true
         - label: "I reproduced the bug on the **latest GitHub release**."

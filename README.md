@@ -52,10 +52,6 @@
 
 We try to balance customizability and minimalization well still being simple :)</h3>
 
-# Known Issues
-
-For a list of known issues and workarounds, check out [KnownIssues.md](./KnownIssues.md).
-
 # Forked with extra features
 
 <details><summary>List of features (click to expand)</summary>
