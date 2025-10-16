@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file. See [conven
 
 ## [1.11.2.2 → Unreleased](https://github.com/CodeWorksCreativeHub/mLauncher/tree/main) - In Development
 
+### :sparkles: Enhancements:
+
+* Add option to force colored wallpaper ([03fac865](https://github.com/CodeWorksCreativeHub/mLauncher/commit/03fac865))
+
 ### :bug: Bug Fixes:
 
 * Adjust font sizes for consistency ([07046ce1](https://github.com/CodeWorksCreativeHub/mLauncher/commit/07046ce1))
