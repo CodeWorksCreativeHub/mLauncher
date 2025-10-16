@@ -8,6 +8,10 @@ All notable changes to this project will be documented in this file. See [conven
 
 * Adjust font sizes for consistency ([07046ce1](https://github.com/CodeWorksCreativeHub/mLauncher/commit/07046ce1))
 
+### :books: Documentation:
+
+* Remove "Known Issues" references ([06a9923f](https://github.com/CodeWorksCreativeHub/mLauncher/commit/06a9923f))
+
 ## [Multi Launcher 1.11.2 Build 2](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.2) - (14, October 2025)
 
 ### :sparkles: Enhancements:
