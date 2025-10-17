@@ -1,1 +1,1 @@
-Çoklu Başlatıcı ‧ Ana Ekran, Minimal UI Başlatıcı
+Çoklu Başlatıcı ‧ Ana Ekran
