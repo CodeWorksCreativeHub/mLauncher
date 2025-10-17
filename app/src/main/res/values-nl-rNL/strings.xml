@@ -69,6 +69,7 @@
     <string name="pages_on_home_screen">Aantal pagina\'s</string>
     <string name="enable_home_pager">Schakel Homepager in</string>
     <string name="enable_app_timer">App-timer inschakelen</string>
+    <string name="force_colored_wallpaper">Force Colored-behang</string>
     <string name="info_tiles">Infotegels</string>
     <string name="show_clock">Klok weergeven</string>
     <string name="show_clock_format">Weergavestijl (AM/PM)</string>
