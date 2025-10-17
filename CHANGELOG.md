@@ -8,6 +8,10 @@ All notable changes to this project will be documented in this file. See [conven
 
 * Configure Room schema for WidgetDatabase ([802c1b1a](https://github.com/CodeWorksCreativeHub/mLauncher/commit/802c1b1a))
 
+### :globe_with_meridians: Localization:
+
+* Updated Language Files. ([#936](https://github.com/CodeWorksCreativeHub/mLauncher/pull/936)) ([dd0bc103](https://github.com/CodeWorksCreativeHub/mLauncher/commit/dd0bc103))
+
 ## [Multi Launcher 1.11.2 Build 3](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.3) - (16, October 2025)
 
 ### :sparkles: Enhancements:
