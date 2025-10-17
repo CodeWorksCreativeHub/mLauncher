@@ -69,6 +69,7 @@
     <string name="pages_on_home_screen">Количество страниц</string>
     <string name="enable_home_pager">Включить домашний пейджер</string>
     <string name="enable_app_timer">Включить таймер приложения</string>
+    <string name="force_colored_wallpaper">Обои Force Colored</string>
     <string name="info_tiles">Информационные плитки</string>
     <string name="show_clock">Показать часы</string>
     <string name="show_clock_format">Формат показа (AM/PM)</string>
