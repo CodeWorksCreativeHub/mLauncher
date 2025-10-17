@@ -471,8 +471,13 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             list.add(buildItem(raw))
         }
 
-        // ✅ Sort by normalized label
-        list.sortWith(compareBy { normalize(getLabel(it)) })
+        val pinnedMap = items.associateWith { isPinned(it) }  // Map<T, Boolean>
+
+        // ✅ Sort pinned first, then by normalized label
+        list.sortWith(
+            compareByDescending<R> { pinnedMap[items[list.indexOf(it)]] == true }
+                .thenBy { normalize(getLabel(it)) }
+        )
 
         // ✅ Build scroll index (safe, no `continue`)
         list.forEachIndexed { index, item ->
@@ -487,8 +492,14 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     /**
-     * Build app list on IO dispatcher. This function is still suspend and safe to call
-     * from background, but it ensures all heavy operations happen on Dispatchers.IO.
+     * Build app list on IO dispatcher. This function is suspend and safe to call
+     * from a background thread, but it ensures all heavy operations happen on Dispatchers.IO.
+     *
+     * Features:
+     * - Fetches recent apps and user profile apps in parallel.
+     * - Filters hidden/pinned apps before creating AppListItem objects.
+     * - Updates profile counters efficiently.
+     * - Optimized for memory and CPU usage on devices with many apps.
      */
     suspend fun getAppsList(
         context: Context,
@@ -503,109 +514,121 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         val seenAppKeys = mutableSetOf<String>()
         val userManager = context.getSystemService(Context.USER_SERVICE) as UserManager
         val profiles = userManager.userProfiles.toList()
+        val privateManager = PrivateSpaceManager(context)
 
         fun appKey(pkg: String, cls: String, profileHash: Int) = "$pkg|$cls|$profileHash"
         fun isHidden(pkg: String, key: String) =
             listOf(pkg, key, "$pkg|${key.hashCode()}").any { it in hiddenAppsSet }
 
-        AppLogger.d(
-            "AppListDebug",
-            "🔄 getAppsList called with: includeRegular=$includeRegularApps, includeHidden=$includeHiddenApps, includeRecent=$includeRecentApps"
+        // Lightweight intermediate storage
+        data class RawApp(
+            val pkg: String,
+            val cls: String,
+            val label: String,
+            val user: UserHandle,
+            val profileType: String,
+            val category: AppCategory
         )
 
-        val allApps = mutableListOf<AppListItem>()
+        val rawApps = mutableListOf<RawApp>()
 
-        // 🔹 Add recent apps
+        // 🔹 Recent apps
         if (prefs.recentAppsDisplayed && includeRecentApps) {
             runCatching {
-                AppUsageMonitor.createInstance(context).getLastTenAppsUsed(context).forEach { (pkg, name, activity) ->
-                    val key = appKey(pkg, activity, 0)
-                    if (seenAppKeys.add(key)) {
-                        allApps.add(
-                            AppListItem(
-                                activityLabel = name,
-                                activityPackage = pkg,
-                                activityClass = activity,
-                                user = Process.myUserHandle(),
-                                profileType = "SYSTEM",
-                                customLabel = prefs.getAppAlias(pkg).ifEmpty { name },
-                                customTag = prefs.getAppTag(pkg, null),
-                                category = AppCategory.RECENT
+                AppUsageMonitor.createInstance(context)
+                    .getLastTenAppsUsed(context)
+                    .forEach { (pkg, name, activity) ->
+                        val key = appKey(pkg, activity, 0)
+                        if (seenAppKeys.add(key)) {
+                            rawApps.add(
+                                RawApp(
+                                    pkg = pkg,
+                                    cls = activity,
+                                    label = name,
+                                    user = Process.myUserHandle(),
+                                    profileType = "SYSTEM",
+                                    category = AppCategory.RECENT
+                                )
                             )
-                        )
+                        }
                     }
-                }
             }.onFailure { t ->
                 AppLogger.e("AppListDebug", "Failed to add recent apps: ${t.message}", t)
             }
         }
 
-        // 🔹 Process user profiles in parallel
+        // 🔹 Profile apps in parallel
+        val launcherApps = context.getSystemService(Context.LAUNCHER_APPS_SERVICE) as LauncherApps
         val deferreds = profiles.map { profile ->
             async {
-                val privateManager = PrivateSpaceManager(context)
                 if (privateManager.isPrivateSpaceProfile(profile) && privateManager.isPrivateSpaceLocked()) {
                     AppLogger.d("AppListDebug", "🔒 Skipping locked private profile: $profile")
-                    return@async emptyList<AppListItem>()
-                }
+                    emptyList<RawApp>()
+                } else {
+                    val profileType = when {
+                        privateManager.isPrivateSpaceProfile(profile) -> "PRIVATE"
+                        profile != Process.myUserHandle() -> "WORK"
+                        else -> "SYSTEM"
+                    }
 
-                val profileType = when {
-                    privateManager.isPrivateSpaceProfile(profile) -> "PRIVATE"
-                    profile != Process.myUserHandle() -> "WORK"
-                    else -> "SYSTEM"
-                }
+                    runCatching { launcherApps.getActivityList(null, profile) }
+                        .getOrElse {
+                            AppLogger.e("AppListDebug", "Failed to get activities for $profile: ${it.message}", it)
+                            emptyList()
+                        }
+                        .mapNotNull { info ->
+                            val pkg = info.applicationInfo.packageName
+                            val cls = info.componentName.className
+                            if (pkg == BuildConfig.APPLICATION_ID) return@mapNotNull null
+                            val key = appKey(pkg, cls, profile.hashCode())
+                            if (!seenAppKeys.add(key)) return@mapNotNull null
+                            if ((isHidden(pkg, key) && !includeHiddenApps) || (!isHidden(pkg, key) && !includeRegularApps))
+                                return@mapNotNull null
 
-                val launcherApps = context.getSystemService(Context.LAUNCHER_APPS_SERVICE) as LauncherApps
-                val activities = runCatching { launcherApps.getActivityList(null, profile) }.getOrElse {
-                    AppLogger.e("AppListDebug", "Failed to get activities for $profile: ${it.message}", it)
-                    emptyList()
-                }
-
-                activities.mapNotNull { info ->
-                    val pkg = info.applicationInfo.packageName
-                    val cls = info.componentName.className
-                    val label = info.label.toString()
-                    if (pkg == BuildConfig.APPLICATION_ID) return@mapNotNull null
-
-                    val key = appKey(pkg, cls, profile.hashCode())
-                    if (!seenAppKeys.add(key)) return@mapNotNull null
-                    if ((isHidden(pkg, key) && !includeHiddenApps) || (!isHidden(pkg, key) && !includeRegularApps))
-                        return@mapNotNull null
-
-                    val category = if (pkg in pinnedPackages) AppCategory.PINNED else AppCategory.REGULAR
-                    AppListItem(
-                        activityLabel = label,
-                        activityPackage = pkg,
-                        activityClass = cls,
-                        user = profile,
-                        profileType = profileType,
-                        customLabel = prefs.getAppAlias(pkg),
-                        customTag = prefs.getAppTag(pkg, profile),
-                        category = category
-                    )
+                            val category = if (pkg in pinnedPackages) AppCategory.PINNED else AppCategory.REGULAR
+                            RawApp(pkg, cls, info.label.toString(), profile, profileType, category)
+                        }
                 }
             }
         }
 
-        val profileApps = deferreds.flatMap { it.await() }
-        allApps.addAll(profileApps)
+        deferreds.forEach { rawApps.addAll(it.await()) }
 
         // 🔹 Update profile counters
         listOf("SYSTEM", "PRIVATE", "WORK", "USER").forEach { type ->
-            val count = allApps.count { it.profileType == type }
-            prefs.setProfileCounter(type, count)
+            prefs.setProfileCounter(type, rawApps.count { it.profileType == type })
         }
 
-        // 🔹 Finalize list using buildList()
+        // 🔹 Convert RawApp → AppListItem
+        val allApps = rawApps.map { raw ->
+            AppListItem(
+                activityLabel = raw.label,
+                activityPackage = raw.pkg,
+                activityClass = raw.cls,
+                user = raw.user,
+                profileType = raw.profileType,
+                customLabel = prefs.getAppAlias(raw.pkg),
+                customTag = prefs.getAppTag(raw.pkg, raw.user),
+                category = raw.category
+            )
+        }
+            // 🔹 Sort pinned apps first, then regular/recent alphabetically
+            .sortedWith(
+                compareByDescending<AppListItem> { it.category == AppCategory.PINNED }
+                    .thenBy { normalizeForSort(it.label) }
+            )
+            .toMutableList()
+
+        // 🔹 Build scroll map and finalize
         buildList(
             items = allApps,
-            seenKey = mutableSetOf(), // ✅ fresh set (don’t reuse seenAppKeys!)
+            seenKey = mutableSetOf(),
             scrollMapLiveData = _appScrollMap,
             includeHidden = includeHiddenApps,
             getKey = { "${it.activityPackage}|${it.activityClass}|${it.user.hashCode()}" },
             isHidden = { it.activityPackage in hiddenAppsSet },
             isPinned = { it.activityPackage in pinnedPackages },
-            buildItem = { it }, // Already an AppListItem
+            buildItem = { it },
             getLabel = { it.label },
             normalize = ::normalizeForSort
         )

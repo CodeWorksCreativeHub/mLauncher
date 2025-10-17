@@ -209,7 +209,6 @@ class AppDrawerFragment : BaseFragment() {
             combinedScrollMaps.value = Pair(viewModel.appScrollMap.value ?: emptyMap(), contactMap)
         }
 
-
         combinedScrollMaps.observe(viewLifecycleOwner) { (appMap, contactMap) ->
             binding.azSidebar.onLetterSelected = { section ->
                 when (binding.menuView.displayedChild) {
