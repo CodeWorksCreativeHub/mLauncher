@@ -69,6 +69,7 @@
     <string name="pages_on_home_screen">Puslapių skaičius</string>
     <string name="enable_home_pager">Įjungti pradžios puslapį</string>
     <string name="enable_app_timer">Įjungti programos laikmatį</string>
+    <string name="force_colored_wallpaper">Priverstinio spalvoto tapeto</string>
     <string name="info_tiles">Informacijos plytelės</string>
     <string name="show_clock">Rodyti laikrodį</string>
     <string name="show_clock_format">Rodyti formatą (AM/PM)</string>

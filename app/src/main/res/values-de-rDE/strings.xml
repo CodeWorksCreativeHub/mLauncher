@@ -69,6 +69,7 @@
     <string name="pages_on_home_screen">Seitenzahl</string>
     <string name="enable_home_pager">Aktivieren Sie den Home Pager</string>
     <string name="enable_app_timer">App-Timer aktivieren</string>
+    <string name="force_colored_wallpaper">Kraftfarbene Tapete</string>
     <string name="info_tiles">Infokacheln</string>
     <string name="show_clock">Uhr anzeigen</string>
     <string name="show_clock_format">Format anzeigen (AM/PM)</string>

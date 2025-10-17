@@ -69,6 +69,7 @@
     <string name="pages_on_home_screen">Počet strán</string>
     <string name="enable_home_pager">Povoliť domovskú stránku</string>
     <string name="enable_app_timer">Povoliť časovač aplikácie</string>
+    <string name="force_colored_wallpaper">Vynútiť farebnú tapetu</string>
     <string name="info_tiles">Informačné dlaždice</string>
     <string name="show_clock">Zobraziť hodiny</string>
     <string name="show_clock_format">Zobraziť formát (AM/PM)</string>

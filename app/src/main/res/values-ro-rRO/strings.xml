@@ -69,6 +69,7 @@
     <string name="pages_on_home_screen">Număr de pagini</string>
     <string name="enable_home_pager">Activează pagina principală</string>
     <string name="enable_app_timer">Activează temporizatorul aplicației</string>
+    <string name="force_colored_wallpaper">Tapet colorat cu forță</string>
     <string name="info_tiles">Secțiuni Rapide</string>
     <string name="show_clock">Afișați ceasul</string>
     <string name="show_clock_format">Formatul emisiunii (AM/PM)</string>

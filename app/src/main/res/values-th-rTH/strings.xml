@@ -69,6 +69,7 @@
     <string name="pages_on_home_screen">เลขหน้า</string>
     <string name="enable_home_pager">เปิดใช้งานโฮมเพจเจอร์</string>
     <string name="enable_app_timer">เปิดใช้งานตัวจับเวลาแอป</string>
+    <string name="force_colored_wallpaper">วอลเปเปอร์สีแรง</string>
     <string name="info_tiles">กระเบื้องข้อมูล</string>
     <string name="show_clock">แสดงนาฬิกา</string>
     <string name="show_clock_format">รูปแบบการแสดง (AM/PM)</string>

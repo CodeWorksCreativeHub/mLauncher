@@ -69,6 +69,7 @@
     <string name="pages_on_home_screen">Número de páginas</string>
     <string name="enable_home_pager">Habilitar buscapersonas de inicio</string>
     <string name="enable_app_timer">Habilitar el temporizador de la aplicación</string>
+    <string name="force_colored_wallpaper">Fondo de pantalla de colores de la fuerza</string>
     <string name="info_tiles">Mosaicos de información</string>
     <string name="show_clock">Mostrar reloj</string>
     <string name="show_clock_format">Formato del programa (AM/PM)</string>

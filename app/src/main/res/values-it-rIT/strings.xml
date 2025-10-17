@@ -69,6 +69,7 @@
     <string name="pages_on_home_screen">Numero di pagine</string>
     <string name="enable_home_pager">Abilita l\'Home Pager iniziale</string>
     <string name="enable_app_timer">Abilita timer app</string>
+    <string name="force_colored_wallpaper">Carta da parati colorata Force</string>
     <string name="info_tiles">Riquadri informativi</string>
     <string name="show_clock">Mostra orologio</string>
     <string name="show_clock_format">Mostra formato (AM/PM)</string>

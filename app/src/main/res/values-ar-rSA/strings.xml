@@ -69,6 +69,7 @@
     <string name="pages_on_home_screen">عدد الصفحات</string>
     <string name="enable_home_pager">تمكين جهاز النداء الرئيسي</string>
     <string name="enable_app_timer">تمكين مؤقت التطبيق</string>
+    <string name="force_colored_wallpaper">خلفيات ملونة بالقوة</string>
     <string name="info_tiles">خطوط المعلومات</string>
     <string name="show_clock">عرض الساعة</string>
     <string name="show_clock_format">تنسيق العرض (صباحًا/مساءً)</string>

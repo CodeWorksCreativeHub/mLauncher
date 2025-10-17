@@ -69,6 +69,7 @@
     <string name="pages_on_home_screen">ページ数</string>
     <string name="enable_home_pager">ホーム ページャーを有効にする</string>
     <string name="enable_app_timer">アプリタイマーを有効にする</string>
+    <string name="force_colored_wallpaper">フォースカラー壁紙</string>
     <string name="info_tiles">情報タイル</string>
     <string name="show_clock">時計を表示</string>
     <string name="show_clock_format">表示形式 (AM/PM)</string>
