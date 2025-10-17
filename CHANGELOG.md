@@ -8,6 +8,11 @@ All notable changes to this project will be documented in this file. See [conven
 
 * Configure Room schema for WidgetDatabase ([802c1b1a](https://github.com/CodeWorksCreativeHub/mLauncher/commit/802c1b1a))
 
+### :wrench: Code Quality:
+
+* Improve performance and readability ([ebb3ece7](https://github.com/CodeWorksCreativeHub/mLauncher/commit/ebb3ece7))
+* Optimize app list loading and sorting ([354b0ce4](https://github.com/CodeWorksCreativeHub/mLauncher/commit/354b0ce4))
+
 ### :globe_with_meridians: Localization:
 
 * Updated Language Files. ([#936](https://github.com/CodeWorksCreativeHub/mLauncher/pull/936)) ([dd0bc103](https://github.com/CodeWorksCreativeHub/mLauncher/commit/dd0bc103))
