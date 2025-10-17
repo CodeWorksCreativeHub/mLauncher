@@ -69,6 +69,7 @@
     <string name="pages_on_home_screen">Numer stron</string>
     <string name="enable_home_pager">Włącz pager główny</string>
     <string name="enable_app_timer">Włącz Timer aplikacji</string>
+    <string name="force_colored_wallpaper">Tapeta Force Colored</string>
     <string name="info_tiles">Kafelki informacyjne</string>
     <string name="show_clock">Pokaż zegar</string>
     <string name="show_clock_format">Format pokazu (AM/PM)</string>
