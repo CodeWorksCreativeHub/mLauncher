@@ -69,6 +69,7 @@
     <string name="pages_on_home_screen">Número de páginas</string>
     <string name="enable_home_pager">Ativar página inicial</string>
     <string name="enable_app_timer">Ativar temporizador de aplicativo</string>
+    <string name="force_colored_wallpaper">Papel de parede colorido da Força</string>
     <string name="info_tiles">Blocos de informação</string>
     <string name="show_clock">Mostrar relógio</string>
     <string name="show_clock_format">Formato do programa (AM/PM)</string>
