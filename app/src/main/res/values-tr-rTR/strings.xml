@@ -69,6 +69,7 @@
     <string name="pages_on_home_screen">Sayfa sayısı</string>
     <string name="enable_home_pager">Ana Sayfa Cihazını Etkinleştir</string>
     <string name="enable_app_timer">Uygulama Zamanlayıcısını Etkinleştir</string>
+    <string name="force_colored_wallpaper">Kuvvet Renkli Duvar Kağıdı</string>
     <string name="info_tiles">Bilgi Kutucukları</string>
     <string name="show_clock">Saati göster</string>
     <string name="show_clock_format">Gösteri Formatı (AM/PM)</string>
