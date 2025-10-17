@@ -69,6 +69,7 @@
     <string name="pages_on_home_screen">מספר דפים</string>
     <string name="enable_home_pager">הפעל דיפדוף בדף הבית</string>
     <string name="enable_app_timer">הפעלת טיימר אפליקציה</string>
+    <string name="force_colored_wallpaper">טפט צבעוני בכוח</string>
     <string name="info_tiles">אריחי מידע</string>
     <string name="show_clock">הצג שעון</string>
     <string name="show_clock_format">תצוגת זמן (AM/PM)</string>
