@@ -233,7 +233,7 @@ class AppDrawerAdapter(
                     filtered.toMutableList()
                 }
 
-                AppLogger.d("searchQuery", query)
+                if (query.isNotEmpty()) AppLogger.d("searchQuery", query)
 
                 val filterResults = FilterResults()
                 filterResults.values = filteredApps
@@ -333,257 +333,185 @@ class AppDrawerAdapter(
             iconLoadingScope: CoroutineScope,
             prefs: Prefs
         ) = with(itemView) {
+
             val contextMenuFlags = prefs.getMenuFlags("CONTEXT_MENU_FLAGS", "0011111")
+
+            // ----------------------------
+            // 1️⃣ Hide optional layouts
             appHideLayout.isVisible = false
             appRenameLayout.isVisible = false
             appTagLayout.isVisible = false
 
-            appHide.apply {
-                isVisible = contextMenuFlags[2]
-                // set show/hide icon
-                if (flag == AppDrawerFlag.HiddenApps) {
-                    setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.visibility, 0, 0)
-                    text = getLocalizedString(R.string.show)
-                } else {
-                    setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.visibility_off, 0, 0)
-                    text = getLocalizedString(R.string.hide)
-                }
-            }
+            val packageName = appListItem.activityPackage
 
-            val appName = appListItem.activityPackage
-            // Access the current locked apps set
-            val currentLockedApps = prefs.lockedApps
+            // ----------------------------
+            // 2️⃣ Precompute lock/pin/hide state
+            val isLocked = prefs.lockedApps.contains(packageName)
+            val isPinned = prefs.pinnedApps.contains(packageName)
+            val isHidden = (flag == AppDrawerFlag.HiddenApps)
 
+            // ----------------------------
+            // 3️⃣ Setup lock/pin/hide buttons
             appLock.apply {
                 isVisible = contextMenuFlags[1]
-                if (currentLockedApps.contains(appName)) {
-                    setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.padlock, 0, 0)
-                    text = getLocalizedString(R.string.unlock)
-                } else {
-                    setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.padlock_off, 0, 0)
-                    text = getLocalizedString(R.string.lock)
-                }
+                setCompoundDrawablesWithIntrinsicBounds(
+                    0,
+                    if (isLocked) R.drawable.padlock else R.drawable.padlock_off,
+                    0,
+                    0
+                )
+                text = if (isLocked) getLocalizedString(R.string.unlock) else getLocalizedString(R.string.lock)
             }
-
-            val currentPinnedApps = prefs.pinnedApps
 
             appPin.apply {
                 isVisible = contextMenuFlags[0]
-                if (currentPinnedApps.contains(appName)) {
-                    setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.pin, 0, 0)
-                    text = getLocalizedString(R.string.unpin)
-                } else {
-                    setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.pin_off, 0, 0)
-                    text = getLocalizedString(R.string.pin)
-                }
+                setCompoundDrawablesWithIntrinsicBounds(
+                    0,
+                    if (isPinned) R.drawable.pin else R.drawable.pin_off,
+                    0,
+                    0
+                )
+                text = if (isPinned) getLocalizedString(R.string.unpin) else getLocalizedString(R.string.pin)
             }
 
+            appHide.apply {
+                isVisible = contextMenuFlags[2]
+                setCompoundDrawablesWithIntrinsicBounds(
+                    0,
+                    if (isHidden) R.drawable.visibility else R.drawable.visibility_off,
+                    0,
+                    0
+                )
+                text = if (isHidden) getLocalizedString(R.string.show) else getLocalizedString(R.string.hide)
+            }
+
+            // ----------------------------
+            // 4️⃣ Setup rename/tag layouts
             appRename.apply {
                 isVisible = contextMenuFlags[3]
                 setOnClickListener {
-                    if (appListItem.activityPackage.isNotEmpty()) {
-                        appRenameEdit.hint = appListItem.activityLabel
-                        appRenameLayout.isVisible = true
-                        appHideLayout.isVisible = false
-                        appRenameEdit.showKeyboard()
-                        appRenameEdit.imeOptions = EditorInfo.IME_ACTION_DONE
-                    }
+                    appRenameEdit.hint = appListItem.activityLabel
+                    appRenameLayout.isVisible = true
+                    appHideLayout.isVisible = false
+                    appRenameEdit.showKeyboard()
+                    appRenameEdit.imeOptions = EditorInfo.IME_ACTION_DONE
                 }
             }
 
             appTag.apply {
                 isVisible = contextMenuFlags[4]
                 setOnClickListener {
-                    if (appListItem.activityPackage.isNotEmpty()) {
-                        appTagEdit.hint = appListItem.activityLabel
-                        appTagLayout.isVisible = true
-                        appHideLayout.isVisible = false
-                        appTagEdit.showKeyboard()
-                        appTagEdit.imeOptions = EditorInfo.IME_ACTION_DONE
-                    }
+                    appTagEdit.hint = appListItem.activityLabel
+                    appTagLayout.isVisible = true
+                    appHideLayout.isVisible = false
+                    appTagEdit.showKeyboard()
+                    appTagEdit.imeOptions = EditorInfo.IME_ACTION_DONE
                 }
             }
 
             appRenameEdit.apply {
+                text = Editable.Factory.getInstance().newEditable(appListItem.label)
                 addTextChangedListener(object : TextWatcher {
-
                     override fun afterTextChanged(s: Editable) {}
-
-                    override fun beforeTextChanged(
-                        s: CharSequence, start: Int,
-                        count: Int, after: Int
-                    ) {
-                    }
-
-                    override fun onTextChanged(
-                        s: CharSequence, start: Int,
-                        before: Int, count: Int
-                    ) {
-                        if (appRenameEdit.text.isEmpty()) {
-                            appSaveRename.text = getLocalizedString(R.string.reset)
-                        } else if (appRenameEdit.text.toString() == appListItem.customLabel) {
-                            appSaveRename.text = getLocalizedString(R.string.cancel)
-                        } else {
-                            appSaveRename.text = getLocalizedString(R.string.rename)
+                    override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+                    override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                        appSaveRename.text = when {
+                            text.isEmpty() -> getLocalizedString(R.string.reset)
+                            text.toString() == appListItem.customLabel -> getLocalizedString(R.string.cancel)
+                            else -> getLocalizedString(R.string.rename)
                         }
                     }
                 })
-                // set current name as default text in EditText
-                text = Editable.Factory.getInstance().newEditable(appListItem.label)
             }
 
             appTagEdit.apply {
+                text = Editable.Factory.getInstance().newEditable(appListItem.customTag)
                 addTextChangedListener(object : TextWatcher {
-
                     override fun afterTextChanged(s: Editable) {}
-
-                    override fun beforeTextChanged(
-                        s: CharSequence, start: Int,
-                        count: Int, after: Int
-                    ) {
-                    }
-
-                    override fun onTextChanged(
-                        s: CharSequence, start: Int,
-                        before: Int, count: Int
-                    ) {
-                        if (appTagEdit.text.toString() == appListItem.customTag) {
-                            appSaveTag.text = getLocalizedString(R.string.cancel)
-                        } else {
-                            appSaveTag.text = getLocalizedString(R.string.tag)
-                        }
+                    override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+                    override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                        appSaveTag.text = if (text.toString() == appListItem.customTag) getLocalizedString(R.string.cancel)
+                        else getLocalizedString(R.string.tag)
                     }
                 })
-                // set current name as default text in EditText
-                text = Editable.Factory.getInstance().newEditable(appListItem.customTag)
             }
 
-            appTitle.text = appListItem.label
+            appClose.setOnClickListener {
+                appHideLayout.isVisible = false
+                visibleHideLayouts.remove(absoluteAdapterPosition)
+                val sidebarContainer = (context as? Activity)?.findViewById<View>(R.id.sidebar_container)
+                if (visibleHideLayouts.isEmpty()) sidebarContainer?.isVisible = prefs.showAZSidebar
+            }
 
-            // set text gravity
+            // ----------------------------
+            // 5️⃣ App title
+            appTitle.text = appListItem.label
             val params = appTitle.layoutParams as FrameLayout.LayoutParams
             params.gravity = appLabelGravity
             appTitle.layoutParams = params
-
-            // add icon next to app name to indicate that this app is installed on another profile
-            val packageName = appListItem.activityPackage
-
-            // Use a placeholder icon
-            val placeholderIcon = AppCompatResources.getDrawable(context, R.drawable.ic_default_app)
-
-            // Add work profile or private space icon if needed
-            if (packageName.isNotBlank() && prefs.iconPackAppList != Constants.IconPacks.Disabled) {
-                // Try to get from cache first
-                val cachedIcon = iconCache[packageName]
-                if (cachedIcon != null) {
-                    // Use cached icon
-                    setAppTitleIcon(appTitle, cachedIcon, prefs)
-                } else {
-                    // Set placeholder immediately
-                    setAppTitleIcon(appTitle, placeholderIcon, prefs)
-                    // Load icon asynchronously
-                    iconLoadingScope.launch {
-                        val icon = withContext(Dispatchers.IO) {
-                            // Get icon as before
-                            val iconPackPackage = prefs.customIconPackAppList
-                            val iconPackage = IconCacheTarget.APP_LIST
-                            val nonNullDrawable: Drawable = getSafeAppIcon(
-                                context = context,
-                                packageName = packageName,
-                                useIconPack = (iconPackPackage.isNotEmpty() && prefs.iconPackAppList == Constants.IconPacks.Custom),
-                                iconPackTarget = iconPackage
-                            )
-                            getSystemIcons(
-                                context,
-                                prefs,
-                                iconPackage,
-                                nonNullDrawable
-                            ) ?: nonNullDrawable
-                        }
-                        iconCache[packageName] = icon
-                        // Only update if still bound to this app
-                        if (appTitle.text == appListItem.label) {
-                            setAppTitleIcon(appTitle, icon, prefs)
-                        }
-                    }
-                }
-            }
-
-
             val padding = dp2px(resources, 24)
             appTitle.updatePadding(left = padding, right = padding)
 
-            val sidebarContainer = (context as Activity).findViewById<View>(R.id.sidebar_container)
+            // ----------------------------
+            // 6️⃣ Icon loading off main thread
+            val placeholderIcon = AppCompatResources.getDrawable(context, R.drawable.ic_default_app)
+            val cachedIcon = iconCache[packageName]
+            setAppTitleIcon(appTitle, cachedIcon ?: placeholderIcon, prefs)
 
-            appTitleFrame.apply {
-                setOnClickListener {
-                    appClickListener(appListItem)
+            if (cachedIcon == null && packageName.isNotBlank() && prefs.iconPackAppList != Constants.IconPacks.Disabled) {
+                iconLoadingScope.launch {
+                    val icon = withContext(Dispatchers.IO) {
+                        val nonNullDrawable: Drawable = getSafeAppIcon(
+                            context = context,
+                            packageName = packageName,
+                            useIconPack = prefs.customIconPackAppList.isNotEmpty() &&
+                                    prefs.iconPackAppList == Constants.IconPacks.Custom,
+                            iconPackTarget = IconCacheTarget.APP_LIST
+                        )
+                        getSystemIcons(context, prefs, IconCacheTarget.APP_LIST, nonNullDrawable) ?: nonNullDrawable
+                    }
+                    iconCache[packageName] = icon
+                    if (appTitle.text == appListItem.label) setAppTitleIcon(appTitle, icon, prefs)
                 }
+            }
+
+            // ----------------------------
+            // 7️⃣ Click listeners
+            val sidebarContainer = (context as? Activity)?.findViewById<View>(R.id.sidebar_container)
+            appTitleFrame.apply {
+                setOnClickListener { appClickListener(appListItem) }
                 setOnLongClickListener {
-                    val openApp =
-                        flag == AppDrawerFlag.LaunchApp || flag == AppDrawerFlag.HiddenApps
+                    val openApp = flag == AppDrawerFlag.LaunchApp || flag == AppDrawerFlag.HiddenApps
                     if (openApp) {
                         try {
-                            appDelete.alpha =
-                                if (context.isSystemApp(appListItem.activityPackage)) 0.3f else 1.0f
+                            appDelete.alpha = if (context.isSystemApp(packageName)) 0.3f else 1f
                             appHideLayout.isVisible = true
-                            sidebarContainer.isVisible = false
+                            sidebarContainer?.isVisible = false
                             visibleHideLayouts.add(absoluteAdapterPosition)
-                        } catch (e: Exception) {
-                            e.printStackTrace()
+                        } catch (_: Exception) {
                         }
                     }
                     true
                 }
             }
 
-            appInfo.apply {
-                isVisible = contextMenuFlags[5]
-                setOnClickListener {
-                    appInfoListener(appListItem)
-                }
+            appInfo.setOnClickListener { appInfoListener(appListItem) }
+            appDelete.setOnClickListener { appDeleteListener(appListItem) }
+
+            // ----------------------------
+            // 8️⃣ Lock/Pin toggle actions
+            appLock.setOnClickListener {
+                val updated = prefs.lockedApps.toMutableSet()
+                if (isLocked) updated.remove(packageName) else updated.add(packageName)
+                prefs.lockedApps = updated
             }
-
-            appDelete.apply {
-                isVisible = contextMenuFlags[6]
-                setOnClickListener {
-                    appDeleteListener(appListItem)
-                }
-            }
-
-            appClose.apply {
-                setOnClickListener {
-                    appHideLayout.isVisible = false
-                    visibleHideLayouts.remove(absoluteAdapterPosition)
-                    if (visibleHideLayouts.isEmpty()) {
-                        sidebarContainer.isVisible = prefs.showAZSidebar
-                    }
-                }
-            }
-
-            appPin.apply {
-                setOnClickListener {
-                    val appName = appListItem.activityPackage
-                    val updatedPinnedApps = prefs.pinnedApps.toMutableSet()
-
-                    val isPinned = updatedPinnedApps.contains(appName)
-                    AppLogger.d("AppListDebug", if (isPinned) "📌 Unpinning $appName" else "📌 Pinning $appName")
-
-                    if (isPinned) {
-                        updatedPinnedApps.remove(appName)
-                        appPin.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.pin_off, 0, 0)
-                        appPin.text = getLocalizedString(R.string.pin)
-                    } else {
-                        updatedPinnedApps.add(appName)
-                        appPin.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.pin, 0, 0)
-                        appPin.text = getLocalizedString(R.string.unpin)
-                    }
-
-                    prefs.pinnedApps = updatedPinnedApps.toSet()
-                    AppLogger.d("AppListDebug", "✅ Updated pinnedApps: ${prefs.pinnedApps}")
-                }
+            appPin.setOnClickListener {
+                val updated = prefs.pinnedApps.toMutableSet()
+                if (isPinned) updated.remove(packageName) else updated.add(packageName)
+                prefs.pinnedApps = updated
             }
         }
+
 
         // Helper to set icon on appTitle with correct size and alignment
         private fun setAppTitleIcon(appTitle: TextView, icon: Drawable?, prefs: Prefs) {

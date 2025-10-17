@@ -101,7 +101,7 @@ class ContactDrawerAdapter(
                     }
                 }
 
-                AppLogger.d("searchQuery", searchChars)
+                if (searchChars.isNotEmpty()) AppLogger.d("searchQuery", searchChars)
 
                 val filterResults = FilterResults()
                 filterResults.values = filteredContacts
