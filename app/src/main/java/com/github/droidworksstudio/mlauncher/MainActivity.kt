@@ -520,6 +520,7 @@ class MainActivity : AppCompatActivity() {
     private fun migration() {
         migration.migratePreferencesOnVersionUpdate(prefs)
         migration.migrateMessages(prefs)
+        migration.deleteOldCacheFiles(applicationContext)
     }
 
 }

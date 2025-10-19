@@ -3,6 +3,7 @@ package com.github.droidworksstudio.mlauncher.data
 import android.content.Context
 import com.github.droidworksstudio.common.AppLogger
 import com.github.droidworksstudio.mlauncher.BuildConfig
+import java.io.File
 
 class Migration(val context: Context) {
     fun migratePreferencesOnVersionUpdate(prefs: Prefs) {
@@ -88,6 +89,23 @@ class Migration(val context: Context) {
                 // Log or handle if even legacy format is broken
                 AppLogger.e("Migration", "Migration failed", e)
             }
+        }
+    }
+
+    fun deleteOldCacheFiles(appContext: Context) {
+        // References to the old files in filesDir
+        val oldAppsCacheFile = File(appContext.filesDir, "apps_cache.json")
+        val oldContactsCacheFile = File(appContext.filesDir, "contacts_cache.json")
+
+        // Delete them if they exist
+        if (oldAppsCacheFile.exists()) {
+            oldAppsCacheFile.delete()
+            AppLogger.d("CacheCleanup", "apps_cache.json deleted")
+        }
+
+        if (oldContactsCacheFile.exists()) {
+            oldContactsCacheFile.delete()
+            AppLogger.d("CacheCleanup", "contacts_cache.json deleted")
         }
     }
 }

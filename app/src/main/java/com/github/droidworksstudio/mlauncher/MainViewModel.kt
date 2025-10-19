@@ -62,8 +62,8 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val prefs = Prefs(appContext)
 
     // Cache files
-    private val appsCacheFile = File(appContext.filesDir, "apps_cache.json")
-    private val contactsCacheFile = File(appContext.filesDir, "contacts_cache.json")
+    private val appsCacheFile = File(appContext.cacheDir, "apps_cache.json")
+    private val contactsCacheFile = File(appContext.cacheDir, "contacts_cache.json")
 
     // in-memory caches for instant load
     private var appsMemoryCache: MutableList<AppListItem>? = null
