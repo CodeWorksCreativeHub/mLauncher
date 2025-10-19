@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<device-admin>
+    <uses-policies>
+        <!-- Choose policies your app needs -->
+        <force-lock />
+    </uses-policies>
+</device-admin>

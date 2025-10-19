@@ -3,17 +3,11 @@
     xmlns:dist="http://schemas.android.com/apk/distribution"
     xmlns:tools="http://schemas.android.com/tools">
     <!-- Enable instant apps (optional) -->
-    <dist:module dist:instant="true" /> <!-- Permissions your launcher uses -->
+    <dist:module dist:instant="true" />
+    <!-- Permissions your launcher uses -->
     <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
-    <uses-permission
-        android:name="android.permission.PACKAGE_USAGE_STATS"
-        tools:ignore="ProtectedPermissions" />
-    <uses-permission
-        android:name="android.permission.BIND_ACCESSIBILITY_SERVICE"
-        tools:ignore="ProtectedPermissions" />
-    <uses-permission
-        android:name="android.permission.QUERY_ALL_PACKAGES"
-        tools:ignore="PackageVisibilityPolicy,QueryAllPackagesPermission" />
+    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" />
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
     <uses-permission android:name="android.permission.ACCESS_HIDDEN_PROFILES" />
     <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES" />
@@ -23,15 +17,8 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.SET_WALLPAPER" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission
-        android:name="android.permission.BIND_APPWIDGET"
-        tools:ignore="ProtectedPermissions" />
-    <uses-permission
-        android:name="android.permission.BIND_REMOTEVIEWS"
-        tools:ignore="ProtectedPermissions" />
-    <uses-permission
-        android:name="android.permission.FOREGROUND_SERVICE"
-        tools:ignore="ForegroundServicesPolicy" />
+    <uses-permission android:name="android.permission.BIND_APPWIDGET" />
+    <uses-permission android:name="android.permission.BIND_REMOTEVIEWS" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -59,12 +46,14 @@
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
-        </provider> <!-- Init provider to run early initialization code -->
+        </provider>
+        <!-- Init provider to run early initialization code -->
         <provider
             android:name=".init.MlauncherInitProvider"
             android:authorities="${applicationId}.mlauncher.initprovider"
             android:exported="false"
-            android:initOrder="100" /> <!-- MAIN LAUNCHER ACTIVITY -->
+            android:initOrder="100" />
+        <!-- MAIN LAUNCHER ACTIVITY -->
         <activity
             android:name=".MainActivity"
             android:excludeFromRecents="true"
@@ -79,18 +68,21 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- ONBOARDING ACTIVITY -->
+        </activity>
+        <!-- ONBOARDING ACTIVITY -->
         <activity
             android:name=".ui.onboarding.OnboardingActivity"
             android:enabled="true"
             android:excludeFromRecents="true"
             android:exported="false"
-            android:launchMode="singleTask" /> <!-- CRASH REPORT ACTIVITY -->
+            android:launchMode="singleTask" />
+        <!-- CRASH REPORT ACTIVITY -->
         <activity
             android:name=".CrashReportActivity"
             android:enabled="true"
             android:excludeFromRecents="true"
-            android:exported="false" /> <!-- ICON PACK ACTIVITIES -->
+            android:exported="false" />
+        <!-- ICON PACK ACTIVITIES -->
         <activity
             android:name=".ui.iconpack.ApplyIconPackActivity"
             android:excludeFromRecents="true"
@@ -104,7 +96,8 @@
         <activity
             android:name=".ui.iconpack.CustomIconSelectionActivity"
             android:excludeFromRecents="true"
-            android:exported="false" /> <!-- Accessibility Service -->
+            android:exported="false" />
+        <!-- Accessibility Service -->
         <service
             android:name=".services.ActionService"
             android:enabled="true"
@@ -119,7 +112,8 @@
             <meta-data
                 android:name="android.accessibilityservice"
                 android:resource="@xml/accessibility_service_config" />
-        </service> <!-- Notification Manager -->
+        </service>
+        <!-- Notification Manager -->
         <service
             android:name=".listener.NotificationManager"
             android:enabled="true"
@@ -130,6 +124,21 @@
                 <action android:name="android.service.notification.NotificationListenerService" />
             </intent-filter>
         </service>
+        <!-- Device Admin Receiver -->
+        <receiver
+            android:name=".helper.receivers.DeviceAdmin"
+            android:exported="true"
+            android:permission="android.permission.BIND_DEVICE_ADMIN">
+
+            <meta-data
+                android:name="android.app.device_admin"
+                android:resource="@xml/device_admin_receiver" />
+
+            <intent-filter>
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
+            </intent-filter>
+        </receiver>
+
 
         <receiver
             android:name=".ui.widgets.wordoftheday.WordOfTheDayWidget"
@@ -145,8 +154,7 @@
         </receiver>
         <receiver
             android:name=".ui.widgets.wordoftheday.WordOfTheDayUpdateReceiver"
-            android:exported="false"
-            tools:ignore="Instantiatable" />
+            android:exported="false" />
         <receiver
             android:name=".ui.widgets.fab.FabWidget"
             android:exported="false"

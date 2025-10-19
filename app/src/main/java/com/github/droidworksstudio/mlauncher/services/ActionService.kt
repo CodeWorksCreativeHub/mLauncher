@@ -1,6 +1,7 @@
 package com.github.droidworksstudio.mlauncher.services
 
 import android.accessibilityservice.AccessibilityService
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -9,6 +10,7 @@ import com.github.droidworksstudio.common.AppLogger
 import com.github.droidworksstudio.common.CrashHandler
 import java.lang.ref.WeakReference
 
+@SuppressLint("AccessibilityPolicy")
 class ActionService : AccessibilityService() {
     private var suppressEventsUntil = 0L
 

@@ -2,6 +2,7 @@ package com.github.droidworksstudio.mlauncher.ui
 
 import android.annotation.SuppressLint
 import android.app.admin.DevicePolicyManager
+import android.content.ComponentName
 import android.content.Context
 import android.content.Context.VIBRATOR_SERVICE
 import android.content.Intent
@@ -45,7 +46,6 @@ import com.github.droidworksstudio.common.attachGestureManager
 import com.github.droidworksstudio.common.getLocalizedString
 import com.github.droidworksstudio.common.isGestureNavigationEnabled
 import com.github.droidworksstudio.common.launchCalendar
-import com.github.droidworksstudio.common.openAccessibilitySettings
 import com.github.droidworksstudio.common.openAlarmApp
 import com.github.droidworksstudio.common.openBatteryManager
 import com.github.droidworksstudio.common.openCameraApp
@@ -76,6 +76,7 @@ import com.github.droidworksstudio.mlauncher.helper.hasUsageAccessPermission
 import com.github.droidworksstudio.mlauncher.helper.initActionService
 import com.github.droidworksstudio.mlauncher.helper.ismlauncherDefault
 import com.github.droidworksstudio.mlauncher.helper.receivers.BatteryReceiver
+import com.github.droidworksstudio.mlauncher.helper.receivers.DeviceAdmin
 import com.github.droidworksstudio.mlauncher.helper.receivers.PrivateSpaceReceiver
 import com.github.droidworksstudio.mlauncher.helper.setTopPadding
 import com.github.droidworksstudio.mlauncher.helper.showPermissionDialog
@@ -743,13 +744,32 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
     }
 
     private fun lockPhone() {
+        val context = requireContext()
+        val deviceAdmin = ComponentName(context, DeviceAdmin::class.java)
+        val dpm = context.getSystemService(Context.DEVICE_POLICY_SERVICE) as DevicePolicyManager
         val actionService = ActionService.instance()
-        if (actionService != null) {
-            actionService.lockScreen()
-        } else {
-            requireContext().openAccessibilitySettings()
+
+        when {
+            // Use Device Admin if active
+            dpm.isAdminActive(deviceAdmin) -> {
+                dpm.lockNow()
+                CrashHandler.logUserAction("Lock Screen via Device Admin")
+            }
+            // Fallback to ActionService if available
+            actionService != null -> {
+                actionService.lockScreen()
+                CrashHandler.logUserAction("Lock Screen via ActionService")
+            }
+            // Otherwise prompt the user to enable Device Admin
+            else -> {
+                val intent = Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN).apply {
+                    putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, deviceAdmin)
+                }
+                startActivity(intent)
+            }
         }
     }
+
 
     private fun showLongPressToast() = showShortToast(getLocalizedString(longPressToSelectApp))
 
