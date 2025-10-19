@@ -6,10 +6,12 @@ All notable changes to this project will be documented in this file. See [conven
 
 ### :sparkles: Enhancements:
 
+* Move cache files to cache directory ([2e383825](https://github.com/CodeWorksCreativeHub/mLauncher/commit/2e383825))
 * Configure Room schema for WidgetDatabase ([802c1b1a](https://github.com/CodeWorksCreativeHub/mLauncher/commit/802c1b1a))
 
 ### :wrench: Code Quality:
 
+* Implement Device Admin for screen lock ([f4f8eec3](https://github.com/CodeWorksCreativeHub/mLauncher/commit/f4f8eec3))
 * Improve performance and readability ([ebb3ece7](https://github.com/CodeWorksCreativeHub/mLauncher/commit/ebb3ece7))
 * Optimize app list loading and sorting ([354b0ce4](https://github.com/CodeWorksCreativeHub/mLauncher/commit/354b0ce4))
 
