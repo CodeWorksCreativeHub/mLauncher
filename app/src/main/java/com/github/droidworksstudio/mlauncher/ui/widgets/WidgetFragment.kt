@@ -25,6 +25,7 @@ import androidx.core.graphics.toColorInt
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.github.creativecodecat.components.views.FontBottomSheetDialogLocked
 import com.github.droidworksstudio.common.AppLogger
 import com.github.droidworksstudio.common.appWidgetManager
 import com.github.droidworksstudio.common.getLocalizedString
@@ -35,7 +36,6 @@ import com.github.droidworksstudio.mlauncher.data.SavedWidgetEntity
 import com.github.droidworksstudio.mlauncher.data.database.WidgetDao
 import com.github.droidworksstudio.mlauncher.data.database.WidgetDatabase
 import com.github.droidworksstudio.mlauncher.databinding.FragmentWidgetBinding
-import com.github.droidworksstudio.mlauncher.ui.components.LockedBottomSheetDialog
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -73,7 +73,7 @@ class WidgetFragment : Fragment() {
         var isEditingWidgets: Boolean = false
     }
 
-    private var activeGridDialog: LockedBottomSheetDialog? = null
+    private var activeGridDialog: FontBottomSheetDialogLocked? = null
     private var lastWidgetInfo: AppWidgetProviderInfo? = null
     private var placeholderVisible = false
 
@@ -228,7 +228,7 @@ class WidgetFragment : Fragment() {
     /** Grid menu for adding/resetting widgets */
     private fun showGridMenu() {
         activeGridDialog?.dismiss()
-        val bottomSheetDialog = LockedBottomSheetDialog(requireContext())
+        val bottomSheetDialog = FontBottomSheetDialogLocked(requireContext())
         activeGridDialog = bottomSheetDialog
         AppLogger.d(TAG, "🎛️ Showing widget grid menu")
 
@@ -397,7 +397,7 @@ class WidgetFragment : Fragment() {
         val scrollView = ScrollView(requireContext()).apply { addView(container) }
 
         activeGridDialog?.dismiss()
-        val bottomSheetDialog = LockedBottomSheetDialog(requireContext())
+        val bottomSheetDialog = FontBottomSheetDialogLocked(requireContext())
         activeGridDialog = bottomSheetDialog
         bottomSheetDialog.setContentView(scrollView)
         bottomSheetDialog.setTitle(getLocalizedString(R.string.widgets_select_widget))

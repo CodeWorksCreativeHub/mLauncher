@@ -1,9 +1,11 @@
-package com.github.droidworksstudio.mlauncher.ui.components
+package com.github.creativecodecat.components.views
 
 import android.content.Context
 import android.graphics.Typeface
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
 import com.github.droidworksstudio.mlauncher.helper.CustomFontView
 import com.github.droidworksstudio.mlauncher.helper.FontManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -15,7 +17,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
  * - Keeps tap outside, back button, and programmatic `.hide()` working
  */
 
-class LockedBottomSheetDialog(context: Context) : BottomSheetDialog(context), CustomFontView {
+class FontBottomSheetDialogLocked(context: Context) : BottomSheetDialog(context), CustomFontView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,8 +53,8 @@ class LockedBottomSheetDialog(context: Context) : BottomSheetDialog(context), Cu
         if (typeface == null) return
 
         when (view) {
-            is android.widget.TextView -> view.typeface = typeface
-            is android.view.ViewGroup -> {
+            is TextView -> view.typeface = typeface
+            is ViewGroup -> {
                 for (i in 0 until view.childCount) {
                     applyFontRecursively(view.getChildAt(i), typeface)
                 }

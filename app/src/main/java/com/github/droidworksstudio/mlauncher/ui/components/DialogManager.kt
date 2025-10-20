@@ -23,6 +23,7 @@ import android.widget.SeekBar
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.toColorInt
+import com.github.creativecodecat.components.views.FontBottomSheetDialogLocked
 import com.github.droidworksstudio.common.getCpuBatteryInfo
 import com.github.droidworksstudio.common.getLocalizedString
 import com.github.droidworksstudio.common.getRamInfo
@@ -46,7 +47,7 @@ class DialogManager(val context: Context, val activity: Activity) {
     private lateinit var prefs: Prefs
     val selectedColor: Int = ContextCompat.getColor(context, R.color.colorSelected)
 
-    var backupRestoreBottomSheet: LockedBottomSheetDialog? = null
+    var backupRestoreBottomSheet: FontBottomSheetDialogLocked? = null
 
     fun showBackupRestoreBottomSheet() {
         // Dismiss existing bottom sheet if it's showing
@@ -97,13 +98,13 @@ class DialogManager(val context: Context, val activity: Activity) {
         })
 
         // Create and show the bottom sheet
-        backupRestoreBottomSheet = LockedBottomSheetDialog(context).apply {
+        backupRestoreBottomSheet = FontBottomSheetDialogLocked(context).apply {
             setContentView(layout)
         }
         backupRestoreBottomSheet?.show() // ✅ Correct method call
     }
 
-    var saveLoadThemeBottomSheet: LockedBottomSheetDialog? = null
+    var saveLoadThemeBottomSheet: FontBottomSheetDialogLocked? = null
 
     fun showSaveLoadThemeBottomSheet() {
         // Dismiss any existing bottom sheet
@@ -155,13 +156,13 @@ class DialogManager(val context: Context, val activity: Activity) {
         })
 
         // Create and show the LockedBottomSheetDialog
-        saveLoadThemeBottomSheet = LockedBottomSheetDialog(context).apply {
+        saveLoadThemeBottomSheet = FontBottomSheetDialogLocked(context).apply {
             setContentView(layout)
         }
         saveLoadThemeBottomSheet?.show()
     }
 
-    var saveDownloadWOTDBottomSheet: LockedBottomSheetDialog? = null
+    var saveDownloadWOTDBottomSheet: FontBottomSheetDialogLocked? = null
 
     fun showSaveDownloadWOTDBottomSheet() {
         // Dismiss any existing bottom sheet
@@ -209,7 +210,7 @@ class DialogManager(val context: Context, val activity: Activity) {
         })
 
         // Create and show the LockedBottomSheetDialog
-        saveDownloadWOTDBottomSheet = LockedBottomSheetDialog(context).apply {
+        saveDownloadWOTDBottomSheet = FontBottomSheetDialogLocked(context).apply {
             setContentView(layout)
         }
         saveDownloadWOTDBottomSheet?.show()
@@ -235,7 +236,7 @@ class DialogManager(val context: Context, val activity: Activity) {
         AppReloader.restartApp(context)
     }
 
-    var sliderBottomSheet: LockedBottomSheetDialog? = null
+    var sliderBottomSheet: FontBottomSheetDialogLocked? = null
 
     fun showSliderBottomSheet(
         context: Context,
@@ -325,13 +326,13 @@ class DialogManager(val context: Context, val activity: Activity) {
         container.addView(valueText)
         container.addView(seekBar)
 
-        sliderBottomSheet = LockedBottomSheetDialog(context).apply {
+        sliderBottomSheet = FontBottomSheetDialogLocked(context).apply {
             setContentView(container)
             show()
         }
     }
 
-    var singleChoiceBottomSheet: LockedBottomSheetDialog? = null
+    var singleChoiceBottomSheet: FontBottomSheetDialogLocked? = null
 
     fun <T> showSingleChoiceBottomSheet(
         context: Context,
@@ -415,7 +416,7 @@ class DialogManager(val context: Context, val activity: Activity) {
         container.addView(titleView)
         container.addView(listView)
 
-        singleChoiceBottomSheet = LockedBottomSheetDialog(context).apply {
+        singleChoiceBottomSheet = FontBottomSheetDialogLocked(context).apply {
             setContentView(container)
             show()
         }
@@ -442,7 +443,7 @@ class DialogManager(val context: Context, val activity: Activity) {
         }
     }
 
-    var singleChoiceBottomSheetPill: LockedBottomSheetDialog? = null
+    var singleChoiceBottomSheetPill: FontBottomSheetDialogLocked? = null
 
     fun <T> showSingleChoiceBottomSheetPill(
         context: Context,
@@ -552,13 +553,13 @@ class DialogManager(val context: Context, val activity: Activity) {
         container.addView(titleView)
         container.addView(pillGroup)
 
-        singleChoiceBottomSheetPill = LockedBottomSheetDialog(context).apply {
+        singleChoiceBottomSheetPill = FontBottomSheetDialogLocked(context).apply {
             setContentView(container)
             show()
         }
     }
 
-    var flagSettingsBottomSheet: LockedBottomSheetDialog? = null
+    var flagSettingsBottomSheet: FontBottomSheetDialogLocked? = null
 
     fun showFlagSettingsBottomSheet(context: Context, optionLabels: List<String>, settingFlags: String, default: String = "0") {
         flagSettingsBottomSheet?.dismiss()
@@ -615,14 +616,14 @@ class DialogManager(val context: Context, val activity: Activity) {
         }
 
 
-        flagSettingsBottomSheet = LockedBottomSheetDialog(context).apply {
+        flagSettingsBottomSheet = FontBottomSheetDialogLocked(context).apply {
             setContentView(layout)
         }
         flagSettingsBottomSheet?.show()
     }
 
 
-    var colorPickerBottomSheet: LockedBottomSheetDialog? = null
+    var colorPickerBottomSheet: FontBottomSheetDialogLocked? = null
 
     fun showColorPickerBottomSheet(
         context: Context,
@@ -743,7 +744,7 @@ class DialogManager(val context: Context, val activity: Activity) {
         })
 
         // Show bottom sheet
-        colorPickerBottomSheet = LockedBottomSheetDialog(context).apply {
+        colorPickerBottomSheet = FontBottomSheetDialogLocked(context).apply {
             setContentView(layout)
             show()
         }
@@ -783,7 +784,7 @@ class DialogManager(val context: Context, val activity: Activity) {
         }
     }
 
-    var showDeviceBottomSheet: LockedBottomSheetDialog? = null
+    var showDeviceBottomSheet: FontBottomSheetDialogLocked? = null
     fun showDeviceStatsBottomSheet(context: Context) {
         showDeviceBottomSheet?.dismiss()
 
@@ -960,7 +961,7 @@ class DialogManager(val context: Context, val activity: Activity) {
             }
         }
 
-        showDeviceBottomSheet = LockedBottomSheetDialog(context).apply {
+        showDeviceBottomSheet = FontBottomSheetDialogLocked(context).apply {
             setContentView(rootLayout)
             show()
         }

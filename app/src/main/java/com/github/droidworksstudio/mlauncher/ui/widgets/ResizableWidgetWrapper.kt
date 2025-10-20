@@ -20,11 +20,11 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.graphics.toColorInt
 import androidx.core.net.toUri
+import com.github.creativecodecat.components.views.FontBottomSheetDialogLocked
 import com.github.droidworksstudio.common.AppLogger
 import com.github.droidworksstudio.common.getLocalizedString
 import com.github.droidworksstudio.mlauncher.R
 import com.github.droidworksstudio.mlauncher.helper.getInstallSource
-import com.github.droidworksstudio.mlauncher.ui.components.LockedBottomSheetDialog
 import kotlin.math.abs
 
 @SuppressLint("ClickableViewAccessibility", "ViewConstructor")
@@ -65,7 +65,7 @@ class ResizableWidgetWrapper(
     private val bottomLeftHandle = createHandle()
     private val bottomRightHandle = createHandle()
 
-    private var activeDialog: LockedBottomSheetDialog? = null
+    private var activeDialog: FontBottomSheetDialogLocked? = null
     private var ghostView: View? = null
 
     init {
@@ -593,7 +593,7 @@ class ResizableWidgetWrapper(
 
 
     fun showWidgetMenu() {
-        val dialog = LockedBottomSheetDialog(context)
+        val dialog = FontBottomSheetDialogLocked(context)
         activeDialog = dialog
         val container = LinearLayout(context).apply {
             orientation = LinearLayout.VERTICAL

@@ -12,13 +12,13 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.github.creativecodecat.components.views.FontBottomSheetDialogLocked
 import com.github.droidworksstudio.mlauncher.R
-import com.github.droidworksstudio.mlauncher.ui.components.LockedBottomSheetDialog
 
 class ShareUtils(val context: Context, val activity: Activity) {
 
 
-    var shareDialog: LockedBottomSheetDialog? = null
+    var shareDialog: FontBottomSheetDialogLocked? = null
 
     @SuppressLint("InflateParams")
     fun showMaterialShareDialog(
@@ -70,7 +70,7 @@ class ShareUtils(val context: Context, val activity: Activity) {
             shareDialog?.dismiss()
         }
 
-        shareDialog = LockedBottomSheetDialog(themedContext)
+        shareDialog = FontBottomSheetDialogLocked(themedContext)
         shareDialog?.setContentView(view)
         shareDialog?.show()
     }
