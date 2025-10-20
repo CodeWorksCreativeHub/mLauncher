@@ -3,4 +3,6 @@
     <dimen name="top_margin">40dp</dimen>
     <dimen name="bottom_margin_gesture_nav">35dp</dimen>
     <dimen name="bottom_margin_3_button_nav">55dp</dimen>
+
+    <dimen name="bottom_sheet_side_margin">6dp</dimen>
 </resources>
