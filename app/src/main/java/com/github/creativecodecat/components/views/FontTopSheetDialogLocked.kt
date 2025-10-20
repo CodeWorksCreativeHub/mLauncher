@@ -2,6 +2,7 @@ package com.github.creativecodecat.components.views
 
 import android.content.Context
 import android.graphics.Typeface
+import android.graphics.drawable.GradientDrawable
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
@@ -9,21 +10,22 @@ import android.view.WindowManager
 import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatDialog
-import androidx.cardview.widget.CardView
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
+import com.github.droidworksstudio.common.isGestureNavigationEnabled
 import com.github.droidworksstudio.mlauncher.R
 import com.github.droidworksstudio.mlauncher.helper.CustomFontView
 import com.github.droidworksstudio.mlauncher.helper.FontManager
 import com.google.android.material.card.MaterialCardView
 
 /**
- * TopSheetDialog using CardView for reliable rounded bottom corners.
+ * TopSheetDialog using CardView with a grab line at the bottom.
  */
 class FontTopSheetDialogLocked(context: Context) : AppCompatDialog(context), CustomFontView {
 
     private val coordinator: CoordinatorLayout
-    private val sheet: CardView
+    private val sheet: MaterialCardView
+    private val contentWrapper: FrameLayout
     private var cancelableFlag = true
 
     override fun setCancelable(flag: Boolean) {
@@ -32,6 +34,8 @@ class FontTopSheetDialogLocked(context: Context) : AppCompatDialog(context), Cus
     }
 
     init {
+        val density = context.resources.displayMetrics.density
+
         // Coordinator layout
         coordinator = CoordinatorLayout(context).apply {
             layoutParams = ViewGroup.LayoutParams(
@@ -41,18 +45,46 @@ class FontTopSheetDialogLocked(context: Context) : AppCompatDialog(context), Cus
             setOnClickListener { if (cancelableFlag) dismiss() }
         }
 
-        // Sheet wrapped in CardView
+        // Sheet wrapped in MaterialCardView
         sheet = MaterialCardView(context).apply {
             layoutParams = CoordinatorLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
             ).apply { gravity = Gravity.TOP }
 
-            cardElevation = 16 * context.resources.displayMetrics.density
+            cardElevation = 16 * density
             setCardBackgroundColor(ContextCompat.getColor(context, R.color.colorPrimaryBackground))
         }
 
+        // Bottom grab line
+        val grabLine = View(context).apply {
+            val widthPx = (40 * density).toInt()
+            val heightPx = (4 * density).toInt()
+            val topMarginPx = (8 * density).toInt()
+            val bottomMarginPx = (10 * density).toInt()
 
+            layoutParams = FrameLayout.LayoutParams(widthPx, heightPx).apply {
+                gravity = Gravity.CENTER_HORIZONTAL or Gravity.BOTTOM
+                topMargin = topMarginPx
+                bottomMargin = bottomMarginPx
+            }
+            background = GradientDrawable().apply {
+                shape = GradientDrawable.RECTANGLE
+                cornerRadius = 2 * density
+                setColor(ContextCompat.getColor(context, R.color.colorAccent))
+            }
+        }
+
+        // Content wrapper inside sheet
+        contentWrapper = FrameLayout(context).apply {
+            layoutParams = FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+            addView(grabLine) // always at index 0, bottom-aligned
+        }
+
+        sheet.addView(contentWrapper)
         coordinator.addView(sheet)
         super.setContentView(coordinator)
 
@@ -72,13 +104,24 @@ class FontTopSheetDialogLocked(context: Context) : AppCompatDialog(context), Cus
     }
 
     override fun setContentView(view: View) {
-        sheet.removeAllViews()
-        sheet.addView(
+        // Remove old content except grab line
+        for (i in contentWrapper.childCount - 1 downTo 0) {
+            val child = contentWrapper.getChildAt(i)
+            if (child != contentWrapper.getChildAt(0)) contentWrapper.removeViewAt(i)
+        }
+
+        // Remove from parent if needed
+        (view.parent as? ViewGroup)?.removeView(view)
+
+        val density = context.resources.displayMetrics.density
+        contentWrapper.addView(
             view, FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
-            )
-        )
+            ).apply {
+                topMargin = 0 // adjust if you want padding above content
+                bottomMargin = (22 * density).toInt() // leave space for grab line
+            })
     }
 
     override fun onStart() {
@@ -86,28 +129,21 @@ class FontTopSheetDialogLocked(context: Context) : AppCompatDialog(context), Cus
 
         // Apply font recursively
         window?.decorView?.let { rootView ->
-            FontManager.getTypeface(context)?.let { typeface ->
-                applyFontRecursively(rootView, typeface)
-            }
+            FontManager.getTypeface(context)?.let { applyFontRecursively(rootView, it) }
         }
 
         // Add padding for gesture/status bar
-        val paddingBottom = context.resources.getDimensionPixelSize(R.dimen.bottom_sheet_side_margin)
+        val bottomMargin = when (isGestureNavigationEnabled(context)) {
+            true -> context.resources.getDimensionPixelSize(R.dimen.bottom_margin_gesture_nav)
+            false -> context.resources.getDimensionPixelSize(R.dimen.bottom_margin_3_button_nav)
+        }
 
-        sheet.setContentPadding(
-            sheet.paddingLeft,
-            sheet.paddingTop,
-            sheet.paddingRight,
-            paddingBottom
-        )
-
-        // Apply side margins
         val sideMargin = context.resources.getDimensionPixelSize(R.dimen.bottom_sheet_side_margin)
         val lp = sheet.layoutParams as CoordinatorLayout.LayoutParams
-        lp.setMargins(sideMargin, lp.topMargin, sideMargin, lp.bottomMargin)
+        lp.setMargins(sideMargin, lp.topMargin, sideMargin, bottomMargin)
         sheet.layoutParams = lp
 
-        // Slide down from top
+        // Slide down animation from top
         sheet.translationY = -sheet.height.toFloat()
         sheet.animate().translationY(0f).setDuration(250).start()
     }

@@ -2,6 +2,7 @@ package com.github.creativecodecat.components.views
 
 import android.content.Context
 import android.graphics.Typeface
+import android.graphics.drawable.GradientDrawable
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +10,6 @@ import android.view.WindowManager
 import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatDialog
-import androidx.cardview.widget.CardView
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
 import com.github.droidworksstudio.common.isGestureNavigationEnabled
@@ -19,12 +19,13 @@ import com.github.droidworksstudio.mlauncher.helper.FontManager
 import com.google.android.material.card.MaterialCardView
 
 /**
- * BottomSheetDialog using CardView for reliable rounded bottom corners.
+ * BottomSheetDialog using CardView with a grab line at the top.
  */
 class FontBottomSheetDialogLocked(context: Context) : AppCompatDialog(context), CustomFontView {
 
     private val coordinator: CoordinatorLayout
-    private val sheet: CardView
+    private val sheet: MaterialCardView
+    private val contentWrapper: FrameLayout
     private var cancelableFlag = true
 
     override fun setCancelable(flag: Boolean) {
@@ -33,6 +34,8 @@ class FontBottomSheetDialogLocked(context: Context) : AppCompatDialog(context), 
     }
 
     init {
+        val density = context.resources.displayMetrics.density
+
         // Coordinator layout
         coordinator = CoordinatorLayout(context).apply {
             layoutParams = ViewGroup.LayoutParams(
@@ -42,18 +45,46 @@ class FontBottomSheetDialogLocked(context: Context) : AppCompatDialog(context), 
             setOnClickListener { if (cancelableFlag) dismiss() }
         }
 
-        // Sheet wrapped in CardView
+        // Sheet wrapped in MaterialCardView
         sheet = MaterialCardView(context).apply {
             layoutParams = CoordinatorLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
             ).apply { gravity = Gravity.BOTTOM }
 
-            cardElevation = 16 * context.resources.displayMetrics.density
+            cardElevation = 16 * density
             setCardBackgroundColor(ContextCompat.getColor(context, R.color.colorPrimaryBackground))
         }
 
+        // Grab line at top
+        val grabLine = View(context).apply {
+            val widthPx = (40 * density).toInt()
+            val heightPx = (4 * density).toInt()
+            val topMarginPx = (10 * density).toInt()
+            val bottomMarginPx = (8 * density).toInt()
 
+            layoutParams = FrameLayout.LayoutParams(widthPx, heightPx).apply {
+                gravity = Gravity.CENTER_HORIZONTAL
+                topMargin = topMarginPx
+                bottomMargin = bottomMarginPx
+            }
+            background = GradientDrawable().apply {
+                shape = GradientDrawable.RECTANGLE
+                cornerRadius = 2 * density
+                setColor(ContextCompat.getColor(context, R.color.colorAccent))
+            }
+        }
+
+        // Content wrapper inside sheet
+        contentWrapper = FrameLayout(context).apply {
+            layoutParams = FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+            addView(grabLine) // always at index 0
+        }
+
+        sheet.addView(contentWrapper)
         coordinator.addView(sheet)
         super.setContentView(coordinator)
 
@@ -73,13 +104,22 @@ class FontBottomSheetDialogLocked(context: Context) : AppCompatDialog(context), 
     }
 
     override fun setContentView(view: View) {
-        sheet.removeAllViews()
-        sheet.addView(
+        // Remove old content except the grab line (index 0)
+        for (i in contentWrapper.childCount - 1 downTo 1) {
+            contentWrapper.removeViewAt(i)
+        }
+
+        // Remove parent if the view already has one
+        (view.parent as? ViewGroup)?.removeView(view)
+
+        val density = context.resources.displayMetrics.density
+        contentWrapper.addView(
             view, FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
-            )
-        )
+            ).apply {
+                topMargin = (22 * density).toInt() // push below grab line
+            })
     }
 
     override fun onStart() {
@@ -87,24 +127,21 @@ class FontBottomSheetDialogLocked(context: Context) : AppCompatDialog(context), 
 
         // Apply font recursively
         window?.decorView?.let { rootView ->
-            FontManager.getTypeface(context)?.let { typeface ->
-                applyFontRecursively(rootView, typeface)
-            }
+            FontManager.getTypeface(context)?.let { applyFontRecursively(rootView, it) }
         }
 
-        // Add padding for gesture/status bar
+        // Add padding for gesture navigation
         val bottomMargin = when (isGestureNavigationEnabled(context)) {
             true -> context.resources.getDimensionPixelSize(R.dimen.bottom_margin_gesture_nav)
             false -> context.resources.getDimensionPixelSize(R.dimen.bottom_margin_3_button_nav)
         }
 
-        // Apply side margins
         val sideMargin = context.resources.getDimensionPixelSize(R.dimen.bottom_sheet_side_margin)
         val lp = sheet.layoutParams as CoordinatorLayout.LayoutParams
         lp.setMargins(sideMargin, lp.topMargin, sideMargin, bottomMargin)
         sheet.layoutParams = lp
 
-        // Slide down from top
+        // Slide up animation from bottom
         sheet.translationY = -sheet.height.toFloat()
         sheet.animate().translationY(0f).setDuration(250).start()
     }
