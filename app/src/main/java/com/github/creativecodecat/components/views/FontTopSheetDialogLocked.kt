@@ -12,16 +12,15 @@ import androidx.appcompat.app.AppCompatDialog
 import androidx.cardview.widget.CardView
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
-import com.github.droidworksstudio.common.isGestureNavigationEnabled
 import com.github.droidworksstudio.mlauncher.R
 import com.github.droidworksstudio.mlauncher.helper.CustomFontView
 import com.github.droidworksstudio.mlauncher.helper.FontManager
 import com.google.android.material.card.MaterialCardView
 
 /**
- * BottomSheetDialog using CardView for reliable rounded bottom corners.
+ * TopSheetDialog using CardView for reliable rounded bottom corners.
  */
-class FontBottomSheetDialogLocked(context: Context) : AppCompatDialog(context), CustomFontView {
+class FontTopSheetDialogLocked(context: Context) : AppCompatDialog(context), CustomFontView {
 
     private val coordinator: CoordinatorLayout
     private val sheet: CardView
@@ -47,7 +46,7 @@ class FontBottomSheetDialogLocked(context: Context) : AppCompatDialog(context), 
             layoutParams = CoordinatorLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
-            ).apply { gravity = Gravity.BOTTOM }
+            ).apply { gravity = Gravity.TOP }
 
             cardElevation = 16 * context.resources.displayMetrics.density
             setCardBackgroundColor(ContextCompat.getColor(context, R.color.colorPrimaryBackground))
@@ -61,7 +60,7 @@ class FontBottomSheetDialogLocked(context: Context) : AppCompatDialog(context), 
         window?.apply {
             setBackgroundDrawableResource(android.R.color.transparent)
             setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-            setGravity(Gravity.BOTTOM)
+            setGravity(Gravity.TOP)
             attributes = attributes.apply {
                 dimAmount = 0.5f
                 flags = flags or WindowManager.LayoutParams.FLAG_DIM_BEHIND
@@ -93,15 +92,19 @@ class FontBottomSheetDialogLocked(context: Context) : AppCompatDialog(context), 
         }
 
         // Add padding for gesture/status bar
-        val bottomMargin = when (isGestureNavigationEnabled(context)) {
-            true -> context.resources.getDimensionPixelSize(R.dimen.bottom_margin_gesture_nav)
-            false -> context.resources.getDimensionPixelSize(R.dimen.bottom_margin_3_button_nav)
-        }
+        val paddingBottom = context.resources.getDimensionPixelSize(R.dimen.bottom_sheet_side_margin)
+
+        sheet.setContentPadding(
+            sheet.paddingLeft,
+            sheet.paddingTop,
+            sheet.paddingRight,
+            paddingBottom
+        )
 
         // Apply side margins
         val sideMargin = context.resources.getDimensionPixelSize(R.dimen.bottom_sheet_side_margin)
         val lp = sheet.layoutParams as CoordinatorLayout.LayoutParams
-        lp.setMargins(sideMargin, lp.topMargin, sideMargin, bottomMargin)
+        lp.setMargins(sideMargin, lp.topMargin, sideMargin, lp.bottomMargin)
         sheet.layoutParams = lp
 
         // Slide down from top
