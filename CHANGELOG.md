@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 ### :wrench: Code Quality:
 
+* Use CardView for Top and Bottom Sheets ([e1b5abe2](https://github.com/CodeWorksCreativeHub/mLauncher/commit/e1b5abe2))
 * Rearchitect FontBottomSheetDialogLocked ([84de7e2e](https://github.com/CodeWorksCreativeHub/mLauncher/commit/84de7e2e))
 * Rename LockedBottomSheetDialog to FontBottomSheetDialogLocked and move to shared component package ([899cba8c](https://github.com/CodeWorksCreativeHub/mLauncher/commit/899cba8c))
 * Implement Device Admin for screen lock ([f4f8eec3](https://github.com/CodeWorksCreativeHub/mLauncher/commit/f4f8eec3))
