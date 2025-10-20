@@ -114,8 +114,7 @@ your hard work and dedication. Thank you all for your invaluable contributions!
 
 ## Contribute
 
-- If you are unhappy with any part of the app or feel like missing something, you can open a pull request or an [**issue
-  **](https://github.com/CodeWorksCreativeHub/mLauncher/issues/new/choose) as you like.
+- If you are unhappy with any part of the app or feel like missing something, you can open a pull request or an [**issue**](https://github.com/CodeWorksCreativeHub/mLauncher/issues/new/choose) as you like.
     - Please go through the issues marked as `Bug report`, `Crash report` or `Feature request`.
     - Please can we discuss before sending pull requests.
     - Make pull requests to `main` branch.
