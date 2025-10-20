@@ -21,6 +21,10 @@ All notable changes to this project will be documented in this file. See [conven
 
 * Updated Language Files. ([#936](https://github.com/CodeWorksCreativeHub/mLauncher/pull/936)) ([dd0bc103](https://github.com/CodeWorksCreativeHub/mLauncher/commit/dd0bc103))
 
+### :building_construction: Build:
+
+* Bump actions/setup-node in the all-actions group ([#940](https://github.com/CodeWorksCreativeHub/mLauncher/pull/940)) ([f41babbf](https://github.com/CodeWorksCreativeHub/mLauncher/commit/f41babbf))
+
 ## [Multi Launcher 1.11.2 Build 3](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.3) - (16, October 2025)
 
 ### :sparkles: Enhancements:
