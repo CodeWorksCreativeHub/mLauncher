@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 ### :sparkles: Enhancements:
 
+* Add grab line to bottom and top sheet dialogs ([6a81010d](https://github.com/CodeWorksCreativeHub/mLauncher/commit/6a81010d))
 * Move cache files to cache directory ([2e383825](https://github.com/CodeWorksCreativeHub/mLauncher/commit/2e383825))
 * Configure Room schema for WidgetDatabase ([802c1b1a](https://github.com/CodeWorksCreativeHub/mLauncher/commit/802c1b1a))
 
