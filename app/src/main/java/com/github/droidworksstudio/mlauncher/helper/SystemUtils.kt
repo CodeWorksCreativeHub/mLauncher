@@ -59,6 +59,8 @@ import com.github.droidworksstudio.mlauncher.services.ActionService
 import com.github.droidworksstudio.mlauncher.ui.widgets.home.HomeAppsWidgetProvider
 import com.github.droidworksstudio.mlauncher.ui.widgets.wordoftheday.WordOfTheDayWidget
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import org.xmlpull.v1.XmlPullParser
 import java.io.File
 import java.text.SimpleDateFormat
@@ -573,6 +575,61 @@ fun getDeviceInfo(context: Context): String {
             """.trimIndent()
     } catch (e: Exception) {
         "Device Info Unavailable: ${e.message}"
+    }
+}
+
+// 1. Define the data class
+data class DeviceInfo(
+    val manufacturer: String,
+    val model: String,
+    val brand: String,
+    val device: String,
+    val product: String,
+    val androidVersion: String,
+    val sdkInt: Int,
+    val abi: String,
+    val appVersionName: String,
+    val appVersionCode: Int,
+    val locale: String,
+    val timezone: String,
+    val installedFrom: String
+)
+
+// 2. Function to get DeviceInfo object
+fun getDeviceInfoObject(context: Context): DeviceInfo {
+    val packageManager = context.packageManager
+    val installSource = getInstallSource(packageManager, context.packageName)
+
+    return DeviceInfo(
+        manufacturer = Build.MANUFACTURER,
+        model = Build.MODEL,
+        brand = Build.BRAND,
+        device = Build.DEVICE,
+        product = Build.PRODUCT,
+        androidVersion = Build.VERSION.RELEASE,
+        sdkInt = Build.VERSION.SDK_INT,
+        abi = Build.SUPPORTED_ABIS.joinToString(),
+        appVersionName = BuildConfig.VERSION_NAME,
+        appVersionCode = BuildConfig.VERSION_CODE,
+        locale = Locale.getDefault().toString(),
+        timezone = TimeZone.getDefault().id,
+        installedFrom = installSource
+    )
+}
+
+// 3. Function to convert DeviceInfo to JSON using Moshi
+fun getDeviceInfoJson(context: Context): String {
+    return try {
+        val deviceInfo = getDeviceInfoObject(context)
+
+        val moshi = Moshi.Builder()
+            .add(KotlinJsonAdapterFactory())
+            .build()
+        val jsonAdapter = moshi.adapter(DeviceInfo::class.java).indent("    ") // pretty print
+
+        jsonAdapter.toJson(deviceInfo)
+    } catch (e: Exception) {
+        """{"error": "Device Info Unavailable: ${e.message}"}"""
     }
 }
 
