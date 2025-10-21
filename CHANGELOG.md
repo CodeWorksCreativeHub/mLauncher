@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [1.11.2.4 → Unreleased](https://github.com/CodeWorksCreativeHub/mLauncher/tree/main) - In Development
+
+### :bug: Bug Fixes:
+
+* prevent icon pack icons from showing in app list when disabled ([6a3d504b](https://github.com/CodeWorksCreativeHub/mLauncher/commit/6a3d504b))
+
 ## [Multi Launcher 1.11.2 Build 4](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.4) - (20, October 2025)
 
 ### :sparkles: Enhancements:
