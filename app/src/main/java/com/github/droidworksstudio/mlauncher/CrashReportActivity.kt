@@ -102,7 +102,7 @@ class CrashReportActivity : AppCompatActivity() {
                     put("stackTrace", exception)
                 }.toString()
 
-                val url = URL("https://crash-worker.wayne6324.workers.dev")
+                val url = URL("https://crash.5646316.xyz")
                 val connection = url.openConnection() as HttpURLConnection
                 connection.requestMethod = "POST"
                 connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8")
