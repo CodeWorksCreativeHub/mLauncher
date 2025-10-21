@@ -156,6 +156,7 @@ class CrashHandler(private val context: Context) : Thread.UncaughtExceptionHandl
             val intent = Intent(context, CrashReportActivity::class.java).apply {
                 addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                 putExtra("crash_log_uri", uri.toString())
+                putExtra("exception", exception.toString())
             }
             context.startActivity(intent)
         } catch (_: Exception) {

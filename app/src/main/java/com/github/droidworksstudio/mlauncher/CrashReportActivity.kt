@@ -90,14 +90,16 @@ class CrashReportActivity : AppCompatActivity() {
                     Base64.encodeToString(it, Base64.NO_WRAP)
                 } ?: ""
 
+                val exception: String = intent.getStringExtra("exception").toString()
+
                 // Build crash JSON
                 val crashJson = JSONObject().apply {
                     put("thread", "main")
                     put("message", "App crashed")
-                    put("stackTrace", logContent ?: "No stack trace available")
                     put("device", JSONObject(deviceMap))
                     put("timestamp", System.currentTimeMillis())
                     put("logFileBase64", logBase64)
+                    put("stackTrace", exception)
                 }.toString()
 
                 val url = URL("https://crash-worker.wayne6324.workers.dev")
