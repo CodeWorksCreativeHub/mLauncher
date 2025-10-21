@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [1.11.2.5 → Unreleased](https://github.com/CodeWorksCreativeHub/mLauncher/tree/main) - In Development
+
+### :bug: Bug Fixes:
+
+* Send actual exception string in crash report ([ba78f788](https://github.com/CodeWorksCreativeHub/mLauncher/commit/ba78f788))
+
 ## [Multi Launcher 1.11.2 Build 5](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.5) - (21, October 2025)
 
 ### :bug: Bug Fixes:
