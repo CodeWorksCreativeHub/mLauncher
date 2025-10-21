@@ -515,7 +515,7 @@ class AppDrawerAdapter(
 
         // Helper to set icon on appTitle with correct size and alignment
         private fun setAppTitleIcon(appTitle: TextView, icon: Drawable?, prefs: Prefs) {
-            if (icon == null) {
+            if (icon == null || prefs.iconPackAppList == Constants.IconPacks.Disabled) {
                 appTitle.setCompoundDrawables(null, null, null, null)
                 return
             }
