@@ -463,7 +463,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         val list = mutableListOf<R>()
         val scrollMap = mutableMapOf<String, Int>()
 
-        // ✅ Filter and build list
+        // Build the visible list
         items.forEach { raw ->
             val key = getKey(raw)
             if (!seenKey.add(key)) return@forEach
@@ -471,18 +471,21 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             list.add(buildItem(raw))
         }
 
-        val pinnedMap = items.associateWith { isPinned(it) }  // Map<T, Boolean>
+        // Build a map between built items and their pinned status
+        val pinnedStatusMap = items.zip(list).associate { (item, built) ->
+            built to isPinned(item)
+        }
 
-        // ✅ Sort pinned first, then by normalized label
+        // Sort safely: no index lookups during sorting
         list.sortWith(
-            compareByDescending<R> { pinnedMap[items[list.indexOf(it)]] == true }
+            compareByDescending<R> { pinnedStatusMap[it] == true }
                 .thenBy { normalize(getLabel(it)) }
         )
 
-        // ✅ Build scroll index (safe, no `continue`)
+        // Build scroll index
         list.forEachIndexed { index, item ->
             val label = getLabel(item)
-            val pinned = items.getOrNull(index)?.let(isPinned) == true
+            val pinned = pinnedStatusMap[item] == true
             val key = if (pinned) "★" else label.firstOrNull()?.uppercaseChar()?.toString() ?: "#"
             scrollMap.putIfAbsent(key, index)
         }
