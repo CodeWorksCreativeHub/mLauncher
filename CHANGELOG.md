@@ -12,6 +12,10 @@ All notable changes to this project will be documented in this file. See [conven
 
 * Optimize list sorting and indexing logic ([d1571acb](https://github.com/CodeWorksCreativeHub/mLauncher/commit/d1571acb))
 
+### :building_construction: Build:
+
+* Bump the all-gradle group with 15 updates ([#944](https://github.com/CodeWorksCreativeHub/mLauncher/pull/944)) ([fd737403](https://github.com/CodeWorksCreativeHub/mLauncher/commit/fd737403))
+
 ## [Multi Launcher 1.11.2 Build 5](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.5) - (21, October 2025)
 
 ### :bug: Bug Fixes:
