@@ -18,9 +18,9 @@ lifecycle-extensions = "2.2.0"
 lifecycle-viewmodel-ktx = "2.9.4"
 
 # Navigation
-navigation-fragment-ktx = "2.9.5"
-navigation-ui-ktx = "2.9.5"
-navigation-testing = "2.9.5"
+navigation-fragment-ktx = "2.9.6"
+navigation-ui-ktx = "2.9.6"
+navigation-testing = "2.9.6"
 
 # Work Manager
 work-runtime-ktx = "2.11.0"
@@ -55,7 +55,7 @@ activity = "1.11.0"
 # Database
 moshi = "1.15.2"
 room = "2.8.3"
-ksp = "2.3.0"
+ksp = "2.3.2"
 
 [libraries]
 # Core Libraries
