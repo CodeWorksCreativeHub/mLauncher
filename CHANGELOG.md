@@ -14,6 +14,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 ### :building_construction: Build:
 
+* Bump the all-gradle group with 4 updates ([#947](https://github.com/CodeWorksCreativeHub/mLauncher/pull/947)) ([e72781d3](https://github.com/CodeWorksCreativeHub/mLauncher/commit/e72781d3))
 * Bump actions/upload-artifact in the all-actions group ([#945](https://github.com/CodeWorksCreativeHub/mLauncher/pull/945)) ([7b58eda3](https://github.com/CodeWorksCreativeHub/mLauncher/commit/7b58eda3))
 * Bump the all-gradle group with 15 updates ([#944](https://github.com/CodeWorksCreativeHub/mLauncher/pull/944)) ([fd737403](https://github.com/CodeWorksCreativeHub/mLauncher/commit/fd737403))
 
