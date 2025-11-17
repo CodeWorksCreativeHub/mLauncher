@@ -461,22 +461,28 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     ): MutableList<R> = withContext(Dispatchers.IO) {
 
         val list = mutableListOf<R>()
+        val pinnedStatusMap = mutableMapOf<R, Boolean>()
         val scrollMap = mutableMapOf<String, Int>()
 
-        // Build the visible list
+        // Build the visible list AND pinned map together (this avoids mismatched sizes)
         items.forEach { raw ->
             val key = getKey(raw)
+
+            // Skip duplicates
             if (!seenKey.add(key)) return@forEach
+
+            // Skip hidden items unless included
             if (isHidden(raw) && !includeHidden) return@forEach
-            list.add(buildItem(raw))
+
+            // Build the final item
+            val built = buildItem(raw)
+            list.add(built)
+
+            // Map pin state to the built item
+            pinnedStatusMap[built] = isPinned(raw)
         }
 
-        // Build a map between built items and their pinned status
-        val pinnedStatusMap = items.zip(list).associate { (item, built) ->
-            built to isPinned(item)
-        }
-
-        // Sort safely: no index lookups during sorting
+        // Stable, safe sorting — no null comparisons
         list.sortWith(
             compareByDescending<R> { pinnedStatusMap[it] == true }
                 .thenBy { normalize(getLabel(it)) }
