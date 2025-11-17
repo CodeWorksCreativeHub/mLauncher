@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file. See [conven
 
 ## [1.11.2.5 → Unreleased](https://github.com/CodeWorksCreativeHub/mLauncher/tree/main) - In Development
 
+### :sparkles: Enhancements:
+
+* Add smart weather app launcher ([d21717e7](https://github.com/CodeWorksCreativeHub/mLauncher/commit/d21717e7))
+* Add weather widget click handler ([09ace13b](https://github.com/CodeWorksCreativeHub/mLauncher/commit/09ace13b))
+
 ### :bug: Bug Fixes:
 
 * Send actual exception string in crash report ([ba78f788](https://github.com/CodeWorksCreativeHub/mLauncher/commit/ba78f788))
