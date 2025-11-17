@@ -75,6 +75,7 @@ import com.github.droidworksstudio.mlauncher.helper.getSystemIcons
 import com.github.droidworksstudio.mlauncher.helper.hasUsageAccessPermission
 import com.github.droidworksstudio.mlauncher.helper.initActionService
 import com.github.droidworksstudio.mlauncher.helper.ismlauncherDefault
+import com.github.droidworksstudio.mlauncher.helper.openFirstWeatherApp
 import com.github.droidworksstudio.mlauncher.helper.receivers.BatteryReceiver
 import com.github.droidworksstudio.mlauncher.helper.receivers.DeviceAdmin
 import com.github.droidworksstudio.mlauncher.helper.receivers.PrivateSpaceReceiver
@@ -345,8 +346,13 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
             }
 
             R.id.battery -> {
-                requireContext().openBatteryManager()
+                context?.openBatteryManager()
                 CrashHandler.logUserAction("Battery Clicked")
+            }
+
+            R.id.weather -> {
+                context?.openFirstWeatherApp()
+                CrashHandler.logUserAction("Weather Clicked")
             }
 
             R.id.fabPhone -> {
@@ -433,6 +439,7 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
             totalScreenTime.setOnClickListener(this@HomeFragment)
             setDefaultLauncher.setOnClickListener(this@HomeFragment)
             battery.setOnClickListener(this@HomeFragment)
+            weather.setOnClickListener(this@HomeFragment)
 
             fabPhone.setOnClickListener(this@HomeFragment)
             fabMessages.setOnClickListener(this@HomeFragment)
