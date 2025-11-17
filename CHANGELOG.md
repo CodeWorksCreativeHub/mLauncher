@@ -10,6 +10,8 @@ All notable changes to this project will be documented in this file. See [conven
 
 ### :wrench: Code Quality:
 
+* Improve list building and sorting logic ([19dc35a5](https://github.com/CodeWorksCreativeHub/mLauncher/commit/19dc35a5))
+* Add comments to app filtering logic in MainViewModel ([ccafe0b0](https://github.com/CodeWorksCreativeHub/mLauncher/commit/ccafe0b0))
 * Optimize list sorting and indexing logic ([d1571acb](https://github.com/CodeWorksCreativeHub/mLauncher/commit/d1571acb))
 
 ### :building_construction: Build:
