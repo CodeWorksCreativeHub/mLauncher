@@ -497,6 +497,116 @@ fun sortMessages(messages: List<Message>): List<Message> {
     )
 }
 
+fun Context.openFirstWeatherApp() {
+    val pm = this.packageManager
+    AppLogger.d("WeatherAppLauncher", "Starting search for weather apps...")
+
+    // --- Option 1: Known weather apps ---
+    val knownWeatherPackages = listOf(
+        "com.accuweather.android",             // AccuWeather
+        "com.weather.Weather",                 // The Weather Channel
+        "com.windyty.android",                 // Windy.com
+        "co.windyapp.android",                 // Windy.app
+        "com.aws.android",                     // WeatherBug
+        "com.wunderground.android.weather",   // Weather Underground
+        "com.handmark.expressweather",        // 1Weather
+        "net.darksky.darksky",                 // Dark Sky (if still installed)
+        "com.luckycatlabs.sunrisesunset",     // (example: some weather apps embed this)
+        "de.mdiener.rain.usa",                 // Rain Alarm (example)
+        "com.noaa.weather",                    // Hypothetical NOAA-based app
+        "com.yahoo.mobile.client.android.weather", // Yahoo Weather
+        "org.breezyweather"                    // Breezy Weather
+    )
+
+    val installedKnownApps = knownWeatherPackages.filter {
+        try {
+            pm.getPackageInfo(it, 0)
+            AppLogger.d("WeatherAppLauncher", "Found known weather app: $it")
+            true
+        } catch (_: PackageManager.NameNotFoundException) {
+            false
+        }
+    }
+
+    if (installedKnownApps.isNotEmpty()) {
+        val intent = pm.getLaunchIntentForPackage(installedKnownApps.first())
+        if (intent != null) {
+            AppLogger.d("WeatherAppLauncher", "Launching known weather app: ${installedKnownApps.first()}")
+            this.startActivity(intent)
+            return
+        } else {
+            AppLogger.d("WeatherAppLauncher", "Launch intent null for: ${installedKnownApps.first()}")
+        }
+    } else {
+        AppLogger.d("WeatherAppLauncher", "No known weather apps installed.")
+    }
+
+    // --- Option 2: Try generic weather intent (rarely works) ---
+    val genericIntent = Intent(Intent.ACTION_VIEW, "weather://".toUri())
+    val resolvedApps = pm.queryIntentActivities(genericIntent, PackageManager.MATCH_DEFAULT_ONLY)
+    if (resolvedApps.isNotEmpty()) {
+        val packageName = resolvedApps.first().activityInfo.packageName
+        val intent = pm.getLaunchIntentForPackage(packageName)
+        if (intent != null) {
+            AppLogger.d("WeatherAppLauncher", "Launching app via generic weather intent: $packageName")
+            this.startActivity(intent)
+            return
+        } else {
+            AppLogger.d("WeatherAppLauncher", "Launch intent null for generic weather app: $packageName")
+        }
+    } else {
+        AppLogger.d("WeatherAppLauncher", "No apps found via generic weather intent.")
+    }
+
+    // --- Option 3: Scan all installed apps for "weather" in name ---
+    val weatherAppsByName = pm.getInstalledApplications(PackageManager.GET_META_DATA)
+        .filter { app ->
+            val name = pm.getApplicationLabel(app).toString().lowercase()
+            val containsWeather = name.contains("weather")
+            if (containsWeather) AppLogger.d("WeatherAppLauncher", "Found app by name: ${app.packageName} ($name)")
+            containsWeather
+        }
+
+    if (weatherAppsByName.isNotEmpty()) {
+        val intent = pm.getLaunchIntentForPackage(weatherAppsByName.first().packageName)
+        if (intent != null) {
+            AppLogger.d("WeatherAppLauncher", "Launching first app found by name: ${weatherAppsByName.first().packageName}")
+            this.startActivity(intent)
+            return
+        } else {
+            AppLogger.d("WeatherAppLauncher", "Launch intent null for: ${weatherAppsByName.first().packageName}")
+        }
+    } else {
+        AppLogger.d("WeatherAppLauncher", "No apps found by name containing 'weather'.")
+    }
+
+    val prefs = Prefs(this)
+
+    // --- Fallback if no weather app is found ---
+    val coords = prefs.loadLocation()
+    if (coords != null) {
+        val (lat, lon) = coords
+
+        // Use prefs.tempUnit to determine unit parameter for weather.com
+        val unitParam = when (prefs.tempUnit) {
+            Constants.TempUnits.Celsius -> "c"  // Metric
+            Constants.TempUnits.Fahrenheit -> "f"  // Fahrenheit
+        }
+
+        // Construct the URL with lat/lon and unit
+        val url = "https://weather.com/weather/today/l/$lat,$lon?unit=$unitParam"
+
+        // Open in browser
+        val intent = Intent(Intent.ACTION_VIEW, url.toUri())
+        this.startActivity(intent)
+
+        AppLogger.d("WeatherAppLauncher", "Opened weather.com for coordinates: $lat,$lon with unit: $unitParam")
+    } else {
+        AppLogger.d("WeatherAppLauncher", "No coordinates found in prefs.")
+    }
+
+}
+
 
 fun formatLongToCalendar(longTimestamp: Long): String {
     // Create a Calendar instance and set its time to the given timestamp (in milliseconds)
