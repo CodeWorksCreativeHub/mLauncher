@@ -12,6 +12,10 @@ All notable changes to this project will be documented in this file. See [conven
 
 * Bump agp from 8.11.1 to 8.13.1 ([09f78f68](https://github.com/CodeWorksCreativeHub/mLauncher/commit/09f78f68))
 
+### :broom: Maintenance & Cleanup:
+
+* Add rules for DeviceInfo and Moshi ([bf067e79](https://github.com/CodeWorksCreativeHub/mLauncher/commit/bf067e79))
+
 ## [1110206 (1.11.2.6) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.6) - (17, November 2025)
 
 ### :sparkles: Enhancements:
