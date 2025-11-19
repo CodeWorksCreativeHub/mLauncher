@@ -108,6 +108,23 @@ function getReleaseTitle(tag) {
     });
 }
 
+function formatLauncherVersion(input) {
+    // Extract version inside parentheses: (1.11.2.6)
+    const versionMatch = input.match(/\(([\d.]+)\)/);
+    if (!versionMatch) return null;
+
+    const fullVersion = versionMatch[1];               // "1.11.2.6"
+    const versionParts = fullVersion.split(".");       // ["1","11","2","6"]
+    const build = versionParts.pop();                  // "6"
+    const version = versionParts.join(".");            // "1.11.2"
+
+    // Extract the app name before the "‧"
+    const nameMatch = input.match(/-\s*(.*?)\s*‧/);
+    const appName = nameMatch ? nameMatch[1] : "Unknown";
+
+    return `${appName} ${version} Build ${build}`;
+}
+
 // Main async function
 (async () => {
     try {
@@ -140,7 +157,7 @@ function getReleaseTitle(tag) {
         const releaseTitle = await getReleaseTitle(latestTag);
 
         // Build Discord message
-        let discordMessage = `## ${releaseTitle}\n\n`;
+        let discordMessage = `## ${formatLauncherVersion(releaseTitle)}\n\n`;
 
         for (const group of GROUP_ORDER) {
             if (!groups[group] || groups[group].length === 0) continue;
@@ -166,7 +183,7 @@ function getReleaseTitle(tag) {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Content-Length": payload.length,
+                "Content-Length": Buffer.byteLength(payload),
             },
         };
 
