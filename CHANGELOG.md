@@ -4,11 +4,15 @@ All notable changes to this project will be documented in this file. See [conven
 
 ## [1.11.2.6 → Unreleased](https://github.com/CodeWorksCreativeHub/mLauncher/tree/main) - In Development
 
+### :sparkles: Enhancements:
+
+* Improve release announcement formatting ([6a048baa](https://github.com/CodeWorksCreativeHub/mLauncher/commit/6a048baa))
+
 ### :building_construction: Build:
 
 * Bump agp from 8.11.1 to 8.13.1 ([09f78f68](https://github.com/CodeWorksCreativeHub/mLauncher/commit/09f78f68))
 
-## [Multi Launcher 1.11.2 Build 6](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.6) - (17, November 2025)
+## [1110206 (1.11.2.6) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.6) - (17, November 2025)
 
 ### :sparkles: Enhancements:
 
@@ -31,13 +35,13 @@ All notable changes to this project will be documented in this file. See [conven
 * Bump actions/upload-artifact in the all-actions group ([#945](https://github.com/CodeWorksCreativeHub/mLauncher/pull/945)) ([7b58eda3](https://github.com/CodeWorksCreativeHub/mLauncher/commit/7b58eda3))
 * Bump the all-gradle group with 15 updates ([#944](https://github.com/CodeWorksCreativeHub/mLauncher/pull/944)) ([fd737403](https://github.com/CodeWorksCreativeHub/mLauncher/commit/fd737403))
 
-## [Multi Launcher 1.11.2 Build 5](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.5) - (21, October 2025)
+## [1110205 (1.11.2.5) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.5) - (21, October 2025)
 
 ### :bug: Bug Fixes:
 
 * prevent icon pack icons from showing in app list when disabled ([6a3d504b](https://github.com/CodeWorksCreativeHub/mLauncher/commit/6a3d504b))
 
-## [Multi Launcher 1.11.2 Build 4](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.4) - (20, October 2025)
+## [1110204 (1.11.2.4) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.4) - (20, October 2025)
 
 ### :sparkles: Enhancements:
 
@@ -63,7 +67,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 * Bump actions/setup-node in the all-actions group ([#940](https://github.com/CodeWorksCreativeHub/mLauncher/pull/940)) ([f41babbf](https://github.com/CodeWorksCreativeHub/mLauncher/commit/f41babbf))
 
-## [Multi Launcher 1.11.2 Build 3](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.3) - (16, October 2025)
+## [1110203 (1.11.2.3) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.3) - (16, October 2025)
 
 ### :sparkles: Enhancements:
 
@@ -77,7 +81,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 * Remove "Known Issues" references ([06a9923f](https://github.com/CodeWorksCreativeHub/mLauncher/commit/06a9923f))
 
-## [Multi Launcher 1.11.2 Build 2](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.2) - (14, October 2025)
+## [1110202 (1.11.2.2) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.2) - (14, October 2025)
 
 ### :sparkles: Enhancements:
 
@@ -98,7 +102,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 * Updated Language Files. ([#931](https://github.com/CodeWorksCreativeHub/mLauncher/pull/931)) ([3738c597](https://github.com/CodeWorksCreativeHub/mLauncher/commit/3738c597))
 
-## [Multi Launcher 1.11.2 Build 1](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.1) - (13, October 2025)
+## [1110201 (1.11.2.1) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.1) - (13, October 2025)
 
 ### :sparkles: Enhancements:
 
@@ -120,7 +124,7 @@ All notable changes to this project will be documented in this file. See [conven
 * Bump com.google.devtools.ksp in the all-gradle group ([#929](https://github.com/CodeWorksCreativeHub/mLauncher/pull/929)) ([72f4c5d5](https://github.com/CodeWorksCreativeHub/mLauncher/commit/72f4c5d5))
 * Update Compose and Room library versions ([5f0dc5bc](https://github.com/CodeWorksCreativeHub/mLauncher/commit/5f0dc5bc))
 
-## [Multi Launcher 1.11.2 Build 0](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.0) - (09, October 2025)
+## [1110200 (1.11.2.0) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.0) - (09, October 2025)
 
 ### :sparkles: Enhancements:
 
@@ -145,7 +149,7 @@ All notable changes to this project will be documented in this file. See [conven
 * Updated Language Files. ([#925](https://github.com/CodeWorksCreativeHub/mLauncher/pull/925)) ([dbbd0cf1](https://github.com/CodeWorksCreativeHub/mLauncher/commit/dbbd0cf1))
 * Updated Language Files. ([#924](https://github.com/CodeWorksCreativeHub/mLauncher/pull/924)) ([b55821fe](https://github.com/CodeWorksCreativeHub/mLauncher/commit/b55821fe))
 
-## [Multi Launcher 1.11.1 Build 6](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.1.6) - (08, October 2025)
+## [1110106 (1.11.1.6) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.1.6) - (08, October 2025)
 
 ### :sparkles: Enhancements:
 
@@ -175,7 +179,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 * Add comments and cleanup AndroidManifest.xml ([25fee006](https://github.com/CodeWorksCreativeHub/mLauncher/commit/25fee006))
 
-## [Multi Launcher 1.11.1 Build 5](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.1.5) - (05, October 2025)
+## [1110105 (1.11.1.5) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.1.5) - (05, October 2025)
 
 ### :sparkles: Enhancements:
 
