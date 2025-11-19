@@ -23,3 +23,13 @@
 -dontwarn javax.annotation.processing.Processor
 -dontwarn javax.annotation.processing.AbstractProcessor
 -dontwarn javax.annotation.processing.SupportedOptions
+
+# Keep device info fields
+-keepclassmembers class com.github.droidworksstudio.mlauncher.helper.DeviceInfo {
+    *;
+}
+
+# Keep Moshi reflection for data classes
+-keep class kotlin.Metadata { *; }
+-keep class com.squareup.moshi.** { *; }
+-keep class com.squareup.moshi.adapters.** { *; }
