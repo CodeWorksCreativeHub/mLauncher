@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [1.11.2.6 → Unreleased](https://github.com/CodeWorksCreativeHub/mLauncher/tree/main) - In Development
+
+### :building_construction: Build:
+
+* Bump agp from 8.11.1 to 8.13.1 ([09f78f68](https://github.com/CodeWorksCreativeHub/mLauncher/commit/09f78f68))
+
 ## [Multi Launcher 1.11.2 Build 6](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.6) - (17, November 2025)
 
 ### :sparkles: Enhancements:
