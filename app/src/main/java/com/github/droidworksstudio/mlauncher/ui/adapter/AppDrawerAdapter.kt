@@ -367,7 +367,7 @@ class AppDrawerAdapter(
                 isVisible = contextMenuFlags[0]
                 setCompoundDrawablesWithIntrinsicBounds(
                     0,
-                    if (isPinned) R.drawable.pin else R.drawable.pin_off,
+                    if (isPinned) R.drawable.pin_off else R.drawable.pin,
                     0,
                     0
                 )
