@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [1.11.2.7 → Unreleased](https://github.com/CodeWorksCreativeHub/mLauncher/tree/main) - In Development
+
+### :bug: Bug Fixes:
+
+* Correct pin/unpin icon logic in context menu ([53752245](https://github.com/CodeWorksCreativeHub/mLauncher/commit/53752245))
+
 ## [1110207 (1.11.2.7) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.7) - (19, November 2025)
 
 ### :sparkles: Enhancements:
