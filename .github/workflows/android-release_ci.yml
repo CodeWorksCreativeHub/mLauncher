@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout project
-        uses: actions/checkout@v5.0.0
+        uses: actions/checkout@v6.0.0
         with:
           token: ${{ github.actor == 'dependabot[bot]' && secrets.GITHUB_TOKEN || secrets.GIT_BOT_TOKEN }}
           fetch-depth: 0       # Fetch full history
@@ -52,7 +52,7 @@ jobs:
           buildToolsVersion: 35.0.0
 
       - name: Release to GitHub
-        uses: svenstaro/upload-release-action@2.11.2
+        uses: svenstaro/upload-release-action@2.11.3
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: ${{steps.sign_app_apk.outputs.signedFile}}
@@ -61,7 +61,7 @@ jobs:
           overwrite: true
 
       - name: Upload ProGuard Mapping File
-        uses: svenstaro/upload-release-action@2.11.2
+        uses: svenstaro/upload-release-action@2.11.3
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: app/build/outputs/mapping/release/mapping.txt
@@ -82,7 +82,7 @@ jobs:
           buildToolsVersion: 35.0.0
 
       - name: Release to GitHub
-        uses: svenstaro/upload-release-action@2.11.2
+        uses: svenstaro/upload-release-action@2.11.3
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: ${{steps.sign_app_aab.outputs.signedFile}}
