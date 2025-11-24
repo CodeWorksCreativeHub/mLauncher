@@ -10,12 +10,12 @@ core-ktx = "1.17.0"
 appcompat = "1.7.1"
 recyclerview = "1.4.0"
 paletteKtx = "1.0.0"
-activityKtx = "1.11.0"
+activityKtx = "1.12.0"
 material = "1.13.0"
 
 # Android Lifecycle
 lifecycle-extensions = "2.2.0"
-lifecycle-viewmodel-ktx = "2.9.4"
+lifecycle-viewmodel-ktx = "2.10.0"
 
 # Navigation
 navigation-fragment-ktx = "2.9.6"
@@ -31,12 +31,12 @@ constraintlayout-compose = "1.1.1"
 
 # Compose Versions
 activity-compose = "1.11.0"
-compose-android = "1.9.4"
-compose-material = "1.9.4"
-compose-animation = "1.9.4"
-compose-ui = "1.9.4"
-compose-foundation = "1.9.4"
-compose-ui-tooling = "1.9.4"
+compose-android = "1.9.5"
+compose-material = "1.9.5"
+compose-animation = "1.9.5"
+compose-ui = "1.9.5"
+compose-foundation = "1.9.5"
+compose-ui-tooling = "1.9.5"
 
 # Other Libraries
 commons-text = "1.14.0"
@@ -48,14 +48,14 @@ test-core-ktx = "1.7.0"
 test-runner = "1.7.0"
 test-rules = "1.7.0"
 fragment-testing = "1.8.9"
-ui-test-junit4 = "1.9.4"
-ui-test-manifest = "1.9.4"
-activity = "1.11.0"
+ui-test-junit4 = "1.9.5"
+ui-test-manifest = "1.9.5"
+activity = "1.12.0"
 
 # Database
 moshi = "1.15.2"
-room = "2.8.3"
-ksp = "2.3.2"
+room = "2.8.4"
+ksp = "2.3.3"
 
 [libraries]
 # Core Libraries
