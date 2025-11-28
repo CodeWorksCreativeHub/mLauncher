@@ -9,6 +9,11 @@ All notable changes to this project will be documented in this file. See [conven
 * Add rate limit to crash reporting ([f1e47959](https://github.com/CodeWorksCreativeHub/mLauncher/commit/f1e47959))
 * Correct pin/unpin icon logic in context menu ([53752245](https://github.com/CodeWorksCreativeHub/mLauncher/commit/53752245))
 
+### :building_construction: Build:
+
+* Bump the all-gradle group with 15 updates ([#952](https://github.com/CodeWorksCreativeHub/mLauncher/pull/952)) ([bd79a1c1](https://github.com/CodeWorksCreativeHub/mLauncher/commit/bd79a1c1))
+* Bump the all-actions group with 2 updates ([#953](https://github.com/CodeWorksCreativeHub/mLauncher/pull/953)) ([939b7689](https://github.com/CodeWorksCreativeHub/mLauncher/commit/939b7689))
+
 ## [1110207 (1.11.2.7) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.7) - (19, November 2025)
 
 ### :sparkles: Enhancements:
