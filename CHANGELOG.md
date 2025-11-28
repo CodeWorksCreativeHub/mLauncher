@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 ### :building_construction: Build:
 
+* Bump activity-compose from 1.11.0 to 1.12.0 ([150974d9](https://github.com/CodeWorksCreativeHub/mLauncher/commit/150974d9))
 * Bump the all-gradle group with 15 updates ([#952](https://github.com/CodeWorksCreativeHub/mLauncher/pull/952)) ([bd79a1c1](https://github.com/CodeWorksCreativeHub/mLauncher/commit/bd79a1c1))
 * Bump the all-actions group with 2 updates ([#953](https://github.com/CodeWorksCreativeHub/mLauncher/pull/953)) ([939b7689](https://github.com/CodeWorksCreativeHub/mLauncher/commit/939b7689))
 
