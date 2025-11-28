@@ -8,6 +8,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Base64
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.edit
 import androidx.core.net.toUri
 import androidx.lifecycle.lifecycleScope
 import com.github.droidworksstudio.common.getLocalizedString
@@ -65,8 +66,25 @@ class CrashReportActivity : AppCompatActivity() {
         return capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
     }
 
+    private fun getLastSent(): Long {
+        val prefs = getSharedPreferences("crash_report", MODE_PRIVATE)
+        return prefs.getLong("last_sent", 0L)
+    }
+
+    private fun setLastSent(time: Long) {
+        val prefs = getSharedPreferences("crash_report", MODE_PRIVATE)
+        prefs.edit { putLong("last_sent", time) }
+    }
+
+
     private fun sendCrashReportNative() {
+        val cooldownMs = 14_400_000L // 4 hours
+        val now = System.currentTimeMillis()
+        val lastSent = getLastSent()
+        val canSend = now - lastSent >= cooldownMs
+
         lifecycleScope.launch(Dispatchers.IO) {
+            if (!canSend) return@launch
             try {
                 val crashFileUri: Uri? = intent.getStringExtra("crash_log_uri")?.toUri()
                 val crashFileUris: List<Uri> = crashFileUri?.let { listOf(it) } ?: emptyList()
@@ -118,6 +136,7 @@ class CrashReportActivity : AppCompatActivity() {
                 val responseMessage = responseStream.bufferedReader().use { it.readText() }
 
                 if (responseCode in 200..299) {
+                    setLastSent(now)
                     println("Crash report sent successfully: $responseMessage")
                 } else {
                     println("Failed to send crash report: $responseCode $responseMessage")
