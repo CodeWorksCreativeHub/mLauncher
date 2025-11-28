@@ -10,7 +10,7 @@ plugins {
 val major = 1
 val minor = 11
 val patch = 2
-val build = 7
+val build = 8
 
 val type = 0 // 1=beta, 2=alpha else=production
 
