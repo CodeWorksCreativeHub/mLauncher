@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 ### :bug: Bug Fixes:
 
+* Add rate limit to crash reporting ([f1e47959](https://github.com/CodeWorksCreativeHub/mLauncher/commit/f1e47959))
 * Correct pin/unpin icon logic in context menu ([53752245](https://github.com/CodeWorksCreativeHub/mLauncher/commit/53752245))
 
 ## [1110207 (1.11.2.7) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.7) - (19, November 2025)
