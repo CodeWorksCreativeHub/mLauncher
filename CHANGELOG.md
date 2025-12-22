@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 ### :bug: Bug Fixes:
 
+* Add exception handling for restore operations ([1ae83873](https://github.com/CodeWorksCreativeHub/mLauncher/commit/1ae83873))
 * Add rate limit to crash reporting ([f1e47959](https://github.com/CodeWorksCreativeHub/mLauncher/commit/f1e47959))
 * Correct pin/unpin icon logic in context menu ([53752245](https://github.com/CodeWorksCreativeHub/mLauncher/commit/53752245))
 
