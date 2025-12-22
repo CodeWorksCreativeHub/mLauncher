@@ -311,10 +311,16 @@ class MainActivity : AppCompatActivity() {
             if (result.resultCode == RESULT_OK) {
                 result.data?.data?.let { uri ->
                     // Handle the imported file
-                    val inputStream = contentResolver.openInputStream(uri)
-                    val importedWords = readWordsFromFile(inputStream)
-                    saveCustomWordList(importedWords)
-                    AppReloader.restartApp(applicationContext)
+                    try {
+                        contentResolver.openInputStream(uri)?.use { inputStream ->
+                            val importedWords = readWordsFromFile(inputStream)
+                            saveCustomWordList(importedWords)
+                            AppReloader.restartApp(applicationContext)
+                        } ?: showLongToast("Unable to open file")
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                        showLongToast("Failed to restore words")
+                    }
                 }
             }
         }
