@@ -11,6 +11,8 @@ All notable changes to this project will be documented in this file. See [conven
 
 ### :building_construction: Build:
 
+* Bump the all-gradle group with 5 updates ([#962](https://github.com/CodeWorksCreativeHub/mLauncher/pull/962)) ([31d07516](https://github.com/CodeWorksCreativeHub/mLauncher/commit/31d07516))
+* Bump aws-sdk-s3 in the bundler group across 1 directory ([#960](https://github.com/CodeWorksCreativeHub/mLauncher/pull/960)) ([ef3ce83c](https://github.com/CodeWorksCreativeHub/mLauncher/commit/ef3ce83c))
 * Bump the all-actions group with 3 updates ([#955](https://github.com/CodeWorksCreativeHub/mLauncher/pull/955)) ([ecff867e](https://github.com/CodeWorksCreativeHub/mLauncher/commit/ecff867e))
 * Bump the all-gradle group with 11 updates ([#954](https://github.com/CodeWorksCreativeHub/mLauncher/pull/954)) ([bee4ec0d](https://github.com/CodeWorksCreativeHub/mLauncher/commit/bee4ec0d))
 * Bump activity-compose from 1.11.0 to 1.12.0 ([150974d9](https://github.com/CodeWorksCreativeHub/mLauncher/commit/150974d9))
