@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 ### :building_construction: Build:
 
+* Bump the all-actions group with 2 updates ([#959](https://github.com/CodeWorksCreativeHub/mLauncher/pull/959)) ([2a564ad5](https://github.com/CodeWorksCreativeHub/mLauncher/commit/2a564ad5))
 * Bump the all-gradle group with 5 updates ([#962](https://github.com/CodeWorksCreativeHub/mLauncher/pull/962)) ([31d07516](https://github.com/CodeWorksCreativeHub/mLauncher/commit/31d07516))
 * Bump aws-sdk-s3 in the bundler group across 1 directory ([#960](https://github.com/CodeWorksCreativeHub/mLauncher/pull/960)) ([ef3ce83c](https://github.com/CodeWorksCreativeHub/mLauncher/commit/ef3ce83c))
 * Bump the all-actions group with 3 updates ([#955](https://github.com/CodeWorksCreativeHub/mLauncher/pull/955)) ([ecff867e](https://github.com/CodeWorksCreativeHub/mLauncher/commit/ecff867e))
@@ -19,7 +20,7 @@ All notable changes to this project will be documented in this file. See [conven
 * Bump the all-gradle group with 15 updates ([#952](https://github.com/CodeWorksCreativeHub/mLauncher/pull/952)) ([bd79a1c1](https://github.com/CodeWorksCreativeHub/mLauncher/commit/bd79a1c1))
 * Bump the all-actions group with 2 updates ([#953](https://github.com/CodeWorksCreativeHub/mLauncher/pull/953)) ([939b7689](https://github.com/CodeWorksCreativeHub/mLauncher/commit/939b7689))
 
-## [1110207 (1.11.2.7) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.7) - (19, November 2025)
+## [1.11.2.7](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.7) - (19, November 2025)
 
 ### :sparkles: Enhancements:
 
@@ -33,7 +34,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 * Add rules for DeviceInfo and Moshi ([bf067e79](https://github.com/CodeWorksCreativeHub/mLauncher/commit/bf067e79))
 
-## [1110206 (1.11.2.6) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.6) - (17, November 2025)
+## [1.11.2.6](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.6) - (17, November 2025)
 
 ### :sparkles: Enhancements:
 
@@ -56,13 +57,13 @@ All notable changes to this project will be documented in this file. See [conven
 * Bump actions/upload-artifact in the all-actions group ([#945](https://github.com/CodeWorksCreativeHub/mLauncher/pull/945)) ([7b58eda3](https://github.com/CodeWorksCreativeHub/mLauncher/commit/7b58eda3))
 * Bump the all-gradle group with 15 updates ([#944](https://github.com/CodeWorksCreativeHub/mLauncher/pull/944)) ([fd737403](https://github.com/CodeWorksCreativeHub/mLauncher/commit/fd737403))
 
-## [1110205 (1.11.2.5) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.5) - (21, October 2025)
+## [1.11.2.5](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.5) - (21, October 2025)
 
 ### :bug: Bug Fixes:
 
 * prevent icon pack icons from showing in app list when disabled ([6a3d504b](https://github.com/CodeWorksCreativeHub/mLauncher/commit/6a3d504b))
 
-## [1110204 (1.11.2.4) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.4) - (20, October 2025)
+## [1.11.2.4](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.4) - (20, October 2025)
 
 ### :sparkles: Enhancements:
 
@@ -88,7 +89,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 * Bump actions/setup-node in the all-actions group ([#940](https://github.com/CodeWorksCreativeHub/mLauncher/pull/940)) ([f41babbf](https://github.com/CodeWorksCreativeHub/mLauncher/commit/f41babbf))
 
-## [1110203 (1.11.2.3) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.3) - (16, October 2025)
+## [1.11.2.3](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.3) - (16, October 2025)
 
 ### :sparkles: Enhancements:
 
@@ -102,7 +103,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 * Remove "Known Issues" references ([06a9923f](https://github.com/CodeWorksCreativeHub/mLauncher/commit/06a9923f))
 
-## [1110202 (1.11.2.2) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.2) - (14, October 2025)
+## [1.11.2.2](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.2) - (14, October 2025)
 
 ### :sparkles: Enhancements:
 
@@ -123,7 +124,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 * Updated Language Files. ([#931](https://github.com/CodeWorksCreativeHub/mLauncher/pull/931)) ([3738c597](https://github.com/CodeWorksCreativeHub/mLauncher/commit/3738c597))
 
-## [1110201 (1.11.2.1) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.1) - (13, October 2025)
+## [1.11.2.1](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.1) - (13, October 2025)
 
 ### :sparkles: Enhancements:
 
@@ -145,7 +146,7 @@ All notable changes to this project will be documented in this file. See [conven
 * Bump com.google.devtools.ksp in the all-gradle group ([#929](https://github.com/CodeWorksCreativeHub/mLauncher/pull/929)) ([72f4c5d5](https://github.com/CodeWorksCreativeHub/mLauncher/commit/72f4c5d5))
 * Update Compose and Room library versions ([5f0dc5bc](https://github.com/CodeWorksCreativeHub/mLauncher/commit/5f0dc5bc))
 
-## [1110200 (1.11.2.0) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.0) - (09, October 2025)
+## [1.11.2.0](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.0) - (09, October 2025)
 
 ### :sparkles: Enhancements:
 
@@ -170,7 +171,7 @@ All notable changes to this project will be documented in this file. See [conven
 * Updated Language Files. ([#925](https://github.com/CodeWorksCreativeHub/mLauncher/pull/925)) ([dbbd0cf1](https://github.com/CodeWorksCreativeHub/mLauncher/commit/dbbd0cf1))
 * Updated Language Files. ([#924](https://github.com/CodeWorksCreativeHub/mLauncher/pull/924)) ([b55821fe](https://github.com/CodeWorksCreativeHub/mLauncher/commit/b55821fe))
 
-## [1110106 (1.11.1.6) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.1.6) - (08, October 2025)
+## [1.11.1.6](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.1.6) - (08, October 2025)
 
 ### :sparkles: Enhancements:
 
