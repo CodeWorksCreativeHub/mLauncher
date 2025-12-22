@@ -38,6 +38,7 @@ import com.squareup.moshi.Types
 import org.xmlpull.v1.XmlPullParser
 import java.io.BufferedReader
 import java.io.File
+import java.io.FileNotFoundException
 import java.io.FileOutputStream
 import java.io.InputStream
 import java.io.InputStreamReader
@@ -201,21 +202,29 @@ class MainActivity : AppCompatActivity() {
         performFullRestore = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK) {
                 result.data?.data?.let { uri ->
-                    applicationContext.contentResolver.openInputStream(uri).use { inputStream ->
-                        val stringBuilder = StringBuilder()
-                        BufferedReader(InputStreamReader(inputStream)).use { reader ->
-                            var line: String? = reader.readLine()
-                            while (line != null) {
-                                stringBuilder.append(line)
-                                line = reader.readLine()
+                    try {
+                        applicationContext.contentResolver.openInputStream(uri).use { inputStream ->
+                            val stringBuilder = StringBuilder()
+                            BufferedReader(InputStreamReader(inputStream)).use { reader ->
+                                var line: String? = reader.readLine()
+                                while (line != null) {
+                                    stringBuilder.append(line)
+                                    line = reader.readLine()
+                                }
                             }
-                        }
 
-                        val string = stringBuilder.toString()
-                        val prefs = Prefs(applicationContext)
-                        prefs.clear()
-                        prefs.loadFromString(string)
-                        AppReloader.restartApp(applicationContext)
+                            val string = stringBuilder.toString()
+                            val prefs = Prefs(applicationContext)
+                            prefs.clear()
+                            prefs.loadFromString(string)
+                            AppReloader.restartApp(applicationContext)
+                        }
+                    } catch (e: FileNotFoundException) {
+                        e.printStackTrace()
+                        showLongToast("Selected file could not be opened")
+                    } catch (e: SecurityException) {
+                        e.printStackTrace()
+                        showLongToast("Permission denied")
                     }
                 }
             }
@@ -272,19 +281,27 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 result.data?.data?.let { uri ->
-                    applicationContext.contentResolver.openInputStream(uri).use { inputStream ->
-                        val stringBuilder = StringBuilder()
-                        BufferedReader(InputStreamReader(inputStream)).use { reader ->
-                            var line: String? = reader.readLine()
-                            while (line != null) {
-                                stringBuilder.append(line)
-                                line = reader.readLine()
+                    try {
+                        applicationContext.contentResolver.openInputStream(uri).use { inputStream ->
+                            val stringBuilder = StringBuilder()
+                            BufferedReader(InputStreamReader(inputStream)).use { reader ->
+                                var line: String? = reader.readLine()
+                                while (line != null) {
+                                    stringBuilder.append(line)
+                                    line = reader.readLine()
+                                }
                             }
-                        }
 
-                        val string = stringBuilder.toString()
-                        val prefs = Prefs(applicationContext)
-                        prefs.loadFromTheme(string)
+                            val string = stringBuilder.toString()
+                            val prefs = Prefs(applicationContext)
+                            prefs.loadFromTheme(string)
+                        }
+                    } catch (e: FileNotFoundException) {
+                        e.printStackTrace()
+                        showLongToast("Selected file could not be opened")
+                    } catch (e: SecurityException) {
+                        e.printStackTrace()
+                        showLongToast("Permission denied")
                     }
                 }
             }
