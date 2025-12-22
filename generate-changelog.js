@@ -32,6 +32,7 @@ const commitParsers = [
 	{ message: /^chore\(pr\)/i, skip: true },
 	{ message: /^chore\(pull\)/i, skip: true },
 	{ message: /^fixes/i, skip: true },
+	{ message: /^build/i, skip: true },
 
 	// Enhancements (new features, improvements, UX, performance)
 	{ message: /^feat|^perf|^style|^ui|^ux/i, group: "### :sparkles: Enhancements:" },
