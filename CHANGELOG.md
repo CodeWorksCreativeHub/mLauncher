@@ -9,26 +9,11 @@ All notable changes to this project will be documented in this file. See [conven
 * Add rate limit to crash reporting ([f1e47959](https://github.com/CodeWorksCreativeHub/mLauncher/commit/f1e47959))
 * Correct pin/unpin icon logic in context menu ([53752245](https://github.com/CodeWorksCreativeHub/mLauncher/commit/53752245))
 
-### :building_construction: Build:
-
-* Bump the all-actions group with 2 updates ([#959](https://github.com/CodeWorksCreativeHub/mLauncher/pull/959)) ([2a564ad5](https://github.com/CodeWorksCreativeHub/mLauncher/commit/2a564ad5))
-* Bump the all-gradle group with 5 updates ([#962](https://github.com/CodeWorksCreativeHub/mLauncher/pull/962)) ([31d07516](https://github.com/CodeWorksCreativeHub/mLauncher/commit/31d07516))
-* Bump aws-sdk-s3 in the bundler group across 1 directory ([#960](https://github.com/CodeWorksCreativeHub/mLauncher/pull/960)) ([ef3ce83c](https://github.com/CodeWorksCreativeHub/mLauncher/commit/ef3ce83c))
-* Bump the all-actions group with 3 updates ([#955](https://github.com/CodeWorksCreativeHub/mLauncher/pull/955)) ([ecff867e](https://github.com/CodeWorksCreativeHub/mLauncher/commit/ecff867e))
-* Bump the all-gradle group with 11 updates ([#954](https://github.com/CodeWorksCreativeHub/mLauncher/pull/954)) ([bee4ec0d](https://github.com/CodeWorksCreativeHub/mLauncher/commit/bee4ec0d))
-* Bump activity-compose from 1.11.0 to 1.12.0 ([150974d9](https://github.com/CodeWorksCreativeHub/mLauncher/commit/150974d9))
-* Bump the all-gradle group with 15 updates ([#952](https://github.com/CodeWorksCreativeHub/mLauncher/pull/952)) ([bd79a1c1](https://github.com/CodeWorksCreativeHub/mLauncher/commit/bd79a1c1))
-* Bump the all-actions group with 2 updates ([#953](https://github.com/CodeWorksCreativeHub/mLauncher/pull/953)) ([939b7689](https://github.com/CodeWorksCreativeHub/mLauncher/commit/939b7689))
-
 ## [1110207 (1.11.2.7) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.7) - (19, November 2025)
 
 ### :sparkles: Enhancements:
 
 * Improve release announcement formatting ([6a048baa](https://github.com/CodeWorksCreativeHub/mLauncher/commit/6a048baa))
-
-### :building_construction: Build:
-
-* Bump agp from 8.11.1 to 8.13.1 ([09f78f68](https://github.com/CodeWorksCreativeHub/mLauncher/commit/09f78f68))
 
 ### :broom: Maintenance & Cleanup:
 
@@ -50,12 +35,6 @@ All notable changes to this project will be documented in this file. See [conven
 * Improve list building and sorting logic ([19dc35a5](https://github.com/CodeWorksCreativeHub/mLauncher/commit/19dc35a5))
 * Add comments to app filtering logic in MainViewModel ([ccafe0b0](https://github.com/CodeWorksCreativeHub/mLauncher/commit/ccafe0b0))
 * Optimize list sorting and indexing logic ([d1571acb](https://github.com/CodeWorksCreativeHub/mLauncher/commit/d1571acb))
-
-### :building_construction: Build:
-
-* Bump the all-gradle group with 4 updates ([#947](https://github.com/CodeWorksCreativeHub/mLauncher/pull/947)) ([e72781d3](https://github.com/CodeWorksCreativeHub/mLauncher/commit/e72781d3))
-* Bump actions/upload-artifact in the all-actions group ([#945](https://github.com/CodeWorksCreativeHub/mLauncher/pull/945)) ([7b58eda3](https://github.com/CodeWorksCreativeHub/mLauncher/commit/7b58eda3))
-* Bump the all-gradle group with 15 updates ([#944](https://github.com/CodeWorksCreativeHub/mLauncher/pull/944)) ([fd737403](https://github.com/CodeWorksCreativeHub/mLauncher/commit/fd737403))
 
 ## [1110205 (1.11.2.5) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.5) - (21, October 2025)
 
@@ -84,10 +63,6 @@ All notable changes to this project will be documented in this file. See [conven
 ### :globe_with_meridians: Localization:
 
 * Updated Language Files. ([#936](https://github.com/CodeWorksCreativeHub/mLauncher/pull/936)) ([dd0bc103](https://github.com/CodeWorksCreativeHub/mLauncher/commit/dd0bc103))
-
-### :building_construction: Build:
-
-* Bump actions/setup-node in the all-actions group ([#940](https://github.com/CodeWorksCreativeHub/mLauncher/pull/940)) ([f41babbf](https://github.com/CodeWorksCreativeHub/mLauncher/commit/f41babbf))
 
 ## [1110203 (1.11.2.3) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.3) - (16, October 2025)
 
@@ -141,11 +116,6 @@ All notable changes to this project will be documented in this file. See [conven
 * Prevent drag conflicts during resize ([12006120](https://github.com/CodeWorksCreativeHub/mLauncher/commit/12006120))
 * Reset edit mode on fragment start ([a7b7adc2](https://github.com/CodeWorksCreativeHub/mLauncher/commit/a7b7adc2))
 
-### :building_construction: Build:
-
-* Bump com.google.devtools.ksp in the all-gradle group ([#929](https://github.com/CodeWorksCreativeHub/mLauncher/pull/929)) ([72f4c5d5](https://github.com/CodeWorksCreativeHub/mLauncher/commit/72f4c5d5))
-* Update Compose and Room library versions ([5f0dc5bc](https://github.com/CodeWorksCreativeHub/mLauncher/commit/5f0dc5bc))
-
 ## [1110200 (1.11.2.0) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.0) - (09, October 2025)
 
 ### :sparkles: Enhancements:
@@ -192,10 +162,6 @@ All notable changes to this project will be documented in this file. See [conven
 ### :globe_with_meridians: Localization:
 
 * Updated Language Files. ([#921](https://github.com/CodeWorksCreativeHub/mLauncher/pull/921)) ([3b7b8d0b](https://github.com/CodeWorksCreativeHub/mLauncher/commit/3b7b8d0b))
-
-### :building_construction: Build:
-
-* Bump the all-actions group with 2 updates ([#920](https://github.com/CodeWorksCreativeHub/mLauncher/pull/920)) ([7d4eb7be](https://github.com/CodeWorksCreativeHub/mLauncher/commit/7d4eb7be))
 
 ### :broom: Maintenance & Cleanup:
 
