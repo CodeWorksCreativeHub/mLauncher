@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,25 +8,24 @@
     android:background="?attr/primaryShadeDarkColor">
 
     <!-- Search Bar positioned at the top -->
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/searchContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_marginTop="34dp"
-        android:orientation="horizontal"
+        android:layout_marginEnd="12dp"
         android:paddingHorizontal="8dp">
 
         <com.github.creativecodecat.components.views.FontSearchView
             android:id="@+id/search"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="end"
             android:imeOptions="actionSearch"
-            android:paddingHorizontal="0dp"
-            android:paddingVertical="0dp"
             app:iconifiedByDefault="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/workApps"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:queryBackground="@null"
             app:queryHint="___"
             app:searchIcon="@drawable/ic_search"
@@ -35,78 +33,71 @@
 
         <ImageView
             android:id="@+id/workApps"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:contentDescription="@string/advanced_settings_app_info_title"
-            android:paddingHorizontal="5dp"
-            android:paddingVertical="8dp"
-            android:scaleType="fitCenter"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:contentDescription="@string/show_work_apps"
+            android:padding="8dp"
+            android:scaleType="centerInside"
             android:visibility="gone"
-            app:srcCompat="@drawable/work_profile"
-            tools:layout_conversion_absoluteHeight="0dp"
-            tools:layout_conversion_absoluteWidth="0dp" />
+            app:layout_constraintBottom_toBottomOf="@id/search"
+            app:layout_constraintStart_toEndOf="@id/search"
+            app:layout_constraintTop_toTopOf="@id/search"
+            app:srcCompat="@drawable/work_profile" />
 
         <ImageView
             android:id="@+id/privateApps"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:contentDescription="@string/advanced_settings_app_info_title"
-            android:paddingHorizontal="5dp"
-            android:paddingVertical="8dp"
-            android:scaleType="fitCenter"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:contentDescription="@string/show_private_apps"
+            android:padding="8dp"
+            android:scaleType="centerInside"
             android:visibility="gone"
-            app:srcCompat="@drawable/private_profile_off"
-            tools:layout_conversion_absoluteHeight="0dp"
-            tools:layout_conversion_absoluteWidth="0dp" />
+            app:layout_constraintBottom_toBottomOf="@id/search"
+            app:layout_constraintStart_toEndOf="@id/workApps"
+            app:layout_constraintTop_toTopOf="@id/search"
+            app:srcCompat="@drawable/private_profile_off" />
 
         <ImageView
             android:id="@+id/systemApps"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:contentDescription="@string/advanced_settings_app_info_title"
-            android:paddingHorizontal="5dp"
-            android:paddingVertical="8dp"
-            android:scaleType="fitCenter"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:contentDescription="@string/show_app_list"
+            android:padding="8dp"
+            android:scaleType="centerInside"
             android:visibility="gone"
-            app:srcCompat="@drawable/system_profile"
-            tools:layout_conversion_absoluteHeight="0dp"
-            tools:layout_conversion_absoluteWidth="0dp" />
+            app:layout_constraintBottom_toBottomOf="@id/search"
+            app:layout_constraintStart_toEndOf="@id/privateApps"
+            app:layout_constraintTop_toTopOf="@id/search"
+            app:srcCompat="@drawable/system_profile" />
 
         <ImageView
             android:id="@+id/internetSearch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:contentDescription="@string/advanced_settings_app_info_title"
-            android:paddingHorizontal="5dp"
-            android:paddingVertical="8dp"
-            android:scaleType="fitCenter"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:contentDescription="@string/applist_button_web"
+            android:padding="8dp"
+            android:scaleType="centerInside"
             android:visibility="gone"
-            app:srcCompat="@drawable/ic_browser"
-            tools:layout_conversion_absoluteHeight="0dp"
-            tools:layout_conversion_absoluteWidth="0dp" />
+            app:layout_constraintBottom_toBottomOf="@id/search"
+            app:layout_constraintStart_toEndOf="@id/systemApps"
+            app:layout_constraintTop_toTopOf="@id/search"
+            app:srcCompat="@drawable/ic_browser" />
 
         <ImageView
             android:id="@+id/searchSwitcher"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:contentDescription="@string/advanced_settings_app_info_title"
-            android:paddingHorizontal="5dp"
-            android:paddingVertical="8dp"
-            android:scaleType="fitCenter"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:contentDescription="@string/applist_button_contacts"
+            android:padding="8dp"
+            android:scaleType="centerInside"
             android:visibility="gone"
-            app:srcCompat="@drawable/ic_contacts"
-            tools:layout_conversion_absoluteHeight="0dp"
-            tools:layout_conversion_absoluteWidth="0dp" />
+            app:layout_constraintBottom_toBottomOf="@id/search"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/internetSearch"
+            app:layout_constraintTop_toTopOf="@id/search"
+            app:srcCompat="@drawable/ic_contacts" />
 
-        <Space
-            android:layout_width="12dp"
-            android:layout_height="0dp" />
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.github.creativecodecat.components.views.FontAppCompatTextView
         android:id="@+id/clearHomeButton"
