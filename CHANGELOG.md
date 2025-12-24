@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [1.11.2.8 → Unreleased](https://github.com/CodeWorksCreativeHub/mLauncher/tree/main) - In Development
+
+### :bug: Bug Fixes:
+
+* Convert search bar to ConstraintLayout to fix alignment ([b04b71c3](https://github.com/CodeWorksCreativeHub/mLauncher/commit/b04b71c3))
+
 ## [1110208 (1.11.2.8) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.8) - (22, December 2025)
 
 ### :bug: Bug Fixes:
