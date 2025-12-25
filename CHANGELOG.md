@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file. See [conven
 
 ## [1.11.2.8 → Unreleased](https://github.com/CodeWorksCreativeHub/mLauncher/tree/main) - In Development
 
+### :sparkles: Enhancements:
+
+* Improve solid color wallpaper quality ([108a4a30](https://github.com/CodeWorksCreativeHub/mLauncher/commit/108a4a30))
+
 ### :bug: Bug Fixes:
 
 * Convert search bar to ConstraintLayout to fix alignment ([b04b71c3](https://github.com/CodeWorksCreativeHub/mLauncher/commit/b04b71c3))
