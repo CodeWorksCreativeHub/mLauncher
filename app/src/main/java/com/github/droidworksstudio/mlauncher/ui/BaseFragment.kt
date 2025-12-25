@@ -35,17 +35,31 @@ open class BaseFragment : Fragment() {
         super.onStart()
 
         if (prefs.forceWallpaper) {
-            val wallpaperManager = WallpaperManager.getInstance(requireContext())
+            val context = requireContext()
+            val wallpaperManager = WallpaperManager.getInstance(context)
             val backgroundColor = prefs.backgroundColor
 
-            // Create a solid color bitmap
-            val bitmap = createBitmap(1, 1).apply {
-                eraseColor(backgroundColor)
-            }
+            val width = wallpaperManager.desiredMinimumWidth
+            val height = wallpaperManager.desiredMinimumHeight
 
-            // Set the wallpaper
-            wallpaperManager.setBitmap(bitmap, null, true, WallpaperManager.FLAG_SYSTEM) // home
-            wallpaperManager.setBitmap(bitmap, null, true, WallpaperManager.FLAG_LOCK)   // lock
+            val bitmap = createBitmap(width, height)
+            bitmap.eraseColor(backgroundColor)
+
+            // Home screen
+            wallpaperManager.setBitmap(
+                bitmap,
+                null,
+                true,
+                WallpaperManager.FLAG_SYSTEM
+            )
+
+            // Lock screen (API 24+)
+            wallpaperManager.setBitmap(
+                bitmap,
+                null,
+                true,
+                WallpaperManager.FLAG_LOCK
+            )
         }
     }
 }
