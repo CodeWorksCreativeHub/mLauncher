@@ -296,6 +296,7 @@
     <string name="next">التالي</string>
     <string name="start">يبدأ</string>
     <string name="copy">ينسخ</string>
+    <string name="none">لا أحد</string>
     <string name="celsius">درجة مئوية</string>
     <string name="fahrenheit">فهرنهايت</string>
     <string name="home_button_phone">هاتف</string>
