@@ -29,6 +29,7 @@
             android:imeOptions="actionSearch"
             android:paddingHorizontal="0dp"
             android:paddingVertical="0dp"
+            app:closeIcon="@drawable/ic_close"
             app:iconifiedByDefault="false"
             app:queryBackground="@null"
             app:queryHint="___"
