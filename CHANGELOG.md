@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file. See [conven
 
 ## [1.11.3.0 → Unreleased](https://github.com/CodeWorksCreativeHub/mLauncher/tree/main) - In Development
 
+### :sparkles: Enhancements:
+
+* Add close icon to app drawer search view ([aaaa1b8a](https://github.com/CodeWorksCreativeHub/mLauncher/commit/aaaa1b8a))
+
 ### :bug: Bug Fixes:
 
 * Adjust App Drawer search bar layout ([4579c5e1](https://github.com/CodeWorksCreativeHub/mLauncher/commit/4579c5e1))
