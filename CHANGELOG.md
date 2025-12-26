@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [1.11.3.0 → Unreleased](https://github.com/CodeWorksCreativeHub/mLauncher/tree/main) - In Development
+
+### :bug: Bug Fixes:
+
+* Adjust App Drawer search bar layout ([4579c5e1](https://github.com/CodeWorksCreativeHub/mLauncher/commit/4579c5e1))
+
 ## [1110300 (1.11.3.0) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.3.0) - (25, December 2025)
 
 ### :sparkles: Enhancements:
