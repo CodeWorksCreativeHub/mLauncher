@@ -296,6 +296,7 @@
     <string name="next">次</string>
     <string name="start">始める</string>
     <string name="copy">コピー</string>
+    <string name="none">なし</string>
     <string name="celsius">摂氏</string>
     <string name="fahrenheit">華氏</string>
     <string name="home_button_phone">電話</string>
