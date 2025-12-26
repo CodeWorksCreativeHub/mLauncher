@@ -298,6 +298,7 @@
     <string name="next">הבא</string>
     <string name="start">התחל</string>
     <string name="copy">לְהַעְתִיק</string>
+    <string name="none">אַף לֹא אֶחָד</string>
     <string name="celsius">צֶלסִיוּס</string>
     <string name="fahrenheit">פרנהייט</string>
     <string name="home_button_phone">טֵלֵפוֹן</string>
