@@ -624,7 +624,7 @@ class SettingsFragment : BaseFragment() {
                         }
                     )
 
-                    Spacer(modifier = Modifier.height(14.dp))
+                    Spacer(modifier = Modifier.height(12.dp))
 
                     // App List & Search
                     SettingsTitle(
@@ -753,7 +753,7 @@ class SettingsFragment : BaseFragment() {
                         )
                     }
 
-                    Spacer(modifier = Modifier.height(14.dp))
+                    Spacer(modifier = Modifier.height(12.dp))
 
                     // Home Management
                     SettingsTitle(
@@ -876,7 +876,7 @@ class SettingsFragment : BaseFragment() {
                         )
                     }
 
-                    Spacer(modifier = Modifier.height(14.dp))
+                    Spacer(modifier = Modifier.height(12.dp))
 
                     // Toggles
                     SettingsTitle(
@@ -985,7 +985,7 @@ class SettingsFragment : BaseFragment() {
                         }
                     )
 
-                    Spacer(modifier = Modifier.height(14.dp))
+                    Spacer(modifier = Modifier.height(12.dp))
 
                     // Info Tiles
                     SettingsTitle(
@@ -1067,7 +1067,7 @@ class SettingsFragment : BaseFragment() {
                         }
                     )
 
-                    Spacer(modifier = Modifier.height(14.dp))
+                    Spacer(modifier = Modifier.height(12.dp))
 
                     // Weather
                     SettingsTitle(
@@ -1209,7 +1209,7 @@ class SettingsFragment : BaseFragment() {
                         }
                     )
 
-                    Spacer(modifier = Modifier.height(14.dp))
+                    Spacer(modifier = Modifier.height(12.dp))
 
                     // Visibility & Display
                     SettingsTitle(
@@ -1314,7 +1314,7 @@ class SettingsFragment : BaseFragment() {
                         )
                     }
 
-                    Spacer(modifier = Modifier.height(14.dp))
+                    Spacer(modifier = Modifier.height(12.dp))
 
                     // Alignment
                     SettingsTitle(
@@ -1457,7 +1457,7 @@ class SettingsFragment : BaseFragment() {
                         }
                     )
 
-                    Spacer(modifier = Modifier.height(14.dp))
+                    Spacer(modifier = Modifier.height(12.dp))
 
                     // Colors
                     SettingsTitle(
@@ -1620,7 +1620,7 @@ class SettingsFragment : BaseFragment() {
                         }
                     )
 
-                    Spacer(modifier = Modifier.height(14.dp))
+                    Spacer(modifier = Modifier.height(12.dp))
 
                     // Icon Packs
                     SettingsTitle(
@@ -1709,7 +1709,7 @@ class SettingsFragment : BaseFragment() {
                         }
                     )
 
-                    Spacer(modifier = Modifier.height(14.dp))
+                    Spacer(modifier = Modifier.height(12.dp))
 
                     // Text Size (moved to bottom for advanced users)
                     SettingsTitle(
@@ -2001,7 +2001,7 @@ class SettingsFragment : BaseFragment() {
                         }
                     )
 
-                    Spacer(modifier = Modifier.height(14.dp))
+                    Spacer(modifier = Modifier.height(12.dp))
 
                     // Swipe Actions
                     SettingsTitle(
@@ -2256,7 +2256,7 @@ class SettingsFragment : BaseFragment() {
                         }
                     )
 
-                    Spacer(modifier = Modifier.height(14.dp))
+                    Spacer(modifier = Modifier.height(12.dp))
 
                     // Thresholds
                     SettingsTitle(
@@ -2344,7 +2344,7 @@ class SettingsFragment : BaseFragment() {
                         }
                     )
 
-                    Spacer(modifier = Modifier.height(14.dp))
+                    Spacer(modifier = Modifier.height(12.dp))
 
                     // Notes Colors
                     SettingsTitle(
@@ -2447,7 +2447,7 @@ class SettingsFragment : BaseFragment() {
                         }
                     )
 
-                    Spacer(modifier = Modifier.height(14.dp))
+                    Spacer(modifier = Modifier.height(12.dp))
 
                     // Input Colors
                     SettingsTitle(
@@ -2757,7 +2757,7 @@ class SettingsFragment : BaseFragment() {
                         }
                     )
 
-                    Spacer(modifier = Modifier.height(14.dp))
+                    Spacer(modifier = Modifier.height(12.dp))
 
                     // Personalization
                     SettingsTitle(

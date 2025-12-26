@@ -210,7 +210,7 @@ object SettingsComposable {
                         }
                     }
                 }
-                .padding(vertical = 16.dp, horizontal = 16.dp),
+                .padding(vertical = 8.dp, horizontal = 12.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Image(
@@ -219,7 +219,7 @@ object SettingsComposable {
                 modifier = Modifier.size(iconSize)
             )
 
-            Spacer(modifier = Modifier.width(16.dp))
+            Spacer(modifier = Modifier.width(12.dp))
 
             Column {
                 AndroidView(
@@ -237,7 +237,7 @@ object SettingsComposable {
                 )
 
                 description?.let {
-                    Spacer(modifier = Modifier.height(4.dp))
+                    Spacer(modifier = Modifier.height(1.dp))
                     AndroidView(
                         factory = { context ->
                             FontAppCompatTextView(context).apply {
@@ -476,13 +476,11 @@ object SettingsComposable {
                 }
             )
 
-            Spacer(modifier = Modifier.height(2.dp)) // optional spacing
-
             // “Enabled/Disabled” text
             AndroidView(
                 factory = { ctx ->
                     FontAppCompatTextView(ctx).apply {
-                        setTextSize(TypedValue.COMPLEX_UNIT_SP, resolvedFontSizeSp - 2)
+                        setTextSize(TypedValue.COMPLEX_UNIT_SP, (resolvedFontSizeSp / 1.3).toFloat())
                         textAlignment = View.TEXT_ALIGNMENT_VIEW_START
                     }
                 },
@@ -527,12 +525,10 @@ object SettingsComposable {
                 }
             )
 
-            Spacer(modifier = Modifier.height(2.dp)) // optional spacing between title and option
-
             AndroidView(
                 factory = { context ->
                     FontAppCompatTextView(context).apply {
-                        setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSizeSp - 2)
+                        setTextSize(TypedValue.COMPLEX_UNIT_SP, (fontSizeSp / 1.3).toFloat())
                     }
                 },
                 modifier = Modifier.wrapContentHeight(),
