@@ -27,9 +27,11 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -882,30 +884,104 @@ class SettingsFragment : BaseFragment() {
                         fontSize = titleFontSize
                     )
 
+                    val currentContextMenuFlags = remember {
+                        mutableStateListOf<Boolean>().apply {
+                            addAll(prefs.getMenuFlags("CONTEXT_MENU_FLAGS", "0011111"))
+                        }
+                    }
+
+                    val enabledContextMenuOptions by remember {
+                        derivedStateOf {
+                            contextMenuOptionLabels
+                                .take(currentContextMenuFlags.size)
+                                .zip(currentContextMenuFlags)
+                                .filter { it.second }
+                                .joinToString(", ") { it.first }
+                                .ifEmpty { getLocalizedString(R.string.none) }
+                        }
+                    }
+
                     SettingsSelect(
                         title = getLocalizedString(R.string.settings_context_menu_title),
-                        option = getLocalizedString(R.string.settings_context_menu_option),
+                        option = enabledContextMenuOptions,
                         fontSize = titleFontSize,
                         onClick = {
-                            dialogBuilder.showFlagSettingsBottomSheet(context, contextMenuOptionLabels, "CONTEXT_MENU_FLAGS", "0011111")
+                            dialogBuilder.showFlagSettingsBottomSheet(
+                                context,
+                                contextMenuOptionLabels,
+                                "CONTEXT_MENU_FLAGS",
+                                "0011111"
+                            ) { updatedFlags: List<Boolean> ->
+                                currentContextMenuFlags.clear()
+                                currentContextMenuFlags.addAll(updatedFlags)
+                            }
                         }
                     )
+
+                    val currentAppListFlags = remember {
+                        mutableStateListOf<Boolean>().apply {
+                            addAll(prefs.getMenuFlags("APPLIST_BUTTON_FLAGS", "00"))
+                        }
+                    }
+
+                    val enabledAppListOptions by remember {
+                        derivedStateOf {
+                            appListButtonOptionLabels
+                                .take(currentAppListFlags.size)
+                                .zip(currentAppListFlags)
+                                .filter { it.second }
+                                .joinToString(", ") { it.first }
+                                .ifEmpty { getLocalizedString(R.string.none) }
+                        }
+                    }
 
                     SettingsSelect(
                         title = getLocalizedString(R.string.settings_applist_buttons_title),
-                        option = getLocalizedString(R.string.settings_applist_buttons_option),
+                        option = enabledAppListOptions,
                         fontSize = titleFontSize,
                         onClick = {
-                            dialogBuilder.showFlagSettingsBottomSheet(context, appListButtonOptionLabels, "APPLIST_BUTTON_FLAGS", "00")
+                            dialogBuilder.showFlagSettingsBottomSheet(
+                                context,
+                                appListButtonOptionLabels,
+                                "APPLIST_BUTTON_FLAGS",
+                                "00"
+                            ) { updatedFlags: List<Boolean> ->
+                                currentAppListFlags.clear()
+                                currentAppListFlags.addAll(updatedFlags)
+                            }
                         }
                     )
 
+                    val currentHomeButtonFlags = remember {
+                        mutableStateListOf<Boolean>().apply {
+                            addAll(prefs.getMenuFlags("HOME_BUTTON_FLAGS", "0000011"))
+                        }
+                    }
+
+                    val enabledHomeButtonOptions by remember {
+                        derivedStateOf {
+                            homeButtonOptionLabels
+                                .take(currentHomeButtonFlags.size)
+                                .zip(currentHomeButtonFlags)
+                                .filter { it.second }
+                                .joinToString(", ") { it.first }
+                                .ifEmpty { getLocalizedString(R.string.none) }
+                        }
+                    }
                     SettingsSelect(
                         title = getLocalizedString(R.string.settings_home_buttons_title),
-                        option = getLocalizedString(R.string.settings_home_buttons_option),
+                        option = enabledHomeButtonOptions,
                         fontSize = titleFontSize,
                         onClick = {
-                            dialogBuilder.showFlagSettingsBottomSheet(context, homeButtonOptionLabels, "HOME_BUTTON_FLAGS", "0000011")
+                            dialogBuilder.showFlagSettingsBottomSheet(
+                                context,
+                                homeButtonOptionLabels,
+                                "HOME_BUTTON_FLAGS",
+                                "0000011"
+                            ) { updatedFlags: List<Boolean> ->
+                                currentHomeButtonFlags.clear()
+                                currentHomeButtonFlags.addAll(updatedFlags)
+                            }
                         }
                     )
 
@@ -1394,7 +1470,7 @@ class SettingsFragment : BaseFragment() {
                         title = getLocalizedString(R.string.background_color),
                         option = hexBackgroundColor,
                         fontSize = titleFontSize,
-                        fontColor = Color(selectedBackgroundColor),
+                        optionColor = Color(selectedBackgroundColor),
                         onClick = {
                             dialogBuilder.showColorPickerBottomSheet(
                                 context = requireContext(),
@@ -1412,7 +1488,7 @@ class SettingsFragment : BaseFragment() {
                         title = getLocalizedString(R.string.app_color),
                         option = hexAppColor,
                         fontSize = titleFontSize,
-                        fontColor = Color(hexAppColor.toColorInt()),
+                        optionColor = Color(hexAppColor.toColorInt()),
                         onClick = {
                             dialogBuilder.showColorPickerBottomSheet(
                                 context = requireContext(),
@@ -1433,7 +1509,7 @@ class SettingsFragment : BaseFragment() {
                         title = getLocalizedString(R.string.date_color),
                         option = hexDateColor,
                         fontSize = titleFontSize,
-                        fontColor = Color(hexDateColor.toColorInt()),
+                        optionColor = Color(hexDateColor.toColorInt()),
                         onClick = {
                             dialogBuilder.showColorPickerBottomSheet(
                                 context = requireContext(),
@@ -1451,7 +1527,7 @@ class SettingsFragment : BaseFragment() {
                         title = getLocalizedString(R.string.clock_color),
                         option = hexClockColor,
                         fontSize = titleFontSize,
-                        fontColor = Color(hexClockColor.toColorInt()),
+                        optionColor = Color(hexClockColor.toColorInt()),
                         onClick = {
                             dialogBuilder.showColorPickerBottomSheet(
                                 context = requireContext(),
@@ -1469,7 +1545,7 @@ class SettingsFragment : BaseFragment() {
                         title = getLocalizedString(R.string.alarm_color),
                         option = hexAlarmColor,
                         fontSize = titleFontSize,
-                        fontColor = Color(hexAlarmColor.toColorInt()),
+                        optionColor = Color(hexAlarmColor.toColorInt()),
                         onClick = {
                             dialogBuilder.showColorPickerBottomSheet(
                                 context = requireContext(),
@@ -1487,7 +1563,7 @@ class SettingsFragment : BaseFragment() {
                         title = getLocalizedString(R.string.daily_word_color),
                         option = hexDailyWordColor,
                         fontSize = titleFontSize,
-                        fontColor = Color(hexDailyWordColor.toColorInt()),
+                        optionColor = Color(hexDailyWordColor.toColorInt()),
                         onClick = {
                             dialogBuilder.showColorPickerBottomSheet(
                                 context = requireContext(),
@@ -1505,7 +1581,7 @@ class SettingsFragment : BaseFragment() {
                         title = getLocalizedString(R.string.battery_color),
                         option = hexBatteryColor,
                         fontSize = titleFontSize,
-                        fontColor = Color(hexBatteryColor.toColorInt()),
+                        optionColor = Color(hexBatteryColor.toColorInt()),
                         onClick = {
                             dialogBuilder.showColorPickerBottomSheet(
                                 context = requireContext(),
@@ -1531,7 +1607,7 @@ class SettingsFragment : BaseFragment() {
                         title = getLocalizedString(R.string.shortcuts_color),
                         option = String.format("#%06X", (0xFFFFFF and selectedShortcutIconsColor)),
                         fontSize = titleFontSize,
-                        fontColor = Color(String.format("#%06X", (0xFFFFFF and selectedShortcutIconsColor)).toColorInt()),
+                        optionColor = Color(String.format("#%06X", (0xFFFFFF and selectedShortcutIconsColor)).toColorInt()),
                         onClick = {
                             dialogBuilder.showColorPickerBottomSheet(
                                 context = requireContext(),
@@ -2282,7 +2358,7 @@ class SettingsFragment : BaseFragment() {
                         title = getLocalizedString(R.string.notes_background_color),
                         option = hexBackgroundColor,
                         fontSize = titleFontSize,
-                        fontColor = Color(hexBackgroundColor.toColorInt()),
+                        optionColor = Color(hexBackgroundColor.toColorInt()),
                         onClick = {
                             dialogBuilder.showColorPickerBottomSheet(
                                 context = requireContext(),
@@ -2301,7 +2377,7 @@ class SettingsFragment : BaseFragment() {
                         title = getLocalizedString(R.string.bubble_background_color),
                         option = hexBubbleBackgroundColor,
                         fontSize = titleFontSize,
-                        fontColor = Color(hexBubbleBackgroundColor.toColorInt()),
+                        optionColor = Color(hexBubbleBackgroundColor.toColorInt()),
                         onClick = {
                             dialogBuilder.showColorPickerBottomSheet(
                                 context = requireContext(),
@@ -2320,7 +2396,7 @@ class SettingsFragment : BaseFragment() {
                         title = getLocalizedString(R.string.bubble_message_color),
                         option = hexMessageTextColor,
                         fontSize = titleFontSize,
-                        fontColor = Color(hexMessageTextColor.toColorInt()),
+                        optionColor = Color(hexMessageTextColor.toColorInt()),
                         onClick = {
                             dialogBuilder.showColorPickerBottomSheet(
                                 context = requireContext(),
@@ -2339,7 +2415,7 @@ class SettingsFragment : BaseFragment() {
                         title = getLocalizedString(R.string.bubble_date_time_color),
                         option = hexBubbleTimeDateColor,
                         fontSize = titleFontSize,
-                        fontColor = Color(hexBubbleTimeDateColor.toColorInt()),
+                        optionColor = Color(hexBubbleTimeDateColor.toColorInt()),
                         onClick = {
                             dialogBuilder.showColorPickerBottomSheet(
                                 context = requireContext(),
@@ -2358,7 +2434,7 @@ class SettingsFragment : BaseFragment() {
                         title = getLocalizedString(R.string.bubble_category_color),
                         option = hexBubbleCategoryColor,
                         fontSize = titleFontSize,
-                        fontColor = Color(hexBubbleCategoryColor.toColorInt()),
+                        optionColor = Color(hexBubbleCategoryColor.toColorInt()),
                         onClick = {
                             dialogBuilder.showColorPickerBottomSheet(
                                 context = requireContext(),
@@ -2385,7 +2461,7 @@ class SettingsFragment : BaseFragment() {
                         title = getLocalizedString(R.string.message_input_color),
                         option = hexBubbleInputMessageColor,
                         fontSize = titleFontSize,
-                        fontColor = Color(hexBubbleInputMessageColor.toColorInt()),
+                        optionColor = Color(hexBubbleInputMessageColor.toColorInt()),
                         onClick = {
                             dialogBuilder.showColorPickerBottomSheet(
                                 context = requireContext(),
@@ -2404,7 +2480,7 @@ class SettingsFragment : BaseFragment() {
                         title = getLocalizedString(R.string.message_input_hint_color),
                         option = hexBubbleInputMessageHintColor,
                         fontSize = titleFontSize,
-                        fontColor = Color(hexBubbleInputMessageHintColor.toColorInt()),
+                        optionColor = Color(hexBubbleInputMessageHintColor.toColorInt()),
                         onClick = {
                             dialogBuilder.showColorPickerBottomSheet(
                                 context = requireContext(),

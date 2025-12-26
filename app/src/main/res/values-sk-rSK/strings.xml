@@ -345,11 +345,8 @@ Tento prístup môžete kedykoľvek vypnúť v nastaveniach zariadenia.</string>
     <string name="category">Kategória</string>
     <string name="priority">Priorita</string>
     <string name="settings_context_menu_title">Kontextové menu</string>
-    <string name="settings_context_menu_option">Vyberte položky, ktoré chcete zobraziť</string>
     <string name="settings_home_buttons_title">Tlačidlá Domov</string>
-    <string name="settings_home_buttons_option">Vyberte položky, ktoré chcete zobraziť</string>
     <string name="settings_applist_buttons_title">Tlačidlá zoznamu aplikácií</string>
-    <string name="settings_applist_buttons_option">Vyberte položky, ktoré chcete zobraziť</string>
     <string name="settings_source_code">Zdrojový kód</string>
     <string name="settings_donations">Dary</string>
     <string name="settings_credits">Kredity</string>

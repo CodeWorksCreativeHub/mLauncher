@@ -343,11 +343,8 @@
     <string name="category">Kategori</string>
     <string name="priority">Öncelik</string>
     <string name="settings_context_menu_title">Bağlam Menüsü</string>
-    <string name="settings_context_menu_option">Görüntülenecek öğeleri seçin</string>
     <string name="settings_home_buttons_title">Ana Sayfa Düğmeleri</string>
-    <string name="settings_home_buttons_option">Görüntülenecek öğeleri seçin</string>
     <string name="settings_applist_buttons_title">Uygulama Listesi Düğmeleri</string>
-    <string name="settings_applist_buttons_option">Görüntülenecek öğeleri seçin</string>
     <string name="settings_source_code">Kaynak Kodu</string>
     <string name="settings_donations">Bağışlar</string>
     <string name="settings_credits">Krediler</string>

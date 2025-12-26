@@ -5,7 +5,6 @@ import android.text.method.LinkMovementMethod
 import android.util.TypedValue
 import android.view.View
 import androidx.annotation.DrawableRes
-import androidx.appcompat.widget.SwitchCompat
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -32,17 +31,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
-import androidx.core.content.ContextCompat
 import com.github.creativecodecat.components.views.FontAppCompatTextView
-import com.github.droidworksstudio.mlauncher.R
 import com.github.droidworksstudio.mlauncher.services.HapticFeedbackService
 import com.github.droidworksstudio.mlauncher.style.SettingsTheme
+import com.github.droidworksstudio.mlauncher.style.textDisabled
+import com.github.droidworksstudio.mlauncher.style.textEnabled
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -166,7 +166,8 @@ object SettingsComposable {
         enableMultiClick: Boolean = false,
         titleFontSize: TextUnit = TextUnit.Unspecified,
         descriptionFontSize: TextUnit = TextUnit.Unspecified,
-        fontColor: Color = SettingsTheme.typography.title.color,
+        headerColor: Color = SettingsTheme.typography.title.color,
+        optionColor: Color = SettingsTheme.typography.option.color,
         iconSize: Dp = 18.dp,
         multiClickCount: Int = 5,
         multiClickInterval: Long = 2000L
@@ -225,7 +226,7 @@ object SettingsComposable {
                     factory = { context ->
                         FontAppCompatTextView(context).apply {
                             text = title
-                            setTextColor(fontColor.toArgb())
+                            setTextColor(headerColor.toArgb())
                             setTextSize(
                                 TypedValue.COMPLEX_UNIT_SP,
                                 if (titleFontSize != TextUnit.Unspecified) titleFontSize.value else 18f
@@ -241,7 +242,7 @@ object SettingsComposable {
                         factory = { context ->
                             FontAppCompatTextView(context).apply {
                                 text = it
-                                setTextColor(fontColor.toArgb())
+                                setTextColor(optionColor.toArgb())
                                 setTextSize(
                                     TypedValue.COMPLEX_UNIT_SP,
                                     if (descriptionFontSize != TextUnit.Unspecified) descriptionFontSize.value else 12f
@@ -337,8 +338,6 @@ object SettingsComposable {
             )
 
             if (descriptions.isNotEmpty()) {
-//                Spacer(modifier = Modifier.height(4.dp))
-
                 if (columns) {
                     // Use Column layout for links
                     Column(
@@ -424,7 +423,7 @@ object SettingsComposable {
                 }
             },
             modifier = modifier
-                .padding(start = 16.dp, top = 16.dp)
+                .padding(horizontal = 16.dp)
                 .wrapContentSize()
         )
     }
@@ -433,55 +432,65 @@ object SettingsComposable {
     fun SettingsSwitch(
         text: String,
         fontSize: TextUnit = TextUnit.Unspecified,
+        titleColor: Color = SettingsTheme.typography.title.color,
         defaultState: Boolean = false,
         onCheckedChange: (Boolean) -> Unit
     ) {
         var isChecked by remember { mutableStateOf(defaultState) }
 
-        // Extract font size and color from theme safely in composable scope
         val resolvedFontSizeSp = if (fontSize != TextUnit.Unspecified) fontSize.value else 14f
-        val fontColor = SettingsTheme.typography.title.color
+        val context = LocalContext.current
 
-        Row(
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = 16.dp),
-            verticalAlignment = Alignment.CenterVertically
+                .padding(vertical = 4.dp, horizontal = 16.dp)
+                .clickable {
+                    isChecked = !isChecked
+                    onCheckedChange(isChecked)
+
+                    // Haptic feedback
+                    HapticFeedbackService.trigger(
+                        context = context,
+                        effectType = if (isChecked)
+                            HapticFeedbackService.EffectType.ON
+                        else
+                            HapticFeedbackService.EffectType.OFF
+                    )
+                },
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.Start
         ) {
-            // Custom font AndroidView
+            // Title text
             AndroidView(
-                factory = { context ->
-                    FontAppCompatTextView(context).apply {
-                        this.text = text
+                factory = { ctx ->
+                    FontAppCompatTextView(ctx).apply {
+                        textAlignment = View.TEXT_ALIGNMENT_VIEW_START
                         setTextSize(TypedValue.COMPLEX_UNIT_SP, resolvedFontSizeSp)
-                        setTextColor(fontColor.toArgb())
+                    }
+                },
+                modifier = Modifier.wrapContentHeight(),
+                update = { textView ->
+                    textView.text = text
+                    textView.setTextColor(titleColor.toArgb())
+                }
+            )
+
+            Spacer(modifier = Modifier.height(2.dp)) // optional spacing
+
+            // “Enabled/Disabled” text
+            AndroidView(
+                factory = { ctx ->
+                    FontAppCompatTextView(ctx).apply {
+                        setTextSize(TypedValue.COMPLEX_UNIT_SP, resolvedFontSizeSp - 2)
                         textAlignment = View.TEXT_ALIGNMENT_VIEW_START
                     }
                 },
-                modifier = Modifier
-                    .weight(1f)
-                    .wrapContentHeight()
-            )
-
-            AndroidView(
-                factory = { context ->
-                    SwitchCompat(context).apply {
-                        scaleX = 0.7f
-                        scaleY = 0.7f
-                        thumbDrawable = ContextCompat.getDrawable(context, R.drawable.shape_switch_thumb)
-                        trackDrawable = ContextCompat.getDrawable(context, R.drawable.selector_switch)
-                        this.isChecked = isChecked
-                        setOnCheckedChangeListener { _, checked ->
-                            isChecked = checked
-                            onCheckedChange(checked)
-                            HapticFeedbackService.trigger(
-                                context,
-                                if (checked) HapticFeedbackService.EffectType.ON else HapticFeedbackService.EffectType.OFF
-                            )
-                        }
-                    }
-                },
-                modifier = Modifier.padding(end = 16.dp)
+                modifier = Modifier.wrapContentHeight(),
+                update = { textView ->
+                    textView.text = if (isChecked) "✔" else "✖"
+                    textView.setTextColor(if (isChecked) textEnabled.toArgb() else textDisabled.toArgb())
+                }
             )
         }
     }
@@ -491,16 +500,19 @@ object SettingsComposable {
         title: String,
         option: String,
         fontSize: TextUnit = 24.sp,
-        fontColor: Color = SettingsTheme.typography.title.color,
+        titleColor: Color = SettingsTheme.typography.title.color,
+        optionColor: Color = SettingsTheme.typography.option.color,
         onClick: () -> Unit = {},
     ) {
         val fontSizeSp = fontSize.value
 
-        Row(
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 12.dp, horizontal = 16.dp),
-            verticalAlignment = Alignment.CenterVertically
+                .padding(vertical = 4.dp, horizontal = 16.dp)
+                .clickable(onClick = onClick),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.Start
         ) {
             AndroidView(
                 factory = { context ->
@@ -508,26 +520,25 @@ object SettingsComposable {
                         setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSizeSp)
                     }
                 },
-                modifier = Modifier
-                    .weight(1f)
-                    .wrapContentHeight(),
+                modifier = Modifier.wrapContentHeight(),
                 update = { textView ->
                     textView.text = title
-                    textView.setTextColor(fontColor.toArgb()) // <- update color here
+                    textView.setTextColor(titleColor.toArgb())
                 }
             )
+
+            Spacer(modifier = Modifier.height(2.dp)) // optional spacing between title and option
 
             AndroidView(
                 factory = { context ->
                     FontAppCompatTextView(context).apply {
-                        setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSizeSp)
-                        setOnClickListener { onClick() }
+                        setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSizeSp - 2)
                     }
                 },
-                modifier = Modifier.wrapContentSize(),
+                modifier = Modifier.wrapContentHeight(),
                 update = { textView ->
                     textView.text = option
-                    textView.setTextColor(fontColor.toArgb()) // <- update color here
+                    textView.setTextColor(optionColor.toArgb())
                 }
             )
         }

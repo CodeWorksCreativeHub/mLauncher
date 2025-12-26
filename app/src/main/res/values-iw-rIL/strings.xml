@@ -345,11 +345,8 @@
     <string name="category">קָטֵגוֹרִיָה</string>
     <string name="priority">עֲדִיפוּת</string>
     <string name="settings_context_menu_title">תפריט ההקשר</string>
-    <string name="settings_context_menu_option">בחירת פריטים להצגה</string>
     <string name="settings_home_buttons_title">כפתורי בית</string>
-    <string name="settings_home_buttons_option">בחירת פריטים להצגה</string>
     <string name="settings_applist_buttons_title">כפתורי רשימת אפליקציות</string>
-    <string name="settings_applist_buttons_option">בחירת פריטים להצגה</string>
     <string name="settings_source_code">קוד המקור</string>
     <string name="settings_donations">תרומות</string>
     <string name="settings_credits">קרדיטים</string>

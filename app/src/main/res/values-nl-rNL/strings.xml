@@ -343,11 +343,8 @@
     <string name="category">Categorie</string>
     <string name="priority">Prioriteit</string>
     <string name="settings_context_menu_title">Contextmenu</string>
-    <string name="settings_context_menu_option">Selecteer items om weer te geven</string>
     <string name="settings_home_buttons_title">Home-knoppen</string>
-    <string name="settings_home_buttons_option">Selecteer items om weer te geven</string>
     <string name="settings_applist_buttons_title">App-lijstknoppen</string>
-    <string name="settings_applist_buttons_option">Selecteer items om weer te geven</string>
     <string name="settings_source_code">Broncode</string>
     <string name="settings_donations">Donaties</string>
     <string name="settings_credits">Credits</string>

@@ -343,11 +343,8 @@
     <string name="category">Categoria</string>
     <string name="priority">Prioridade</string>
     <string name="settings_context_menu_title">Menu de contexto</string>
-    <string name="settings_context_menu_option">Selecione os itens a apresentar</string>
     <string name="settings_home_buttons_title">Botões Home</string>
-    <string name="settings_home_buttons_option">Selecione os itens a apresentar</string>
     <string name="settings_applist_buttons_title">Botões da lista de aplicações</string>
-    <string name="settings_applist_buttons_option">Selecione os itens a apresentar</string>
     <string name="settings_source_code">Código-fonte</string>
     <string name="settings_donations">Doações</string>
     <string name="settings_credits">Créditos</string>

@@ -17,9 +17,11 @@ data class ReplacementTypography(
     val header: TextStyle,
     val title: TextStyle,
     val body: TextStyle,
-    val item: TextStyle,
+    val option: TextStyle,
     val button: TextStyle,
     val buttonDisabled: TextStyle,
+    val textEnabled: TextStyle = TextStyle.Default,
+    val textDisabled: TextStyle = TextStyle.Default,
 )
 
 @Immutable
@@ -35,9 +37,11 @@ val LocalReplacementTypography = staticCompositionLocalOf {
         header = TextStyle.Default,
         title = TextStyle.Default,
         body = TextStyle.Default,
-        item = TextStyle.Default,
+        option = TextStyle.Default,
         button = TextStyle.Default,
         buttonDisabled = TextStyle.Default,
+        textEnabled = TextStyle.Default,
+        textDisabled = TextStyle.Default,
     )
 }
 val LocalReplacementColor = staticCompositionLocalOf {
@@ -63,27 +67,37 @@ fun SettingsTheme(
         title = TextStyle(
             fontWeight = FontWeight.Light,
             fontSize = 32.sp,
-            color = if (isDark) textLight else textDark,
+            color = if (isDark) textLightTop else textDarkTop,
         ),
         body = TextStyle(
             fontWeight = FontWeight.Light,
             fontSize = 16.sp,
-            color = if (isDark) textLight else textDark,
+            color = if (isDark) textLightTop else textDarkTop,
         ),
-        item = TextStyle(
+        option = TextStyle(
             fontWeight = FontWeight.Light,
-            fontSize = 16.sp,
-            color = if (isDark) textLight else textDark,
+            fontSize = 32.sp,
+            color = if (isDark) textLightBottom else textDarkBottom,
         ),
         button = TextStyle(
             fontWeight = FontWeight.Bold,
             fontSize = 16.sp,
-            color = if (isDark) textLight else textDark,
+            color = if (isDark) textLightTop else textDarkTop,
         ),
         buttonDisabled = TextStyle(
             fontWeight = FontWeight.Bold,
             fontSize = 16.sp,
             color = textGray,
+        ),
+        textEnabled = TextStyle(
+            fontWeight = FontWeight.Light,
+            fontSize = 16.sp,
+            color = textEnabled,
+        ),
+        textDisabled = TextStyle(
+            fontWeight = FontWeight.Light,
+            fontSize = 16.sp,
+            color = textDisabled,
         ),
     )
     val replacementColor = ReplacementColor(

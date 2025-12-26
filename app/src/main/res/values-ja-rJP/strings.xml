@@ -343,11 +343,8 @@
     <string name="category">カテゴリ</string>
     <string name="priority">優先度</string>
     <string name="settings_context_menu_title">コンテキストメニュー</string>
-    <string name="settings_context_menu_option">表示する項目を選択</string>
     <string name="settings_home_buttons_title">ホームボタン</string>
-    <string name="settings_home_buttons_option">表示する項目を選択</string>
     <string name="settings_applist_buttons_title">アプリリストボタン</string>
-    <string name="settings_applist_buttons_option">表示する項目を選択</string>
     <string name="settings_source_code">ソースコード</string>
     <string name="settings_donations">寄付</string>
     <string name="settings_credits">クレジット</string>

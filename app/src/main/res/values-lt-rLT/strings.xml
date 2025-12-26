@@ -345,11 +345,8 @@ Jūs bet kada galite išjungti šią prieigą savo įrenginio nustatymuose.</str
     <string name="category">Kategorija</string>
     <string name="priority">Pirmenybė</string>
     <string name="settings_context_menu_title">Kontekstinis meniu</string>
-    <string name="settings_context_menu_option">Pasirinkite elementus, kuriuos norite rodyti</string>
     <string name="settings_home_buttons_title">Namų mygtukai</string>
-    <string name="settings_home_buttons_option">Pasirinkite elementus, kuriuos norite rodyti</string>
     <string name="settings_applist_buttons_title">Programų sąrašo mygtukai</string>
-    <string name="settings_applist_buttons_option">Pasirinkite elementus, kuriuos norite rodyti</string>
     <string name="settings_source_code">Šaltinio kodas</string>
     <string name="settings_donations">Aukos</string>
     <string name="settings_credits">Kreditai</string>

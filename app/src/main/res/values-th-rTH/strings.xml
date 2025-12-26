@@ -343,11 +343,8 @@
     <string name="category">หมวดหมู่</string>
     <string name="priority">ลำดับความสำคัญ</string>
     <string name="settings_context_menu_title">เมนูบริบท</string>
-    <string name="settings_context_menu_option">เลือกสินค้าที่จะแสดง</string>
     <string name="settings_home_buttons_title">ปุ่มโฮม</string>
-    <string name="settings_home_buttons_option">เลือกสินค้าที่จะแสดง</string>
     <string name="settings_applist_buttons_title">ปุ่มรายการแอป</string>
-    <string name="settings_applist_buttons_option">เลือกสินค้าที่จะแสดง</string>
     <string name="settings_source_code">รหัสต้นฉบับ</string>
     <string name="settings_donations">การบริจาค</string>
     <string name="settings_credits">เครดิต</string>

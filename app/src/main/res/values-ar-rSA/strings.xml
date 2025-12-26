@@ -343,11 +343,8 @@
     <string name="category">فئة</string>
     <string name="priority">أولوية</string>
     <string name="settings_context_menu_title">قائمة السياق</string>
-    <string name="settings_context_menu_option">حدد العناصر المراد عرضها</string>
     <string name="settings_home_buttons_title">أزرار الصفحة الرئيسية</string>
-    <string name="settings_home_buttons_option">حدد العناصر المراد عرضها</string>
     <string name="settings_applist_buttons_title">أزرار قائمة التطبيقات</string>
-    <string name="settings_applist_buttons_option">حدد العناصر المراد عرضها</string>
     <string name="settings_source_code">الكود المصدر</string>
     <string name="settings_donations">التبرعات</string>
     <string name="settings_credits">الاعتمادات</string>

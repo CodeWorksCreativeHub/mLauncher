@@ -561,7 +561,13 @@ class DialogManager(val context: Context, val activity: Activity) {
 
     var flagSettingsBottomSheet: FontBottomSheetDialogLocked? = null
 
-    fun showFlagSettingsBottomSheet(context: Context, optionLabels: List<String>, settingFlags: String, default: String = "0") {
+    fun showFlagSettingsBottomSheet(
+        context: Context,
+        optionLabels: List<String>,
+        settingFlags: String,
+        default: String = "0",
+        onFlagsChanged: (List<Boolean>) -> Unit
+    ) {
         flagSettingsBottomSheet?.dismiss()
 
         HapticFeedbackService.trigger(
@@ -591,6 +597,7 @@ class DialogManager(val context: Context, val activity: Activity) {
                 setOnCheckedChangeListener { _, isChecked ->
                     currentFlags[index] = isChecked
                     prefs.saveMenuFlags(settingFlags, currentFlags)
+                    onFlagsChanged(currentFlags.toList()) // ✅ notify Compose with new data
                     HapticFeedbackService.trigger(
                         context,
                         HapticFeedbackService.EffectType.SELECT

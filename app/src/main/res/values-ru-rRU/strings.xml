@@ -343,11 +343,8 @@
     <string name="category">Категория</string>
     <string name="priority">Приоритет</string>
     <string name="settings_context_menu_title">Контекстное меню</string>
-    <string name="settings_context_menu_option">Выберите элементы для отображения</string>
     <string name="settings_home_buttons_title">Кнопки «Домой»</string>
-    <string name="settings_home_buttons_option">Выберите элементы для отображения</string>
     <string name="settings_applist_buttons_title">Кнопки списка приложений</string>
-    <string name="settings_applist_buttons_option">Выберите элементы для отображения</string>
     <string name="settings_source_code">Исходный код</string>
     <string name="settings_donations">Пожертвования</string>
     <string name="settings_credits">Кредиты</string>

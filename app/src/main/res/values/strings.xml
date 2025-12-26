@@ -381,6 +381,7 @@
     <string name="next">Next</string>
     <string name="start">Start</string>
     <string name="copy">Copy</string>
+    <string name="none">None</string>
     <string name="celsius">Celsius</string>
     <string name="fahrenheit">Fahrenheit</string>
 
@@ -437,13 +438,8 @@
     <string name="priority">Priority</string>
 
     <string name="settings_context_menu_title">Context Menu</string>
-    <string name="settings_context_menu_option">Select items to display</string>
-
     <string name="settings_home_buttons_title">Home Buttons</string>
-    <string name="settings_home_buttons_option">Select items to display</string>
-
     <string name="settings_applist_buttons_title">App List Buttons</string>
-    <string name="settings_applist_buttons_option">Select items to display</string>
 
     <string name="settings_source_code">Source Code</string>
     <string name="settings_donations">Donations</string>

@@ -343,11 +343,8 @@
     <string name="category">Categorie</string>
     <string name="priority">Prioritate</string>
     <string name="settings_context_menu_title">Meniu contextual</string>
-    <string name="settings_context_menu_option">Selectați elementele de afișat</string>
     <string name="settings_home_buttons_title">Butoane Acasă</string>
-    <string name="settings_home_buttons_option">Selectați elementele de afișat</string>
     <string name="settings_applist_buttons_title">Butoane din lista de aplicații</string>
-    <string name="settings_applist_buttons_option">Selectați elementele de afișat</string>
     <string name="settings_source_code">Cod sursă</string>
     <string name="settings_donations">Donații</string>
     <string name="settings_credits">Credite</string>
