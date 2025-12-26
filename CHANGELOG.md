@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 ### :sparkles: Enhancements:
 
+* Improve settings UI and state management ([b71182b7](https://github.com/CodeWorksCreativeHub/mLauncher/commit/b71182b7))
 * Add close icon to app drawer search view ([aaaa1b8a](https://github.com/CodeWorksCreativeHub/mLauncher/commit/aaaa1b8a))
 
 ### :bug: Bug Fixes:
