@@ -296,6 +296,7 @@
     <string name="next">Sonraki</string>
     <string name="start">Başlangıç</string>
     <string name="copy">Kopyala</string>
+    <string name="none">Hiçbiri</string>
     <string name="celsius">Santigrat derece</string>
     <string name="fahrenheit">Fahrenheit</string>
     <string name="home_button_phone">Telefon</string>

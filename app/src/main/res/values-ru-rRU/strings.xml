@@ -296,6 +296,7 @@
     <string name="next">Следующий</string>
     <string name="start">Начинать</string>
     <string name="copy">Копировать</string>
+    <string name="none">Никто</string>
     <string name="celsius">Цельсий</string>
     <string name="fahrenheit">Фаренгейт</string>
     <string name="home_button_phone">Телефон</string>

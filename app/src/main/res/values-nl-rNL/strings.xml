@@ -296,6 +296,7 @@
     <string name="next">Volgende</string>
     <string name="start">Begin</string>
     <string name="copy">Kopiëren</string>
+    <string name="none">Geen</string>
     <string name="celsius">Celsius</string>
     <string name="fahrenheit">Fahrenheit</string>
     <string name="home_button_phone">Telefoon</string>

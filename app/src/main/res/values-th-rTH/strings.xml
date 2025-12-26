@@ -296,6 +296,7 @@
     <string name="next">ต่อไป</string>
     <string name="start">เริ่ม</string>
     <string name="copy">สำเนา</string>
+    <string name="none">ไม่มี</string>
     <string name="celsius">เซลเซียส</string>
     <string name="fahrenheit">ฟาเรนไฮต์</string>
     <string name="home_button_phone">โทรศัพท์</string>
