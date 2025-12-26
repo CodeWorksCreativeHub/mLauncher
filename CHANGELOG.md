@@ -15,6 +15,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 ### :wrench: Code Quality:
 
+* Adjust spacing and padding in settings ([4e489d26](https://github.com/CodeWorksCreativeHub/mLauncher/commit/4e489d26))
 * Improve App Drawer search bar layout ([5e8a98d3](https://github.com/CodeWorksCreativeHub/mLauncher/commit/5e8a98d3))
 
 ## [1110300 (1.11.3.0) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.3.0) - (25, December 2025)
