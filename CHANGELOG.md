@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 ### :sparkles: Enhancements:
 
+* Relocate Expert Options easter egg to About section ([2fdf9809](https://github.com/CodeWorksCreativeHub/mLauncher/commit/2fdf9809))
 * Add increment/decrement buttons to slider dialog ([981f8d9f](https://github.com/CodeWorksCreativeHub/mLauncher/commit/981f8d9f))
 * Migrate to Material Design 3 ([803c8444](https://github.com/CodeWorksCreativeHub/mLauncher/commit/803c8444))
 
