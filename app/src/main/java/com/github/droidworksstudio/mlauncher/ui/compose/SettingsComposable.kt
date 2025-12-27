@@ -5,19 +5,26 @@ import android.text.method.LinkMovementMethod
 import android.util.TypedValue
 import android.view.View
 import androidx.annotation.DrawableRes
+import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -28,6 +35,8 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.toArgb
@@ -41,8 +50,6 @@ import androidx.compose.ui.viewinterop.AndroidView
 import com.github.creativecodecat.components.views.FontAppCompatTextView
 import com.github.droidworksstudio.mlauncher.services.HapticFeedbackService
 import com.github.droidworksstudio.mlauncher.style.SettingsTheme
-import com.github.droidworksstudio.mlauncher.style.textDisabled
-import com.github.droidworksstudio.mlauncher.style.textEnabled
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -431,67 +438,110 @@ object SettingsComposable {
     @Composable
     fun SettingsSwitch(
         text: String,
-        fontSize: TextUnit = TextUnit.Unspecified,
+        fontSize: TextUnit = 14.sp,
         titleColor: Color = SettingsTheme.typography.title.color,
         defaultState: Boolean = false,
         onCheckedChange: (Boolean) -> Unit
     ) {
         var isChecked by remember { mutableStateOf(defaultState) }
-
-        val resolvedFontSizeSp = if (fontSize != TextUnit.Unspecified) fontSize.value else 14f
+        // Extract font size and color from theme safely in composable scope
+        val resolvedFontSizeSp = if (fontSize != TextUnit.Unspecified) fontSize.value else 16f
         val context = LocalContext.current
 
-        Column(
+        Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 4.dp, horizontal = 16.dp)
                 .clickable {
                     isChecked = !isChecked
                     onCheckedChange(isChecked)
 
-                    // Haptic feedback
                     HapticFeedbackService.trigger(
-                        context = context,
-                        effectType = if (isChecked)
+                        context,
+                        if (isChecked)
                             HapticFeedbackService.EffectType.ON
                         else
                             HapticFeedbackService.EffectType.OFF
                     )
-                },
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.Start
+                }
+                .padding(horizontal = 16.dp, vertical = 12.dp),
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            // Title text
+
+            // Label
             AndroidView(
-                factory = { ctx ->
-                    FontAppCompatTextView(ctx).apply {
-                        textAlignment = View.TEXT_ALIGNMENT_VIEW_START
+                factory = { context ->
+                    FontAppCompatTextView(context).apply {
+                        this.text = text
                         setTextSize(TypedValue.COMPLEX_UNIT_SP, resolvedFontSizeSp)
+                        setTextColor(titleColor.toArgb())
+                        textAlignment = View.TEXT_ALIGNMENT_VIEW_START
                     }
                 },
-                modifier = Modifier.wrapContentHeight(),
-                update = { textView ->
-                    textView.text = text
-                    textView.setTextColor(titleColor.toArgb())
-                }
+                modifier = Modifier
+                    .weight(1f)
+                    .wrapContentHeight()
             )
 
-            // “Enabled/Disabled” text
-            AndroidView(
-                factory = { ctx ->
-                    FontAppCompatTextView(ctx).apply {
-                        setTextSize(TypedValue.COMPLEX_UNIT_SP, (resolvedFontSizeSp / 1.3).toFloat())
-                        textAlignment = View.TEXT_ALIGNMENT_VIEW_START
-                    }
-                },
-                modifier = Modifier.wrapContentHeight(),
-                update = { textView ->
-                    textView.text = if (isChecked) "✔" else "✖"
-                    textView.setTextColor(if (isChecked) textEnabled.toArgb() else textDisabled.toArgb())
-                }
+            // Custom switch
+            CustomSwitch(
+                checked = isChecked
             )
         }
     }
+
+
+    @Composable
+    fun CustomSwitch(
+        checked: Boolean,
+        modifier: Modifier = Modifier
+    ) {
+        val thumbSize = 14.dp
+        val trackWidth = 32.dp
+        val trackHeight = 16.dp
+
+        val thumbOffset by animateDpAsState(
+            targetValue = if (checked) trackWidth - thumbSize - 2.dp else 2.dp,
+            label = "thumbOffset"
+        )
+
+        Box(
+            modifier = modifier
+                .size(width = trackWidth, height = trackHeight)
+                .clip(RoundedCornerShape(trackHeight / 2))
+                .background(
+                    if (checked)
+                        Brush.verticalGradient(
+                            colors = listOf(
+                                Color(0xFF4CAF73),
+                                Color(0xFF2E8B57)
+                            )
+                        )
+                    else
+                        Brush.verticalGradient(
+                            colors = listOf(
+                                Color(0xFFD6D6D6),
+                                Color(0xFFD6D6D6)
+                            )
+                        )
+
+                )
+        ) {
+            Box(
+                modifier = Modifier
+                    .offset(x = thumbOffset)
+                    .size(thumbSize)
+                    .align(Alignment.CenterStart)
+                    .clip(CircleShape)
+                    .background(Color.White)
+                    .border(
+                        width = 1.dp,
+                        color = Color.Black.copy(alpha = 0.15f),
+                        shape = CircleShape
+                    )
+            )
+        }
+    }
+
 
     @Composable
     fun SettingsSelect(
