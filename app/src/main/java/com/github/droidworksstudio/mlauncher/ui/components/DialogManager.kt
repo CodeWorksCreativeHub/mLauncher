@@ -17,10 +17,12 @@ import android.widget.AbsListView
 import android.widget.ArrayAdapter
 import android.widget.CheckBox
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ListView
 import android.widget.SeekBar
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatImageButton
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.toColorInt
 import com.github.creativecodecat.components.views.FontBottomSheetDialogLocked
@@ -255,13 +257,13 @@ class DialogManager(val context: Context, val activity: Activity) {
             HapticFeedbackService.EffectType.CLICK
         )
 
-        // Determine if float mode is needed
+        // Determine float mode
         val isFloat = minValue is Float || maxValue is Float || currentValue is Float
-
         val scaleFactor = if (isFloat) steps else 1
+
         val scaledMin = (minValue.toFloat() * scaleFactor).toInt()
         val scaledMax = (maxValue.toFloat() * scaleFactor).toInt()
-        val scaledCurrent = (currentValue.toFloat() * scaleFactor).toInt()
+        var scaledCurrent = (currentValue.toFloat() * scaleFactor).toInt()
 
         // Outer layout
         val container = LinearLayout(context).apply {
@@ -283,10 +285,20 @@ class DialogManager(val context: Context, val activity: Activity) {
 
         // Value display
         val valueText = TextView(context).apply {
-            text = currentValue.toString()
+            text = if (isFloat) currentValue.toFloat().toString() else currentValue.toInt().toString()
             textSize = 16f
             gravity = Gravity.CENTER
             setPadding(0, 0, 0, 16)
+        }
+
+        fun commitValue() {
+            val value = if (isFloat) {
+                scaledCurrent.toFloat() / scaleFactor
+            } else {
+                scaledCurrent
+            }
+            valueText.text = value.toString()
+            onValueSelected(value)
         }
 
         // SeekBar
@@ -294,25 +306,17 @@ class DialogManager(val context: Context, val activity: Activity) {
             min = scaledMin
             max = scaledMax
             progress = scaledCurrent
+            layoutParams = LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f)
             setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
                 override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                    val value = if (isFloat) {
-                        (progress.toFloat() / scaleFactor)
-                    } else {
-                        progress
-                    }
+                    scaledCurrent = progress
+                    val value = if (isFloat) scaledCurrent.toFloat() / scaleFactor else scaledCurrent
                     valueText.text = value.toString()
                 }
 
                 override fun onStartTrackingTouch(seekBar: SeekBar?) {}
-
                 override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                    val value = if (isFloat) {
-                        (seekBar?.progress?.toFloat() ?: 0f) / scaleFactor
-                    } else {
-                        seekBar?.progress ?: 0
-                    }
-                    onValueSelected(value)
+                    commitValue()
                     HapticFeedbackService.trigger(
                         context,
                         HapticFeedbackService.EffectType.SELECT
@@ -321,11 +325,76 @@ class DialogManager(val context: Context, val activity: Activity) {
             })
         }
 
-        // Build and show layout
+        fun createCircleButton(
+            context: Context,
+            iconRes: Int
+        ): AppCompatImageButton {
+
+            val sizeDp = 20
+            val sizePx = (sizeDp * context.resources.displayMetrics.density).toInt()
+            val paddingDp = 2
+            val paddingPx = (paddingDp * context.resources.displayMetrics.density).toInt()
+
+            return AppCompatImageButton(context).apply {
+                setImageResource(iconRes)
+                scaleType = ImageView.ScaleType.CENTER_INSIDE
+
+                layoutParams = LinearLayout.LayoutParams(sizePx, sizePx).apply {
+                    marginStart = 4
+                    marginEnd = 4
+                }
+
+                background = GradientDrawable().apply {
+                    shape = GradientDrawable.OVAL
+                    setColor(ContextCompat.getColor(context, R.color.buttonTextPrimary))
+                }
+
+                // 👇 space around the icon
+                setPadding(paddingPx, paddingPx, paddingPx, paddingPx)
+
+                // 👇 required for tiny buttons
+                minimumWidth = 0
+                minimumHeight = 0
+            }
+        }
+
+        // Usage
+        val minusButton = createCircleButton(context, R.drawable.ic_minus).apply {
+            setOnClickListener {
+                if (scaledCurrent > scaledMin) {
+                    scaledCurrent--
+                    seekBar.progress = scaledCurrent
+                    commitValue()
+                }
+            }
+        }
+
+        val plusButton = createCircleButton(context, R.drawable.ic_plus).apply {
+            setOnClickListener {
+                if (scaledCurrent < scaledMax) {
+                    scaledCurrent++
+                    seekBar.progress = scaledCurrent
+                    commitValue()
+                }
+            }
+        }
+
+
+        // Horizontal layout for buttons + slider
+        val sliderLayout = LinearLayout(context).apply {
+            orientation = LinearLayout.HORIZONTAL
+            gravity = Gravity.CENTER_VERTICAL
+            addView(minusButton)
+            addView(seekBar)
+            addView(plusButton)
+        }
+
+        // Build layout
         container.addView(titleText)
         container.addView(valueText)
-        container.addView(seekBar)
+        container.addView(sliderLayout)
 
+        // Show bottom sheet
         sliderBottomSheet = FontBottomSheetDialogLocked(context).apply {
             setContentView(container)
             show()
