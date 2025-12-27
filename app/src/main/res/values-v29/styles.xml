@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.mLauncher" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.mLauncher" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:fontFamily">@android:fontFamily/system_font</item>
 
         <item name="android:forceDarkAllowed">false</item>
