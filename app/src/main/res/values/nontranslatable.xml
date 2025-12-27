@@ -7,13 +7,14 @@
     <string name="privacy_policy" translatable="false">Privacy Policy</string>
     <string name="privacy_policy_url" translatable="false">https://mlauncher.5646316.xyz/privacy.html</string>
 
-    <string name="created_by" translatable="false"><![CDATA[by <a href="https://5646316.xyz/">CodeWorks Creative Hub</a>]]></string>
+    <string name="created_by" translatable="false"><![CDATA[by <a href="https://github.com/CodeWorksCreativeHub/">CodeWorks Creative Hub</a>]]></string>
     <string name="github_link" translatable="false"><![CDATA[<a href="https://github.com/CodeWorksCreativeHub/mLauncher">GitHub</a>]]></string>
     <string name="sponsor_link" translatable="false"><![CDATA[<a href="https://github.com/sponsors/CreativeCodeCat">GitHub Sponsors</a><br>(Recurring)]]></string>
     <string name="libera_link" translatable="false"><![CDATA[<a href="https://liberapay.com/CreativeCodeCat/donate">Liberapay</a><br>(One Time)]]></string>
     <string name="coffee_link" translatable="false"><![CDATA[<a href="https://buymeacoffee.com/creativecodecat">BuyMeACoffee</a><br>(Recurring)]]></string>
     <string name="weather_link" translatable="false"><![CDATA[Weather data by <a href="https://open-meteo.com/">Open-Meteo.com</a> (<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>)]]></string>
     <string name="forked_link" translatable="false"><![CDATA[Forked from <a href="https://github.com/tanujnotes/Olauncher">Olauncher</a> (<a href="https://www.gnu.org/licenses/gpl-3.0.en.html">GPL-3.0</a>)]]></string>
+    <string name="privacy_policy_link" translatable="false"><![CDATA[Privacy Policy by <a href="https://mlauncher.5646316.xyz/privacy.html">5646316.xyz</a>]]></string>
 
     <!-- Font Stings -->
     <string name="settings_font_bitter" translatable="false">Bitter</string>

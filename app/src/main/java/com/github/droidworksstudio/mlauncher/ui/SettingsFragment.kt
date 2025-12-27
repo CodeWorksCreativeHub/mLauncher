@@ -97,7 +97,6 @@ import com.github.droidworksstudio.mlauncher.ui.compose.SettingsComposable.Setti
 import com.github.droidworksstudio.mlauncher.ui.compose.SettingsComposable.SettingsSelect
 import com.github.droidworksstudio.mlauncher.ui.compose.SettingsComposable.SettingsSwitch
 import com.github.droidworksstudio.mlauncher.ui.compose.SettingsComposable.SettingsTitle
-import com.github.droidworksstudio.mlauncher.ui.compose.SettingsComposable.TitleWithHtmlLink
 import com.github.droidworksstudio.mlauncher.ui.compose.SettingsComposable.TitleWithHtmlLinks
 import com.github.droidworksstudio.mlauncher.ui.compose.SettingsComposable.TopMainHeader
 import com.github.droidworksstudio.mlauncher.ui.iconpack.CustomIconSelectionActivity
@@ -491,7 +490,7 @@ class SettingsFragment : BaseFragment() {
                         descriptionFontSize = descriptionFontSize,
                         iconSize = iconSize,
                         onClick = { currentScreen = "about" },
-                        enableMultiClick = true,
+                        enableMultiClick = !toggledExpertOptions,
                         onMultiClick = { count ->
                             if (!prefs.enableExpertOptions) {
                                 if (count in 2..4) {
@@ -2688,13 +2687,21 @@ class SettingsFragment : BaseFragment() {
                         descriptionFontSize = descriptionFontSize
                     )
 
+                    TitleWithHtmlLinks(
+                        title = getLocalizedString(R.string.app_version),
+                        titleFontSize = descriptionFontSize,
+                    )
+
                     Spacer(modifier = Modifier.height(16.dp))
 
-                    TitleWithHtmlLink(
+                    TitleWithHtmlLinks(
                         title = getLocalizedString(R.string.settings_source_code),
-                        description = getLocalizedString(R.string.github_link),
+                        descriptions = listOf(
+                            getLocalizedString(R.string.github_link)
+                        ),
                         titleFontSize = titleFontSize,
-                        descriptionFontSize = descriptionFontSize
+                        descriptionFontSize = descriptionFontSize,
+                        columns = true
                     )
 
                     Spacer(modifier = Modifier.height(16.dp))
@@ -2717,6 +2724,7 @@ class SettingsFragment : BaseFragment() {
                         descriptions = listOf(
                             getLocalizedString(R.string.weather_link),
                             getLocalizedString(R.string.forked_link),
+                            getLocalizedString(R.string.privacy_policy_link)
                         ),
                         titleFontSize = titleFontSize,
                         descriptionFontSize = descriptionFontSize,

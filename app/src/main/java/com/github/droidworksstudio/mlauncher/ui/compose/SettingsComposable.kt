@@ -1,15 +1,16 @@
 package com.github.droidworksstudio.mlauncher.ui.compose
 
+import android.content.Intent
 import android.text.Html
-import android.text.method.LinkMovementMethod
+import android.text.style.URLSpan
 import android.util.TypedValue
-import android.view.View
 import androidx.annotation.DrawableRes
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -25,10 +26,9 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -40,13 +40,23 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.ExperimentalTextApi
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.TextLayoutResult
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.core.net.toUri
 import com.github.creativecodecat.components.views.FontAppCompatTextView
 import com.github.droidworksstudio.mlauncher.services.HapticFeedbackService
 import com.github.droidworksstudio.mlauncher.style.SettingsTheme
@@ -63,7 +73,7 @@ object SettingsComposable {
         onClick: () -> Unit = {},
         iconSize: Dp = 24.dp,
         fontColor: Color = SettingsTheme.typography.title.color,
-        titleFontSize: TextUnit = TextUnit.Unspecified
+        titleFontSize: TextUnit = 18.sp
     ) {
         Row(
             modifier = Modifier
@@ -71,32 +81,26 @@ object SettingsComposable {
                 .padding(top = 16.dp, start = 16.dp, end = 16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
+            // Icon on the left
             Image(
                 painter = painterResource(id = iconRes),
                 contentDescription = title,
                 colorFilter = ColorFilter.tint(SettingsTheme.color.image),
                 modifier = Modifier
-                    .clickable(onClick = onClick)
                     .size(iconSize)
+                    .clickable(onClick = onClick)
             )
 
-            Spacer(modifier = Modifier.weight(1f))
+            Spacer(modifier = Modifier.width(12.dp)) // small spacing between icon and title
 
-            AndroidView(
-                factory = {
-                    FontAppCompatTextView(it).apply {
-                        text = title
-                        setTextSize(
-                            TypedValue.COMPLEX_UNIT_SP,
-                            if (titleFontSize != TextUnit.Unspecified) titleFontSize.value else 18f
-                        )
-                        setTextColor(fontColor.toArgb()) // Optional
-                    }
-                },
-                modifier = Modifier.wrapContentSize()
+            // Title text
+            Text(
+                text = title,
+                fontSize = titleFontSize,
+                color = fontColor,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.weight(1f) // take remaining space
             )
-
-            Spacer(modifier = Modifier.weight(1f))
         }
     }
 
@@ -127,37 +131,24 @@ object SettingsComposable {
                     .let { if (onIconClick != null) it.clickable { onIconClick() } else it }
             )
 
-            // FontAppCompatTextView instead of Text
-            AndroidView(
-                factory = { context ->
-                    FontAppCompatTextView(context).apply {
-                        text = title
-                        setTextSize(
-                            TypedValue.COMPLEX_UNIT_SP,
-                            if (titleFontSize != TextUnit.Unspecified) titleFontSize.value else 18f
-                        )
-                        setTextColor(fontColor.toArgb())
-                        setPadding(0, 0, 0, 24)
-                    }
-                },
-                modifier = Modifier.wrapContentSize()
+            Text(
+                text = title,
+                fontSize = if (titleFontSize != TextUnit.Unspecified) titleFontSize else 18.sp,
+                color = fontColor,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier
+                    .wrapContentSize()
             )
 
+
             description?.let {
-                Spacer(modifier = Modifier.height(4.dp))
-                AndroidView(
-                    factory = { context ->
-                        FontAppCompatTextView(context).apply {
-                            text = Html.fromHtml(it, Html.FROM_HTML_MODE_LEGACY)
-                            setTextColor(fontColor.toArgb())
-                            setTextSize(
-                                TypedValue.COMPLEX_UNIT_SP,
-                                if (descriptionFontSize != TextUnit.Unspecified) descriptionFontSize.value else 12f
-                            )
-                            movementMethod = LinkMovementMethod.getInstance()
-                        }
-                    },
-                    modifier = Modifier.wrapContentHeight()
+                Spacer(modifier = Modifier.height(2.dp))
+
+                ClickableHtmlText(
+                    html = it,
+                    color = fontColor,
+                    fontSize = if (descriptionFontSize != TextUnit.Unspecified) descriptionFontSize else 12.sp,
+                    modifier = Modifier.wrapContentHeight(),
                 )
             }
         }
@@ -169,7 +160,7 @@ object SettingsComposable {
         description: String? = null,
         @DrawableRes iconRes: Int,
         onClick: () -> Unit = {},
-        onMultiClick: (Int) -> Unit = {}, // now takes tap count
+        onMultiClick: (Int) -> Unit = {},
         enableMultiClick: Boolean = false,
         titleFontSize: TextUnit = TextUnit.Unspecified,
         descriptionFontSize: TextUnit = TextUnit.Unspecified,
@@ -179,11 +170,14 @@ object SettingsComposable {
         multiClickCount: Int = 5,
         multiClickInterval: Long = 2000L
     ) {
-        var tapCount by remember { mutableIntStateOf(0) }
-        var lastTapTime by remember { mutableLongStateOf(0L) }
-
         val scope = rememberCoroutineScope()
-        var clickJob by remember { mutableStateOf<Job?>(null) }
+        val multiClickState = remember {
+            object {
+                var tapCount = 0
+                var lastTapTime = 0L
+                var clickJob: Job? = null
+            }
+        }
 
         Row(
             modifier = Modifier
@@ -195,25 +189,23 @@ object SettingsComposable {
                     }
 
                     val currentTime = System.currentTimeMillis()
-                    if (currentTime - lastTapTime > multiClickInterval) {
-                        tapCount = 0
+                    if (currentTime - multiClickState.lastTapTime > multiClickInterval) {
+                        multiClickState.tapCount = 0
                     }
 
-                    tapCount++
-                    lastTapTime = currentTime
-                    clickJob?.cancel()
+                    multiClickState.tapCount++
+                    multiClickState.lastTapTime = currentTime
+                    multiClickState.clickJob?.cancel()
 
-                    if (tapCount >= multiClickCount) {
-                        tapCount = 0
+                    if (multiClickState.tapCount >= multiClickCount) {
+                        multiClickState.tapCount = 0
                         onMultiClick(multiClickCount)
                     } else {
-                        onMultiClick(tapCount)
-                        clickJob = scope.launch {
+                        onMultiClick(multiClickState.tapCount)
+                        multiClickState.clickJob = scope.launch {
                             delay(multiClickInterval)
-                            if (tapCount == 1) {
-                                onClick()
-                            }
-                            tapCount = 0
+                            if (multiClickState.tapCount == 1) onClick()
+                            multiClickState.tapCount = 0
                         }
                     }
                 }
@@ -229,33 +221,20 @@ object SettingsComposable {
             Spacer(modifier = Modifier.width(12.dp))
 
             Column {
-                AndroidView(
-                    factory = { context ->
-                        FontAppCompatTextView(context).apply {
-                            text = title
-                            setTextColor(headerColor.toArgb())
-                            setTextSize(
-                                TypedValue.COMPLEX_UNIT_SP,
-                                if (titleFontSize != TextUnit.Unspecified) titleFontSize.value else 18f
-                            )
-                        }
-                    },
+                Text(
+                    text = title,
+                    color = headerColor,
+                    fontSize = if (titleFontSize != TextUnit.Unspecified) titleFontSize else 18.sp,
+                    fontWeight = FontWeight.Bold,
                     modifier = Modifier.wrapContentHeight()
                 )
 
                 description?.let {
                     Spacer(modifier = Modifier.height(1.dp))
-                    AndroidView(
-                        factory = { context ->
-                            FontAppCompatTextView(context).apply {
-                                text = it
-                                setTextColor(optionColor.toArgb())
-                                setTextSize(
-                                    TypedValue.COMPLEX_UNIT_SP,
-                                    if (descriptionFontSize != TextUnit.Unspecified) descriptionFontSize.value else 12f
-                                )
-                            }
-                        },
+                    Text(
+                        text = it,
+                        color = optionColor,
+                        fontSize = if (descriptionFontSize != TextUnit.Unspecified) descriptionFontSize else 12.sp,
                         modifier = Modifier.wrapContentHeight()
                     )
                 }
@@ -264,64 +243,14 @@ object SettingsComposable {
     }
 
     @Composable
-    fun TitleWithHtmlLink(
-        title: String,
-        description: String? = null,
-        titleFontSize: TextUnit = TextUnit.Unspecified,
-        descriptionFontSize: TextUnit = TextUnit.Unspecified,
-        titleColor: Color = SettingsTheme.typography.title.color,
-        descriptionColor: Color = SettingsTheme.typography.title.color
-    ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            AndroidView(
-                factory = { ctx ->
-                    FontAppCompatTextView(ctx).apply {
-                        text = title
-                        setTextColor(titleColor.toArgb())
-                        setTextSize(
-                            TypedValue.COMPLEX_UNIT_SP,
-                            if (titleFontSize != TextUnit.Unspecified) titleFontSize.value else 18f
-                        )
-                        movementMethod = LinkMovementMethod.getInstance()
-                    }
-                },
-                modifier = Modifier.wrapContentHeight()
-            )
-
-            description?.let {
-                Spacer(modifier = Modifier.height(4.dp))
-                AndroidView(
-                    factory = { context ->
-                        FontAppCompatTextView(context).apply {
-                            text = Html.fromHtml(it, Html.FROM_HTML_MODE_LEGACY)
-                            setTextColor(descriptionColor.toArgb())
-                            setTextSize(
-                                TypedValue.COMPLEX_UNIT_SP,
-                                if (descriptionFontSize != TextUnit.Unspecified) descriptionFontSize.value else 12f
-                            )
-                            movementMethod = LinkMovementMethod.getInstance()
-                        }
-                    },
-                    modifier = Modifier.wrapContentHeight()
-                )
-            }
-        }
-    }
-
-    @Composable
     fun TitleWithHtmlLinks(
         title: String,
         descriptions: List<String> = emptyList(),
-        titleFontSize: TextUnit = TextUnit.Unspecified,
-        descriptionFontSize: TextUnit = TextUnit.Unspecified,
+        titleFontSize: TextUnit = 18.sp,
+        descriptionFontSize: TextUnit = 12.sp,
         titleColor: Color = SettingsTheme.typography.title.color,
         descriptionColor: Color = SettingsTheme.typography.title.color,
-        columns: Boolean = false // if true, use Column for links
+        columns: Boolean = false
     ) {
         Column(
             modifier = Modifier
@@ -330,74 +259,100 @@ object SettingsComposable {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             // Title
-            AndroidView(
-                factory = { ctx ->
-                    FontAppCompatTextView(ctx).apply {
-                        text = title
-                        setTextColor(titleColor.toArgb())
-                        setTextSize(
-                            TypedValue.COMPLEX_UNIT_SP,
-                            if (titleFontSize != TextUnit.Unspecified) titleFontSize.value else 18f
-                        )
-                    }
-                },
+            Text(
+                text = title,
+                color = titleColor,
+                fontSize = titleFontSize,
+                fontWeight = FontWeight.Bold,
                 modifier = Modifier.wrapContentHeight()
             )
 
             if (descriptions.isNotEmpty()) {
+                val layoutModifier = Modifier
+                    .wrapContentHeight()
+                    .padding(vertical = if (columns) 2.dp else 0.dp, horizontal = if (!columns) 12.dp else 0.dp)
+
                 if (columns) {
-                    // Use Column layout for links
-                    Column(
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        descriptions.forEach { htmlLink ->
-                            AndroidView(
-                                factory = { ctx ->
-                                    FontAppCompatTextView(ctx).apply {
-                                        text = Html.fromHtml(htmlLink, Html.FROM_HTML_MODE_LEGACY)
-                                        setTextColor(descriptionColor.toArgb())
-                                        setTextSize(
-                                            TypedValue.COMPLEX_UNIT_SP,
-                                            if (descriptionFontSize != TextUnit.Unspecified) descriptionFontSize.value else 12f
-                                        )
-                                        movementMethod = LinkMovementMethod.getInstance()
-                                    }
-                                },
-                                modifier = Modifier
-                                    .wrapContentHeight()
-                                    .padding(vertical = 2.dp)
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        Spacer(modifier = Modifier.height(4.dp))
+                        descriptions.forEach { htmlString ->
+                            ClickableHtmlText(
+                                html = htmlString,
+                                color = descriptionColor,
+                                fontSize = descriptionFontSize,
+                                modifier = layoutModifier
                             )
                         }
                     }
                 } else {
-                    // Default: Row layout for links
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.Center,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        descriptions.forEach { htmlLink ->
-                            AndroidView(
-                                factory = { ctx ->
-                                    FontAppCompatTextView(ctx).apply {
-                                        text = Html.fromHtml(htmlLink, Html.FROM_HTML_MODE_LEGACY)
-                                        setTextColor(descriptionColor.toArgb())
-                                        setTextSize(
-                                            TypedValue.COMPLEX_UNIT_SP,
-                                            if (descriptionFontSize != TextUnit.Unspecified) descriptionFontSize.value else 12f
-                                        )
-                                        movementMethod = LinkMovementMethod.getInstance()
-                                    }
-                                },
-                                modifier = Modifier
-                                    .wrapContentHeight()
-                                    .padding(horizontal = 12.dp)
+                        descriptions.forEach { htmlString ->
+                            ClickableHtmlText(
+                                html = htmlString,
+                                color = descriptionColor,
+                                fontSize = descriptionFontSize,
+                                modifier = layoutModifier
                             )
                         }
                     }
                 }
             }
         }
+    }
+
+    @OptIn(ExperimentalTextApi::class)
+    @Composable
+    fun ClickableHtmlText(
+        html: String,
+        color: Color,
+        fontSize: TextUnit,
+        modifier: Modifier = Modifier,
+        underlineLinks: Boolean = true // optional parameter
+    ) {
+        val context = LocalContext.current
+        val spanned = remember(html) { Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY) }
+
+        val annotatedString = buildAnnotatedString {
+            append(spanned.toString())
+            val urlSpans = spanned.getSpans(0, spanned.length, URLSpan::class.java)
+            urlSpans.forEach { span ->
+                val start = spanned.getSpanStart(span)
+                val end = spanned.getSpanEnd(span)
+
+                addStyle(
+                    SpanStyle(
+                        color = color, // same as normal text
+                        textDecoration = if (underlineLinks) TextDecoration.Underline else TextDecoration.None
+                    ),
+                    start,
+                    end
+                )
+                addStringAnnotation(tag = "URL", annotation = span.url, start = start, end = end)
+            }
+        }
+
+        val layoutResult = remember { mutableStateOf<TextLayoutResult?>(null) }
+
+        Text(
+            text = annotatedString,
+            style = TextStyle(color = color, fontSize = fontSize),
+            modifier = modifier.pointerInput(Unit) {
+                detectTapGestures { offset ->
+                    val result = layoutResult.value ?: return@detectTapGestures
+                    val position = result.getOffsetForPosition(offset)
+                    annotatedString.getStringAnnotations(tag = "URL", start = position, end = position)
+                        .firstOrNull()?.let { annotation ->
+                            val intent = Intent(Intent.ACTION_VIEW, annotation.item.toUri())
+                            context.startActivity(intent)
+                        }
+                }
+            },
+            onTextLayout = { layoutResult.value = it }
+        )
     }
 
     @Composable
@@ -468,15 +423,11 @@ object SettingsComposable {
         ) {
 
             // Label
-            AndroidView(
-                factory = { context ->
-                    FontAppCompatTextView(context).apply {
-                        this.text = text
-                        setTextSize(TypedValue.COMPLEX_UNIT_SP, resolvedFontSizeSp)
-                        setTextColor(titleColor.toArgb())
-                        textAlignment = View.TEXT_ALIGNMENT_VIEW_START
-                    }
-                },
+            Text(
+                text = text,
+                fontSize = resolvedFontSizeSp.sp,
+                color = titleColor,
+                textAlign = TextAlign.Start,
                 modifier = Modifier
                     .weight(1f)
                     .wrapContentHeight()
@@ -562,30 +513,20 @@ object SettingsComposable {
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.Start
         ) {
-            AndroidView(
-                factory = { context ->
-                    FontAppCompatTextView(context).apply {
-                        setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSizeSp)
-                    }
-                },
-                modifier = Modifier.wrapContentHeight(),
-                update = { textView ->
-                    textView.text = title
-                    textView.setTextColor(titleColor.toArgb())
-                }
+            // Title
+            Text(
+                text = title,
+                fontSize = fontSizeSp.sp,
+                color = titleColor,
+                modifier = Modifier.wrapContentHeight()
             )
 
-            AndroidView(
-                factory = { context ->
-                    FontAppCompatTextView(context).apply {
-                        setTextSize(TypedValue.COMPLEX_UNIT_SP, (fontSizeSp / 1.3).toFloat())
-                    }
-                },
-                modifier = Modifier.wrapContentHeight(),
-                update = { textView ->
-                    textView.text = option
-                    textView.setTextColor(optionColor.toArgb())
-                }
+            // Option / secondary text
+            Text(
+                text = option,
+                fontSize = (fontSizeSp / 1.3f).sp,
+                color = optionColor,
+                modifier = Modifier.wrapContentHeight()
             )
         }
     }
