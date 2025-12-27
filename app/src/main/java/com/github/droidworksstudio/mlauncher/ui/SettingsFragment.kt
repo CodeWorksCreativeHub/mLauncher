@@ -382,7 +382,7 @@ class SettingsFragment : BaseFragment() {
                         titleFontSize = titleFontSize,
                         descriptionFontSize = descriptionFontSize,
                         iconSize = iconSize,
-                        onClick = { currentScreen = "features" },
+                        onClick = { currentScreen = "features" }
                     )
 
                     // 2. Look & Feel
@@ -393,7 +393,7 @@ class SettingsFragment : BaseFragment() {
                         titleFontSize = titleFontSize,
                         descriptionFontSize = descriptionFontSize,
                         iconSize = iconSize,
-                        onClick = { currentScreen = "look_feel" },
+                        onClick = { currentScreen = "look_feel" }
                     )
 
                     // 3. Gestures
@@ -404,7 +404,7 @@ class SettingsFragment : BaseFragment() {
                         titleFontSize = titleFontSize,
                         descriptionFontSize = descriptionFontSize,
                         iconSize = iconSize,
-                        onClick = { currentScreen = "gestures" },
+                        onClick = { currentScreen = "gestures" }
                     )
 
                     // 4. Notes
@@ -415,7 +415,7 @@ class SettingsFragment : BaseFragment() {
                         titleFontSize = titleFontSize,
                         descriptionFontSize = descriptionFontSize,
                         iconSize = iconSize,
-                        onClick = { currentScreen = "notes" },
+                        onClick = { currentScreen = "notes" }
                     )
 
                     // 5. Private Spaces (if supported)
@@ -447,7 +447,7 @@ class SettingsFragment : BaseFragment() {
                         titleFontSize = titleFontSize,
                         descriptionFontSize = descriptionFontSize,
                         iconSize = iconSize,
-                        onClick = { showFavoriteApps() },
+                        onClick = { showFavoriteApps() }
                     )
 
                     SettingsHomeItem(
@@ -457,7 +457,7 @@ class SettingsFragment : BaseFragment() {
                         titleFontSize = titleFontSize,
                         descriptionFontSize = descriptionFontSize,
                         iconSize = iconSize,
-                        onClick = { showHiddenApps() },
+                        onClick = { showHiddenApps() }
                     )
 
                     SettingsHomeItem(
@@ -467,10 +467,10 @@ class SettingsFragment : BaseFragment() {
                         titleFontSize = titleFontSize,
                         descriptionFontSize = descriptionFontSize,
                         iconSize = iconSize,
-                        onClick = { currentScreen = "advanced" },
+                        onClick = { currentScreen = "advanced" }
                     )
 
-                    if (prefs.enableExpertOptions) {
+                    if (toggledExpertOptions) {
                         SettingsHomeItem(
                             title = getLocalizedString(R.string.settings_expert_title),
                             description = getLocalizedString(R.string.settings_expert_description),
@@ -478,7 +478,7 @@ class SettingsFragment : BaseFragment() {
                             titleFontSize = titleFontSize,
                             descriptionFontSize = descriptionFontSize,
                             iconSize = iconSize,
-                            onClick = { currentScreen = "expert" },
+                            onClick = { currentScreen = "expert" }
                         )
                     }
 
@@ -491,6 +491,18 @@ class SettingsFragment : BaseFragment() {
                         descriptionFontSize = descriptionFontSize,
                         iconSize = iconSize,
                         onClick = { currentScreen = "about" },
+                        enableMultiClick = true,
+                        onMultiClick = { count ->
+                            if (!prefs.enableExpertOptions) {
+                                if (count in 2..4) {
+                                    showInstantToast(getLocalizedString(R.string.expert_options_tap_hint, count))
+                                } else if (count == 5) {
+                                    showInstantToast(getLocalizedString(R.string.expert_options_unlocked))
+                                    toggledExpertOptions = !prefs.enableExpertOptions
+                                    prefs.enableExpertOptions = toggledExpertOptions
+                                }
+                            }
+                        }
                     )
 
                     if (isGestureNavigationEnabled(context)) {
@@ -639,7 +651,7 @@ class SettingsFragment : BaseFragment() {
                             toggledHideSearchView = !prefs.hideSearchView
                             prefs.hideSearchView = toggledHideSearchView
 
-                            if (prefs.hideSearchView) {
+                            if (toggledHideSearchView) {
                                 toggledAutoShowKeyboard = false
                                 prefs.autoShowKeyboard = toggledAutoShowKeyboard
                             }
@@ -864,7 +876,7 @@ class SettingsFragment : BaseFragment() {
                         }
                     )
 
-                    if (prefs.homePagesNum > 1) {
+                    if (selectedHomePagesNum > 1) {
                         SettingsSwitch(
                             text = getLocalizedString(R.string.enable_home_pager),
                             fontSize = titleFontSize,
@@ -2529,18 +2541,6 @@ class SettingsFragment : BaseFragment() {
                                 Process.myUserHandle(),
                                 BuildConfig.APPLICATION_ID
                             )
-                        },
-                        enableMultiClick = true,
-                        onMultiClick = { count ->
-                            if (!prefs.enableExpertOptions) {
-                                if (count in 2..4) {
-                                    showInstantToast(getLocalizedString(R.string.expert_options_tap_hint, count))
-                                } else if (count == 5) {
-                                    showInstantToast(getLocalizedString(R.string.expert_options_unlocked))
-                                    toggledExpertOptions = !prefs.enableExpertOptions
-                                    prefs.enableExpertOptions = toggledExpertOptions
-                                }
-                            }
                         }
                     )
 
