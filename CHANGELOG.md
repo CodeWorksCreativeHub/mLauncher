@@ -12,6 +12,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 ### :wrench: Code Quality:
 
+* Replace AndroidView with Compose Text ([710ef168](https://github.com/CodeWorksCreativeHub/mLauncher/commit/710ef168))
 * Replace XML switch with Compose implementation ([d35ddef9](https://github.com/CodeWorksCreativeHub/mLauncher/commit/d35ddef9))
 
 ## [1110301 (1.11.3.1) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.3.1) - (26, December 2025)
