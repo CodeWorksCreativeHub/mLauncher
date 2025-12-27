@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [1.11.3.1 → Unreleased](https://github.com/CodeWorksCreativeHub/mLauncher/tree/main) - In Development
+
+### :sparkles: Enhancements:
+
+* Add increment/decrement buttons to slider dialog ([981f8d9f](https://github.com/CodeWorksCreativeHub/mLauncher/commit/981f8d9f))
+* Migrate to Material Design 3 ([803c8444](https://github.com/CodeWorksCreativeHub/mLauncher/commit/803c8444))
+
+### :wrench: Code Quality:
+
+* Replace XML switch with Compose implementation ([d35ddef9](https://github.com/CodeWorksCreativeHub/mLauncher/commit/d35ddef9))
+
 ## [1110301 (1.11.3.1) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.3.1) - (26, December 2025)
 
 ### :sparkles: Enhancements:
