@@ -987,11 +987,15 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
         if (diff > 0) {
             // Add new apps
             for (i in oldAppsNum until newAppsNum) {
-                val view = layoutInflater.inflate(R.layout.home_app_button, null) as TextView
-                view.apply {
+                val homeAppLabel = layoutInflater.inflate(R.layout.home_app_button, null) as TextView
+                homeAppLabel.apply {
                     textSize = prefs.appSize.toFloat()
                     id = i
-                    text = prefs.getHomeAppModel(i).activityLabel
+                    text = if (prefs.getHomeAppModel(i).activityPackage.isBlank()) {
+                        getLocalizedString(R.string.select_app)
+                    } else {
+                        prefs.getHomeAppModel(i).activityLabel
+                    }
                     getHomeAppsGestureListener()
                     setOnClickListener(this@HomeFragment)
 
@@ -1140,7 +1144,7 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
                     }
                 }
                 // Add the view to the layout
-                binding.homeAppsLayout.addView(view)
+                binding.homeAppsLayout.addView(homeAppLabel)
             }
         } else if (diff < 0) {
             // Remove extra apps

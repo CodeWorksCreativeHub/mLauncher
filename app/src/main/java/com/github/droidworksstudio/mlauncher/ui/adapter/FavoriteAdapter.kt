@@ -22,7 +22,7 @@ class FavoriteAdapter(
     private val prefs: Prefs
 ) : RecyclerView.Adapter<FavoriteAdapter.AppViewHolder>() {
 
-    inner class AppViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class AppViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val appTextView: TextView = itemView.findViewById(R.id.homeAppLabel)
     }
 
