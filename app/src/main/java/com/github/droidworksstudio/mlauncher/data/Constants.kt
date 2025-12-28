@@ -187,62 +187,10 @@ object Constants {
         }
 
         @Composable
-        override fun string(): String {
-            return when (this) {
-                System -> getLocalizedString(R.string.system_default)
-                Arabic -> getLocalizedString(R.string.lang_arabic)
-                Czech -> getLocalizedString(R.string.lang_czech)
-                Dutch -> getLocalizedString(R.string.lang_dutch)
-                English -> getLocalizedString(R.string.lang_english)
-                French -> getLocalizedString(R.string.lang_french)
-                German -> getLocalizedString(R.string.lang_german)
-                Hebrew -> getLocalizedString(R.string.lang_hebrew)
-                Italian -> getLocalizedString(R.string.lang_italian)
-                Japanese -> getLocalizedString(R.string.lang_japanese)
-                Korean -> getLocalizedString(R.string.lang_korean)
-                Lithuanian -> getLocalizedString(R.string.lang_lithuanian)
-                Polish -> getLocalizedString(R.string.lang_polish)
-                Portuguese -> getLocalizedString(R.string.lang_portuguese)
-                Romanian -> getLocalizedString(R.string.lang_romanian)
-                Russian -> getLocalizedString(R.string.lang_russian)
-                Slovak -> getLocalizedString(R.string.lang_slovak)
-                Spanish -> getLocalizedString(R.string.lang_spanish)
-                Thai -> getLocalizedString(R.string.lang_thai)
-                Turkish -> getLocalizedString(R.string.lang_turkish)
-            }
-        }
+        override fun string(): String = getString()
 
 
         fun locale(): Locale {
-            return Locale.forLanguageTag(value())
-        }
-
-        private fun value(): String {
-            return when (this) {
-                System -> Locale.getDefault().language
-                Arabic -> "ar"
-                Czech -> "cs"
-                Dutch -> "nl"
-                English -> "en"
-                French -> "fr"
-                German -> "de"
-                Hebrew -> "iw"
-                Italian -> "it"
-                Japanese -> "ja"
-                Korean -> "ko"
-                Lithuanian -> "lt"
-                Polish -> "pl"
-                Portuguese -> "pt"
-                Romanian -> "ro"
-                Russian -> "ru"
-                Slovak -> "sk"
-                Spanish -> "es"
-                Thai -> "th"
-                Turkish -> "tr"
-            }
-        }
-
-        fun timezone(): Locale {
             return Locale.forLanguageTag(zone())
         }
 

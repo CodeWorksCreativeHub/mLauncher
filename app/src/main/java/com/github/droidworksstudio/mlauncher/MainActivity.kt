@@ -21,6 +21,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.github.droidworksstudio.common.CrashHandler
+import com.github.droidworksstudio.common.LauncherLocaleManager
 import com.github.droidworksstudio.common.showLongToast
 import com.github.droidworksstudio.mlauncher.data.Constants
 import com.github.droidworksstudio.mlauncher.data.Migration
@@ -118,6 +119,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        LauncherLocaleManager.applyAppLanguage()
 
         // Enables edge-to-edge mode
         enableEdgeToEdge()

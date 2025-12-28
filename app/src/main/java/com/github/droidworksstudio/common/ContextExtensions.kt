@@ -12,7 +12,6 @@ import android.content.IntentFilter
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.content.res.Configuration
-import android.content.res.Resources
 import android.net.Uri
 import android.os.BatteryManager
 import android.os.Bundle
@@ -309,29 +308,18 @@ fun Context.isBiometricEnabled(): Boolean {
     }
 }
 
-private fun currentAppResources(): Resources {
+fun getLocalizedString(@StringRes resId: Int, vararg args: Any): String {
     val context = Mlauncher.getContext()
-    val prefs = Prefs(context)
-    val locale = Locale.forLanguageTag(prefs.appLanguage.locale().toString())
-    return LocalizedResourcesProvider.getResources(context, locale)
-}
-
-fun getLocalizedString(
-    @StringRes stringResId: Int,
-    vararg args: Any
-): String {
-    val res = currentAppResources()
     return if (args.isEmpty()) {
-        res.getString(stringResId)
+        context.getString(resId)
     } else {
-        res.getString(stringResId, *args)
+        context.getString(resId, *args)
     }
 }
 
-fun getLocalizedStringArray(
-    @ArrayRes arrayResId: Int
-): Array<String> {
-    return currentAppResources().getStringArray(arrayResId)
+fun getLocalizedStringArray(@ArrayRes resId: Int): Array<String> {
+    val context = Mlauncher.getContext()
+    return context.resources.getStringArray(resId)
 }
 
 
@@ -380,7 +368,7 @@ fun Context.requestRuntimePermission(
 }
 
 fun Context.getCurrentTimestamp(prefs: Prefs): String {
-    val timezone = prefs.appLanguage.timezone()
+    val timezone = prefs.appLanguage.locale()
     val is24HourFormat = DateFormat.is24HourFormat(this)
     val best12 = DateFormat.getBestDateTimePattern(
         timezone,
