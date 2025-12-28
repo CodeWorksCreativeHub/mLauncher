@@ -52,6 +52,7 @@ import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.github.droidworksstudio.common.AppLogger
+import com.github.droidworksstudio.common.LocalizedResourcesProvider
 import com.github.droidworksstudio.common.getLocalizedString
 import com.github.droidworksstudio.common.isBiometricEnabled
 import com.github.droidworksstudio.common.isGestureNavigationEnabled
@@ -587,6 +588,7 @@ class SettingsFragment : BaseFragment() {
                                         val newLanguage = languageEntries[newLanguageIndex]
                                         selectedLanguage = newLanguage // Update state
                                         prefs.appLanguage = newLanguage // Persist in preferences
+                                        LocalizedResourcesProvider.clearCache()
                                         requireActivity().recreate() // force reload with new language
                                     }
                                 }

@@ -12,6 +12,7 @@ import android.content.IntentFilter
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.content.res.Configuration
+import android.content.res.Resources
 import android.net.Uri
 import android.os.BatteryManager
 import android.os.Bundle
@@ -308,36 +309,31 @@ fun Context.isBiometricEnabled(): Boolean {
     }
 }
 
-fun getLocalizedString(@StringRes stringResId: Int, vararg args: Any): String {
-    // Get the context from Mlauncher. It's guaranteed to never be null
+private fun currentAppResources(): Resources {
     val context = Mlauncher.getContext()
+    val prefs = Prefs(context)
+    val locale = Locale.forLanguageTag(prefs.appLanguage.locale().toString())
+    return LocalizedResourcesProvider.getResources(context, locale)
+}
 
-    val localPrefs = Prefs(context)
-    val locale = Locale.forLanguageTag(localPrefs.appLanguage.locale().toString())
-    val config = Configuration(context.resources.configuration)
-    config.setLocale(locale)
-    val localizedContext = context.createConfigurationContext(config)
-
-    // Return the localized string with or without arguments
+fun getLocalizedString(
+    @StringRes stringResId: Int,
+    vararg args: Any
+): String {
+    val res = currentAppResources()
     return if (args.isEmpty()) {
-        localizedContext.getString(stringResId)  // No arguments, use only the string resource
+        res.getString(stringResId)
     } else {
-        localizedContext.getString(stringResId, *args)  // Pass arguments to getString()
+        res.getString(stringResId, *args)
     }
 }
 
-fun getLocalizedStringArray(@ArrayRes arrayResId: Int): Array<String> {
-    // Get the context from Mlauncher. It's guaranteed to never be null
-    val context = Mlauncher.getContext()
-
-    val localPrefs = Prefs(context)
-    val locale = Locale.forLanguageTag(localPrefs.appLanguage.locale().toString())
-    val config = Configuration(context.resources.configuration)
-    config.setLocale(locale)
-    val localizedContext = context.createConfigurationContext(config)
-    // Return the localized string array
-    return localizedContext.resources.getStringArray(arrayResId)
+fun getLocalizedStringArray(
+    @ArrayRes arrayResId: Int
+): Array<String> {
+    return currentAppResources().getStringArray(arrayResId)
 }
+
 
 fun Context.openAccessibilitySettings() {
     val intent = Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS)
