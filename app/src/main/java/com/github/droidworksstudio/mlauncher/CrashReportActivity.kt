@@ -26,6 +26,7 @@ import kotlinx.coroutines.launch
 import org.json.JSONObject
 import java.net.HttpURLConnection
 import java.net.URL
+import java.util.concurrent.TimeUnit
 
 class CrashReportActivity : AppCompatActivity() {
     private var pkgName: String = emptyString()
@@ -78,7 +79,7 @@ class CrashReportActivity : AppCompatActivity() {
 
 
     private fun sendCrashReportNative() {
-        val cooldownMs = 14_400_000L // 4 hours
+        val cooldownMs = TimeUnit.HOURS.toMillis(2)
         val now = System.currentTimeMillis()
         val lastSent = getLastSent()
         val canSend = now - lastSent >= cooldownMs
@@ -112,8 +113,7 @@ class CrashReportActivity : AppCompatActivity() {
 
                 // Build crash JSON
                 val crashJson = JSONObject().apply {
-                    put("thread", "main")
-                    put("message", "App crashed")
+                    put("namespace", packageName)
                     put("device", JSONObject(deviceMap))
                     put("timestamp", System.currentTimeMillis())
                     put("logFileBase64", logBase64)
