@@ -12,6 +12,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 ### :wrench: Code Quality:
 
+* Migrate to AppCompatDelegate for language handling ([9a196f64](https://github.com/CodeWorksCreativeHub/mLauncher/commit/9a196f64))
 * Cache localized resources to improve performance ([bf9999d9](https://github.com/CodeWorksCreativeHub/mLauncher/commit/bf9999d9))
 * Make AppViewHolder a static nested class ([9ada91e9](https://github.com/CodeWorksCreativeHub/mLauncher/commit/9ada91e9))
 * Replace AndroidView with Compose Text ([710ef168](https://github.com/CodeWorksCreativeHub/mLauncher/commit/710ef168))
