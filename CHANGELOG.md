@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [1.11.3.2 → Unreleased](https://github.com/CodeWorksCreativeHub/mLauncher/tree/main) - In Development
+
+### :wrench: Code Quality:
+
+* Adopt Gradle version catalog for plugins ([42b75b56](https://github.com/CodeWorksCreativeHub/mLauncher/commit/42b75b56))
+
 ## [1110302 (1.11.3.2) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.3.2) - (29, December 2025)
 
 ### :sparkles: Enhancements:
