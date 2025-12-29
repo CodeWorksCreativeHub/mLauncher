@@ -19,6 +19,10 @@ All notable changes to this project will be documented in this file. See [conven
 * Replace AndroidView with Compose Text ([710ef168](https://github.com/CodeWorksCreativeHub/mLauncher/commit/710ef168))
 * Replace XML switch with Compose implementation ([d35ddef9](https://github.com/CodeWorksCreativeHub/mLauncher/commit/d35ddef9))
 
+### :broom: Maintenance & Cleanup:
+
+* Rename package from `droidworksstudio` to `codeworkscreativehub` ([f6d7534d](https://github.com/CodeWorksCreativeHub/mLauncher/commit/f6d7534d))
+
 ## [1110301 (1.11.3.1) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.3.1) - (26, December 2025)
 
 ### :sparkles: Enhancements:
