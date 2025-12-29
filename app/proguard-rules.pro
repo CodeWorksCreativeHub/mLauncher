@@ -25,7 +25,7 @@
 -dontwarn javax.annotation.processing.SupportedOptions
 
 # Keep device info fields
--keepclassmembers class com.github.droidworksstudio.mlauncher.helper.DeviceInfo {
+-keepclassmembers class com.github.codeworkscreativehub.mlauncher.helper.DeviceInfo {
     *;
 }
 

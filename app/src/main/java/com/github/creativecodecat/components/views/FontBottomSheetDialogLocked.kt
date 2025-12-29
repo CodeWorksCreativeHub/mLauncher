@@ -12,10 +12,10 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatDialog
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
-import com.github.droidworksstudio.common.isGestureNavigationEnabled
-import com.github.droidworksstudio.mlauncher.R
-import com.github.droidworksstudio.mlauncher.helper.CustomFontView
-import com.github.droidworksstudio.mlauncher.helper.FontManager
+import com.github.codeworkscreativehub.common.isGestureNavigationEnabled
+import com.github.codeworkscreativehub.mlauncher.R
+import com.github.codeworkscreativehub.mlauncher.helper.CustomFontView
+import com.github.codeworkscreativehub.mlauncher.helper.FontManager
 import com.google.android.material.card.MaterialCardView
 
 /**

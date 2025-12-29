@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.github.droidworksstudio.mlauncher.ui.HomeFragment"
+        android:name="com.github.codeworkscreativehub.mlauncher.ui.HomeFragment"
         android:label="mainFragment"
         tools:layout="@layout/fragment_home">
         <action
@@ -35,7 +35,7 @@
 
     <fragment
         android:id="@+id/appListFragment"
-        android:name="com.github.droidworksstudio.mlauncher.ui.AppDrawerFragment"
+        android:name="com.github.codeworkscreativehub.mlauncher.ui.AppDrawerFragment"
         android:label="appListFragment"
         tools:layout="@layout/fragment_app_drawer">
         <action
@@ -61,25 +61,25 @@
 
     <fragment
         android:id="@+id/notesManagerFragment"
-        android:name="com.github.droidworksstudio.mlauncher.ui.notes.NotesManagerFragment"
+        android:name="com.github.codeworkscreativehub.mlauncher.ui.notes.NotesManagerFragment"
         android:label="notesManagerFragment"
         tools:layout="@layout/fragment_notes_manager" />
 
     <fragment
         android:id="@+id/appFavoriteFragment"
-        android:name="com.github.droidworksstudio.mlauncher.ui.FavoriteFragment"
+        android:name="com.github.codeworkscreativehub.mlauncher.ui.FavoriteFragment"
         android:label="appFavoriteFragment"
         tools:layout="@layout/fragment_favorite" />
 
     <fragment
         android:id="@+id/locationSearchFragment"
-        android:name="com.github.droidworksstudio.mlauncher.ui.LocationSearchFragment"
+        android:name="com.github.codeworkscreativehub.mlauncher.ui.LocationSearchFragment"
         android:label="appLocationSearchFragment"
         tools:layout="@layout/fragment_location_search" />
 
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.github.droidworksstudio.mlauncher.ui.SettingsFragment"
+        android:name="com.github.codeworkscreativehub.mlauncher.ui.SettingsFragment"
         android:label="SettingsFragment"
         android:layout="@layout/fragment_settings">
         <action

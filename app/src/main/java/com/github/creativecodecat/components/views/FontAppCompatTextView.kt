@@ -4,8 +4,8 @@ import android.content.Context
 import android.graphics.Typeface
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
-import com.github.droidworksstudio.mlauncher.helper.CustomFontView
-import com.github.droidworksstudio.mlauncher.helper.FontManager
+import com.github.codeworkscreativehub.mlauncher.helper.CustomFontView
+import com.github.codeworkscreativehub.mlauncher.helper.FontManager
 
 
 class FontAppCompatTextView @JvmOverloads constructor(

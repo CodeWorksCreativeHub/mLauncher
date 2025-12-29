@@ -182,7 +182,7 @@
         android:layout_margin="8dp"
         android:visibility="gone">
 
-        <com.github.droidworksstudio.mlauncher.ui.components.AZSidebarView
+        <com.github.codeworkscreativehub.mlauncher.ui.components.AZSidebarView
             android:id="@+id/azSidebar"
             android:layout_width="32dp"
             android:layout_height="match_parent" />

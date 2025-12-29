@@ -35,7 +35,7 @@ val applicationName = when (type) {
 }
 
 android {
-    namespace = "com.github.droidworksstudio.mlauncher"
+    namespace = "com.github.codeworkscreativehub.mlauncher"
     compileSdk = 36
 
     defaultConfig {

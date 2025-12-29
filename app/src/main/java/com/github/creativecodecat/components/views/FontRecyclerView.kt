@@ -6,9 +6,9 @@ import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.github.droidworksstudio.common.AppLogger
-import com.github.droidworksstudio.mlauncher.helper.CustomFontView
-import com.github.droidworksstudio.mlauncher.helper.FontManager
+import com.github.codeworkscreativehub.common.AppLogger
+import com.github.codeworkscreativehub.mlauncher.helper.CustomFontView
+import com.github.codeworkscreativehub.mlauncher.helper.FontManager
 
 class FontRecyclerView @JvmOverloads constructor(
     context: Context,
