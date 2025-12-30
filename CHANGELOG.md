@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file. See [conven
 
 ## [1.11.3.2 → Unreleased](https://github.com/CodeWorksCreativeHub/mLauncher/tree/main) - In Development
 
+### :bug: Bug Fixes:
+
+* Improve reliability of opening the default SMS app ([0aebba45](https://github.com/CodeWorksCreativeHub/mLauncher/commit/0aebba45))
+
 ### :wrench: Code Quality:
 
 * Adopt Gradle version catalog for plugins ([42b75b56](https://github.com/CodeWorksCreativeHub/mLauncher/commit/42b75b56))
