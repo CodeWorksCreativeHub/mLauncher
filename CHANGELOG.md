@@ -10,6 +10,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 ### :wrench: Code Quality:
 
+* Check for internet before showing crash dialog ([c7cafa34](https://github.com/CodeWorksCreativeHub/mLauncher/commit/c7cafa34))
 * Adopt Gradle version catalog for plugins ([42b75b56](https://github.com/CodeWorksCreativeHub/mLauncher/commit/42b75b56))
 
 ## [1110302 (1.11.3.2) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.3.2) - (29, December 2025)
