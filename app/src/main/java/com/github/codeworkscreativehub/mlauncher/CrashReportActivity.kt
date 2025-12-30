@@ -12,7 +12,6 @@ import androidx.core.content.edit
 import androidx.core.net.toUri
 import androidx.lifecycle.lifecycleScope
 import com.github.codeworkscreativehub.common.getLocalizedString
-import com.github.codeworkscreativehub.mlauncher.R
 import com.github.codeworkscreativehub.mlauncher.helper.emptyString
 import com.github.codeworkscreativehub.mlauncher.helper.getDeviceInfo
 import com.github.codeworkscreativehub.mlauncher.helper.getDeviceInfoJson
@@ -41,23 +40,25 @@ class CrashReportActivity : AppCompatActivity() {
             0
         ).versionName.toString()
 
+
         // Check for internet connection before sending crash report
         if (isInternetAvailable()) {
-            sendCrashReportNative()
+            //    sendCrashReportNative()
+            // Show a dialog to ask if the user wants to report the crash
+            MaterialAlertDialogBuilder(this)
+                .setTitle(getLocalizedString(R.string.acra_crash))
+                .setMessage(getLocalizedString(R.string.acra_dialog_text).format(pkgName))
+                .setPositiveButton(getLocalizedString(R.string.acra_send_report)) { _, _ ->
+                    sendCrashReport(this)
+                }
+                .setNegativeButton(getLocalizedString(R.string.acra_dont_send)) { _, _ ->
+                    restartApp()
+                }
+                .setCancelable(false)
+                .show()
+        } else {
+            finish()
         }
-
-        // Show a dialog to ask if the user wants to report the crash
-        MaterialAlertDialogBuilder(this)
-            .setTitle(getLocalizedString(R.string.acra_crash))
-            .setMessage(getLocalizedString(R.string.acra_dialog_text).format(pkgName))
-            .setPositiveButton(getLocalizedString(R.string.acra_send_report)) { _, _ ->
-                sendCrashReport(this)
-            }
-            .setNegativeButton(getLocalizedString(R.string.acra_dont_send)) { _, _ ->
-                restartApp()
-            }
-            .setCancelable(false)
-            .show()
     }
 
     // Function to check internet connectivity
