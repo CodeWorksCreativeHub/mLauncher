@@ -22,6 +22,7 @@ import android.provider.AlarmClock
 import android.provider.CalendarContract
 import android.provider.MediaStore
 import android.provider.Settings
+import android.provider.Telephony
 import android.text.format.DateFormat
 import android.view.LayoutInflater
 import android.view.View
@@ -131,8 +132,18 @@ fun Context.openTextMessagesApp() {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK
         }
         this.startActivity(intent)
-    } catch (e: Exception) {
-        AppLogger.d("openTextMessagesApp", e.toString())
+    } catch (_: Exception) {
+        try {
+            val defaultSmsPackage = Telephony.Sms.getDefaultSmsPackage(this)
+
+            if (defaultSmsPackage != null) {
+                val intent = packageManager.getLaunchIntentForPackage(defaultSmsPackage)
+                intent?.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
+            }
+        } catch (e: Exception) {
+            AppLogger.d("openTextMessagesApp", e.toString())
+        }
     }
     CrashHandler.logUserAction("Text Messages App Launched")
 }
