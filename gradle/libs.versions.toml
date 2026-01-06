@@ -30,7 +30,7 @@ constraintlayout = "2.2.1"
 constraintlayout-compose = "1.1.1"
 
 # Compose Versions
-activity-compose = "1.12.0"
+activity-compose = "1.12.2"
 compose-android = "1.10.0"
 compose-material = "1.10.0"
 compose-animation = "1.10.0"
