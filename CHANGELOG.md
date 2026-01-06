@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
-## [1.11.3.3](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.3.3) - (06, January 2026)
+## [1110303 (1.11.3.3) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.3.3) - (06, January 2026)
 
 ### :sparkles: Enhancements:
 
@@ -24,7 +24,7 @@ All notable changes to this project will be documented in this file. See [conven
 * Updated Language Files. ([#977](https://github.com/CodeWorksCreativeHub/mLauncher/pull/977)) ([c7850232](https://github.com/CodeWorksCreativeHub/mLauncher/commit/c7850232))
 * Updated Language Files. ([#976](https://github.com/CodeWorksCreativeHub/mLauncher/pull/976)) ([51970918](https://github.com/CodeWorksCreativeHub/mLauncher/commit/51970918))
 
-## [1.11.3.2](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.3.2) - (29, December 2025)
+## [1110302 (1.11.3.2) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.3.2) - (29, December 2025)
 
 ### :sparkles: Enhancements:
 
@@ -45,7 +45,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 * Rename package from `droidworksstudio` to `codeworkscreativehub` ([f6d7534d](https://github.com/CodeWorksCreativeHub/mLauncher/commit/f6d7534d))
 
-## [1.11.3.1](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.3.1) - (26, December 2025)
+## [1110301 (1.11.3.1) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.3.1) - (26, December 2025)
 
 ### :sparkles: Enhancements:
 
@@ -65,7 +65,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 * Updated Language Files. ([#966](https://github.com/CodeWorksCreativeHub/mLauncher/pull/966)) ([e8c02382](https://github.com/CodeWorksCreativeHub/mLauncher/commit/e8c02382))
 
-## [1.11.3.0](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.3.0) - (25, December 2025)
+## [1110300 (1.11.3.0) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.3.0) - (25, December 2025)
 
 ### :sparkles: Enhancements:
 
@@ -75,7 +75,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 * Convert search bar to ConstraintLayout to fix alignment ([b04b71c3](https://github.com/CodeWorksCreativeHub/mLauncher/commit/b04b71c3))
 
-## [1.11.2.8](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.8) - (22, December 2025)
+## [1110208 (1.11.2.8) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.8) - (22, December 2025)
 
 ### :bug: Bug Fixes:
 
@@ -84,7 +84,7 @@ All notable changes to this project will be documented in this file. See [conven
 * Add rate limit to crash reporting ([f1e47959](https://github.com/CodeWorksCreativeHub/mLauncher/commit/f1e47959))
 * Correct pin/unpin icon logic in context menu ([53752245](https://github.com/CodeWorksCreativeHub/mLauncher/commit/53752245))
 
-## [1.11.2.7](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.7) - (19, November 2025)
+## [1110207 (1.11.2.7) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.7) - (19, November 2025)
 
 ### :sparkles: Enhancements:
 
@@ -94,7 +94,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 * Add rules for DeviceInfo and Moshi ([bf067e79](https://github.com/CodeWorksCreativeHub/mLauncher/commit/bf067e79))
 
-## [1.11.2.6](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.6) - (17, November 2025)
+## [1110206 (1.11.2.6) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.6) - (17, November 2025)
 
 ### :sparkles: Enhancements:
 
@@ -111,13 +111,13 @@ All notable changes to this project will be documented in this file. See [conven
 * Add comments to app filtering logic in MainViewModel ([ccafe0b0](https://github.com/CodeWorksCreativeHub/mLauncher/commit/ccafe0b0))
 * Optimize list sorting and indexing logic ([d1571acb](https://github.com/CodeWorksCreativeHub/mLauncher/commit/d1571acb))
 
-## [1.11.2.5](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.5) - (21, October 2025)
+## [1110205 (1.11.2.5) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.5) - (21, October 2025)
 
 ### :bug: Bug Fixes:
 
 * prevent icon pack icons from showing in app list when disabled ([6a3d504b](https://github.com/CodeWorksCreativeHub/mLauncher/commit/6a3d504b))
 
-## [1.11.2.4](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.4) - (20, October 2025)
+## [1110204 (1.11.2.4) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.4) - (20, October 2025)
 
 ### :sparkles: Enhancements:
 
