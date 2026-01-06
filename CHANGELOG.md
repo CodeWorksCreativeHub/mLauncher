@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 ### :bug: Bug Fixes:
 
+* Capitalize Czech language name ([639948c1](https://github.com/CodeWorksCreativeHub/mLauncher/commit/639948c1))
 * Improve reliability of opening the default SMS app ([0aebba45](https://github.com/CodeWorksCreativeHub/mLauncher/commit/0aebba45))
 
 ### :wrench: Code Quality:
