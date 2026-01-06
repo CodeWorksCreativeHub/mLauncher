@@ -25,7 +25,6 @@ import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.toColorInt
-import com.github.creativecodecat.components.views.FontBottomSheetDialogLocked
 import com.github.codeworkscreativehub.common.getCpuBatteryInfo
 import com.github.codeworkscreativehub.common.getLocalizedString
 import com.github.codeworkscreativehub.common.getRamInfo
@@ -42,6 +41,7 @@ import com.github.codeworkscreativehub.mlauncher.helper.themeDownloadButton
 import com.github.codeworkscreativehub.mlauncher.helper.utils.AppReloader
 import com.github.codeworkscreativehub.mlauncher.helper.wordofthedayDownloadButton
 import com.github.codeworkscreativehub.mlauncher.services.HapticFeedbackService
+import com.github.creativecodecat.components.views.FontBottomSheetDialogLocked
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class DialogManager(val context: Context, val activity: Activity) {
@@ -106,6 +106,25 @@ class DialogManager(val context: Context, val activity: Activity) {
         backupRestoreBottomSheet?.show() // ✅ Correct method call
     }
 
+    // Function to handle the Clear Data action, with a confirmation dialog
+    private fun confirmClearData() {
+        MaterialAlertDialogBuilder(context)
+            .setTitle(getLocalizedString(R.string.advanced_settings_backup_restore_clear_title))
+            .setMessage(getLocalizedString(R.string.advanced_settings_backup_restore_clear_description))
+            .setPositiveButton(getLocalizedString(R.string.advanced_settings_clear_yes)) { _, _ ->
+                clearData()
+            }
+            .setNegativeButton(getLocalizedString(R.string.advanced_settings_clear_no), null)
+            .show()
+    }
+
+    private fun clearData() {
+        prefs = Prefs(context)
+        prefs.clear()
+
+        AppReloader.restartApp(context)
+    }
+
     var saveLoadThemeBottomSheet: FontBottomSheetDialogLocked? = null
 
     fun showSaveLoadThemeBottomSheet() {
@@ -157,11 +176,52 @@ class DialogManager(val context: Context, val activity: Activity) {
             (activity as MainActivity).restoreThemeBackup()
         })
 
+        // Add Clear Option
+        layout.addView(createItem(getLocalizedString(R.string.advanced_settings_theme_clear)) {
+            confirmClearTheme()
+        })
+
         // Create and show the LockedBottomSheetDialog
         saveLoadThemeBottomSheet = FontBottomSheetDialogLocked(context).apply {
             setContentView(layout)
         }
         saveLoadThemeBottomSheet?.show()
+    }
+
+    private fun confirmClearTheme() {
+        MaterialAlertDialogBuilder(context)
+            .setTitle(getLocalizedString(R.string.advanced_settings_theme_clear_title))
+            .setMessage(getLocalizedString(R.string.advanced_settings_theme_clear_description))
+            .setPositiveButton(getLocalizedString(R.string.advanced_settings_clear_yes)) { _, _ ->
+                clearTheme()
+            }
+            .setNegativeButton(getLocalizedString(R.string.advanced_settings_clear_no), null)
+            .show()
+    }
+
+    fun clearTheme() {
+        val prefs = Prefs(context)
+        val keys = listOf(
+            "BACKGROUND_COLOR",
+            "APP_COLOR",
+            "DATE_COLOR",
+            "ALARM_CLOCK_COLOR",
+            "CLOCK_COLOR",
+            "BATTERY_COLOR",
+            "DAILY_WORD_COLOR",
+            "NOTES_BACKGROUND_COLOR",
+            "BUBBLE_BACKGROUND_COLOR",
+            "BUBBLE_MESSAGE_COLOR",
+            "BUBBLE_TIMEDATE_COLOR",
+            "BUBBLE_CATEGORY_COLOR",
+            "INPUT_MESSAGE_COLOR",
+            "INPUT_MESSAGEHINT_COLOR"
+
+        )
+        keys.forEach { prefs.remove(it) }
+        if (context is Activity) {
+            context.recreate()
+        }
     }
 
     var saveDownloadWOTDBottomSheet: FontBottomSheetDialogLocked? = null
@@ -211,6 +271,11 @@ class DialogManager(val context: Context, val activity: Activity) {
             (activity as MainActivity).restoreWordsBackup()
         })
 
+        // Add Clear Option
+        layout.addView(createItem(getLocalizedString(R.string.advanced_settings_wotd_clear)) {
+            confirmClearWOTD()
+        })
+
         // Create and show the LockedBottomSheetDialog
         saveDownloadWOTDBottomSheet = FontBottomSheetDialogLocked(context).apply {
             setContentView(layout)
@@ -218,24 +283,23 @@ class DialogManager(val context: Context, val activity: Activity) {
         saveDownloadWOTDBottomSheet?.show()
     }
 
-
-    // Function to handle the Clear Data action, with a confirmation dialog
-    private fun confirmClearData() {
+    private fun confirmClearWOTD() {
         MaterialAlertDialogBuilder(context)
-            .setTitle(getLocalizedString(R.string.advanced_settings_backup_restore_clear_title))
-            .setMessage(getLocalizedString(R.string.advanced_settings_backup_restore_clear_description))
-            .setPositiveButton(getLocalizedString(R.string.advanced_settings_backup_restore_clear_yes)) { _, _ ->
-                clearData()
+            .setTitle(getLocalizedString(R.string.advanced_settings_wotd_clear_title))
+            .setMessage(getLocalizedString(R.string.advanced_settings_wotd_clear_description))
+            .setPositiveButton(getLocalizedString(R.string.advanced_settings_clear_yes)) { _, _ ->
+                clearWOTD()
             }
-            .setNegativeButton(getLocalizedString(R.string.advanced_settings_backup_restore_clear_no), null)
+            .setNegativeButton(getLocalizedString(R.string.advanced_settings_clear_no), null)
             .show()
     }
 
-    private fun clearData() {
-        prefs = Prefs(context)
-        prefs.clear()
-
-        AppReloader.restartApp(context)
+    fun clearWOTD() {
+        val prefs = Prefs(context)
+        prefs.remove("WORD_LIST")
+        if (context is Activity) {
+            context.recreate()
+        }
     }
 
     var sliderBottomSheet: FontBottomSheetDialogLocked? = null
