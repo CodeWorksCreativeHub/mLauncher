@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 ### :wrench: Code Quality:
 
+* Refactor language change implementation ([2b7c7d77](https://github.com/CodeWorksCreativeHub/mLauncher/commit/2b7c7d77))
 * Check for internet before showing crash dialog ([c7cafa34](https://github.com/CodeWorksCreativeHub/mLauncher/commit/c7cafa34))
 * Adopt Gradle version catalog for plugins ([42b75b56](https://github.com/CodeWorksCreativeHub/mLauncher/commit/42b75b56))
 
