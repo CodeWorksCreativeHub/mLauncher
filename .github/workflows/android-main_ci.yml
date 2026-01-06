@@ -34,9 +34,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
-      - name: Test Maven Central access
-        run: curl -I https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-stdlib/2.0.21/kotlin-stdlib-2.0.21.pom
-
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 

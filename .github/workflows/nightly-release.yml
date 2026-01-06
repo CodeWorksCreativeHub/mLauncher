@@ -53,18 +53,11 @@ jobs:
 
       - name: Build with Gradle
         run: ./gradlew clean && ./gradlew assembleNightlyRelease --refresh-dependencies
-
-      - name: Sign APK - Nightly
-        uses: ilharp/sign-android-release@v2.0.0
-        # ID used to access action output
-        id: sign_app_nightly
-        with:
-          releaseDir: app/build/outputs/apk/nightly/release
-          signingKey: ${{ secrets.SIGNINGKEY_BASE64 }}
-          keyAlias: ${{ secrets.KEY_ALIAS }}
-          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
-          keyPassword: ${{ secrets.KEY_PASSWORD }}
-          buildToolsVersion: 35.0.0
+        env:
+          KEY_STORE_FILE: ${{ secrets.SIGNINGKEY_BASE64 }}       # optional if using a file from env
+          KEY_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
 
       - name: Extract Version
         id: extract_version

@@ -17,13 +17,13 @@ dependencyResolutionManagement {
     repositories {
         google() // for Android dependencies
         gradlePluginPortal() // for plugins
+        maven("https://maven.pkg.jetbrains.space/kotlin/p/kotlin/dev")
         mavenCentral {
             metadataSources {
                 mavenPom()
                 artifact()
             }
         } // for Kotlin stdlib
-        maven("https://jitpack.io")
     }
 }
 
