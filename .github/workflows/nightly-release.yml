@@ -86,6 +86,12 @@ jobs:
           echo "version=$version" >> $GITHUB_ENV
         shell: bash
 
+      - name: Create Git Tag
+        run: |
+          git tag nightly-${{ env.version }}
+          git push origin nightly-${{ env.version }}
+        shell: bash
+
       - name: Rename files
         run: |
           mkdir -p ./build/release/
@@ -95,14 +101,12 @@ jobs:
       - name: Create and Upload Release
         uses: softprops/action-gh-release@v2.3.2
         with:
-          tag_name: nightly
+          tag_name: nightly-${{ env.version }}
           name: Nightly Release ${{ env.version }}
           body: "![GitHub Downloads (total, specific tag)](https://img.shields.io/github/downloads/CodeWorksCreativeHub/mLauncher/nightly/total)"
           append_body: false
-          files: |
-            ./build/release/mLauncher-Nightly-Signed.apk
+          files: ./build/release/mLauncher-Nightly-Signed.apk
           prerelease: true
           generate_release_notes: true
         env:
-          version: ${{ env.version }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
