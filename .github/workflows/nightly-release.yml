@@ -20,20 +20,21 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          release_id=$(curl -sSf -H "Authorization: Bearer $GITHUB_TOKEN" "https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/tags/nightly" | jq -r '.id')
-          if [ -n "$release_id" ]; then
-            # Delete the release
-            curl -sSf \
-              -H "Authorization: Bearer $GITHUB_TOKEN" \
-              -X DELETE \
-              "https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/${release_id}"
+          old_releases=$(curl -sSf -H "Authorization: Bearer $GITHUB_TOKEN" \
+          "https://api.github.com/repos/${GITHUB_REPOSITORY}/releases" | jq -r '.[] | select(.tag_name | startswith("nightly-")) | .id + " " + .tag_name')
           
-            # Delete the tag
-            curl -sSf \
-              -H "Authorization: Bearer $GITHUB_TOKEN" \
-              -X DELETE \
-              "https://api.github.com/repos/${GITHUB_REPOSITORY}/git/refs/tags/nightly"
-          fi
+          for release in $old_releases; do
+          release_id=$(echo $release | cut -d' ' -f1)
+          tag_name=$(echo $release | cut -d' ' -f2)
+          
+          # Delete release
+          curl -sSf -H "Authorization: Bearer $GITHUB_TOKEN" \
+            -X DELETE "https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/${release_id}"
+          
+          # Delete tag
+          curl -sSf -H "Authorization: Bearer $GITHUB_TOKEN" \
+            -X DELETE "https://api.github.com/repos/${GITHUB_REPOSITORY}/git/refs/tags/${tag_name}"
+            done
 
   build:
     name: Build, Sign & Release
