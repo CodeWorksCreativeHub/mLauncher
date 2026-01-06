@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
-## [nightly 111](https://github.com/CodeWorksCreativeHub/mLauncher/tree/nightly-111) - (06, January 2026)
+## [nightly-111](https://github.com/CodeWorksCreativeHub/mLauncher/tree/nightly-111) - (06, January 2026)
 
 ### :bug: Bug Fixes:
 
