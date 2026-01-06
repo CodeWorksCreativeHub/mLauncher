@@ -15,6 +15,10 @@ All notable changes to this project will be documented in this file. See [conven
 * Check for internet before showing crash dialog ([c7cafa34](https://github.com/CodeWorksCreativeHub/mLauncher/commit/c7cafa34))
 * Adopt Gradle version catalog for plugins ([42b75b56](https://github.com/CodeWorksCreativeHub/mLauncher/commit/42b75b56))
 
+### :globe_with_meridians: Localization:
+
+* Updated Language Files. ([#976](https://github.com/CodeWorksCreativeHub/mLauncher/pull/976)) ([51970918](https://github.com/CodeWorksCreativeHub/mLauncher/commit/51970918))
+
 ## [1110302 (1.11.3.2) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.3.2) - (29, December 2025)
 
 ### :sparkles: Enhancements:
