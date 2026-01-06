@@ -34,12 +34,16 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
+      - name: Test Maven Central access
+        run: curl -I https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-stdlib/2.0.21/kotlin-stdlib-2.0.21.pom
+
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
       - name: Build with Gradle
         run: ./gradlew clean && ./gradlew assembleProdDebug --refresh-dependencies
         env:
+          JAVA_TOOL_OPTIONS: "-Dhttps.protocols=TLSv1.2"
           KEY_STORE_FILE: ${{ secrets.SIGNINGKEY_BASE64 }}       # optional if using a file from env
           KEY_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}

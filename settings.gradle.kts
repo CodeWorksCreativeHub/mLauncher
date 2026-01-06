@@ -12,16 +12,25 @@ plugins {
     id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
 }
 
+pluginManagement {
+    repositories {
+        gradlePluginPortal() // for plugins
+        mavenCentral()       // for Kotlin stdlib
+        google()             // for Android dependencies
+    }
+}
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
-        google()
+        google() // for Android dependencies
+        gradlePluginPortal() // for plugins
         mavenCentral {
             metadataSources {
                 mavenPom()
                 artifact()
             }
-        }
+        } // for Kotlin stdlib
         maven("https://jitpack.io")
     }
 }
