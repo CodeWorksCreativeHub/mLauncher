@@ -11,6 +11,12 @@ jobs:
     name: Build, Sign & Release
     if: "!startsWith(github.ref_name, 'nightly')"
     runs-on: ubuntu-latest
+    env:
+      KEY_STORE_FILE: ${{ secrets.SIGNINGKEY_BASE64 }}       # optional if using a file from env
+      KEY_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
+      KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+      KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+
     steps:
       - name: Checkout project
         uses: actions/checkout@v6.0.1
@@ -25,38 +31,22 @@ jobs:
           distribution: 'temurin'
           cache: gradle
 
-      - uses: actions/cache@v5.0.1
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
-
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      - name: Build
-        run: ./gradlew clean && ./gradlew assembleProdRelease && ./gradlew bundleProdRelease
+      - name: Stop Gradle daemons
+        run: ./gradlew --stop
 
-      - name: Sign APK
-        uses: ilharp/sign-android-release@v2.0.0
-        # ID used to access action output
-        id: sign_app_apk
-        with:
-          releaseDir: app/build/outputs/apk/prod/release
-          signingKey: ${{ secrets.SIGNINGKEY_BASE64 }}
-          keyAlias: ${{ secrets.KEY_ALIAS }}
-          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
-          keyPassword: ${{ secrets.KEY_PASSWORD }}
-          buildToolsVersion: 35.0.0
+      - name: Build
+        run: ./gradlew clean assembleProdRelease --refresh-dependencies --no-daemon && ./gradlew clean bundleProdRelease --refresh-dependencies --no-daemon
+        env:
+          JAVA_TOOL_OPTIONS: "-Dhttps.protocols=TLSv1.2"
 
       - name: Release to GitHub
         uses: svenstaro/upload-release-action@2.11.3
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: ${{steps.sign_app_apk.outputs.signedFile}}
+          file: app/build/outputs/apk/prob/release/app-prod-release.apk
           asset_name: MultiLauncher-${{ github.ref_name }}-Signed.apk
           tag: ${{ github.ref }}
           overwrite: true
@@ -70,23 +60,11 @@ jobs:
           tag: ${{ github.ref }}
           overwrite: true
 
-      - name: Sign AAB
-        uses: ilharp/sign-android-release@v2.0.0
-        # ID used to access action output
-        id: sign_app_aab
-        with:
-          releaseDir: app/build/outputs/bundle/prodRelease/
-          signingKey: ${{ secrets.SIGNINGKEY_BASE64 }}
-          keyAlias: ${{ secrets.KEY_ALIAS }}
-          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
-          keyPassword: ${{ secrets.KEY_PASSWORD }}
-          buildToolsVersion: 35.0.0
-
       - name: Release to GitHub
         uses: svenstaro/upload-release-action@2.11.3
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: ${{steps.sign_app_aab.outputs.signedFile}}
+          file: app/build/outputs/bundle/prodRelease/app-prod-release.aab
           asset_name: MultiLauncher-${{ github.ref_name }}-Signed.aab
           tag: ${{ github.ref }}
           overwrite: true

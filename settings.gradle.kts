@@ -2,9 +2,11 @@
 
 pluginManagement {
     repositories {
-        gradlePluginPortal()
-        google()
-        mavenCentral()
+        google()             // for Android dependencies
+        gradlePluginPortal() // for plugins
+        maven("https://maven.pkg.jetbrains.space/kotlin/p/kotlin/dev")
+        maven("https://jitpack.io")
+        mavenCentral()       // for Kotlin stdlib
     }
 }
 
@@ -15,14 +17,11 @@ plugins {
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
-        google()
-        mavenCentral {
-            metadataSources {
-                mavenPom()
-                artifact()
-            }
-        }
+        google() // for Android dependencies
+        gradlePluginPortal() // for plugins
+        maven("https://maven.pkg.jetbrains.space/kotlin/p/kotlin/dev")
         maven("https://jitpack.io")
+        mavenCentral()       // for Kotlin stdlib
     }
 }
 

@@ -11,6 +11,12 @@ jobs:
   build:
     name: Build, Sign & Upload
     runs-on: ubuntu-latest
+    env:
+      KEY_STORE_FILE: ${{ secrets.SIGNINGKEY_BASE64 }}       # optional if using a file from env
+      KEY_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
+      KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+      KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+
     steps:
       - name: Checkout project
         uses: actions/checkout@v6.0.1
@@ -25,17 +31,13 @@ jobs:
           distribution: 'temurin'
           cache: gradle
 
-      - uses: actions/cache@v5.0.1
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
-
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
+      - name: Stop Gradle daemons
+        run: ./gradlew --stop
+
       - name: Build with Gradle
-        run: ./gradlew clean && ./gradlew assembleProdDebug
+        run: ./gradlew clean assembleProdDebug --refresh-dependencies --no-daemon
+        env:
+          JAVA_TOOL_OPTIONS: "-Dhttps.protocols=TLSv1.2"
