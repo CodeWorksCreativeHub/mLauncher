@@ -1,1 +1,7 @@
 /build
+/release
+/prod
+/beta
+/alpha
+/nightly
+/tmp
