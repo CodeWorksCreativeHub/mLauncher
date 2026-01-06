@@ -39,18 +39,11 @@ jobs:
 
       - name: Build
         run: ./gradlew clean && ./gradlew assembleProdRelease --refresh-dependencies && ./gradlew bundleProdRelease --refresh-dependencies
-
-      - name: Sign APK
-        uses: ilharp/sign-android-release@v2.0.0
-        # ID used to access action output
-        id: sign_app_apk
-        with:
-          releaseDir: app/build/outputs/apk/prod/release
-          signingKey: ${{ secrets.SIGNINGKEY_BASE64 }}
-          keyAlias: ${{ secrets.KEY_ALIAS }}
-          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
-          keyPassword: ${{ secrets.KEY_PASSWORD }}
-          buildToolsVersion: 35.0.0
+        env:
+          KEY_STORE_FILE: ${{ secrets.SIGNINGKEY_BASE64 }}       # optional if using a file from env
+          KEY_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
 
       - name: Release to GitHub
         uses: svenstaro/upload-release-action@2.11.3
@@ -69,18 +62,6 @@ jobs:
           asset_name: MultiLauncher-${{ github.ref_name }}-mapping.txt
           tag: ${{ github.ref }}
           overwrite: true
-
-      - name: Sign AAB
-        uses: ilharp/sign-android-release@v2.0.0
-        # ID used to access action output
-        id: sign_app_aab
-        with:
-          releaseDir: app/build/outputs/bundle/prodRelease/
-          signingKey: ${{ secrets.SIGNINGKEY_BASE64 }}
-          keyAlias: ${{ secrets.KEY_ALIAS }}
-          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
-          keyPassword: ${{ secrets.KEY_PASSWORD }}
-          buildToolsVersion: 35.0.0
 
       - name: Release to GitHub
         uses: svenstaro/upload-release-action@2.11.3

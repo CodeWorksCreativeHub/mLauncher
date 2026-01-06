@@ -39,3 +39,8 @@ jobs:
 
       - name: Build with Gradle
         run: ./gradlew clean && ./gradlew assembleProdDebug --refresh-dependencies
+        env:
+          KEY_STORE_FILE: ${{ secrets.SIGNINGKEY_BASE64 }}       # optional if using a file from env
+          KEY_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
