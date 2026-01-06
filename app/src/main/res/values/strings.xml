@@ -249,23 +249,32 @@
     <string name="advanced_settings_backup_restore_restore">Restore</string>
     <string name="advanced_settings_backup_restore_clear">Clear All Data</string>
 
+    <string name="advanced_settings_backup_restore_clear_title">Clear Preferences</string>
+    <string name="advanced_settings_backup_restore_clear_description">Are you sure you want to do this?</string>
+
     <string name="advanced_settings_theme_title">Theme Creations</string>
     <string name="advanced_settings_theme_description">Customize themes to suit you.</string>
-
-    <string name="advanced_settings_wotd_title">Word of the Day</string>
-    <string name="advanced_settings_wotd_description">Import custom Word of the Day list.</string>
 
     <string name="advanced_settings_theme_download">Download</string>
     <string name="advanced_settings_theme_export">Export</string>
     <string name="advanced_settings_theme_import">Import</string>
+    <string name="advanced_settings_theme_clear">Clear</string>
+
+    <string name="advanced_settings_theme_clear_title">Reset Theme</string>
+    <string name="advanced_settings_theme_clear_description">Are you sure you want to reset all theme settings?</string>
+
+    <string name="advanced_settings_wotd_title">Word of the Day</string>
+    <string name="advanced_settings_wotd_description">Import custom Word of the Day list.</string>
 
     <string name="advanced_settings_wotd_download">Download</string>
     <string name="advanced_settings_wotd_import">Import</string>
+    <string name="advanced_settings_wotd_clear">Clear</string>
 
-    <string name="advanced_settings_backup_restore_clear_title">Clear Preferences</string>
-    <string name="advanced_settings_backup_restore_clear_description">Are you sure you want to do this?</string>
-    <string name="advanced_settings_backup_restore_clear_yes">Yes</string>
-    <string name="advanced_settings_backup_restore_clear_no">No</string>
+    <string name="advanced_settings_wotd_clear_title">Reset Word Of The Day</string>
+    <string name="advanced_settings_wotd_clear_description">Are you sure you want to reset the Word Of The Day array?</string>
+
+    <string name="advanced_settings_clear_yes">Yes</string>
+    <string name="advanced_settings_clear_no">No</string>
 
     <string name="advanced_settings_help_feedback_title">Help &amp; Feedback</string>
     <string name="advanced_settings_community_support_title">Community Support</string>
