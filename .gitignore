@@ -11,3 +11,4 @@ app/release
 app/build
 app/debug
 diff.*
+*.jks

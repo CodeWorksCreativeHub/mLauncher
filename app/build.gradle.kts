@@ -69,6 +69,19 @@ android {
         }
     }
 
+    signingConfigs {
+        create("release") {
+            val keystorePath = file("mLauncher.jks").takeIf { it.exists() }
+                ?: System.getenv("KEY_STORE_FILE")?.let { file(it) }
+                ?: throw GradleException("No keystore file found! Set KEY_STORE_FILE environment variable.")
+
+            storeFile = keystorePath
+            storePassword = System.getenv("KEY_STORE_PASSWORD") ?: throw GradleException("KEY_STORE_PASSWORD not set")
+            keyAlias = System.getenv("KEY_ALIAS") ?: throw GradleException("KEY_ALIAS not set")
+            keyPassword = System.getenv("KEY_PASSWORD") ?: throw GradleException("KEY_PASSWORD not set")
+        }
+    }
+
     buildTypes {
         getByName("debug") {
             isDebuggable = true
@@ -88,6 +101,8 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+
+            signingConfig = signingConfigs["release"]
 
             resValue("string", "app_version", baseVersionName)
             resValue("string", "empty", "")
