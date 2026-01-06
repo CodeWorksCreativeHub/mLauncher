@@ -38,7 +38,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Build with Gradle
-        run: ./gradlew clean && ./gradlew assembleProdDebug
+        run: ./gradlew clean && ./gradlew assembleProdDebug --refresh-dependencies
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v6.0.0

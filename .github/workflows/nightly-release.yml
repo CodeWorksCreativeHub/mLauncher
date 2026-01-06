@@ -52,7 +52,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Build with Gradle
-        run: ./gradlew clean && ./gradlew assembleNightlyRelease
+        run: ./gradlew clean && ./gradlew assembleNightlyRelease --refresh-dependencies
 
       - name: Sign APK - Nightly
         uses: ilharp/sign-android-release@v2.0.0

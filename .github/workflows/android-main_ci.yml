@@ -38,4 +38,4 @@ jobs:
         run: chmod +x gradlew
 
       - name: Build with Gradle
-        run: ./gradlew clean && ./gradlew assembleProdDebug
+        run: ./gradlew clean && ./gradlew assembleProdDebug --refresh-dependencies
