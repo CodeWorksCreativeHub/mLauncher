@@ -2,22 +2,14 @@
 
 pluginManagement {
     repositories {
-        gradlePluginPortal()
-        google()
-        mavenCentral()
+        gradlePluginPortal() // for plugins
+        mavenCentral()       // for Kotlin stdlib
+        google()             // for Android dependencies
     }
 }
 
 plugins {
     id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
-}
-
-pluginManagement {
-    repositories {
-        gradlePluginPortal() // for plugins
-        mavenCentral()       // for Kotlin stdlib
-        google()             // for Android dependencies
-    }
 }
 
 dependencyResolutionManagement {
