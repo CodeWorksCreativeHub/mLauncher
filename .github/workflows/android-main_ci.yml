@@ -37,8 +37,11 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
+      - name: Stop Gradle daemons
+        run: ./gradlew --stop
+
       - name: Build with Gradle
-        run: ./gradlew clean && ./gradlew assembleProdDebug --refresh-dependencies
+        run: ./gradlew clean assembleProdDebug --refresh-dependencies --no-daemon
         env:
           JAVA_TOOL_OPTIONS: "-Dhttps.protocols=TLSv1.2"
           KEY_STORE_FILE: ${{ secrets.SIGNINGKEY_BASE64 }}       # optional if using a file from env
