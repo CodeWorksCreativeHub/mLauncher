@@ -21,6 +21,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 ### :globe_with_meridians: Localization:
 
+* Updated Language Files. ([#977](https://github.com/CodeWorksCreativeHub/mLauncher/pull/977)) ([c7850232](https://github.com/CodeWorksCreativeHub/mLauncher/commit/c7850232))
 * Updated Language Files. ([#976](https://github.com/CodeWorksCreativeHub/mLauncher/pull/976)) ([51970918](https://github.com/CodeWorksCreativeHub/mLauncher/commit/51970918))
 
 ## [1110302 (1.11.3.2) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.3.2) - (29, December 2025)
