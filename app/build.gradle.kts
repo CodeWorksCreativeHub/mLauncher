@@ -96,16 +96,16 @@ android {
 
     applicationVariants.all {
 
-        val appId = this.applicationId
-        val buildType = this.buildType.name
-        val version = this.versionName
+        val applicationId = this.applicationId
+        val flavorName = this.flavorName
+        val versionName = this.versionName
 
         outputs.all {
             val output =
                 this as com.android.build.gradle.internal.api.BaseVariantOutputImpl
 
             output.outputFileName =
-                "${appId}_${buildType}_${version}.apk"
+                "${applicationId}_${flavorName}_${versionName}.apk"
         }
     }
 
