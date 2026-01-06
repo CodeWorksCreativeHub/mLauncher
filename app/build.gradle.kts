@@ -5,99 +5,107 @@ plugins {
     alias(libs.plugins.ksp)
 }
 
-// Top of build.gradle.kts
+// =========================
+//   Version configuration
+// =========================
+
 val major = 1
 val minor = 11
 val patch = 3
 val build = 3
 
-val type = 0 // 1=beta, 2=alpha else=production
-
 val baseVersionName = "$major.$minor.$patch"
 
-val versionCodeInt =
-    (String.format("%02d", major) + String.format("%02d", minor) + String.format(
-        "%02d",
-        patch
-    ) + String.format("%02d", build)).toInt()
+val versionCodeBase =
+    (String.format("%02d", major) +
+            String.format("%02d", minor) +
+            String.format("%02d", patch) +
+            String.format("%02d", build)).toInt()
 
-val versionNameStr = when (type) {
-    1 -> "$baseVersionName-beta build $build"
-    2 -> "$baseVersionName-alpha build $build"
-    else -> "$baseVersionName build $build"
-}
-
-val applicationName = when (type) {
-    1 -> "app.mlauncher.beta"
-    2 -> "app.mlauncher.alpha"
-    else -> "app.mlauncher"
-}
+// =========================
+//   Android configuration
+// =========================
 
 android {
     namespace = "com.github.codeworkscreativehub.mlauncher"
-    compileSdk {
-        version = release(36)
-    }
+
+    compileSdk = 36
 
     defaultConfig {
-        applicationId = applicationName
         minSdk = 28
         targetSdk = 36
-        versionCode = versionCodeInt
-        versionName = versionNameStr
+        versionCode = versionCodeBase
+        versionName = baseVersionName
     }
 
-    dependenciesInfo {
-        includeInApk = false
-        includeInBundle = false
+    flavorDimensions += "channel"
+
+    productFlavors {
+        create("prod") {
+            dimension = "channel"
+            applicationId = "app.mlauncher"
+            resValue("string", "app_name", "Multi Launcher")
+        }
+
+        create("beta") {
+            dimension = "channel"
+            applicationId = "app.mlauncher.beta"
+            versionNameSuffix = "-beta"
+            resValue("string", "app_name", "Multi Launcher Beta")
+        }
+
+        create("alpha") {
+            dimension = "channel"
+            applicationId = "app.mlauncher.alpha"
+            versionNameSuffix = "-alpha"
+            resValue("string", "app_name", "Multi Launcher Alpha")
+        }
+
+        create("nightly") {
+            dimension = "channel"
+            applicationId = "app.mlauncher.nightly"
+            versionNameSuffix = "-nightly"
+            resValue("string", "app_name", "Multi Launcher Nightly")
+        }
     }
 
     buildTypes {
         getByName("debug") {
+            isDebuggable = true
             isMinifyEnabled = false
             isShrinkResources = false
-            isDebuggable = true
             applicationIdSuffix = ".dev"
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-            resValue("string", "app_name", "Multi Launcher Dev")
-            resValue("string", "app_version", versionNameStr)
+
+            resValue("string", "app_version", baseVersionName)
             resValue("string", "empty", "")
         }
 
         getByName("release") {
             isMinifyEnabled = true
             isShrinkResources = true
+
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            resValue("string", "app_name", "Multi Launcher")
-            resValue("string", "app_version", versionNameStr)
+
+            resValue("string", "app_version", baseVersionName)
             resValue("string", "empty", "")
         }
     }
 
     applicationVariants.all {
-        if (buildType.name == "release") {
-            outputs.all {
-                val output = this as? com.android.build.gradle.internal.api.BaseVariantOutputImpl
-                if (output?.outputFileName?.endsWith(".apk") == true) {
-                    output.outputFileName =
-                        "${defaultConfig.applicationId}_v${defaultConfig.versionName}-Signed.apk"
-                }
-            }
-        }
-        if (buildType.name == "debug") {
-            outputs.all {
-                val output = this as? com.android.build.gradle.internal.api.BaseVariantOutputImpl
-                if (output?.outputFileName?.endsWith(".apk") == true) {
-                    output.outputFileName =
-                        "${defaultConfig.applicationId}_v${defaultConfig.versionName}-Debug.apk"
-                }
-            }
+
+        val appId = this.applicationId
+        val buildType = this.buildType.name
+        val version = this.versionName
+
+        outputs.all {
+            val output =
+                this as com.android.build.gradle.internal.api.BaseVariantOutputImpl
+
+            output.outputFileName =
+                "${appId}_${buildType}_${version}.apk"
         }
     }
 
@@ -117,30 +125,41 @@ android {
     }
 
     packaging {
-        // Keep debug symbols for specific native libraries
-        // found in /app/build/intermediates/merged_native_libs/release/mergeReleaseNativeLibs/out/lib
         jniLibs {
-            keepDebugSymbols.add("libandroidx.graphics.path.so") // Ensure debug symbols are kept
+            keepDebugSymbols.add("libandroidx.graphics.path.so")
         }
     }
 }
+
+// =========================
+//   Kotlin
+// =========================
 
 kotlin {
     jvmToolchain(17)
 
     compilerOptions {
-        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
+        jvmTarget.set(
+            org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17
+        )
     }
 }
 
-// KSP configuration
+// =========================
+//   KSP
+// =========================
+
 ksp {
     arg("room.schemaLocation", "$projectDir/schemas")
 }
 
+// =========================
+//   Dependencies
+// =========================
+
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-    // Core libraries
+
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.recyclerview)
@@ -151,60 +170,46 @@ dependencies {
     implementation(libs.activity)
     implementation(libs.commons.text)
 
-    // Android Lifecycle
     implementation(libs.lifecycle.extensions)
     implementation(libs.lifecycle.viewmodel.ktx)
 
-    // Navigation
     implementation(libs.navigation.fragment.ktx)
     implementation(libs.navigation.ui.ktx)
 
-    // Work Manager
     implementation(libs.work.runtime.ktx)
 
-    // UI Components
     implementation(libs.constraintlayout)
     implementation(libs.constraintlayout.compose)
     implementation(libs.activity.compose)
 
-    // Jetpack Compose
-    implementation(libs.compose.material) // Compose Material Design
-    implementation(libs.compose.android) // Android
-    implementation(libs.compose.animation) // Animations
-    implementation(libs.compose.ui) // Core UI library
-    implementation(libs.compose.foundation) // Foundation library
-    implementation(libs.compose.ui.tooling) // UI tooling for previews
+    implementation(libs.compose.material)
+    implementation(libs.compose.android)
+    implementation(libs.compose.animation)
+    implementation(libs.compose.ui)
+    implementation(libs.compose.foundation)
+    implementation(libs.compose.ui.tooling)
 
-    // Biometric support
     implementation(libs.biometric.ktx)
 
-    // Moshi
     implementation(libs.moshi)
     implementation(libs.moshi.ktx)
     ksp(libs.moshi.codegen)
 
-    // Room
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
     ksp(libs.room.compiler)
 
-    // AndroidX Test - Espresso
     androidTestImplementation(libs.espresso.core)
     androidTestImplementation(libs.espresso.contrib)
-    implementation(libs.espresso.idling.resource) // Idling resources for Espresso tests
+    implementation(libs.espresso.idling.resource)
 
-    // Test rules and other testing dependencies
     androidTestImplementation(libs.test.runner)
     androidTestImplementation(libs.test.rules)
-    implementation(libs.test.core.ktx) // Test core utilities
+    implementation(libs.test.core.ktx)
 
-    // Jetpack Compose Testing
-    androidTestImplementation(libs.ui.test.junit4) // For createComposeRule
-    debugImplementation(libs.ui.test.manifest) // Debug-only dependencies for Compose testing
+    androidTestImplementation(libs.ui.test.junit4)
+    debugImplementation(libs.ui.test.manifest)
 
-    // Fragment testing
     debugImplementation(libs.fragment.testing)
-
-    // Navigation testing
     androidTestImplementation(libs.navigation.testing)
 }
