@@ -23,6 +23,7 @@ import android.graphics.PorterDuffColorFilter
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.os.Build
+import android.os.Looper
 import android.os.Process
 import android.os.UserHandle
 import android.os.UserManager
@@ -67,6 +68,7 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 import java.util.TimeZone
+import kotlin.system.exitProcess
 
 fun emptyString(): String {
     return ""
@@ -213,6 +215,12 @@ fun ismlauncherDefault(context: Context): Boolean {
         val defaultLauncherPackage = resolveInfo?.activityInfo?.packageName
         return context.packageName == defaultLauncherPackage
     }
+}
+
+fun reloadLauncher() {
+    android.os.Handler(Looper.getMainLooper()).postDelayed({
+        exitProcess(0)
+    }, 100)
 }
 
 fun helpFeedbackButton(context: Context) {

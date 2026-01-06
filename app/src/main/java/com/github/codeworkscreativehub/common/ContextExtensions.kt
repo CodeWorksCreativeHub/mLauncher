@@ -320,7 +320,8 @@ fun Context.isBiometricEnabled(): Boolean {
 }
 
 fun getLocalizedString(@StringRes resId: Int, vararg args: Any): String {
-    val context = Mlauncher.getContext()
+    val context = LocalizedResources.get(Mlauncher.getContext())
+
     return if (args.isEmpty()) {
         context.getString(resId)
     } else {
@@ -329,8 +330,9 @@ fun getLocalizedString(@StringRes resId: Int, vararg args: Any): String {
 }
 
 fun getLocalizedStringArray(@ArrayRes resId: Int): Array<String> {
-    val context = Mlauncher.getContext()
-    return context.resources.getStringArray(resId)
+    val context = LocalizedResources.get(Mlauncher.getContext())
+
+    return context.getStringArray(resId)
 }
 
 

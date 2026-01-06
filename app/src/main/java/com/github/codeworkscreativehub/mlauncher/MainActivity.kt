@@ -117,10 +117,14 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(
+            LauncherLocaleManager.wrapContext(newBase)
+        )
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        LauncherLocaleManager.applyAppLanguage()
 
         // Enables edge-to-edge mode
         enableEdgeToEdge()

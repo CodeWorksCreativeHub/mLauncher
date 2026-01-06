@@ -53,6 +53,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.github.codeworkscreativehub.common.AppLogger
 import com.github.codeworkscreativehub.common.LauncherLocaleManager
+import com.github.codeworkscreativehub.common.LocalizedResources
 import com.github.codeworkscreativehub.common.getLocalizedString
 import com.github.codeworkscreativehub.common.isBiometricEnabled
 import com.github.codeworkscreativehub.common.isGestureNavigationEnabled
@@ -84,6 +85,7 @@ import com.github.codeworkscreativehub.mlauncher.helper.hideStatusBar
 import com.github.codeworkscreativehub.mlauncher.helper.isSystemInDarkMode
 import com.github.codeworkscreativehub.mlauncher.helper.ismlauncherDefault
 import com.github.codeworkscreativehub.mlauncher.helper.openAppInfo
+import com.github.codeworkscreativehub.mlauncher.helper.reloadLauncher
 import com.github.codeworkscreativehub.mlauncher.helper.setThemeMode
 import com.github.codeworkscreativehub.mlauncher.helper.setTopPadding
 import com.github.codeworkscreativehub.mlauncher.helper.showNavigationBar
@@ -556,7 +558,7 @@ class SettingsFragment : BaseFragment() {
                                             Constants.Theme.System -> isSystemInDarkMode(requireContext())
                                         }
                                         setThemeMode(requireContext(), isDark, binding.settingsView)
-                                        requireActivity().recreate()
+                                        reloadLauncher()
                                     }
                                 }
                             )
@@ -588,8 +590,9 @@ class SettingsFragment : BaseFragment() {
                                         val newLanguage = languageEntries[newLanguageIndex]
                                         selectedLanguage = newLanguage // Update state
                                         prefs.appLanguage = newLanguage // Persist in preferences
-                                        LauncherLocaleManager.applyAppLanguage()
-                                        requireActivity().recreate() // force reload with new language
+                                        LauncherLocaleManager.updateLanguage(requireContext(), newLanguage)
+                                        LocalizedResources.invalidate()
+                                        reloadLauncher() // force reload with new language
                                     }
                                 }
                             )
