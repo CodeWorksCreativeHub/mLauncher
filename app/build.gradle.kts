@@ -142,10 +142,7 @@ android {
     }
 
     applicationVariants.all {
-
-        val applicationId = this.applicationId
         val flavorName = this.flavorName
-        val versionName = this.versionName
 
         outputs.all {
             val output =
