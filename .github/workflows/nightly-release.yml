@@ -25,11 +25,6 @@ jobs:
   build:
     name: Build, Sign & Release
     runs-on: ubuntu-latest
-    env:
-      KEY_STORE_FILE: ${{ secrets.SIGNINGKEY_BASE64 }}       # optional if using a file from env
-      KEY_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
-      KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
-      KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
 
     needs: release
     steps:
@@ -51,10 +46,17 @@ jobs:
       - name: Stop Gradle daemons
         run: ./gradlew --stop
 
+      - name: Decode keystore
+        run: echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > keystore.jks
+
       - name: Build with Gradle
         run: ./gradlew clean assembleNightlyRelease --refresh-dependencies --no-daemon
         env:
           JAVA_TOOL_OPTIONS: "-Dhttps.protocols=TLSv1.2"
+          KEY_STORE_FILE: keystore.jks
+          KEY_STORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
 
       - name: Extract Version
         id: extract_version
