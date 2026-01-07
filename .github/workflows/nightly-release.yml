@@ -54,6 +54,10 @@ jobs:
           destinationPath: './app/'
           encodedString: ${{ secrets.KEYSTORE_BASE64 }}
 
+      - name: test
+        run: keytool -list -keystore ${{ steps.write_base64_file.outputs.filepath }} -storepass ${{ secrets.KEY_PASSWORD }}
+
+
       - name: Build with Gradle
         run: ./gradlew clean assembleNightlyRelease --refresh-dependencies --no-daemon
         env:
