@@ -22,7 +22,7 @@ run(f"gradlew clean")
 run(f"gradlew assemble{build_type}Release --no-configuration-cache --refresh-dependencies")
 run(f"gradlew bundle{build_type}Release --no-configuration-cache --refresh-dependencies")
 
-apk_path = f"app/build/outputs/apk/{build_type}/release/app-{build_type}-release.apk".lower()
+apk_path = f"app/build/outputs/apk/{build_type}/release/app_{build_type}_release.apk".lower()
 bundle_path = f"app/build/outputs/bundle/{build_type}Release/app-{build_type}-release.aab".lower()
 
 if os.path.exists(apk_path):
