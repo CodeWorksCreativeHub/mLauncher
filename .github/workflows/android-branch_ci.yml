@@ -33,6 +33,14 @@ jobs:
       - name: Stop Gradle daemons
         run: ./gradlew --stop
 
+      - name: Decode keystore
+        id: write_base64_file
+        uses: Swisyn/Base64-hash-to-file@v1.0
+        with:
+          destinationFileName: 'mLauncher.jks'
+          destinationPath: 'app'
+          encodedString: ${{ secrets.SIGNINGKEY_BASE64 }}
+
       - name: Build with Gradle
         run: ./gradlew clean assembleProdDebug --refresh-dependencies --no-daemon
         env:
