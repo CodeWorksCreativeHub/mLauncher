@@ -1,5 +1,3 @@
-import java.util.Base64
-
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -72,43 +70,18 @@ android {
     }
 
     signingConfigs {
-        val keystoreB64: String =
-            System.getenv("KEY_STORE_FILE") ?: throw GradleException("KEY_STORE_FILE not set.")
-        val keystorePassword: String =
-            System.getenv("KEY_STORE_PASSWORD") ?: throw GradleException("KEY_STORE_PASSWORD not set")
-        val keyAlias: String =
-            System.getenv("KEY_ALIAS") ?: throw GradleException("KEY_ALIAS not set")
-        val keyPassword: String =
-            System.getenv("KEY_PASSWORD") ?: throw GradleException("KEY_PASSWORD not set")
-
-        // Use file helper to ensure correct path
-        val localKeystore = rootProject.file("app/mLauncher.jks")
-        val ciKeystore = layout.buildDirectory.file("temp-keystore.jks").get().asFile
-
-        val keystoreFile = when {
-            localKeystore.exists() -> localKeystore
-            else -> ciKeystore
-        }
-
-        if (!keystoreFile.exists()) {
-            keystoreFile.parentFile.mkdirs()
-
-            val bytes = Base64.getDecoder().decode(keystoreB64)
-
-            if (bytes.size < 1024) {
-                throw GradleException("Decoded keystore is too small (${bytes.size} bytes)")
-            }
-
-            keystoreFile.writeBytes(bytes)
-        }
-
-        println("Using keystore: ${keystoreFile.absolutePath} (${keystoreFile.length()} bytes)")
-
         create("release") {
+            val keystoreFile = rootProject.file("app/mLauncher.jks")
+
+            println("Using keystore: ${keystoreFile.absolutePath} (${keystoreFile.length()} bytes)")
+
             storeFile = keystoreFile
-            storePassword = keystorePassword
-            this.keyAlias = keyAlias
-            this.keyPassword = keyPassword
+            storePassword = System.getenv("KEY_STORE_PASSWORD")
+                ?: error("KEY_STORE_PASSWORD not set")
+            keyAlias = System.getenv("KEY_ALIAS")
+                ?: error("KEY_ALIAS not set")
+            keyPassword = System.getenv("KEY_PASSWORD")
+                ?: error("KEY_PASSWORD not set")
         }
     }
 
