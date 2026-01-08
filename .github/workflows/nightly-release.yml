@@ -20,8 +20,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: bash clearRelease.sh
-
-
+        
   build:
     name: Build, Sign & Release
     runs-on: ubuntu-latest
@@ -52,7 +51,7 @@ jobs:
         with:
           destinationFileName: 'mLauncher.jks'
           destinationPath: './app/'
-          encodedString: ${{ secrets.KEYSTORE_BASE64 }}
+          encodedString: ${{ secrets.SIGNINGKEY_BASE64 }}
 
       - name: test
         run: keytool -list -keystore ./app/mLauncher.jks -storepass mLauncher
