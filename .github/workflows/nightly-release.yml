@@ -57,7 +57,7 @@ jobs:
         run: ./gradlew clean assembleNightlyRelease --refresh-dependencies --no-daemon
         env:
           JAVA_TOOL_OPTIONS: "-Dhttps.protocols=TLSv1.2"
-          KEY_STORE_FILE: ${{ steps.write_base64_file.outputs.filePath }}
+          KEY_STORE_FILE: ./app/mLauncher.jks
           KEY_STORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
