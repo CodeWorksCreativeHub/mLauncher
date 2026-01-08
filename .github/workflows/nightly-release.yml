@@ -55,7 +55,7 @@ jobs:
           encodedString: ${{ secrets.KEYSTORE_BASE64 }}
 
       - name: test
-        run: keytool -list -keystore ${{ steps.write_base64_file.outputs.filepath }} -storepass ${{ secrets.KEY_PASSWORD }}
+        run: keytool -list -keystore ./app/mLauncher.jks -storepass mLauncher
 
 
       - name: Build with Gradle
