@@ -53,18 +53,15 @@ jobs:
           destinationPath: 'app'
           encodedString: ${{ secrets.SIGNINGKEY_BASE64 }}
 
-      - name: Create temporary gradle.properties for signing
-        run: |
-          echo "signing.storeFile=app/mLauncher.jks" >> gradle.properties
-          echo "signing.storePassword=${{ secrets.KEY_STORE_PASSWORD }}" >> gradle.properties
-          echo "signing.keyAlias=${{ secrets.KEY_ALIAS }}" >> gradle.properties
-          echo "signing.keyPassword=${{ secrets.KEY_PASSWORD }}" >> gradle.properties
-    
-
       - name: Build with Gradle
         run: ./gradlew clean assembleNightlyRelease --refresh-dependencies --no-daemon
         env:
           JAVA_TOOL_OPTIONS: "-Dhttps.protocols=TLSv1.2"
+          KEY_STORE_FILE: ${{ steps.write_base64_file.outputs.filePath }}
+          KEY_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+          
 
       - name: Extract Version
         id: extract_version
