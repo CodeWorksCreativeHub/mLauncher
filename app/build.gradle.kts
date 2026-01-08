@@ -90,11 +90,12 @@ android {
             isDebuggable = true
             isMinifyEnabled = false
             isShrinkResources = false
-            applicationIdSuffix = ".dev"
+            applicationIdSuffix = ".debug"
 
             signingConfig = signingConfigs["release"]
 
             resValue("string", "app_version", baseVersionName)
+            resValue("string", "app_name", "Multi Launcher Debug")
             resValue("string", "empty", "")
         }
 
