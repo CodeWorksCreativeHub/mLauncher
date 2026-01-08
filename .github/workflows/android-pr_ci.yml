@@ -33,18 +33,30 @@ jobs:
 
       - name: Decode keystore
         id: write_base64_file
-        uses: Swisyn/Base64-hash-to-file@v1.0
-        with:
-          destinationFileName: 'mLauncher.jks'
-          destinationPath: 'app'
-          encodedString: ${{ secrets.SIGNINGKEY_BASE64 }}
+        shell: bash
+        run: |
+          echo "${{ secrets.SIGNINGKEY_BASE64 }}" > mLauncher.jks.tmp
+          base64 -d -i mLauncher.jks.tmp > mLauncher.jks
+          rm mLauncher.jks.tmp
+
+          mkdir -p app
+          mv mLauncher.jks app/
+
+          DESTINATION_FILE="app/mLauncher.jks"
+          echo "filePath=$DESTINATION_FILE" >> "$GITHUB_OUTPUT"
+          echo "Keystore written to $DESTINATION_FILE"
 
       - name: Build with Gradle
-        run: ./gradlew clean assembleProdDebug --refresh-dependencies --no-daemon
+        run: ./gradlew clean assembleProdRelease --refresh-dependencies --no-daemon
         env:
           JAVA_TOOL_OPTIONS: "-Dhttps.protocols=TLSv1.2"
           KEY_STORE_FILE: ${{ steps.write_base64_file.outputs.filePath }}
           KEY_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
-          
+
+      - name: Secure keystore cleanup
+        if: always()
+        shell: bash
+        run: |
+          shred -u app/mLauncher.jks || rm -f app/mLauncher.jks
