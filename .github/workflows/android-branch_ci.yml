@@ -13,12 +13,6 @@ jobs:
   build:
     name: Build, Sign & Upload
     runs-on: ubuntu-latest
-    env:
-      KEY_STORE_FILE: ${{ secrets.SIGNINGKEY_BASE64 }}       # optional if using a file from env
-      KEY_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
-      KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
-      KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
-
     steps:
       - name: Checkout project
         uses: actions/checkout@v6.0.1
@@ -43,3 +37,8 @@ jobs:
         run: ./gradlew clean assembleProdDebug --refresh-dependencies --no-daemon
         env:
           JAVA_TOOL_OPTIONS: "-Dhttps.protocols=TLSv1.2"
+          KEY_STORE_FILE: ${{ steps.write_base64_file.outputs.filePath }}
+          KEY_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+          
