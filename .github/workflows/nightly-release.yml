@@ -61,7 +61,6 @@ jobs:
           KEY_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
-          
 
       - name: Extract Version
         id: extract_version
@@ -79,7 +78,7 @@ jobs:
       - name: Rename files
         run: |
           mkdir -p ./build/release/
-          mv app/build/outputs/apk/nightlyRelease/*.apk ./build/release/mLauncher-Nightly-Signed.apk
+          mv app/build/outputs/apk/nightly/release/*.apk ./build/release/mLauncher-Nightly-Signed.apk
         shell: bash
 
       - name: Create and Upload Release
