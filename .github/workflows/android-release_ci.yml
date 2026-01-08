@@ -11,12 +11,6 @@ jobs:
     name: Build, Sign & Release
     if: "!startsWith(github.ref_name, 'nightly')"
     runs-on: ubuntu-latest
-    env:
-      KEY_STORE_FILE: ${{ secrets.SIGNINGKEY_BASE64 }}       # optional if using a file from env
-      KEY_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
-      KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
-      KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
-
     steps:
       - name: Checkout project
         uses: actions/checkout@v6.0.1
@@ -37,10 +31,22 @@ jobs:
       - name: Stop Gradle daemons
         run: ./gradlew --stop
 
+      - name: Decode keystore
+        id: write_base64_file
+        uses: Swisyn/Base64-hash-to-file@v1.0
+        with:
+          destinationFileName: 'mLauncher.jks'
+          destinationPath: 'app'
+          encodedString: ${{ secrets.SIGNINGKEY_BASE64 }}
+
       - name: Build
         run: ./gradlew clean assembleProdRelease --refresh-dependencies --no-daemon && ./gradlew clean bundleProdRelease --refresh-dependencies --no-daemon
         env:
           JAVA_TOOL_OPTIONS: "-Dhttps.protocols=TLSv1.2"
+          KEY_STORE_FILE: ${{ steps.write_base64_file.outputs.filePath }}
+          KEY_STORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
 
       - name: Release to GitHub
         uses: svenstaro/upload-release-action@2.11.3
