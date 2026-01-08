@@ -53,10 +53,6 @@ jobs:
           destinationPath: './app/'
           encodedString: ${{ secrets.SIGNINGKEY_BASE64 }}
 
-      - name: test
-        run: keytool -list -keystore ./app/mLauncher.jks -storepass mLauncher
-
-
       - name: Build with Gradle
         run: ./gradlew clean assembleNightlyRelease --refresh-dependencies --no-daemon
         env:
