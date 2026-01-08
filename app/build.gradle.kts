@@ -14,9 +14,9 @@ plugins {
 val major = 1
 val minor = 11
 val patch = 3
-val build = 3
+val build = 4
 
-val baseVersionName = "$major.$minor.$patch"
+val baseVersionName = "$major.$minor.$patch Build $build"
 
 val versionCodeBase =
     (String.format("%02d", major) +

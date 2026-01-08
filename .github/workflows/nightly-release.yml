@@ -20,8 +20,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: bash clearRelease.sh
-
-
+        
   build:
     name: Build, Sign & Release
     runs-on: ubuntu-latest
@@ -51,19 +50,15 @@ jobs:
         uses: Swisyn/Base64-hash-to-file@v1.0
         with:
           destinationFileName: 'mLauncher.jks'
-          destinationPath: './app/'
-          encodedString: ${{ secrets.KEYSTORE_BASE64 }}
-
-      - name: test
-        run: keytool -list -keystore ${{ steps.write_base64_file.outputs.filepath }} -storepass ${{ secrets.KEY_PASSWORD }}
-
+          destinationPath: 'app'
+          encodedString: ${{ secrets.SIGNINGKEY_BASE64 }}
 
       - name: Build with Gradle
         run: ./gradlew clean assembleNightlyRelease --refresh-dependencies --no-daemon
         env:
           JAVA_TOOL_OPTIONS: "-Dhttps.protocols=TLSv1.2"
           KEY_STORE_FILE: ${{ steps.write_base64_file.outputs.filePath }}
-          KEY_STORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
 
@@ -83,7 +78,7 @@ jobs:
       - name: Rename files
         run: |
           mkdir -p ./build/release/
-          mv app/build/outputs/apk/nightlyRelease/*.apk ./build/release/mLauncher-Nightly-Signed.apk
+          mv app/build/outputs/apk/nightly/release/*.apk ./build/release/mLauncher-Nightly-Signed.apk
         shell: bash
 
       - name: Create and Upload Release
