@@ -79,7 +79,7 @@ jobs:
       - name: Rename files
         run: |
           mkdir -p ./build/release/
-          mv app/build/outputs/apk/nightlyRelease/*.apk ./build/release/mLauncher-Nightly-Signed.apk
+          mv app/build/outputs/apk/nightly/release/*.apk ./build/release/mLauncher-Nightly-Signed.apk
         shell: bash
 
       - name: Create and Upload Release
