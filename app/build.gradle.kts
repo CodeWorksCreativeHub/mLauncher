@@ -29,7 +29,9 @@ val versionCodeBase =
 android {
     namespace = "com.github.codeworkscreativehub.mlauncher"
 
-    compileSdk = 36
+    compileSdk {
+        version = release(36)
+    }
 
     defaultConfig {
         minSdk = 28
