@@ -43,7 +43,6 @@ import com.github.codeworkscreativehub.mlauncher.helper.IconPackHelper.getSafeAp
 import com.github.codeworkscreativehub.mlauncher.helper.dp2px
 import com.github.codeworkscreativehub.mlauncher.helper.getSystemIcons
 import com.github.codeworkscreativehub.mlauncher.helper.utils.BiometricHelper
-import com.github.codeworkscreativehub.mlauncher.helper.utils.visibleHideLayouts
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -67,6 +66,7 @@ class AppDrawerAdapter(
 
     private lateinit var prefs: Prefs
     private var appFilter = createAppFilter()
+    private var openedContextMenuPosition = RecyclerView.NO_POSITION
     var appsList: MutableList<AppListItem> = mutableListOf()
     var appFilteredList: MutableList<AppListItem> = mutableListOf()
     private lateinit var binding: AdapterAppDrawerBinding
@@ -299,7 +299,7 @@ class AppDrawerAdapter(
         holder.clearIcon()
     }
 
-    class ViewHolder(
+    inner class ViewHolder(
         itemView: AdapterAppDrawerBinding
     ) : RecyclerView.ViewHolder(itemView.root) {
         val appHide: TextView = itemView.appHide
@@ -337,8 +337,8 @@ class AppDrawerAdapter(
             val contextMenuFlags = prefs.getMenuFlags("CONTEXT_MENU_FLAGS", "0011111")
 
             // ----------------------------
-            // 1️⃣ Hide optional layouts
-            appHideLayout.isVisible = false
+            // 1️⃣ Hide optional layouts (state-driven)
+            appHideLayout.isVisible = absoluteAdapterPosition == openedContextMenuPosition
             appRenameLayout.isVisible = false
             appTagLayout.isVisible = false
 
@@ -438,9 +438,12 @@ class AppDrawerAdapter(
 
             appClose.setOnClickListener {
                 appHideLayout.isVisible = false
-                visibleHideLayouts.remove(absoluteAdapterPosition)
-                val sidebarContainer = (context as? Activity)?.findViewById<View>(R.id.sidebar_container)
-                if (visibleHideLayouts.isEmpty()) sidebarContainer?.isVisible = prefs.showAZSidebar
+                openedContextMenuPosition = RecyclerView.NO_POSITION
+
+                val sidebarContainer = (context as? Activity)
+                    ?.findViewById<View>(R.id.sidebar_container)
+
+                sidebarContainer?.isVisible = prefs.showAZSidebar
             }
 
             // ----------------------------
@@ -485,9 +488,20 @@ class AppDrawerAdapter(
                     if (openApp) {
                         try {
                             appDelete.alpha = if (context.isSystemApp(packageName)) 0.3f else 1f
+                            val currentPos = absoluteAdapterPosition
+
+                            // Close previously opened menu
+                            if (openedContextMenuPosition != RecyclerView.NO_POSITION &&
+                                openedContextMenuPosition != currentPos
+                            ) {
+                                notifyItemChanged(openedContextMenuPosition)
+                            }
+
+                            // Open this one
                             appHideLayout.isVisible = true
                             sidebarContainer?.isVisible = false
-                            visibleHideLayouts.add(absoluteAdapterPosition)
+                            openedContextMenuPosition = currentPos
+
                         } catch (_: Exception) {
                         }
                     }
@@ -509,6 +523,14 @@ class AppDrawerAdapter(
                 val updated = prefs.pinnedApps.toMutableSet()
                 if (isPinned) updated.remove(packageName) else updated.add(packageName)
                 prefs.pinnedApps = updated
+            }
+
+            itemView.setOnClickListener {
+                if (openedContextMenuPosition != RecyclerView.NO_POSITION &&
+                    openedContextMenuPosition != absoluteAdapterPosition
+                ) {
+                    this@AppDrawerAdapter.closeOpenedMenu()
+                }
             }
         }
 
@@ -545,6 +567,16 @@ class AppDrawerAdapter(
         // Clear icon when view is recycled
         fun clearIcon() {
             appTitle.setCompoundDrawables(null, null, null, null)
+        }
+    }
+
+    fun closeOpenedMenu() {
+        if (openedContextMenuPosition != RecyclerView.NO_POSITION) {
+            val oldPosition = openedContextMenuPosition
+            openedContextMenuPosition = RecyclerView.NO_POSITION
+            notifyItemChanged(oldPosition)
+            // Redraw all visible items just in case
+            notifyItemRangeChanged(0, itemCount)
         }
     }
 }

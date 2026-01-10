@@ -26,7 +26,10 @@ import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.SearchView
 import androidx.core.net.toUri
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
+import androidx.core.view.updatePadding
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.ViewModelProvider
@@ -88,6 +91,13 @@ class AppDrawerFragment : BaseFragment() {
             prefs.firstSettingsOpen = false
         }
 
+        ViewCompat.setOnApplyWindowInsetsListener(binding.mainLayout) { _, insets ->
+            val imeInsets = insets.getInsets(WindowInsetsCompat.Type.ime())
+            binding.appsRecyclerView.updatePadding(bottom = imeInsets.bottom)
+            binding.contactsRecyclerView.updatePadding(bottom = imeInsets.bottom)
+            insets
+        }
+
         // Check if device is using gesture navigation or 3-button navigation
         val isGestureNav = isGestureNavigationEnabled(requireContext())
 
@@ -115,10 +125,11 @@ class AppDrawerFragment : BaseFragment() {
 
             sidebarContainer.layoutParams = layoutParams
 
-            searchSwitcher.setOnClickListener {
-                switchMenus()
-            }
             menuView.displayedChild = 0
+
+            mainLayout.setOnClickListener {
+                appsAdapter.closeOpenedMenu()
+            }
         }
 
         // Retrieve the letter key code from arguments
@@ -248,7 +259,7 @@ class AppDrawerFragment : BaseFragment() {
         }
 
         val contactAdapter = context?.let {
-            parentFragment?.let { fragment ->
+            parentFragment?.let { _ ->
                 ContactDrawerAdapter(
                     it,
                     gravity,
@@ -313,8 +324,8 @@ class AppDrawerFragment : BaseFragment() {
 
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
+                appAdapter?.closeOpenedMenu()
                 when (newState) {
-
                     RecyclerView.SCROLL_STATE_DRAGGING -> {
                         onTop = !recyclerView.canScrollVertically(-1)
                         if (onTop) {
@@ -414,7 +425,6 @@ class AppDrawerFragment : BaseFragment() {
                 AppDrawerFlag.LaunchApp -> {
                     setupProfileButtons(flag, viewModel, appAdapter, contactAdapter, profileType)
 
-
                     binding.internetSearch.apply {
                         isVisible = appListButtonFlags[0]
                         setOnClickListener {
@@ -429,7 +439,12 @@ class AppDrawerFragment : BaseFragment() {
                                 "WORK", "PRIVATE" -> isVisible = false
                                 else -> {
                                     isVisible = appListButtonFlags[1]
-                                    setOnClickListener { switchMenus() }
+                                    setOnClickListener {
+                                        switchMenus()
+                                        binding.contactsRecyclerView.post {
+                                            appsAdapter.closeOpenedMenu()
+                                        }
+                                    }
                                 }
 
                             }
