@@ -73,7 +73,7 @@ class AppDrawerAdapter(
     private lateinit var biometricHelper: BiometricHelper
 
     // Add icon cache
-    private val iconCache = ConcurrentHashMap<String, Drawable?>()
+    private val iconCache = ConcurrentHashMap<String, Drawable>()
     private val iconLoadingScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
 
     private var isBangSearch = false
@@ -329,7 +329,7 @@ class AppDrawerAdapter(
             appClickListener: (AppListItem) -> Unit,
             appInfoListener: (AppListItem) -> Unit,
             appDeleteListener: (AppListItem) -> Unit,
-            iconCache: ConcurrentHashMap<String, Drawable?>,
+            iconCache: ConcurrentHashMap<String, Drawable>,
             iconLoadingScope: CoroutineScope,
             prefs: Prefs
         ) = with(itemView) {
