@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 ### :wrench: Code Quality:
 
+* Use FontText in SettingsTextPreference ([1355be5a](https://github.com/CodeWorksCreativeHub/mLauncher/commit/1355be5a))
 * Remove redundant theme logic in SettingsFragment ([f2ea3277](https://github.com/CodeWorksCreativeHub/mLauncher/commit/f2ea3277))
 
 ## [Nightly Release 2026.01.12](https://github.com/CodeWorksCreativeHub/mLauncher/tree/nightly-2026.01.12) - (10, January 2026)
