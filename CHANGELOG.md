@@ -8,6 +8,10 @@ All notable changes to this project will be documented in this file. See [conven
 
 * Implement dynamic and accessible AZ sidebar ([42c831fa](https://github.com/CodeWorksCreativeHub/mLauncher/commit/42c831fa))
 
+### :wrench: Code Quality:
+
+* Remove redundant theme logic in SettingsFragment ([f2ea3277](https://github.com/CodeWorksCreativeHub/mLauncher/commit/f2ea3277))
+
 ## [Nightly Release 2026.01.12](https://github.com/CodeWorksCreativeHub/mLauncher/tree/nightly-2026.01.12) - (10, January 2026)
 
 ### :wrench: Code Quality:
