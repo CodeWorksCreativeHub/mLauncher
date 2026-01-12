@@ -49,7 +49,6 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -61,8 +60,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.net.toUri
 import com.github.codeworkscreativehub.mlauncher.R
-import com.github.codeworkscreativehub.mlauncher.data.Constants
-import com.github.codeworkscreativehub.mlauncher.data.Prefs
+import com.github.codeworkscreativehub.mlauncher.helper.FontManager
 import com.github.codeworkscreativehub.mlauncher.services.HapticFeedbackService
 import com.github.codeworkscreativehub.mlauncher.style.SettingsTheme
 import com.github.creativecodecat.components.views.FontAppCompatTextView
@@ -550,28 +548,15 @@ object SettingsComposable {
         onTextLayout: ((TextLayoutResult) -> Unit)? = null
     ) {
         val context = LocalContext.current
-        val prefs = Prefs(context)
 
-        // Map saved preference to Compose FontFamily
-        val fontFamily: FontFamily = remember(prefs.fontFamily) {
-            when (prefs.fontFamily) {
-                Constants.FontFamily.System -> FontFamily.Default
-                Constants.FontFamily.Roboto -> FontFamily(Font(R.font.roboto))
-                Constants.FontFamily.Bitter -> FontFamily(Font(R.font.bitter))
-                Constants.FontFamily.Doto -> FontFamily(Font(R.font.doto))
-                Constants.FontFamily.FiraCode -> FontFamily(Font(R.font.fira_code))
-                Constants.FontFamily.Hack -> FontFamily(Font(R.font.hack))
-                Constants.FontFamily.Lato -> FontFamily(Font(R.font.lato))
-                Constants.FontFamily.Merriweather -> FontFamily(Font(R.font.merriweather))
-                Constants.FontFamily.Montserrat -> FontFamily(Font(R.font.montserrat))
-                Constants.FontFamily.Quicksand -> FontFamily(Font(R.font.quicksand))
-                Constants.FontFamily.Raleway -> FontFamily(Font(R.font.raleway))
-                Constants.FontFamily.SourceCodePro -> FontFamily(Font(R.font.source_code_pro))
-                Constants.FontFamily.Custom -> FontFamily.Default
-            }
+        // Get Typeface from FontManager (like your FontEditText)
+        val typeface = remember { FontManager.getTypeface(context) }
+
+        // Convert Typeface to Compose FontFamily
+        val fontFamily: FontFamily = remember(typeface) {
+            typeface?.let { FontFamily(it) } ?: FontFamily.Default
         }
 
-        // Merge optional style with defaults
         val finalStyle = (style ?: TextStyle()).copy(
             fontFamily = fontFamily,
             fontSize = fontSize,
@@ -579,7 +564,6 @@ object SettingsComposable {
             color = color
         )
 
-        // Clickable modifier with ripple
         val clickableModifier = if (onClick != null) {
             Modifier.clickable(
                 onClick = onClick,
@@ -587,27 +571,21 @@ object SettingsComposable {
         } else Modifier
 
         when (text) {
-            is String -> {
-                Text(
-                    text = text,
-                    modifier = modifier.then(clickableModifier),
-                    style = finalStyle,
-                    textAlign = textAlign,
-                    onTextLayout = onTextLayout
-                )
-            }
+            is String -> Text(
+                text = text,
+                modifier = modifier.then(clickableModifier),
+                style = finalStyle,
+                textAlign = textAlign,
+                onTextLayout = onTextLayout // nullable is fine for String
+            )
 
-            is AnnotatedString -> {
-                if (onTextLayout != null) {
-                    Text(
-                        text = text,
-                        modifier = modifier.then(clickableModifier),
-                        style = finalStyle,
-                        textAlign = textAlign,
-                        onTextLayout = onTextLayout
-                    )
-                }
-            }
+            is AnnotatedString -> Text(
+                text = text,
+                modifier = modifier.then(clickableModifier),
+                style = finalStyle,
+                textAlign = textAlign,
+                onTextLayout = onTextLayout ?: {} // must be non-null for AnnotatedString
+            )
 
             else -> throw IllegalArgumentException("FontText supports only String or AnnotatedString")
         }
