@@ -268,11 +268,8 @@ class AppDrawerFragment : BaseFragment() {
             }
         }
 
-
-        when (binding.menuView.displayedChild) {
-            0 -> appAdapter?.let { appsAdapter = it }
-            1 -> contactAdapter?.let { contactsAdapter = it }
-        }
+        appAdapter?.let { appsAdapter = it }
+        contactAdapter?.let { contactsAdapter = it }
 
         val searchTextView = binding.search.findViewById<TextView>(R.id.search_src_text)
 
@@ -587,14 +584,17 @@ class AppDrawerFragment : BaseFragment() {
             when (menuView.displayedChild) {
                 0 -> {
                     setAppViewDetails()
+                    updateAZSidebarForApps(appsAdapter.appsList)
                 }
 
                 1 -> {
                     setContactViewDetails()
+                    updateAZSidebarForContacts(contactsAdapter.contactsList)
                 }
             }
         }
     }
+
 
     private fun setAppViewDetails() {
         binding.apply {
@@ -772,6 +772,9 @@ class AppDrawerFragment : BaseFragment() {
             AnimationUtils.loadLayoutAnimation(requireContext(), R.anim.layout_anim_from_bottom)
         binding.appsRecyclerView.layoutAnimation = animation
         appAdapter.setAppList(apps.toMutableList())
+
+        // ✅ ENABLE dynamic AZ letters
+        updateAZSidebarForApps(apps)
     }
 
     private fun populateContactList(contacts: List<ContactListItem>, contactAdapter: ContactDrawerAdapter) {
@@ -779,6 +782,9 @@ class AppDrawerFragment : BaseFragment() {
             AnimationUtils.loadLayoutAnimation(requireContext(), R.anim.layout_anim_from_bottom)
         binding.contactsRecyclerView.layoutAnimation = animation
         contactAdapter.setContactList(contacts.toMutableList())
+
+        // ✅ ENABLE dynamic AZ letters
+        updateAZSidebarForContacts(contacts)
     }
 
     private fun appClickListener(
@@ -862,5 +868,31 @@ class AppDrawerFragment : BaseFragment() {
         viewModel.selectedContact(this, contactModel, n)
         // Close the drawer or fragment after selection
         findNavController().popBackStack()
+    }
+
+    private fun updateAZSidebarForApps(apps: List<AppListItem>) {
+        val letters = mutableSetOf<String>()
+
+        apps.forEach { item ->
+            when (item.category) {
+                AppCategory.PINNED -> letters.add("★")
+                else -> {
+                    item.label.firstOrNull()
+                        ?.uppercaseChar()
+                        ?.toString()
+                        ?.let { letters.add(it) }
+                }
+            }
+        }
+
+        binding.azSidebar.setAvailableLetters(letters)
+    }
+
+    private fun updateAZSidebarForContacts(contacts: List<ContactListItem>) {
+        val letters = contacts.mapNotNull {
+            it.displayName.firstOrNull()?.uppercaseChar()?.toString()
+        }.toSet()
+
+        binding.azSidebar.setAvailableLetters(letters)
     }
 }

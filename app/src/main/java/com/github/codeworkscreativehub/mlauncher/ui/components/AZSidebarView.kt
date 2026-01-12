@@ -9,6 +9,7 @@ import android.graphics.Typeface
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
+import android.view.accessibility.AccessibilityEvent
 import com.github.codeworkscreativehub.mlauncher.helper.CustomFontView
 import com.github.codeworkscreativehub.mlauncher.helper.FontManager
 import com.github.codeworkscreativehub.mlauncher.helper.sp2px
@@ -20,59 +21,76 @@ class AZSidebarView @JvmOverloads constructor(
 
     var onTouchStart: (() -> Unit)? = null
     var onTouchEnd: (() -> Unit)? = null
+    var onLetterSelected: ((String) -> Unit)? = null
 
-    private val letters = listOf('★') + ('A'..'Z')
+    private val allLetters = listOf('★') + ('A'..'Z')
+    private var letters: List<Char> = allLetters
+
     private val baseTextSizeSp = 20f
     private val selectedTextSizeSp = baseTextSizeSp + 2f
 
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         color = Color.GRAY
-        textSize = sp2px(resources, baseTextSizeSp)
         textAlign = Paint.Align.CENTER
         style = Paint.Style.FILL
+        textSize = sp2px(resources, baseTextSizeSp)
         typeface = FontManager.getTypeface(context)
     }
 
-    var onLetterSelected: ((String) -> Unit)? = null
     private var spacingFactor = 1f
-    private var selectedIndex: Int = -1
+    private var selectedIndex = -1
+    private var itemHeight = 0f
 
-    val topBottomPaddingPx: Float
-        get() = 180 * resources.displayMetrics.density
-
+    // Accessibility
     init {
-        val displayMetrics = resources.displayMetrics
-        val screenHeight = displayMetrics.heightPixels.toFloat()
-        val density = displayMetrics.density
-
-        val topBottomPadding = topBottomPaddingPx
-        val interLetterSpacing = (letters.size - 1) * density
-        val availableHeight = screenHeight - topBottomPadding - interLetterSpacing
-        val baseTextHeight = sp2px(resources, baseTextSizeSp)
-
-        spacingFactor = availableHeight / (letters.size * baseTextHeight)
+        isFocusable = true
+        importantForAccessibility = IMPORTANT_FOR_ACCESSIBILITY_YES
 
         // 🔗 Register for global font updates
         FontManager.register(this)
     }
 
+    val topBottomPaddingPx: Float
+        get() = 180f * resources.displayMetrics.density
+
+    // ✅ FIX: Calculate spacing using ACTUAL view height
+    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
+        super.onSizeChanged(w, h, oldw, oldh)
+
+        val density = resources.displayMetrics.density
+        val interLetterSpacing = (letters.size - 1) * density
+        val baseTextHeight = sp2px(resources, baseTextSizeSp)
+
+        val availableHeight = h - topBottomPaddingPx - interLetterSpacing
+        spacingFactor = availableHeight / (letters.size * baseTextHeight)
+
+        itemHeight = baseTextHeight * spacingFactor
+    }
+
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
-        val itemHeight = sp2px(resources, baseTextSizeSp) * spacingFactor
+        if (itemHeight <= 0f) return
+
         val totalHeight = itemHeight * letters.size
         val startY = (height - totalHeight) / 2f
 
-        letters.forEachIndexed { i, letter ->
-            val isSelected = i == selectedIndex
+        // ✅ FIX: Typeface resolved ONCE per draw
+        paint.typeface = FontManager.getTypeface(context)
+
+        letters.forEachIndexed { index, letter ->
+            val isSelected = index == selectedIndex
 
             paint.isFakeBoldText = isSelected
-            paint.textSize = sp2px(resources, if (isSelected) selectedTextSizeSp else baseTextSizeSp)
+            paint.textSize = sp2px(
+                resources,
+                if (isSelected) selectedTextSizeSp else baseTextSizeSp
+            )
             paint.color = if (isSelected) Color.WHITE else Color.GRAY
-            paint.typeface = FontManager.getTypeface(context) // Refresh font if needed
 
             val x = width / 2f
-            val y = startY + itemHeight * i - (paint.descent() + paint.ascent()) / 2
+            val y = startY + itemHeight * index -
+                    (paint.descent() + paint.ascent()) / 2f
 
             canvas.drawText(letter.toString(), x, y, paint)
         }
@@ -80,24 +98,28 @@ class AZSidebarView @JvmOverloads constructor(
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent): Boolean {
-        val itemHeight = sp2px(resources, baseTextSizeSp) * spacingFactor
+        if (itemHeight <= 0f) return false
+
         val totalHeight = itemHeight * letters.size
         val startY = (height - totalHeight) / 2f
 
         val relativeY = event.y - startY
-        val index = (relativeY / itemHeight).toInt().coerceIn(0, letters.size - 1)
+        val index = (relativeY / itemHeight)
+            .toInt()
+            .coerceIn(0, letters.size - 1)
 
         when (event.action) {
-            MotionEvent.ACTION_DOWN, MotionEvent.ACTION_MOVE -> {
-                if (index != selectedIndex) {
-                    selectedIndex = index
-                    onLetterSelected?.invoke(letters[index].toString())
-                    invalidate()
-                }
+            MotionEvent.ACTION_DOWN -> {
                 onTouchStart?.invoke()
+                handleSelection(index)
             }
 
-            MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+            MotionEvent.ACTION_MOVE -> {
+                handleSelection(index)
+            }
+
+            MotionEvent.ACTION_UP,
+            MotionEvent.ACTION_CANCEL -> {
                 onTouchEnd?.invoke()
             }
         }
@@ -105,13 +127,44 @@ class AZSidebarView @JvmOverloads constructor(
         return true
     }
 
+    private fun handleSelection(index: Int) {
+        if (index == selectedIndex) return
+
+        selectedIndex = index
+        val letter = letters[index].toString()
+
+        onLetterSelected?.invoke(letter)
+
+        // ✅ FIX: Accessibility announcement
+        announceLetterForAccessibility(letter)
+
+        invalidate()
+    }
+
+    // ✅ FIX: Works for ★ and letters
     fun setSelectedLetter(letter: String) {
-        val char = letter.firstOrNull()?.uppercaseChar() ?: return
-        val index = letters.indexOf(char)
-        if (index != -1 && selectedIndex != index) {
+        val index = letters.indexOfFirst { it.toString() == letter }
+        if (index != -1 && index != selectedIndex) {
             selectedIndex = index
             invalidate()
         }
+    }
+
+    /**
+     * Update sidebar letters based on available app sections.
+     *
+     * Example input: setOf("★", "A", "C", "D", "M")
+     */
+    fun setAvailableLetters(available: Set<String>) {
+        letters = allLetters.filter { it.toString() in available }
+
+        // Reset selection safely
+        if (selectedIndex >= letters.size) {
+            selectedIndex = -1
+        }
+
+        requestLayout()
+        invalidate()
     }
 
     /** 🔁 Called by FontManager to update font */
@@ -119,4 +172,10 @@ class AZSidebarView @JvmOverloads constructor(
         paint.typeface = typeface
         invalidate()
     }
+
+    private fun announceLetterForAccessibility(text: String) {
+        contentDescription = text
+        sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_SELECTED)
+    }
+
 }
