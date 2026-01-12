@@ -353,8 +353,6 @@ class SettingsFragment : BaseFragment() {
         var toggledLockOrientation by remember { mutableStateOf(prefs.lockOrientation) }
         var toggledHapticFeedback by remember { mutableStateOf(prefs.hapticFeedback) }
 
-
-
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -551,14 +549,7 @@ class SettingsFragment : BaseFragment() {
                                         val newTheme = themeEntries[newThemeIndex]
                                         selectedTheme = newTheme
                                         prefs.appTheme = newTheme
-
-                                        val isDark = when (newTheme) {
-                                            Constants.Theme.Light -> false
-                                            Constants.Theme.Dark -> true
-                                            Constants.Theme.System -> isSystemInDarkMode(requireContext())
-                                        }
-                                        setThemeMode(requireContext(), isDark, binding.settingsView)
-                                        reloadLauncher()
+                                        resetThemeColors()
                                     }
                                 }
                             )
