@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 ### :sparkles: Enhancements:
 
+* Introduce FontText composable for custom font support ([5813f83c](https://github.com/CodeWorksCreativeHub/mLauncher/commit/5813f83c))
 * Implement dynamic and accessible AZ sidebar ([42c831fa](https://github.com/CodeWorksCreativeHub/mLauncher/commit/42c831fa))
 
 ### :wrench: Code Quality:
