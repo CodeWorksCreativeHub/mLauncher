@@ -429,7 +429,7 @@ object SettingsComposable {
         ) {
 
             // Label
-            Text(
+            FontText(
                 text = text,
                 fontSize = resolvedFontSizeSp.sp,
                 color = titleColor,
@@ -545,6 +545,7 @@ object SettingsComposable {
         color: Color = SettingsTheme.typography.title.color,
         fontWeight: FontWeight? = null,
         style: TextStyle? = null, // Optional additional style
+        textAlign: TextAlign? = null,
         onClick: (() -> Unit)? = null,
         onTextLayout: ((TextLayoutResult) -> Unit)? = null
     ) {
@@ -591,6 +592,7 @@ object SettingsComposable {
                     text = text,
                     modifier = modifier.then(clickableModifier),
                     style = finalStyle,
+                    textAlign = textAlign,
                     onTextLayout = onTextLayout
                 )
             }
@@ -601,6 +603,7 @@ object SettingsComposable {
                         text = text,
                         modifier = modifier.then(clickableModifier),
                         style = finalStyle,
+                        textAlign = textAlign,
                         onTextLayout = onTextLayout
                     )
                 }
