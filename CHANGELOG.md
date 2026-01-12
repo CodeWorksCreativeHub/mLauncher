@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [nightly-2026.01.12 → Unreleased](https://github.com/CodeWorksCreativeHub/mLauncher/tree/main) - In Development
+
+### :sparkles: Enhancements:
+
+* Implement dynamic and accessible AZ sidebar ([42c831fa](https://github.com/CodeWorksCreativeHub/mLauncher/commit/42c831fa))
+
 ## [Nightly Release 2026.01.12](https://github.com/CodeWorksCreativeHub/mLauncher/tree/nightly-2026.01.12) - (10, January 2026)
 
 ### :wrench: Code Quality:
