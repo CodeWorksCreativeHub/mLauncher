@@ -43,11 +43,14 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.ExperimentalTextApi
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
@@ -57,9 +60,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.net.toUri
-import com.github.creativecodecat.components.views.FontAppCompatTextView
+import com.github.codeworkscreativehub.mlauncher.R
+import com.github.codeworkscreativehub.mlauncher.data.Constants
+import com.github.codeworkscreativehub.mlauncher.data.Prefs
 import com.github.codeworkscreativehub.mlauncher.services.HapticFeedbackService
 import com.github.codeworkscreativehub.mlauncher.style.SettingsTheme
+import com.github.creativecodecat.components.views.FontAppCompatTextView
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -94,7 +100,7 @@ object SettingsComposable {
             Spacer(modifier = Modifier.width(12.dp)) // small spacing between icon and title
 
             // Title text
-            Text(
+            FontText(
                 text = title,
                 fontSize = titleFontSize,
                 color = fontColor,
@@ -131,7 +137,7 @@ object SettingsComposable {
                     .let { if (onIconClick != null) it.clickable { onIconClick() } else it }
             )
 
-            Text(
+            FontText(
                 text = title,
                 fontSize = if (titleFontSize != TextUnit.Unspecified) titleFontSize else 18.sp,
                 color = fontColor,
@@ -221,7 +227,7 @@ object SettingsComposable {
             Spacer(modifier = Modifier.width(12.dp))
 
             Column {
-                Text(
+                FontText(
                     text = title,
                     color = headerColor,
                     fontSize = if (titleFontSize != TextUnit.Unspecified) titleFontSize else 18.sp,
@@ -231,7 +237,7 @@ object SettingsComposable {
 
                 description?.let {
                     Spacer(modifier = Modifier.height(1.dp))
-                    Text(
+                    FontText(
                         text = it,
                         color = optionColor,
                         fontSize = if (descriptionFontSize != TextUnit.Unspecified) descriptionFontSize else 12.sp,
@@ -259,7 +265,7 @@ object SettingsComposable {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             // Title
-            Text(
+            FontText(
                 text = title,
                 color = titleColor,
                 fontSize = titleFontSize,
@@ -337,7 +343,7 @@ object SettingsComposable {
 
         val layoutResult = remember { mutableStateOf<TextLayoutResult?>(null) }
 
-        Text(
+        FontText(
             text = annotatedString,
             style = TextStyle(color = color, fontSize = fontSize),
             modifier = modifier.pointerInput(Unit) {
@@ -379,7 +385,7 @@ object SettingsComposable {
                     // Optional: touch ripple effect
                     val typedValue = TypedValue()
                     context.theme.resolveAttribute(
-                        android.R.attr.selectableItemBackground, typedValue, true
+                        R.attr.selectableItemBackground, typedValue, true
                     )
                     setBackgroundResource(typedValue.resourceId)
                 }
@@ -514,7 +520,7 @@ object SettingsComposable {
             horizontalAlignment = Alignment.Start
         ) {
             // Title
-            Text(
+            FontText(
                 text = title,
                 fontSize = fontSizeSp.sp,
                 color = titleColor,
@@ -522,7 +528,7 @@ object SettingsComposable {
             )
 
             // Option / secondary text
-            Text(
+            FontText(
                 text = option,
                 fontSize = (fontSizeSp / 1.3f).sp,
                 color = optionColor,
@@ -530,4 +536,78 @@ object SettingsComposable {
             )
         }
     }
+
+    @Composable
+    fun FontText(
+        text: Any, // String or AnnotatedString
+        modifier: Modifier = Modifier,
+        fontSize: TextUnit = 16.sp,
+        color: Color = SettingsTheme.typography.title.color,
+        fontWeight: FontWeight? = null,
+        style: TextStyle? = null, // Optional additional style
+        onClick: (() -> Unit)? = null,
+        onTextLayout: ((TextLayoutResult) -> Unit)? = null
+    ) {
+        val context = LocalContext.current
+        val prefs = Prefs(context)
+
+        // Map saved preference to Compose FontFamily
+        val fontFamily: FontFamily = remember(prefs.fontFamily) {
+            when (prefs.fontFamily) {
+                Constants.FontFamily.System -> FontFamily.Default
+                Constants.FontFamily.Roboto -> FontFamily(Font(R.font.roboto))
+                Constants.FontFamily.Bitter -> FontFamily(Font(R.font.bitter))
+                Constants.FontFamily.Doto -> FontFamily(Font(R.font.doto))
+                Constants.FontFamily.FiraCode -> FontFamily(Font(R.font.fira_code))
+                Constants.FontFamily.Hack -> FontFamily(Font(R.font.hack))
+                Constants.FontFamily.Lato -> FontFamily(Font(R.font.lato))
+                Constants.FontFamily.Merriweather -> FontFamily(Font(R.font.merriweather))
+                Constants.FontFamily.Montserrat -> FontFamily(Font(R.font.montserrat))
+                Constants.FontFamily.Quicksand -> FontFamily(Font(R.font.quicksand))
+                Constants.FontFamily.Raleway -> FontFamily(Font(R.font.raleway))
+                Constants.FontFamily.SourceCodePro -> FontFamily(Font(R.font.source_code_pro))
+                Constants.FontFamily.Custom -> FontFamily.Default
+            }
+        }
+
+        // Merge optional style with defaults
+        val finalStyle = (style ?: TextStyle()).copy(
+            fontFamily = fontFamily,
+            fontSize = fontSize,
+            fontWeight = fontWeight,
+            color = color
+        )
+
+        // Clickable modifier with ripple
+        val clickableModifier = if (onClick != null) {
+            Modifier.clickable(
+                onClick = onClick,
+            )
+        } else Modifier
+
+        when (text) {
+            is String -> {
+                Text(
+                    text = text,
+                    modifier = modifier.then(clickableModifier),
+                    style = finalStyle,
+                    onTextLayout = onTextLayout
+                )
+            }
+
+            is AnnotatedString -> {
+                if (onTextLayout != null) {
+                    Text(
+                        text = text,
+                        modifier = modifier.then(clickableModifier),
+                        style = finalStyle,
+                        onTextLayout = onTextLayout
+                    )
+                }
+            }
+
+            else -> throw IllegalArgumentException("FontText supports only String or AnnotatedString")
+        }
+    }
+
 }
