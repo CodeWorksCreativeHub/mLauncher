@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 ### :wrench: Code Quality:
 
+* Use FontManager for font loading in SettingsComposable ([54361a40](https://github.com/CodeWorksCreativeHub/mLauncher/commit/54361a40))
 * Use FontText in SettingsTextPreference ([1355be5a](https://github.com/CodeWorksCreativeHub/mLauncher/commit/1355be5a))
 * Remove redundant theme logic in SettingsFragment ([f2ea3277](https://github.com/CodeWorksCreativeHub/mLauncher/commit/f2ea3277))
 
