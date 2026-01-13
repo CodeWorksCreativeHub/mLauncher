@@ -41,6 +41,7 @@ import com.github.codeworkscreativehub.mlauncher.databinding.AdapterAppDrawerBin
 import com.github.codeworkscreativehub.mlauncher.helper.IconCacheTarget
 import com.github.codeworkscreativehub.mlauncher.helper.IconPackHelper.getSafeAppIcon
 import com.github.codeworkscreativehub.mlauncher.helper.dp2px
+import com.github.codeworkscreativehub.mlauncher.helper.emptyString
 import com.github.codeworkscreativehub.mlauncher.helper.getSystemIcons
 import com.github.codeworkscreativehub.mlauncher.helper.utils.BiometricHelper
 import kotlinx.coroutines.CoroutineScope
@@ -159,11 +160,27 @@ class AppDrawerAdapter(
         }
 
         holder.appSaveRename.setOnClickListener {
-            val name = holder.appRenameEdit.text.toString().trim()
-            AppLogger.d("AppListDebug", "✏️ Renaming ${appModel.activityPackage} to $name")
-            notifyItemChanged(holder.absoluteAdapterPosition)
-            AppLogger.d("AppListDebug", "🔁 notifyItemChanged at ${holder.absoluteAdapterPosition}")
-            appRenameListener(appModel.activityPackage, name)
+            when (holder.appSaveRename.text) {
+                getLocalizedString(R.string.rename) -> {
+                    val name = holder.appRenameEdit.text.toString().trim()
+                    AppLogger.d("AppListDebug", "✏️ Renaming ${appModel.activityPackage} to $name")
+                    notifyItemChanged(holder.absoluteAdapterPosition)
+                    AppLogger.d("AppListDebug", "🔁 notifyItemChanged at ${holder.absoluteAdapterPosition}")
+                    appRenameListener(appModel.activityPackage, name)
+                }
+
+                getLocalizedString(R.string.reset) -> {
+                    AppLogger.d("AppListDebug", "✏️ Resetting ${appModel.activityPackage} to default")
+                    notifyItemChanged(holder.absoluteAdapterPosition)
+                    AppLogger.d("AppListDebug", "🔁 notifyItemChanged at ${holder.absoluteAdapterPosition}")
+                    appRenameListener(appModel.activityPackage, emptyString()) // empty string signals default
+                }
+
+                else -> {
+                    notifyItemChanged(holder.absoluteAdapterPosition)
+                }
+            }
+
         }
 
         holder.appSaveTag.setOnClickListener {
@@ -410,6 +427,7 @@ class AppDrawerAdapter(
 
             appRenameEdit.apply {
                 text = Editable.Factory.getInstance().newEditable(prefs.getAppAlias(appListItem.activityPackage).takeIf { it.isNotBlank() } ?: appListItem.activityLabel)
+                appSaveRename.text = getLocalizedString(R.string.cancel)
                 addTextChangedListener(object : TextWatcher {
                     override fun afterTextChanged(s: Editable) {}
                     override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
