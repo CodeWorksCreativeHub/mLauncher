@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 ### :wrench: Code Quality:
 
+* Refactor settings font and icon sizing logic ([f70b7d67](https://github.com/CodeWorksCreativeHub/mLauncher/commit/f70b7d67))
 * Refactor BatteryReceiver to improve reliability and efficiency ([99345c31](https://github.com/CodeWorksCreativeHub/mLauncher/commit/99345c31))
 
 ## [1110304 (1.11.3.4) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.3.4) - (13, January 2026)
