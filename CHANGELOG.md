@@ -10,6 +10,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 ### :wrench: Code Quality:
 
+* Simplify app rename logic in AppDrawerAdapter ([f5405c4b](https://github.com/CodeWorksCreativeHub/mLauncher/commit/f5405c4b))
 * Improve preference migration and build script variables ([a4a27359](https://github.com/CodeWorksCreativeHub/mLauncher/commit/a4a27359))
 * Use `activityLabel` directly, removing `customLabel` and `label` ([dc1a81f3](https://github.com/CodeWorksCreativeHub/mLauncher/commit/dc1a81f3))
 
