@@ -29,7 +29,6 @@ import androidx.core.net.toUri
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
-import androidx.core.view.updatePadding
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.ViewModelProvider
@@ -93,8 +92,12 @@ class AppDrawerFragment : BaseFragment() {
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.mainLayout) { _, insets ->
             val imeInsets = insets.getInsets(WindowInsetsCompat.Type.ime())
-            binding.appsRecyclerView.updatePadding(bottom = imeInsets.bottom)
-            binding.contactsRecyclerView.updatePadding(bottom = imeInsets.bottom)
+
+            // Adjust menuView & sidebarContainer
+            val menuParams = binding.menuView.layoutParams as ViewGroup.MarginLayoutParams
+            menuParams.bottomMargin = resources.getDimensionPixelSize(R.dimen.bottom_margin_3_button_nav) + imeInsets.bottom
+            binding.menuView.layoutParams = menuParams
+
             insets
         }
 
@@ -733,16 +736,17 @@ class AppDrawerFragment : BaseFragment() {
 
 
     private fun View.showKeyboard() {
-        if (!Prefs(requireContext()).autoShowKeyboard) return
-        if (Prefs(requireContext()).hideSearchView) return
+        val prefs = Prefs(requireContext())
+        if (!prefs.autoShowKeyboard) return
+        if (prefs.hideSearchView) return
 
         val searchTextView = binding.search.findViewById<TextView>(R.id.search_src_text)
         searchTextView.requestFocus()
+
         val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         searchTextView.postDelayed({
             searchTextView.requestFocus()
-            @Suppress("DEPRECATION")
-            imm.showSoftInput(searchTextView, InputMethodManager.SHOW_FORCED)
+            imm.showSoftInput(searchTextView, InputMethodManager.SHOW_IMPLICIT)
         }, 100)
     }
 
