@@ -19,6 +19,7 @@ import android.widget.EditText
 import android.widget.Filter
 import android.widget.Filterable
 import android.widget.FrameLayout
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.content.res.AppCompatResources
@@ -160,27 +161,29 @@ class AppDrawerAdapter(
         }
 
         holder.appSaveRename.setOnClickListener {
-            when (holder.appSaveRename.text) {
-                getLocalizedString(R.string.rename) -> {
-                    val name = holder.appRenameEdit.text.toString().trim()
-                    AppLogger.d("AppListDebug", "✏️ Renaming ${appModel.activityPackage} to $name")
-                    notifyItemChanged(holder.absoluteAdapterPosition)
-                    AppLogger.d("AppListDebug", "🔁 notifyItemChanged at ${holder.absoluteAdapterPosition}")
-                    appRenameListener(appModel.activityPackage, name)
-                }
+            val currentText = holder.appRenameEdit.text.toString().trim()
 
-                getLocalizedString(R.string.reset) -> {
+            when {
+                currentText.isEmpty() -> { // Reset state
                     AppLogger.d("AppListDebug", "✏️ Resetting ${appModel.activityPackage} to default")
-                    notifyItemChanged(holder.absoluteAdapterPosition)
-                    AppLogger.d("AppListDebug", "🔁 notifyItemChanged at ${holder.absoluteAdapterPosition}")
-                    appRenameListener(appModel.activityPackage, emptyString()) // empty string signals default
+                    appRenameListener(appModel.activityPackage, emptyString()) // empty string = default
                 }
 
-                else -> {
-                    notifyItemChanged(holder.absoluteAdapterPosition)
+                currentText == appModel.activityLabel -> { // Rename state
+                    AppLogger.d("AppListDebug", "✏️ Renaming ${appModel.activityPackage} to $currentText")
+                    appRenameListener(appModel.activityPackage, currentText)
                 }
             }
 
+            notifyItemChanged(holder.absoluteAdapterPosition)
+            AppLogger.d("AppListDebug", "🔁 notifyItemChanged at ${holder.absoluteAdapterPosition}")
+        }
+
+        holder.appSaveCancel.setOnClickListener {
+            AppLogger.d("AppListDebug", "✏️ Cancel rename for ${appModel.activityPackage}")
+
+            notifyItemChanged(holder.absoluteAdapterPosition)
+            AppLogger.d("AppListDebug", "🔁 notifyItemChanged at ${holder.absoluteAdapterPosition}")
         }
 
         holder.appSaveTag.setOnClickListener {
@@ -321,7 +324,8 @@ class AppDrawerAdapter(
         val appHide: TextView = itemView.appHide
         val appLock: TextView = itemView.appLock
         val appRenameEdit: EditText = itemView.appRenameEdit
-        val appSaveRename: TextView = itemView.appSaveRename
+        val appSaveRename: ImageView = itemView.appSaveRename
+        val appSaveCancel: ImageView = itemView.appSaveCancel
         val appTagEdit: EditText = itemView.appTagEdit
         val appSaveTag: TextView = itemView.appSaveTag
 
@@ -426,20 +430,10 @@ class AppDrawerAdapter(
             }
 
             appRenameEdit.apply {
-                val activityLabel = prefs.getAppAlias(appListItem.activityPackage).takeIf { it.isNotBlank() } ?: appListItem.activityLabel
+                val activityLabel = prefs.getAppAlias(appListItem.activityPackage).takeIf { it.isNotBlank() }
+                    ?: appListItem.activityLabel
+
                 text = Editable.Factory.getInstance().newEditable(activityLabel)
-                appSaveRename.text = getLocalizedString(R.string.cancel)
-                addTextChangedListener(object : TextWatcher {
-                    override fun afterTextChanged(s: Editable) {}
-                    override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-                    override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                        appSaveRename.text = when {
-                            text.isEmpty() -> getLocalizedString(R.string.reset)
-                            text.toString() == activityLabel -> getLocalizedString(R.string.cancel)
-                            else -> getLocalizedString(R.string.rename)
-                        }
-                    }
-                })
             }
 
             appTagEdit.apply {
