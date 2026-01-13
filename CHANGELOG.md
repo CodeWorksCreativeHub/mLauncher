@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [1.11.3.4 → Unreleased](https://github.com/CodeWorksCreativeHub/mLauncher/tree/main) - In Development
+
+### :wrench: Code Quality:
+
+* Refactor BatteryReceiver to improve reliability and efficiency ([99345c31](https://github.com/CodeWorksCreativeHub/mLauncher/commit/99345c31))
+
 ## [1110304 (1.11.3.4) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.3.4) - (13, January 2026)
 
 ### :sparkles: Enhancements:
