@@ -426,13 +426,13 @@ class AppDrawerAdapter(
             }
 
             appRenameEdit.apply {
-                text = Editable.Factory.getInstance().newEditable(prefs.getAppAlias(appListItem.activityPackage).takeIf { it.isNotBlank() } ?: appListItem.activityLabel)
+                val activityLabel = prefs.getAppAlias(appListItem.activityPackage).takeIf { it.isNotBlank() } ?: appListItem.activityLabel
+                text = Editable.Factory.getInstance().newEditable(activityLabel)
                 appSaveRename.text = getLocalizedString(R.string.cancel)
                 addTextChangedListener(object : TextWatcher {
                     override fun afterTextChanged(s: Editable) {}
                     override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
                     override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                        val activityLabel = prefs.getAppAlias(appListItem.activityPackage).takeIf { it.isNotBlank() } ?: appListItem.activityLabel
                         appSaveRename.text = when {
                             text.isEmpty() -> getLocalizedString(R.string.reset)
                             text.toString() == activityLabel -> getLocalizedString(R.string.cancel)
