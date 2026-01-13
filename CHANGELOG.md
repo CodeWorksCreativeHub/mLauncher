@@ -8,8 +8,14 @@ All notable changes to this project will be documented in this file. See [conven
 
 * Add reset functionality to app renaming ([8ec4f806](https://github.com/CodeWorksCreativeHub/mLauncher/commit/8ec4f806))
 
+### :bug: Bug Fixes:
+
+* Fix keyboard handling and bottom margin ([6ced4384](https://github.com/CodeWorksCreativeHub/mLauncher/commit/6ced4384))
+
 ### :wrench: Code Quality:
 
+* Simplify rename logic and UI ([f76aaf98](https://github.com/CodeWorksCreativeHub/mLauncher/commit/f76aaf98))
+* Refactor rename UI in app drawer ([d3d30f1b](https://github.com/CodeWorksCreativeHub/mLauncher/commit/d3d30f1b))
 * Simplify app rename logic in AppDrawerAdapter ([f5405c4b](https://github.com/CodeWorksCreativeHub/mLauncher/commit/f5405c4b))
 * Improve preference migration and build script variables ([a4a27359](https://github.com/CodeWorksCreativeHub/mLauncher/commit/a4a27359))
 * Use `activityLabel` directly, removing `customLabel` and `label` ([dc1a81f3](https://github.com/CodeWorksCreativeHub/mLauncher/commit/dc1a81f3))
