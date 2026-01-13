@@ -2,7 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
-## [nightly-2026.01.12 → Unreleased](https://github.com/CodeWorksCreativeHub/mLauncher/tree/main) - In Development
+## [nightly-2026.01.13 → Unreleased](https://github.com/CodeWorksCreativeHub/mLauncher/tree/main) - In Development
+
+### :wrench: Code Quality:
+
+* Improve preference migration and build script variables ([a4a27359](https://github.com/CodeWorksCreativeHub/mLauncher/commit/a4a27359))
+* Use `activityLabel` directly, removing `customLabel` and `label` ([dc1a81f3](https://github.com/CodeWorksCreativeHub/mLauncher/commit/dc1a81f3))
+
+## [Nightly Release 2026.01.13](https://github.com/CodeWorksCreativeHub/mLauncher/tree/nightly-2026.01.13) - (12, January 2026)
 
 ### :sparkles: Enhancements:
 
@@ -14,11 +21,6 @@ All notable changes to this project will be documented in this file. See [conven
 * Use FontManager for font loading in SettingsComposable ([54361a40](https://github.com/CodeWorksCreativeHub/mLauncher/commit/54361a40))
 * Use FontText in SettingsTextPreference ([1355be5a](https://github.com/CodeWorksCreativeHub/mLauncher/commit/1355be5a))
 * Remove redundant theme logic in SettingsFragment ([f2ea3277](https://github.com/CodeWorksCreativeHub/mLauncher/commit/f2ea3277))
-
-## [Nightly Release 2026.01.12](https://github.com/CodeWorksCreativeHub/mLauncher/tree/nightly-2026.01.12) - (10, January 2026)
-
-### :wrench: Code Quality:
-
 * Improve app drawer context menu and keyboard behavior ([e09b4411](https://github.com/CodeWorksCreativeHub/mLauncher/commit/e09b4411))
 
 ## [1110303 (1.11.3.3) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.3.3) - (06, January 2026)
