@@ -118,7 +118,7 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
 
         val view = binding.root
         prefs = Prefs(requireContext())
-        batteryReceiver = BatteryReceiver()
+        batteryReceiver = BatteryReceiver(binding.battery, prefs)
         dialogBuilder = DialogManager(requireContext(), requireActivity())
         if (PrivateSpaceManager(requireContext()).isPrivateSpaceSupported()) {
             privateSpaceReceiver = PrivateSpaceReceiver()
@@ -188,8 +188,14 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
 
         // Register battery receiver
         context?.let { ctx ->
-            batteryReceiver = BatteryReceiver()
-            ctx.registerReceiver(batteryReceiver, IntentFilter(Intent.ACTION_BATTERY_CHANGED))
+            binding.battery.let { textView ->
+                batteryReceiver = BatteryReceiver(textView, prefs)
+                val intentFilter = IntentFilter(Intent.ACTION_BATTERY_CHANGED)
+                // Register receiver
+                val stickyIntent = ctx.registerReceiver(batteryReceiver, intentFilter)
+                // Immediately update UI with sticky intent
+                stickyIntent?.let { batteryReceiver.onReceive(ctx, it) }
+            }
 
             // Register private space receiver if supported
             if (PrivateSpaceManager(ctx).isPrivateSpaceSupported()) {
