@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file. See [conven
 
 ## [nightly-2026.01.13 → Unreleased](https://github.com/CodeWorksCreativeHub/mLauncher/tree/main) - In Development
 
+### :sparkles: Enhancements:
+
+* Add reset functionality to app renaming ([8ec4f806](https://github.com/CodeWorksCreativeHub/mLauncher/commit/8ec4f806))
+
 ### :wrench: Code Quality:
 
 * Improve preference migration and build script variables ([a4a27359](https://github.com/CodeWorksCreativeHub/mLauncher/commit/a4a27359))
