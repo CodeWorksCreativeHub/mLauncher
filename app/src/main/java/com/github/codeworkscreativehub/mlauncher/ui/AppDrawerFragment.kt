@@ -164,9 +164,6 @@ class AppDrawerFragment : BaseFragment() {
             AppDrawerFlag.SetAppUsage,
             AppDrawerFlag.SetClickDate,
             AppDrawerFlag.SetFloating -> {
-                binding.drawerButton.setOnClickListener {
-                    findNavController().popBackStack()
-                }
             }
 
             AppDrawerFlag.SetHomeApp -> {
@@ -179,14 +176,9 @@ class AppDrawerFragment : BaseFragment() {
                     activityClass = emptyString(),
                     user = userManager.userProfiles[0], // or use Process.myUserHandle() if it makes more sense
                     profileType = "SYSTEM",
-                    customLabel = "Clear",
                     customTag = emptyString(),
                     category = AppCategory.REGULAR
                 )
-
-                binding.drawerButton.setOnClickListener {
-                    findNavController().popBackStack()
-                }
 
                 binding.clearHomeButton.apply {
                     val currentApp = prefs.getHomeAppModel(n)
@@ -309,7 +301,7 @@ class AppDrawerFragment : BaseFragment() {
 
                 val sectionLetter = when (item.category) {
                     AppCategory.PINNED -> "★"
-                    else -> item.label.firstOrNull()?.uppercaseChar()?.toString() ?: return
+                    else -> item.activityLabel.firstOrNull()?.uppercaseChar()?.toString() ?: return
                 }
 
                 // Skip redundant updates
@@ -502,11 +494,6 @@ class AppDrawerFragment : BaseFragment() {
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 if (flag == AppDrawerFlag.SetHomeApp) {
-                    binding.drawerButton.apply {
-                        isVisible = !newText.isNullOrEmpty()
-                        text = if (isVisible) getLocalizedString(R.string.rename) else null
-                        setOnClickListener { if (isVisible) renameListener(flag, n) }
-                    }
                     binding.clearHomeButton.apply {
                         isVisible = newText.isNullOrEmpty()
                     }
@@ -823,16 +810,6 @@ class AppDrawerFragment : BaseFragment() {
         findNavController().popBackStack()
     }
 
-    private fun renameListener(flag: AppDrawerFlag, i: Int) {
-        val name = binding.search.query.toString().trim()
-        if (name.isEmpty()) return
-        if (flag == AppDrawerFlag.SetHomeApp) {
-            Prefs(requireContext()).setHomeAppName(i, name)
-        }
-
-        findNavController().popBackStack()
-    }
-
     private fun appShowHideListener(): (flag: AppDrawerFlag, appListItem: AppListItem) -> Unit = { flag, appModel ->
         val prefs = Prefs(requireContext())
         val newSet = mutableSetOf<String>()
@@ -877,7 +854,7 @@ class AppDrawerFragment : BaseFragment() {
             when (item.category) {
                 AppCategory.PINNED -> letters.add("★")
                 else -> {
-                    item.label.firstOrNull()
+                    item.activityLabel.firstOrNull()
                         ?.uppercaseChar()
                         ?.toString()
                         ?.let { letters.add(it) }

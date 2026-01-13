@@ -42,10 +42,10 @@ class HomeAppsWidgetProvider : AppWidgetProvider() {
                 // --- App label ---
                 val appLabel = try {
                     context.packageManager.getApplicationLabel(
-                        context.packageManager.getApplicationInfo(appModel.label, 0)
+                        context.packageManager.getApplicationInfo(appModel.activityLabel, 0)
                     ).toString()
                 } catch (_: Exception) {
-                    appModel.label
+                    appModel.activityLabel
                 }
 
                 // --- Get icon safely ---

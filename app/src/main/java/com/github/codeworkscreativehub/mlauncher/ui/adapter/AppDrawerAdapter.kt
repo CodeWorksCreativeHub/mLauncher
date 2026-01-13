@@ -103,13 +103,13 @@ class AppDrawerAdapter(
         }
 
         val appModel = appFilteredList[holder.absoluteAdapterPosition]
-        AppLogger.d("AppListDebug", "🔧 Binding position=$position, label=${appModel.label}, package=${appModel.activityPackage}")
+        AppLogger.d("AppListDebug", "🔧 Binding position=$position, label=${appModel.activityLabel}, package=${appModel.activityPackage}")
 
         // Pass icon cache and loading scope to bind
         holder.bind(flag, gravity, appModel, appClickListener, appInfoListener, appDeleteListener, iconCache, iconLoadingScope, prefs)
 
         holder.appHide.setOnClickListener {
-            AppLogger.d("AppListDebug", "❌ Hide clicked for ${appModel.label} (${appModel.activityPackage})")
+            AppLogger.d("AppListDebug", "❌ Hide clicked for ${appModel.activityLabel} (${appModel.activityPackage})")
 
             appFilteredList.removeAt(holder.absoluteAdapterPosition)
             appsList.remove(appModel)
@@ -161,10 +161,9 @@ class AppDrawerAdapter(
         holder.appSaveRename.setOnClickListener {
             val name = holder.appRenameEdit.text.toString().trim()
             AppLogger.d("AppListDebug", "✏️ Renaming ${appModel.activityPackage} to $name")
-            appModel.customLabel = name
             notifyItemChanged(holder.absoluteAdapterPosition)
             AppLogger.d("AppListDebug", "🔁 notifyItemChanged at ${holder.absoluteAdapterPosition}")
-            appRenameListener(appModel.activityPackage, appModel.customLabel)
+            appRenameListener(appModel.activityPackage, name)
         }
 
         holder.appSaveTag.setOnClickListener {
@@ -194,7 +193,7 @@ class AppDrawerAdapter(
 
                 val isTagSearch = searchChars.startsWith("#")
                 val query = if (isTagSearch) searchChars.substringAfter("#") else searchChars
-                val normalizeField: (AppListItem) -> String = { app -> if (isTagSearch) normalize(app.tag) else normalize(app.label) }
+                val normalizeField: (AppListItem) -> String = { app -> if (isTagSearch) normalize(app.tag) else normalize(app.activityLabel) }
 
                 // Scoring logic
                 val scoredApps: Map<AppListItem, Int> = if (prefs.enableFilterStrength) {
@@ -289,7 +288,7 @@ class AppDrawerAdapter(
 
     fun getFirstInList(): String? {
         if (appFilteredList.isNotEmpty())
-            return appFilteredList[0].label
+            return appFilteredList[0].activityLabel
         return null
     }
 
@@ -410,14 +409,15 @@ class AppDrawerAdapter(
             }
 
             appRenameEdit.apply {
-                text = Editable.Factory.getInstance().newEditable(appListItem.label)
+                text = Editable.Factory.getInstance().newEditable(prefs.getAppAlias(appListItem.activityPackage).takeIf { it.isNotBlank() } ?: appListItem.activityLabel)
                 addTextChangedListener(object : TextWatcher {
                     override fun afterTextChanged(s: Editable) {}
                     override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
                     override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                        val activityLabel = prefs.getAppAlias(appListItem.activityPackage).takeIf { it.isNotBlank() } ?: appListItem.activityLabel
                         appSaveRename.text = when {
                             text.isEmpty() -> getLocalizedString(R.string.reset)
-                            text.toString() == appListItem.customLabel -> getLocalizedString(R.string.cancel)
+                            text.toString() == activityLabel -> getLocalizedString(R.string.cancel)
                             else -> getLocalizedString(R.string.rename)
                         }
                     }
@@ -448,7 +448,7 @@ class AppDrawerAdapter(
 
             // ----------------------------
             // 5️⃣ App title
-            appTitle.text = appListItem.label
+            appTitle.text = prefs.getAppAlias(appListItem.activityPackage).takeIf { it.isNotBlank() } ?: appListItem.activityLabel
             val params = appTitle.layoutParams as FrameLayout.LayoutParams
             params.gravity = appLabelGravity
             appTitle.layoutParams = params
@@ -474,7 +474,7 @@ class AppDrawerAdapter(
                         getSystemIcons(context, prefs, IconCacheTarget.APP_LIST, nonNullDrawable) ?: nonNullDrawable
                     }
                     iconCache[packageName] = icon
-                    if (appTitle.text == appListItem.label) setAppTitleIcon(appTitle, icon, prefs)
+                    if (appTitle.text == appListItem.activityLabel) setAppTitleIcon(appTitle, icon, prefs)
                 }
             }
 
@@ -502,7 +502,8 @@ class AppDrawerAdapter(
                             sidebarContainer?.isVisible = false
                             openedContextMenuPosition = currentPos
 
-                        } catch (_: Exception) {
+                        } catch (e: Exception) {
+                            e.printStackTrace()
                         }
                     }
                     true

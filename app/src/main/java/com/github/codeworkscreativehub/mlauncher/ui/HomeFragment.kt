@@ -989,13 +989,15 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
             for (i in oldAppsNum until newAppsNum) {
                 val homeAppLabel = layoutInflater.inflate(R.layout.home_app_button, null) as TextView
                 homeAppLabel.apply {
+                    val homeApp = prefs.getHomeAppModel(i)
                     textSize = prefs.appSize.toFloat()
                     id = i
-                    text = if (prefs.getHomeAppModel(i).activityPackage.isBlank()) {
+                    text = if (homeApp.activityPackage.isBlank()) {
                         getLocalizedString(R.string.select_app)
                     } else {
-                        prefs.getHomeAppModel(i).activityLabel
+                        prefs.getAppAlias(homeApp.activityPackage).takeIf { it.isNotBlank() } ?: homeApp.activityLabel
                     }
+
                     getHomeAppsGestureListener()
                     setOnClickListener(this@HomeFragment)
 
@@ -1088,7 +1090,7 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
 
                                 this.text = if (count > 0) {
                                     val circledNumber = getCircledDigit(count)
-                                    val newText = "${appModel.label} $circledNumber"
+                                    val newText = "${appModel.activityLabel} $circledNumber"
                                     val spannable = SpannableString(newText)
 
                                     val start = newText.indexOf(circledNumber)
@@ -1118,7 +1120,7 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
 
                                     spannable
                                 } else {
-                                    appModel.label
+                                    appModel.activityLabel
                                 }
 
                                 AppLogger.d("HomeFragment", "Notification count updated for $packageName: $count")

@@ -25,12 +25,6 @@ val collator: Collator = Collator.getInstance()
  * userHandle is needed to resolve and start an activity.
  * And also we mark with a special icon the apps which belong to a managed user.
  *
- * @property customLabel
- * When user renames an app, we store the rename in Preferences.
- *
- * @property label
- * Use this property to render the list item.
- * It's either the original activity label (`activityLabel`) or a user-defined label (`definedLabel`).
  */
 data class AppListItem(
     val activityLabel: String,
@@ -38,16 +32,14 @@ data class AppListItem(
     val activityClass: String,
     val user: UserHandle,
     val profileType: String = "SYSTEM",
-    var customLabel: String,
     var customTag: String,
     var category: AppCategory = AppCategory.REGULAR
 ) : Comparable<AppListItem> {
 
-    val label = customLabel.ifEmpty { activityLabel }
     val tag = customTag.ifEmpty { emptyString() }
 
     /** Speed up sort and search */
-    private val collationKey = collator.getCollationKey(label)
+    private val collationKey = collator.getCollationKey(activityLabel)
 
     override fun compareTo(other: AppListItem): Int =
         collationKey.compareTo(other.collationKey)

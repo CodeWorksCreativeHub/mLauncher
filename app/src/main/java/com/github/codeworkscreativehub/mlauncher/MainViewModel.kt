@@ -621,7 +621,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 activityClass = raw.cls,
                 user = raw.user,
                 profileType = raw.profileType,
-                customLabel = prefs.getAppAlias(raw.pkg),
                 customTag = prefs.getAppTag(raw.pkg, raw.user),
                 category = raw.category
             )
@@ -629,7 +628,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             // 🔹 Sort pinned apps first, then regular/recent alphabetically
             .sortedWith(
                 compareByDescending<AppListItem> { it.category == AppCategory.PINNED }
-                    .thenBy { normalizeForSort(it.label) }
+                    .thenBy { normalizeForSort(it.activityLabel) }
             )
             .toMutableList()
 
@@ -643,7 +642,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             isHidden = { it.activityPackage in hiddenAppsSet },
             isPinned = { it.activityPackage in pinnedPackages },
             buildItem = { it },
-            getLabel = { it.label },
+            getLabel = { it.activityLabel },
             normalize = ::normalizeForSort
         )
     }
@@ -816,7 +815,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 obj.put("class", item.activityClass)
                 obj.put("userHash", item.user.hashCode())
                 obj.put("profileType", item.profileType)
-                obj.put("customLabel", item.customLabel)
                 obj.put("customTag", item.customTag)
                 obj.put("category", item.category.ordinal)
                 array.put(obj)
@@ -850,7 +848,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                     activityClass = obj.optString("class", ""),
                     user = userHandle,
                     profileType = obj.optString("profileType", "SYSTEM"),
-                    customLabel = obj.optString("customLabel", ""),
                     customTag = obj.optString("customTag", ""),
                     category = AppCategory.entries.getOrNull(obj.optInt("category", 1)) ?: AppCategory.REGULAR
                 )

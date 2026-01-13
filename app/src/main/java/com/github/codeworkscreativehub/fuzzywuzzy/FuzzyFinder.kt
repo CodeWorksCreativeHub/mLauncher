@@ -9,7 +9,7 @@ import java.util.Locale
 object FuzzyFinder {
 
     fun scoreApp(app: AppListItem, searchChars: String, topScore: Int): Int {
-        val appLabel = app.label
+        val appLabel = app.activityLabel
         val normalizedAppLabel = normalizeString(appLabel)
         val normalizedSearchChars = normalizeString(searchChars)
 

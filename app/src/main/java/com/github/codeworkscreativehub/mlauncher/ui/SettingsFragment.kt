@@ -832,7 +832,6 @@ class SettingsFragment : BaseFragment() {
                                         activityClass = emptyString(),
                                         user = userManager.userProfiles[0], // or use Process.myUserHandle() if it makes more sense
                                         profileType = "SYSTEM",
-                                        customLabel = "Clear",
                                         customTag = emptyString(),
                                         category = AppCategory.REGULAR
                                     )
