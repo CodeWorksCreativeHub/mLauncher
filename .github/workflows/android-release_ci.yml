@@ -61,11 +61,35 @@ jobs:
         run: |
           shred -u app/mLauncher.jks || rm -f app/mLauncher.jks
 
+      - name: Detect build artifacts
+        id: detect_artifacts
+        shell: bash
+        run: |
+          set -e
+      
+          APK=$(find app/build/outputs/apk -name "*.apk" -type f | head -n 1)
+          AAB=$(find app/build/outputs/bundle -name "*.aab" -type f | head -n 1)
+          MAPPING=$(find app/build/outputs/mapping -name "mapping.txt" -type f | head -n 1)
+      
+          echo "Detected APK: $APK"
+          echo "Detected AAB: $AAB"
+          echo "Detected mapping: $MAPPING"
+      
+          if [[ -z "$APK" || -z "$AAB" ]]; then
+            echo "❌ APK or AAB not found"
+            exit 1
+          fi
+      
+          echo "apk=$APK" >> "$GITHUB_OUTPUT"
+          echo "aab=$AAB" >> "$GITHUB_OUTPUT"
+          echo "mapping=$MAPPING" >> "$GITHUB_OUTPUT"
+
+
       - name: Release to GitHub
         uses: svenstaro/upload-release-action@2.11.3
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: app/build/outputs/apk/prob/release/app-prod-release.apk
+          file: ${{ steps.detect_artifacts.outputs.apk }}
           asset_name: MultiLauncher-${{ github.ref_name }}-Signed.apk
           tag: ${{ github.ref }}
           overwrite: true
@@ -74,7 +98,7 @@ jobs:
         uses: svenstaro/upload-release-action@2.11.3
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: app/build/outputs/mapping/prodRelease/mapping.txt
+          file: ${{ steps.detect_artifacts.outputs.mapping }}
           asset_name: MultiLauncher-${{ github.ref_name }}-mapping.txt
           tag: ${{ github.ref }}
           overwrite: true
@@ -83,7 +107,7 @@ jobs:
         uses: svenstaro/upload-release-action@2.11.3
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: app/build/outputs/bundle/prodRelease/app-prod-release.aab
+          file: ${{ steps.detect_artifacts.outputs.aab }}
           asset_name: MultiLauncher-${{ github.ref_name }}-Signed.aab
           tag: ${{ github.ref }}
           overwrite: true
