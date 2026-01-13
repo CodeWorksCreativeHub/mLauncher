@@ -16,7 +16,7 @@ val build = 4
 
 val baseVersionName = "$major.$minor.$patch Build $build"
 
-val versionCodeBase =
+val baseVersionCode =
     (String.format("%02d", major) +
             String.format("%02d", minor) +
             String.format("%02d", patch) +
@@ -36,7 +36,7 @@ android {
     defaultConfig {
         minSdk = 28
         targetSdk = 36
-        versionCode = versionCodeBase
+        versionCode = baseVersionCode
         versionName = baseVersionName
     }
 
@@ -96,7 +96,7 @@ android {
 
             signingConfig = signingConfigs["release"]
 
-            resValue("string", "app_version", baseVersionName)
+            resValue("string", "app_version", baseVersionCode.toString())
             resValue("string", "app_name", "Multi Launcher Debug")
             resValue("string", "empty", "")
         }
