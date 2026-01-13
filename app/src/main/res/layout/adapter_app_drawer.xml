@@ -195,15 +195,24 @@
             android:textColorHint="?attr/primaryColorTrans50"
             tools:ignore="LabelFor" />
 
-        <com.github.creativecodecat.components.views.FontAppCompatTextView
+        <ImageView
             android:id="@+id/appSaveRename"
-            style="@style/TextSmallBold"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:paddingHorizontal="20dp"
-            android:text="@string/rename"
-            android:textAllCaps="true" />
+            android:contentDescription="@string/rename"
+            android:paddingHorizontal="2dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_tick" />
+
+        <ImageView
+            android:id="@+id/appSaveCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="18dp"
+            android:contentDescription="@string/cancel"
+            android:paddingHorizontal="2dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_close" />
 
     </LinearLayout>
 
