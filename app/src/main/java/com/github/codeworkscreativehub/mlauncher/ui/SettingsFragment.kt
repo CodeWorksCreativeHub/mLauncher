@@ -40,10 +40,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.isSpecified
 import androidx.compose.ui.unit.sp
 import androidx.core.graphics.createBitmap
 import androidx.core.graphics.drawable.toDrawable
@@ -156,30 +156,33 @@ class SettingsFragment : BaseFragment() {
             }
 
             setThemeMode(requireContext(), isDark, binding.settingsView)
-            val settingsSize = (prefs.settingsSize - 3)
-
             SettingsTheme(isDark) {
-                Settings(settingsSize.sp)
+                Settings()
             }
         }
     }
 
     @Composable
-    private fun Settings(fontSize: TextUnit = TextUnit.Unspecified) {
+    private fun Settings() {
+        var selectedSettingsSize by remember { mutableIntStateOf(prefs.settingsSize) }
         var toggledPrivateSpaces by remember { mutableStateOf(PrivateSpaceManager(requireContext()).isPrivateSpaceLocked()) }
-        val fs = remember { mutableStateOf(fontSize) }
 
-        val titleFontSize = if (fs.value.isSpecified) {
-            (fs.value.value * 1.5).sp
-        } else fs.value
+        // Derived states that recompute whenever selectedSize changes
+        val titleFontSize by remember {
+            derivedStateOf { (selectedSettingsSize.sp) }
+        }
 
-        val descriptionFontSize = if (fs.value.isSpecified) {
-            (fs.value.value * 1.2).sp
-        } else fs.value
+        val descriptionFontSize by remember {
+            derivedStateOf { (selectedSettingsSize.sp * 0.8f) }
+        }
 
-        val iconSize = if (fs.value.isSpecified) {
-            tuToDp((fs.value * 0.8))
-        } else tuToDp(fs.value)
+        val density = LocalDensity.current
+
+        val iconSize by remember(selectedSettingsSize) {
+            derivedStateOf {
+                (selectedSettingsSize.sp * 1.8f).toDp(density)
+            }
+        }
 
         val context = LocalContext.current
         val scrollState = rememberScrollState()
@@ -347,7 +350,6 @@ class SettingsFragment : BaseFragment() {
 
         // Experimental Settings
         var toggledExpertOptions by remember { mutableStateOf(prefs.enableExpertOptions) }
-        var selectedSettingsSize by remember { mutableIntStateOf(prefs.settingsSize) }
         var toggledForceWallpaper by remember { mutableStateOf(prefs.forceWallpaper) }
         var toggledSettingsLocked by remember { mutableStateOf(prefs.settingsLocked) }
         var toggledLockOrientation by remember { mutableStateOf(prefs.lockOrientation) }
@@ -2843,14 +2845,6 @@ class SettingsFragment : BaseFragment() {
         }
     }
 
-    @Composable
-    fun tuToDp(textUnit: TextUnit): Dp {
-        val density = LocalDensity.current.density
-        val scaledDensity = LocalDensity.current.fontScale
-        val dpValue = textUnit.value * (density / scaledDensity)
-        return dpValue.dp  // Convert to Dp using the 'dp' extension
-    }
-
     private fun dismissDialogs() {
         dialogBuilder.backupRestoreBottomSheet?.dismiss()
         dialogBuilder.saveLoadThemeBottomSheet?.dismiss()
@@ -3026,3 +3020,5 @@ class SettingsFragment : BaseFragment() {
         return bitmap
     }
 }
+
+private fun TextUnit.toDp(density: Density): Dp = with(density) { this@toDp.toDp() }
