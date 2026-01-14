@@ -625,16 +625,19 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 category = raw.category
             )
         }
-            // 🔹 Sort pinned apps first, then regular/recent alphabetically
-            .sortedWith(
-                compareByDescending<AppListItem> { it.category == AppCategory.PINNED }
-                    .thenBy { normalizeForSort(it.activityLabel) }
-            )
-            .toMutableList()
+        // 1. Perform the sort using Alias priority
+        val sortedApps = allApps.sortedWith(
+            compareByDescending<AppListItem> { it.category == AppCategory.PINNED }
+                .thenBy { item ->
+                    val alias = prefs.getAppAlias(item.activityPackage)
+                    val displayName = alias.takeIf { it.isNotBlank() } ?: item.activityLabel
+                    normalizeForSort(displayName)
+                }
+        ).toMutableList()
 
-        // 🔹 Build scroll map and finalize
+        // 2. Build the scroll map using the same Alias priority
         buildList(
-            items = allApps,
+            items = sortedApps, // Use the sorted list here
             seenKey = mutableSetOf(),
             scrollMapLiveData = _appScrollMap,
             includeHidden = includeHiddenApps,
@@ -642,7 +645,10 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             isHidden = { it.activityPackage in hiddenAppsSet },
             isPinned = { it.activityPackage in pinnedPackages },
             buildItem = { it },
-            getLabel = { it.activityLabel },
+            // UPDATE: Use the alias here so the scroll index matches the sort
+            getLabel = { item ->
+                prefs.getAppAlias(item.activityPackage).takeIf { it.isNotBlank() } ?: item.activityLabel
+            },
             normalize = ::normalizeForSort
         )
     }

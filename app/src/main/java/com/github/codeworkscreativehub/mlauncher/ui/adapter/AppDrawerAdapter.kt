@@ -169,7 +169,7 @@ class AppDrawerAdapter(
                     appRenameListener(appModel.activityPackage, emptyString()) // empty string = default
                 }
 
-                currentText == appModel.activityLabel -> { // Rename state
+                currentText != appModel.activityLabel -> { // Rename state
                     AppLogger.d("AppListDebug", "✏️ Renaming ${appModel.activityPackage} to $currentText")
                     appRenameListener(appModel.activityPackage, currentText)
                 }
@@ -474,6 +474,9 @@ class AppDrawerAdapter(
             setAppTitleIcon(appTitle, cachedIcon ?: placeholderIcon, prefs)
 
             if (cachedIcon == null && packageName.isNotBlank() && prefs.iconPackAppList != Constants.IconPacks.Disabled) {
+                // 1. Tag the view with the package name to prevent "wrong icon" bugs
+                appTitle.tag = packageName
+
                 iconLoadingScope.launch {
                     val icon = withContext(Dispatchers.IO) {
                         val nonNullDrawable: Drawable = getSafeAppIcon(
@@ -485,8 +488,15 @@ class AppDrawerAdapter(
                         )
                         getSystemIcons(context, prefs, IconCacheTarget.APP_LIST, nonNullDrawable) ?: nonNullDrawable
                     }
+
+                    // 2. Update cache (Ensure iconCache is thread-safe, e.g., ConcurrentHashMap)
                     iconCache[packageName] = icon
-                    if (appTitle.text == appListItem.activityLabel) setAppTitleIcon(appTitle, icon, prefs)
+
+                    // 3. ONLY update the UI if the view is still intended for THIS package
+                    // This prevents the wrong icon from appearing after scrolling
+                    if (appTitle.tag == packageName) {
+                        setAppTitleIcon(appTitle, icon, prefs)
+                    }
                 }
             }
 
