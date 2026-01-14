@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 ### :sparkles: Enhancements:
 
+* Disable dependency metadata in builds ([b4dbdc1d](https://github.com/CodeWorksCreativeHub/mLauncher/commit/b4dbdc1d))
 * Add unit tests for FuzzyFinder ([5d311478](https://github.com/CodeWorksCreativeHub/mLauncher/commit/5d311478))
 
 ### :bug: Bug Fixes:
