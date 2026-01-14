@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file. See [conven
 
 ## [1.11.3.4 → Unreleased](https://github.com/CodeWorksCreativeHub/mLauncher/tree/main) - In Development
 
+### :sparkles: Enhancements:
+
+* Add unit tests for FuzzyFinder ([5d311478](https://github.com/CodeWorksCreativeHub/mLauncher/commit/5d311478))
+
 ### :bug: Bug Fixes:
 
 * Resolve icon loading and sorting bugs ([d04d371c](https://github.com/CodeWorksCreativeHub/mLauncher/commit/d04d371c))
