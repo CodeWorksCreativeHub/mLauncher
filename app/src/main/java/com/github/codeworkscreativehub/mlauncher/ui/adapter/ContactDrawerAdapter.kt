@@ -10,13 +10,12 @@ import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.core.view.updatePadding
 import androidx.recyclerview.widget.RecyclerView
-import com.github.codeworkscreativehub.common.AppLogger
 import com.github.codeworkscreativehub.fuzzywuzzy.FuzzyFinder
+import com.github.codeworkscreativehub.fuzzywuzzy.FuzzyFinder.filterItems
 import com.github.codeworkscreativehub.mlauncher.data.Constants
 import com.github.codeworkscreativehub.mlauncher.data.ContactListItem
 import com.github.codeworkscreativehub.mlauncher.data.Prefs
 import com.github.codeworkscreativehub.mlauncher.databinding.AdapterAppDrawerBinding
-import java.text.Normalizer
 
 class ContactDrawerAdapter(
     private val context: Context,
@@ -62,57 +61,20 @@ class ContactDrawerAdapter(
     private fun createContactFilter(): Filter {
         return object : Filter() {
             override fun performFiltering(charSearch: CharSequence?): FilterResults {
-                prefs = Prefs(context)
-
                 val searchChars = charSearch.toString().trim().lowercase()
-                val filteredContacts: MutableList<ContactListItem>
 
-                // Normalization function for contacts
-                val normalizeField: (ContactListItem) -> String = { contact -> normalize(contact.displayName) }
+                val filtered = filterItems(
+                    itemsList = contactsList,
+                    query = searchChars,
+                    prefs = Prefs(context),
+                    scoreProvider = { contact, q ->
+                        FuzzyFinder.scoreContact(contact, q, Constants.MAX_FILTER_STRENGTH)
+                    },
+                    labelProvider = { contact -> contact.displayName },
+                    loggerTag = "contactScore"
+                )
 
-                // Scoring logic
-                val scoredContacts: Map<ContactListItem, Int> = if (prefs.enableFilterStrength) {
-                    contactsList.associateWith { contact ->
-                        FuzzyFinder.scoreContact(contact, searchChars, Constants.MAX_FILTER_STRENGTH)
-                    }
-                } else {
-                    emptyMap()
-                }
-
-                filteredContacts = if (searchChars.isEmpty()) {
-                    contactsList.toMutableList()
-                } else {
-                    if (prefs.enableFilterStrength) {
-                        // Filter using scores
-                        scoredContacts.filter { (contact, score) ->
-                            (prefs.searchFromStart && normalizeField(contact).startsWith(searchChars)
-                                    || !prefs.searchFromStart && normalizeField(contact).contains(searchChars))
-                                    && score > prefs.filterStrength
-                        }.map { it.key }.toMutableList()
-                    } else {
-                        // Filter without scores
-                        contactsList.filter { contact ->
-                            if (prefs.searchFromStart) {
-                                normalizeField(contact).startsWith(searchChars)
-                            } else {
-                                FuzzyFinder.isMatch(normalizeField(contact), searchChars)
-                            }
-                        }.toMutableList()
-                    }
-                }
-
-                if (searchChars.isNotEmpty()) AppLogger.d("searchQuery", searchChars)
-
-                val filterResults = FilterResults()
-                filterResults.values = filteredContacts
-                return filterResults
-            }
-
-            fun normalize(input: String): String {
-                val temp = Normalizer.normalize(input, Normalizer.Form.NFC)
-                return temp
-                    .lowercase()
-                    .filter { it.isLetterOrDigit() }
+                return FilterResults().apply { values = filtered }
             }
 
             @SuppressLint("NotifyDataSetChanged")
@@ -158,8 +120,7 @@ class ContactDrawerAdapter(
             contactLabelGravity: Int,
             contactItem: ContactListItem,
             contactClickListener: (ContactListItem) -> Unit,
-        ) = with(itemView) {
-
+        ) {
             appTitle.text = contactItem.displayName
 
             // set text gravity
@@ -172,7 +133,7 @@ class ContactDrawerAdapter(
             }
 
             val padding = 24
-            appTitle.updatePadding(left = padding, right = padding)
+            return appTitle.updatePadding(left = padding, right = padding)
         }
     }
 }

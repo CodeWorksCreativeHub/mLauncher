@@ -33,6 +33,7 @@ import com.github.codeworkscreativehub.common.getLocalizedString
 import com.github.codeworkscreativehub.common.isSystemApp
 import com.github.codeworkscreativehub.common.showKeyboard
 import com.github.codeworkscreativehub.fuzzywuzzy.FuzzyFinder
+import com.github.codeworkscreativehub.fuzzywuzzy.FuzzyFinder.filterItems
 import com.github.codeworkscreativehub.mlauncher.R
 import com.github.codeworkscreativehub.mlauncher.data.AppListItem
 import com.github.codeworkscreativehub.mlauncher.data.Constants
@@ -50,7 +51,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.text.Normalizer
 import java.util.concurrent.ConcurrentHashMap
 
 class AppDrawerAdapter(
@@ -205,72 +205,23 @@ class AppDrawerAdapter(
     private fun createAppFilter(): Filter {
         return object : Filter() {
             override fun performFiltering(charSearch: CharSequence?): FilterResults {
-                isBangSearch = listOf("#").any { prefix -> charSearch?.startsWith(prefix) == true }
-                prefs = Prefs(context)
-
                 val searchChars = charSearch.toString().trim().lowercase()
-                val filteredApps: MutableList<AppListItem>
-
                 val isTagSearch = searchChars.startsWith("#")
                 val query = if (isTagSearch) searchChars.substringAfter("#") else searchChars
-                val normalizeField: (AppListItem) -> String = { app -> if (isTagSearch) normalize(app.tag) else normalize(app.activityLabel) }
 
-                // Scoring logic
-                // 1. Calculate the scores for all apps in the list
-                val scoredApps: Map<AppListItem, Int> = if (prefs.enableFilterStrength) {
-                    appsList.associateWith { app ->
-                        if (isTagSearch) {
-                            // Normalizing the app tag and scoring it against the query
-                            FuzzyFinder.scoreString(app.tag, query, Constants.MAX_FILTER_STRENGTH)
-                        } else {
-                            // Using the specialized scoreApp helper for AppListItems
-                            FuzzyFinder.scoreApp(app, query, Constants.MAX_FILTER_STRENGTH)
-                        }
-                    }
-                } else {
-                    // If filter strength is disabled, we don't calculate fuzzy scores
-                    emptyMap()
-                }
+                val filtered = filterItems(
+                    itemsList = appsList,
+                    query = query,
+                    prefs = Prefs(context),
+                    scoreProvider = { app, q ->
+                        if (isTagSearch) FuzzyFinder.scoreString(app.tag, q, Constants.MAX_FILTER_STRENGTH)
+                        else FuzzyFinder.scoreApp(app, q, Constants.MAX_FILTER_STRENGTH)
+                    },
+                    labelProvider = { app -> if (isTagSearch) app.tag else app.activityLabel },
+                    loggerTag = "appScore"
+                )
 
-                // 2. Filter the list based on the fuzzy score and the user's preferences
-                filteredApps = if (searchChars.isEmpty()) {
-                    appsList.toMutableList()
-                } else {
-                    val filtered = if (prefs.enableFilterStrength) {
-                        // Logic: Use the pre-calculated scores.
-                        // If the score is above the threshold, it's a valid match.
-                        scoredApps.filter { (app, score) ->
-                            AppLogger.d("appScore", "app: ${app.activityLabel} | score: $score")
-                            score > prefs.filterStrength
-                        }.map { it.key }
-                    } else {
-                        // Logic: Simple Boolean matching without scoring.
-                        appsList.filter { app ->
-                            val target = normalizeField(app)
-                            if (prefs.searchFromStart) {
-                                target.startsWith(query)
-                            } else {
-                                // Uses your new isMatch helper for a simple true/false fuzzy check
-                                FuzzyFinder.isMatch(target, query)
-                            }
-                        }
-                    }
-                    filtered.toMutableList()
-                }
-
-                if (query.isNotEmpty()) AppLogger.d("searchQuery", query)
-
-                val filterResults = FilterResults()
-                filterResults.values = filteredApps
-                return filterResults
-            }
-
-            fun normalize(input: String): String {
-                // Normalize to NFC to keep composed characters (é stays é, not e + ´)
-                val temp = Normalizer.normalize(input, Normalizer.Form.NFC)
-                return temp
-                    .lowercase()                  // lowercase Latin letters; other scripts unaffected
-                    .filter { it.isLetterOrDigit() } // keep letters/digits from any language, including accented letters
+                return FilterResults().apply { values = filtered }
             }
 
 

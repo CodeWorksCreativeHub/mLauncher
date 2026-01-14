@@ -1,7 +1,9 @@
 package com.github.codeworkscreativehub.fuzzywuzzy
 
+import com.github.codeworkscreativehub.common.AppLogger
 import com.github.codeworkscreativehub.mlauncher.data.AppListItem
 import com.github.codeworkscreativehub.mlauncher.data.ContactListItem
+import com.github.codeworkscreativehub.mlauncher.data.Prefs
 import com.github.codeworkscreativehub.mlauncher.helper.emptyString
 import java.text.Normalizer
 import java.util.Locale
@@ -135,5 +137,39 @@ object FuzzyFinder {
     private fun normalizeDiacritics(input: String): String {
         return Normalizer.normalize(input, Normalizer.Form.NFD)
             .replace(Regex("\\p{InCombiningDiacriticalMarks}+"), emptyString())
+    }
+
+    /**
+     * A generic helper to filter lists based on fuzzy scoring or simple matching.
+     * T is the type of item (AppListItem or ContactListItem)
+     */
+    fun <T> filterItems(
+        itemsList: List<T>,
+        query: String,
+        prefs: Prefs,
+        scoreProvider: (T, String) -> Int,
+        labelProvider: (T) -> String,
+        loggerTag: String
+    ): MutableList<T> {
+        if (query.isEmpty()) return itemsList.toMutableList()
+
+        return if (prefs.enableFilterStrength) {
+            // 1. Calculate scores and filter by threshold
+            itemsList.mapNotNull { item ->
+                val score = scoreProvider(item, query)
+                AppLogger.d(loggerTag, "item: ${labelProvider(item)} | score: $score")
+                if (score > prefs.filterStrength) item else null
+            }.toMutableList()
+        } else {
+            // 2. Simple Boolean matching
+            itemsList.filter { item ->
+                val target = labelProvider(item).lowercase()
+                if (prefs.searchFromStart) {
+                    target.startsWith(query)
+                } else {
+                    isMatch(target, query)
+                }
+            }.toMutableList()
+        }
     }
 }
