@@ -216,39 +216,45 @@ class AppDrawerAdapter(
                 val normalizeField: (AppListItem) -> String = { app -> if (isTagSearch) normalize(app.tag) else normalize(app.activityLabel) }
 
                 // Scoring logic
+                // 1. Calculate the scores for all apps in the list
                 val scoredApps: Map<AppListItem, Int> = if (prefs.enableFilterStrength) {
                     appsList.associateWith { app ->
                         if (isTagSearch) {
-                            FuzzyFinder.scoreString(normalize(app.tag), query, Constants.MAX_FILTER_STRENGTH)
+                            // Normalizing the app tag and scoring it against the query
+                            FuzzyFinder.scoreString(app.tag, query, Constants.MAX_FILTER_STRENGTH)
                         } else {
+                            // Using the specialized scoreApp helper for AppListItems
                             FuzzyFinder.scoreApp(app, query, Constants.MAX_FILTER_STRENGTH)
                         }
                     }
                 } else {
+                    // If filter strength is disabled, we don't calculate fuzzy scores
                     emptyMap()
                 }
 
+                // 2. Filter the list based on the fuzzy score and the user's preferences
                 filteredApps = if (searchChars.isEmpty()) {
                     appsList.toMutableList()
                 } else {
                     val filtered = if (prefs.enableFilterStrength) {
-                        // Filter using scores
+                        // Logic: Use the pre-calculated scores.
+                        // If the score is above the threshold, it's a valid match.
                         scoredApps.filter { (app, score) ->
-                            (prefs.searchFromStart && normalizeField(app).startsWith(query) ||
-                                    !prefs.searchFromStart && normalizeField(app).contains(query))
-                                    && score > prefs.filterStrength
+                            AppLogger.d("appScore", "app: ${app.activityLabel} | score: $score")
+                            score > prefs.filterStrength
                         }.map { it.key }
                     } else {
-                        // Filter without scores
+                        // Logic: Simple Boolean matching without scoring.
                         appsList.filter { app ->
+                            val target = normalizeField(app)
                             if (prefs.searchFromStart) {
-                                normalizeField(app).startsWith(query)
+                                target.startsWith(query)
                             } else {
-                                FuzzyFinder.isMatch(normalizeField(app), query)
+                                // Uses your new isMatch helper for a simple true/false fuzzy check
+                                FuzzyFinder.isMatch(target, query)
                             }
                         }
                     }
-
                     filtered.toMutableList()
                 }
 

@@ -232,4 +232,6 @@ dependencies {
 
     debugImplementation(libs.fragment.testing)
     androidTestImplementation(libs.navigation.testing)
+
+    testImplementation(libs.junit)
 }
