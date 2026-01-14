@@ -10,6 +10,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 ### :wrench: Code Quality:
 
+* Implement advanced fuzzy search algorithm ([0c113375](https://github.com/CodeWorksCreativeHub/mLauncher/commit/0c113375))
 * Refactor settings font and icon sizing logic ([f70b7d67](https://github.com/CodeWorksCreativeHub/mLauncher/commit/f70b7d67))
 * Refactor BatteryReceiver to improve reliability and efficiency ([99345c31](https://github.com/CodeWorksCreativeHub/mLauncher/commit/99345c31))
 
