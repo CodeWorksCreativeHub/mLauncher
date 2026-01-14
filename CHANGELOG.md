@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file. See [conven
 
 ## [1.11.3.4 → Unreleased](https://github.com/CodeWorksCreativeHub/mLauncher/tree/main) - In Development
 
+### :bug: Bug Fixes:
+
+* Resolve icon loading and sorting bugs ([d04d371c](https://github.com/CodeWorksCreativeHub/mLauncher/commit/d04d371c))
+
 ### :wrench: Code Quality:
 
 * Refactor settings font and icon sizing logic ([f70b7d67](https://github.com/CodeWorksCreativeHub/mLauncher/commit/f70b7d67))
