@@ -1,6 +1,7 @@
+import com.android.build.api.dsl.ApplicationExtension
+
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
 }
@@ -26,12 +27,11 @@ val baseVersionCode =
 //   Android configuration
 // =========================
 
-android {
+extensions.configure<ApplicationExtension>("android") {
+
     namespace = "com.github.codeworkscreativehub.mlauncher"
 
-    compileSdk {
-        version = release(36)
-    }
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 28
@@ -93,7 +93,6 @@ android {
             isMinifyEnabled = false
             isShrinkResources = false
             applicationIdSuffix = ".debug"
-
             signingConfig = signingConfigs["release"]
 
             resValue("string", "app_version", baseVersionCode.toString())
@@ -117,22 +116,11 @@ android {
         }
     }
 
-    applicationVariants.all {
-        val flavorName = this.flavorName
-
-        outputs.all {
-            val output =
-                this as com.android.build.gradle.internal.api.BaseVariantOutputImpl
-
-            output.outputFileName =
-                "app_${flavorName}_release.apk"
-        }
-    }
-
     buildFeatures {
         compose = true
         viewBinding = true
         buildConfig = true
+        resValues = true
     }
 
     compileOptions {
@@ -151,26 +139,11 @@ android {
     }
 
     dependenciesInfo {
-        // Disables dependency metadata when building APKs (for IzzyOnDroid/F-Droid)
         includeInApk = false
-        // Disables dependency metadata when building Android App Bundles (for Google Play)
         includeInBundle = false
     }
 }
 
-// =========================
-//   Kotlin
-// =========================
-
-kotlin {
-    jvmToolchain(17)
-
-    compilerOptions {
-        jvmTarget.set(
-            org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17
-        )
-    }
-}
 
 // =========================
 //   KSP
