@@ -169,7 +169,7 @@ class AppDrawerAdapter(
                     appRenameListener(appModel.activityPackage, emptyString()) // empty string = default
                 }
 
-                currentText != appModel.activityLabel -> { // Rename state
+                currentText != prefs.getAppAlias(appModel.activityPackage) -> { // Rename state
                     AppLogger.d("AppListDebug", "✏️ Renaming ${appModel.activityPackage} to $currentText")
                     appRenameListener(appModel.activityPackage, currentText)
                 }
