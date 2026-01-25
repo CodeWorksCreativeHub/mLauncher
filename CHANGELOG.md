@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 ### :bug: Bug Fixes:
 
+* update app rename condition to compare against prefs alias ([a85cbdba](https://github.com/CodeWorksCreativeHub/mLauncher/commit/a85cbdba))
 * Resolve icon loading and sorting bugs ([d04d371c](https://github.com/CodeWorksCreativeHub/mLauncher/commit/d04d371c))
 
 ### :wrench: Code Quality:
