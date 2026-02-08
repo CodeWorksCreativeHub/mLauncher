@@ -1,5 +1,6 @@
 package com.github.codeworkscreativehub.fuzzywuzzy
 
+import android.content.Context
 import com.github.codeworkscreativehub.common.AppLogger
 import com.github.codeworkscreativehub.mlauncher.data.AppListItem
 import com.github.codeworkscreativehub.mlauncher.data.ContactListItem
@@ -13,8 +14,11 @@ object FuzzyFinder {
     /**
      * Scores an AppListItem based on its activity label.
      */
-    fun scoreApp(app: AppListItem, searchChars: String, topScore: Int): Int {
-        val appLabel = app.activityLabel
+    fun scoreApp(context: Context, app: AppListItem, searchChars: String, topScore: Int): Int {
+        val prefs = Prefs(context)
+        val appLabel = prefs.getAppAlias(app.activityPackage)
+            .takeIf { it.isNotBlank() }
+            ?: app.activityLabel
         val normalizedAppLabel = normalizeTarget(appLabel)
         val normalizedSearchChars = normalizeSearch(searchChars)
 

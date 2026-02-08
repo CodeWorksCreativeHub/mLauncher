@@ -215,7 +215,7 @@ class AppDrawerAdapter(
                     prefs = Prefs(context),
                     scoreProvider = { app, q ->
                         if (isTagSearch) FuzzyFinder.scoreString(app.tag, q, Constants.MAX_FILTER_STRENGTH)
-                        else FuzzyFinder.scoreApp(app, q, Constants.MAX_FILTER_STRENGTH)
+                        else FuzzyFinder.scoreApp(context, app, q, Constants.MAX_FILTER_STRENGTH)
                     },
                     labelProvider = { app -> if (isTagSearch) app.tag else app.activityLabel },
                     loggerTag = "appScore"
