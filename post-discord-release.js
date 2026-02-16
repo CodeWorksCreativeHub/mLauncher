@@ -83,14 +83,15 @@ function classifyCommit(message) {
 	return null;
 }
 
-// Get latest release from GitHub API
-function getLatestRelease() {
+// Get the latest stable releases from GitHub
+function getReleases() {
 	const options = {
 		hostname: "api.github.com",
 		path: "/repos/CodeWorksCreativeHub/mLauncher/releases",
 		method: "GET",
 		headers: { "User-Agent": "Node.js" },
 	};
+
 	return new Promise((resolve, reject) => {
 		const req = https.request(options, (res) => {
 			let data = "";
@@ -98,15 +99,12 @@ function getLatestRelease() {
 			res.on("end", () => {
 				try {
 					const releases = JSON.parse(data);
-					// Filter out pre-releases and get the latest non-prerelease
-					const latestRelease = releases.find((r) => !r.prerelease);
-					if (!latestRelease) {
-						reject(new Error("No non-prerelease releases found"));
-						return;
-					}
-					resolve(latestRelease);
-				} catch (error) {
-					reject(error);
+					// Only non-prerelease, non-draft releases
+					const stable = releases.filter((r) => !r.prerelease && !r.draft);
+					if (stable.length < 1) return reject(new Error("No stable releases found"));
+					resolve(stable);
+				} catch (e) {
+					reject(e);
 				}
 			});
 		});
@@ -135,13 +133,17 @@ function formatLauncherVersion(input) {
 // Main async function
 (async () => {
 	try {
-		// Get latest release from GitHub API
-		const latestRelease = await getLatestRelease();
+		const releases = await getReleases();
+		const latestRelease = releases[0];
+		const previousRelease = releases[1]; // may be undefined
 
 		const latestTag = latestRelease.tag_name;
+		const previousTag = previousRelease ? previousRelease.tag_name : null;
 
-		// Get commits since previous release (or all commits if no previous release)
-		let rawCommits = run(`git log ${latestTag} --pretty=format:"%h|%s" -50`).split("\n");
+		// Commit range
+		const range = previousTag ? `${previousTag}..${latestTag}` : latestTag;
+		const rawCommits = run(`git log ${range} --pretty=format:"%h|%s"`).split("\n");
+
 		const commits = rawCommits
 			.map((line) => {
 				const [hash, ...msgParts] = line.split("|");
