@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [1.11.4.2 → Unreleased](https://github.com/CodeWorksCreativeHub/mLauncher/tree/main) - In Development
+
+### :wrench: Code Quality:
+
+* enhance release fetching to support multiple stable releases ([fdd8381c](https://github.com/CodeWorksCreativeHub/mLauncher/commit/fdd8381c))
+
 ## [1110402 (1.11.4.2) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.4.2) - (16, February 2026)
 
 ### :sparkles: Enhancements:
