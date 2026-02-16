@@ -6,8 +6,8 @@ All notable changes to this project will be documented in this file. See [conven
 
 ### :sparkles: Enhancements:
 
-* Prioritize app aliases in fuzzy search ([4aa997be](https://github.com/CodeWorksCreativeHub/mLauncher/commit/4aa997be))
-* Prioritize app aliases in fuzzy search ([71d03e41](https://github.com/CodeWorksCreativeHub/mLauncher/commit/71d03e41))
+* Prioritize app aliases for none fuzzy search ([fe592f71](https://github.com/CodeWorksCreativeHub/mLauncher/commit/fe592f71))
+* Prioritize app aliases for fuzzy search only ([ed61269a](https://github.com/CodeWorksCreativeHub/mLauncher/commit/ed61269a))
 
 ## [1110305 (1.11.3.5) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.3.5) - (03, February 2026)
 
