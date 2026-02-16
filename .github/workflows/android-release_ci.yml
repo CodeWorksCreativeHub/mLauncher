@@ -66,20 +66,20 @@ jobs:
         shell: bash
         run: |
           set -e
-      
+          
           APK=$(find app/build/outputs/apk -name "*.apk" -type f | head -n 1)
           AAB=$(find app/build/outputs/bundle -name "*.aab" -type f | head -n 1)
           MAPPING=$(find app/build/outputs/mapping -name "mapping.txt" -type f | head -n 1)
-      
+          
           echo "Detected APK: $APK"
           echo "Detected AAB: $AAB"
           echo "Detected mapping: $MAPPING"
-      
+          
           if [[ -z "$APK" || -z "$AAB" ]]; then
             echo "❌ APK or AAB not found"
             exit 1
           fi
-      
+          
           echo "apk=$APK" >> "$GITHUB_OUTPUT"
           echo "aab=$AAB" >> "$GITHUB_OUTPUT"
           echo "mapping=$MAPPING" >> "$GITHUB_OUTPUT"
@@ -111,6 +111,15 @@ jobs:
           asset_name: MultiLauncher-${{ github.ref_name }}-Signed.aab
           tag: ${{ github.ref }}
           overwrite: true
+
+      - name: Upload to Google Play
+        uses: r0adkll/upload-google-play@v1
+        with:
+          serviceAccountJsonPlainText: ${{ secrets.PLAY_SERVICE_ACCOUNT_JSON }}
+          packageName: app.mlauncher
+          releaseFiles: ${{ steps.detect_artifacts.outputs.aab }}
+          track: internal
+          status: completed
 
       - name: Set up Node.js
         uses: actions/setup-node@v6
