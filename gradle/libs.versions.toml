@@ -2,7 +2,7 @@
 
 [versions]
 agp = "9.0.1"
-kotlin = "2.3.10-470"
+kotlin = "2.3.10-473"
 viewpager2 = "1.1.0"
 junit = "4.13.2"
 
@@ -56,7 +56,7 @@ activity = "1.12.4"
 # Database
 moshi = "1.15.2"
 room = "2.8.4"
-ksp = "2.3.5"
+ksp = "2.3.6"
 
 [libraries]
 # Core Libraries
