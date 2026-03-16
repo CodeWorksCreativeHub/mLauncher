@@ -95,7 +95,7 @@ jobs:
         shell: bash
 
       - name: Create and Upload Release
-        uses: softprops/action-gh-release@v2.5.0
+        uses: softprops/action-gh-release@v2.6.1
         with:
           tag_name: nightly-${{ env.version }}
           name: Nightly Release ${{ env.version }}
