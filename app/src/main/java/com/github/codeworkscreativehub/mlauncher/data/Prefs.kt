@@ -384,6 +384,10 @@ class Prefs(val context: Context) {
     var showDate: Boolean
         get() = getSetting(SHOW_DATE, true)
         set(value) = prefsNormal.edit { putBoolean(SHOW_DATE, value) }
+    
+    var showDayOfYear: Boolean
+        get() = getSetting(SHOW_DAY_OF_YEAR, false)
+        set(value) = prefsNormal.edit { putBoolean(SHOW_DAY_OF_YEAR, value) }
 
     var showClock: Boolean
         get() = getSetting(SHOW_CLOCK, true)
