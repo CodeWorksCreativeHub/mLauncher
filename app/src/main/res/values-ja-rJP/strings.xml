@@ -74,6 +74,7 @@
     <string name="show_clock">時計を表示</string>
     <string name="show_clock_format">表示形式 (AM/PM)</string>
     <string name="show_date">日付を表示</string>
+    <string name="show_day_of_year">Show Day Of Year</string>
     <string name="show_alarm">アラームを表示</string>
     <string name="show_daily_word">毎日の単語を表示</string>
     <string name="show_battery">バッテリーを表示</string>
