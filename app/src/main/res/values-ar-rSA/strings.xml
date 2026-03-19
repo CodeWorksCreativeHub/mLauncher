@@ -74,6 +74,7 @@
     <string name="show_clock">عرض الساعة</string>
     <string name="show_clock_format">تنسيق العرض (صباحًا/مساءً)</string>
     <string name="show_date">إظهار التاريخ</string>
+    <string name="show_day_of_year">Show Day Of Year</string>
     <string name="show_alarm">عرض التنبيه</string>
     <string name="show_daily_word">إظهار الكلمة اليومية</string>
     <string name="show_battery">عرض البطارية</string>
