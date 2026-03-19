@@ -74,7 +74,7 @@
     <string name="show_clock">Klok weergeven</string>
     <string name="show_clock_format">Weergavestijl (AM/PM)</string>
     <string name="show_date">Datum weergeven</string>
-    <string name="show_day_of_year">Show Day Of Year</string>
+    <string name="show_day_of_year">Toon de dag van het jaar</string>
     <string name="show_alarm">Alarm weergeven</string>
     <string name="show_daily_word">Dagelijks woord tonen</string>
     <string name="show_battery">Batterij weergeven</string>
