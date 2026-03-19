@@ -384,6 +384,10 @@ class Prefs(val context: Context) {
     var showDate: Boolean
         get() = getSetting(SHOW_DATE, true)
         set(value) = prefsNormal.edit { putBoolean(SHOW_DATE, value) }
+    
+    var showDayOfYear: Boolean
+        get() = getSetting(SHOW_DAY_OF_YEAR, false)
+        set(value) = prefsNormal.edit { putBoolean(SHOW_DAY_OF_YEAR, value) }
 
     var showClock: Boolean
         get() = getSetting(SHOW_CLOCK, true)
@@ -626,11 +630,6 @@ class Prefs(val context: Context) {
         storeApp("$i", appListItem)
     }
 
-    fun setHomeAppName(i: Int, name: String) {
-        val nameId = "${APP_NAME}_$i"
-        prefsNormal.edit { putString(nameId, name) }
-    }
-
     var appShortSwipeUp: AppListItem
         get() = loadApp(SHORT_SWIPE_UP)
         set(appModel) = storeApp(SHORT_SWIPE_UP, appModel)
@@ -684,7 +683,6 @@ class Prefs(val context: Context) {
     private fun loadApp(id: String): AppListItem {
         val appName = prefsNormal.getString("${APP_NAME}_$id", emptyString()).toString()
         val appPackage = prefsNormal.getString("${APP_PACKAGE}_$id", emptyString()).toString()
-        val appAlias = prefsNormal.getString("${APP_ALIAS}_$id", emptyString()).toString()
         val appActivityName = prefsNormal.getString("${APP_ACTIVITY}_$id", emptyString()).toString()
 
         val userHandleString = try {
@@ -697,7 +695,6 @@ class Prefs(val context: Context) {
         return AppListItem(
             activityLabel = appName,
             activityPackage = appPackage,
-            customLabel = appAlias,
             customTag = emptyString(),
             activityClass = appActivityName,
             user = userHandle,
@@ -707,16 +704,14 @@ class Prefs(val context: Context) {
     private fun storeApp(id: String, app: AppListItem) {
         prefsNormal.edit {
             if (app.activityPackage.isNotEmpty() && app.activityClass.isNotEmpty()) {
-                putString("${APP_NAME}_$id", app.label)
+                putString("${APP_NAME}_$id", app.activityLabel)
                 putString("${APP_PACKAGE}_$id", app.activityPackage)
                 putString("${APP_ACTIVITY}_$id", app.activityClass)
-                putString("${APP_ALIAS}_$id", app.customLabel)
                 putString("${APP_USER}_$id", app.user.toString())
             } else {
                 remove("${APP_NAME}_$id")
                 remove("${APP_PACKAGE}_$id")
                 remove("${APP_ACTIVITY}_$id")
-                remove("${APP_ALIAS}_$id")
                 remove("${APP_USER}_$id")
             }
         }
@@ -824,7 +819,7 @@ class Prefs(val context: Context) {
 
     // return app label
     fun getAppName(location: Int): String {
-        return getHomeAppModel(location).label
+        return getHomeAppModel(location).activityLabel
     }
 
     fun getAppAlias(appPackage: String): String {

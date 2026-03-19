@@ -13,13 +13,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout project
-        uses: actions/checkout@v6.0.1
+        uses: actions/checkout@v6.0.2
         with:
           token: ${{ github.actor == 'dependabot[bot]' && secrets.GITHUB_TOKEN || secrets.GIT_BOT_TOKEN }}
           fetch-depth: 0       # Fetch full history
 
       - name: set up JDK 17
-        uses: actions/setup-java@v5.1.0
+        uses: actions/setup-java@v5.2.0
         with:
           java-version: '17'
           distribution: 'temurin'
@@ -61,32 +61,65 @@ jobs:
         run: |
           shred -u app/mLauncher.jks || rm -f app/mLauncher.jks
 
+      - name: Detect build artifacts
+        id: detect_artifacts
+        shell: bash
+        run: |
+          set -e
+          
+          APK=$(find app/build/outputs/apk -name "*.apk" -type f | head -n 1)
+          AAB=$(find app/build/outputs/bundle -name "*.aab" -type f | head -n 1)
+          MAPPING=$(find app/build/outputs/mapping -name "mapping.txt" -type f | head -n 1)
+          
+          echo "Detected APK: $APK"
+          echo "Detected AAB: $AAB"
+          echo "Detected mapping: $MAPPING"
+          
+          if [[ -z "$APK" || -z "$AAB" ]]; then
+            echo "❌ APK or AAB not found"
+            exit 1
+          fi
+          
+          echo "apk=$APK" >> "$GITHUB_OUTPUT"
+          echo "aab=$AAB" >> "$GITHUB_OUTPUT"
+          echo "mapping=$MAPPING" >> "$GITHUB_OUTPUT"
+
+
       - name: Release to GitHub
-        uses: svenstaro/upload-release-action@2.11.3
+        uses: svenstaro/upload-release-action@2.11.4
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: app/build/outputs/apk/prob/release/app-prod-release.apk
+          file: ${{ steps.detect_artifacts.outputs.apk }}
           asset_name: MultiLauncher-${{ github.ref_name }}-Signed.apk
           tag: ${{ github.ref }}
           overwrite: true
 
       - name: Upload ProGuard Mapping File
-        uses: svenstaro/upload-release-action@2.11.3
+        uses: svenstaro/upload-release-action@2.11.4
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: app/build/outputs/mapping/prodRelease/mapping.txt
+          file: ${{ steps.detect_artifacts.outputs.mapping }}
           asset_name: MultiLauncher-${{ github.ref_name }}-mapping.txt
           tag: ${{ github.ref }}
           overwrite: true
 
       - name: Release to GitHub
-        uses: svenstaro/upload-release-action@2.11.3
+        uses: svenstaro/upload-release-action@2.11.4
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: app/build/outputs/bundle/prodRelease/app-prod-release.aab
+          file: ${{ steps.detect_artifacts.outputs.aab }}
           asset_name: MultiLauncher-${{ github.ref_name }}-Signed.aab
           tag: ${{ github.ref }}
           overwrite: true
+
+      - name: Upload to Google Play
+        uses: r0adkll/upload-google-play@v1
+        with:
+          serviceAccountJsonPlainText: ${{ secrets.PLAY_SERVICE_ACCOUNT_JSON }}
+          packageName: app.mlauncher
+          releaseFiles: ${{ steps.detect_artifacts.outputs.aab }}
+          track: internal
+          status: completed
 
       - name: Set up Node.js
         uses: actions/setup-node@v6

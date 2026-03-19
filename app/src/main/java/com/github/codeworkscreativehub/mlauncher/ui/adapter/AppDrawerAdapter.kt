@@ -19,6 +19,7 @@ import android.widget.EditText
 import android.widget.Filter
 import android.widget.Filterable
 import android.widget.FrameLayout
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.content.res.AppCompatResources
@@ -32,6 +33,7 @@ import com.github.codeworkscreativehub.common.getLocalizedString
 import com.github.codeworkscreativehub.common.isSystemApp
 import com.github.codeworkscreativehub.common.showKeyboard
 import com.github.codeworkscreativehub.fuzzywuzzy.FuzzyFinder
+import com.github.codeworkscreativehub.fuzzywuzzy.FuzzyFinder.filterItems
 import com.github.codeworkscreativehub.mlauncher.R
 import com.github.codeworkscreativehub.mlauncher.data.AppListItem
 import com.github.codeworkscreativehub.mlauncher.data.Constants
@@ -41,15 +43,14 @@ import com.github.codeworkscreativehub.mlauncher.databinding.AdapterAppDrawerBin
 import com.github.codeworkscreativehub.mlauncher.helper.IconCacheTarget
 import com.github.codeworkscreativehub.mlauncher.helper.IconPackHelper.getSafeAppIcon
 import com.github.codeworkscreativehub.mlauncher.helper.dp2px
+import com.github.codeworkscreativehub.mlauncher.helper.emptyString
 import com.github.codeworkscreativehub.mlauncher.helper.getSystemIcons
 import com.github.codeworkscreativehub.mlauncher.helper.utils.BiometricHelper
-import com.github.codeworkscreativehub.mlauncher.helper.utils.visibleHideLayouts
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.text.Normalizer
 import java.util.concurrent.ConcurrentHashMap
 
 class AppDrawerAdapter(
@@ -67,13 +68,14 @@ class AppDrawerAdapter(
 
     private lateinit var prefs: Prefs
     private var appFilter = createAppFilter()
+    private var openedContextMenuPosition = RecyclerView.NO_POSITION
     var appsList: MutableList<AppListItem> = mutableListOf()
     var appFilteredList: MutableList<AppListItem> = mutableListOf()
     private lateinit var binding: AdapterAppDrawerBinding
     private lateinit var biometricHelper: BiometricHelper
 
     // Add icon cache
-    private val iconCache = ConcurrentHashMap<String, Drawable?>()
+    private val iconCache = ConcurrentHashMap<String, Drawable>()
     private val iconLoadingScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
 
     private var isBangSearch = false
@@ -103,13 +105,13 @@ class AppDrawerAdapter(
         }
 
         val appModel = appFilteredList[holder.absoluteAdapterPosition]
-        AppLogger.d("AppListDebug", "🔧 Binding position=$position, label=${appModel.label}, package=${appModel.activityPackage}")
+        AppLogger.d("AppListDebug", "🔧 Binding position=$position, label=${appModel.activityLabel}, package=${appModel.activityPackage}")
 
         // Pass icon cache and loading scope to bind
         holder.bind(flag, gravity, appModel, appClickListener, appInfoListener, appDeleteListener, iconCache, iconLoadingScope, prefs)
 
         holder.appHide.setOnClickListener {
-            AppLogger.d("AppListDebug", "❌ Hide clicked for ${appModel.label} (${appModel.activityPackage})")
+            AppLogger.d("AppListDebug", "❌ Hide clicked for ${appModel.activityLabel} (${appModel.activityPackage})")
 
             appFilteredList.removeAt(holder.absoluteAdapterPosition)
             appsList.remove(appModel)
@@ -159,12 +161,29 @@ class AppDrawerAdapter(
         }
 
         holder.appSaveRename.setOnClickListener {
-            val name = holder.appRenameEdit.text.toString().trim()
-            AppLogger.d("AppListDebug", "✏️ Renaming ${appModel.activityPackage} to $name")
-            appModel.customLabel = name
+            val currentText = holder.appRenameEdit.text.toString().trim()
+
+            when {
+                currentText.isEmpty() -> { // Reset state
+                    AppLogger.d("AppListDebug", "✏️ Resetting ${appModel.activityPackage} to default")
+                    appRenameListener(appModel.activityPackage, emptyString()) // empty string = default
+                }
+
+                currentText != prefs.getAppAlias(appModel.activityPackage) -> { // Rename state
+                    AppLogger.d("AppListDebug", "✏️ Renaming ${appModel.activityPackage} to $currentText")
+                    appRenameListener(appModel.activityPackage, currentText)
+                }
+            }
+
             notifyItemChanged(holder.absoluteAdapterPosition)
             AppLogger.d("AppListDebug", "🔁 notifyItemChanged at ${holder.absoluteAdapterPosition}")
-            appRenameListener(appModel.activityPackage, appModel.customLabel)
+        }
+
+        holder.appSaveCancel.setOnClickListener {
+            AppLogger.d("AppListDebug", "✏️ Cancel rename for ${appModel.activityPackage}")
+
+            notifyItemChanged(holder.absoluteAdapterPosition)
+            AppLogger.d("AppListDebug", "🔁 notifyItemChanged at ${holder.absoluteAdapterPosition}")
         }
 
         holder.appSaveTag.setOnClickListener {
@@ -186,66 +205,27 @@ class AppDrawerAdapter(
     private fun createAppFilter(): Filter {
         return object : Filter() {
             override fun performFiltering(charSearch: CharSequence?): FilterResults {
-                isBangSearch = listOf("#").any { prefix -> charSearch?.startsWith(prefix) == true }
-                prefs = Prefs(context)
-
                 val searchChars = charSearch.toString().trim().lowercase()
-                val filteredApps: MutableList<AppListItem>
-
                 val isTagSearch = searchChars.startsWith("#")
                 val query = if (isTagSearch) searchChars.substringAfter("#") else searchChars
-                val normalizeField: (AppListItem) -> String = { app -> if (isTagSearch) normalize(app.tag) else normalize(app.label) }
 
-                // Scoring logic
-                val scoredApps: Map<AppListItem, Int> = if (prefs.enableFilterStrength) {
-                    appsList.associateWith { app ->
-                        if (isTagSearch) {
-                            FuzzyFinder.scoreString(normalize(app.tag), query, Constants.MAX_FILTER_STRENGTH)
-                        } else {
-                            FuzzyFinder.scoreApp(app, query, Constants.MAX_FILTER_STRENGTH)
-                        }
-                    }
-                } else {
-                    emptyMap()
-                }
+                val filtered = filterItems(
+                    itemsList = appsList,
+                    query = query,
+                    prefs = Prefs(context),
+                    scoreProvider = { app, q ->
+                        if (isTagSearch) FuzzyFinder.scoreString(app.tag, q, Constants.MAX_FILTER_STRENGTH)
+                        else FuzzyFinder.scoreApp(context, app, q, Constants.MAX_FILTER_STRENGTH)
+                    },
+                    labelProvider = { app ->
+                        if (isTagSearch) app.tag else prefs.getAppAlias(app.activityPackage)
+                            .takeIf { it.isNotBlank() }
+                            ?: app.activityLabel
+                    },
+                    loggerTag = "appScore"
+                )
 
-                filteredApps = if (searchChars.isEmpty()) {
-                    appsList.toMutableList()
-                } else {
-                    val filtered = if (prefs.enableFilterStrength) {
-                        // Filter using scores
-                        scoredApps.filter { (app, score) ->
-                            (prefs.searchFromStart && normalizeField(app).startsWith(query) ||
-                                    !prefs.searchFromStart && normalizeField(app).contains(query))
-                                    && score > prefs.filterStrength
-                        }.map { it.key }
-                    } else {
-                        // Filter without scores
-                        appsList.filter { app ->
-                            if (prefs.searchFromStart) {
-                                normalizeField(app).startsWith(query)
-                            } else {
-                                FuzzyFinder.isMatch(normalizeField(app), query)
-                            }
-                        }
-                    }
-
-                    filtered.toMutableList()
-                }
-
-                if (query.isNotEmpty()) AppLogger.d("searchQuery", query)
-
-                val filterResults = FilterResults()
-                filterResults.values = filteredApps
-                return filterResults
-            }
-
-            fun normalize(input: String): String {
-                // Normalize to NFC to keep composed characters (é stays é, not e + ´)
-                val temp = Normalizer.normalize(input, Normalizer.Form.NFC)
-                return temp
-                    .lowercase()                  // lowercase Latin letters; other scripts unaffected
-                    .filter { it.isLetterOrDigit() } // keep letters/digits from any language, including accented letters
+                return FilterResults().apply { values = filtered }
             }
 
 
@@ -289,7 +269,7 @@ class AppDrawerAdapter(
 
     fun getFirstInList(): String? {
         if (appFilteredList.isNotEmpty())
-            return appFilteredList[0].label
+            return appFilteredList[0].activityLabel
         return null
     }
 
@@ -299,13 +279,14 @@ class AppDrawerAdapter(
         holder.clearIcon()
     }
 
-    class ViewHolder(
+    inner class ViewHolder(
         itemView: AdapterAppDrawerBinding
     ) : RecyclerView.ViewHolder(itemView.root) {
         val appHide: TextView = itemView.appHide
         val appLock: TextView = itemView.appLock
         val appRenameEdit: EditText = itemView.appRenameEdit
-        val appSaveRename: TextView = itemView.appSaveRename
+        val appSaveRename: ImageView = itemView.appSaveRename
+        val appSaveCancel: ImageView = itemView.appSaveCancel
         val appTagEdit: EditText = itemView.appTagEdit
         val appSaveTag: TextView = itemView.appSaveTag
 
@@ -329,7 +310,7 @@ class AppDrawerAdapter(
             appClickListener: (AppListItem) -> Unit,
             appInfoListener: (AppListItem) -> Unit,
             appDeleteListener: (AppListItem) -> Unit,
-            iconCache: ConcurrentHashMap<String, Drawable?>,
+            iconCache: ConcurrentHashMap<String, Drawable>,
             iconLoadingScope: CoroutineScope,
             prefs: Prefs
         ) = with(itemView) {
@@ -337,8 +318,8 @@ class AppDrawerAdapter(
             val contextMenuFlags = prefs.getMenuFlags("CONTEXT_MENU_FLAGS", "0011111")
 
             // ----------------------------
-            // 1️⃣ Hide optional layouts
-            appHideLayout.isVisible = false
+            // 1️⃣ Hide optional layouts (state-driven)
+            appHideLayout.isVisible = absoluteAdapterPosition == openedContextMenuPosition
             appRenameLayout.isVisible = false
             appTagLayout.isVisible = false
 
@@ -410,18 +391,10 @@ class AppDrawerAdapter(
             }
 
             appRenameEdit.apply {
-                text = Editable.Factory.getInstance().newEditable(appListItem.label)
-                addTextChangedListener(object : TextWatcher {
-                    override fun afterTextChanged(s: Editable) {}
-                    override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-                    override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                        appSaveRename.text = when {
-                            text.isEmpty() -> getLocalizedString(R.string.reset)
-                            text.toString() == appListItem.customLabel -> getLocalizedString(R.string.cancel)
-                            else -> getLocalizedString(R.string.rename)
-                        }
-                    }
-                })
+                val activityLabel = prefs.getAppAlias(appListItem.activityPackage).takeIf { it.isNotBlank() }
+                    ?: appListItem.activityLabel
+
+                text = Editable.Factory.getInstance().newEditable(activityLabel)
             }
 
             appTagEdit.apply {
@@ -438,14 +411,17 @@ class AppDrawerAdapter(
 
             appClose.setOnClickListener {
                 appHideLayout.isVisible = false
-                visibleHideLayouts.remove(absoluteAdapterPosition)
-                val sidebarContainer = (context as? Activity)?.findViewById<View>(R.id.sidebar_container)
-                if (visibleHideLayouts.isEmpty()) sidebarContainer?.isVisible = prefs.showAZSidebar
+                openedContextMenuPosition = RecyclerView.NO_POSITION
+
+                val sidebarContainer = (context as? Activity)
+                    ?.findViewById<View>(R.id.sidebar_container)
+
+                sidebarContainer?.isVisible = prefs.showAZSidebar
             }
 
             // ----------------------------
             // 5️⃣ App title
-            appTitle.text = appListItem.label
+            appTitle.text = prefs.getAppAlias(appListItem.activityPackage).takeIf { it.isNotBlank() } ?: appListItem.activityLabel
             val params = appTitle.layoutParams as FrameLayout.LayoutParams
             params.gravity = appLabelGravity
             appTitle.layoutParams = params
@@ -459,6 +435,9 @@ class AppDrawerAdapter(
             setAppTitleIcon(appTitle, cachedIcon ?: placeholderIcon, prefs)
 
             if (cachedIcon == null && packageName.isNotBlank() && prefs.iconPackAppList != Constants.IconPacks.Disabled) {
+                // 1. Tag the view with the package name to prevent "wrong icon" bugs
+                appTitle.tag = packageName
+
                 iconLoadingScope.launch {
                     val icon = withContext(Dispatchers.IO) {
                         val nonNullDrawable: Drawable = getSafeAppIcon(
@@ -470,8 +449,15 @@ class AppDrawerAdapter(
                         )
                         getSystemIcons(context, prefs, IconCacheTarget.APP_LIST, nonNullDrawable) ?: nonNullDrawable
                     }
+
+                    // 2. Update cache (Ensure iconCache is thread-safe, e.g., ConcurrentHashMap)
                     iconCache[packageName] = icon
-                    if (appTitle.text == appListItem.label) setAppTitleIcon(appTitle, icon, prefs)
+
+                    // 3. ONLY update the UI if the view is still intended for THIS package
+                    // This prevents the wrong icon from appearing after scrolling
+                    if (appTitle.tag == packageName) {
+                        setAppTitleIcon(appTitle, icon, prefs)
+                    }
                 }
             }
 
@@ -485,10 +471,22 @@ class AppDrawerAdapter(
                     if (openApp) {
                         try {
                             appDelete.alpha = if (context.isSystemApp(packageName)) 0.3f else 1f
+                            val currentPos = absoluteAdapterPosition
+
+                            // Close previously opened menu
+                            if (openedContextMenuPosition != RecyclerView.NO_POSITION &&
+                                openedContextMenuPosition != currentPos
+                            ) {
+                                notifyItemChanged(openedContextMenuPosition)
+                            }
+
+                            // Open this one
                             appHideLayout.isVisible = true
                             sidebarContainer?.isVisible = false
-                            visibleHideLayouts.add(absoluteAdapterPosition)
-                        } catch (_: Exception) {
+                            openedContextMenuPosition = currentPos
+
+                        } catch (e: Exception) {
+                            e.printStackTrace()
                         }
                     }
                     true
@@ -509,6 +507,14 @@ class AppDrawerAdapter(
                 val updated = prefs.pinnedApps.toMutableSet()
                 if (isPinned) updated.remove(packageName) else updated.add(packageName)
                 prefs.pinnedApps = updated
+            }
+
+            itemView.setOnClickListener {
+                if (openedContextMenuPosition != RecyclerView.NO_POSITION &&
+                    openedContextMenuPosition != absoluteAdapterPosition
+                ) {
+                    this@AppDrawerAdapter.closeOpenedMenu()
+                }
             }
         }
 
@@ -545,6 +551,16 @@ class AppDrawerAdapter(
         // Clear icon when view is recycled
         fun clearIcon() {
             appTitle.setCompoundDrawables(null, null, null, null)
+        }
+    }
+
+    fun closeOpenedMenu() {
+        if (openedContextMenuPosition != RecyclerView.NO_POSITION) {
+            val oldPosition = openedContextMenuPosition
+            openedContextMenuPosition = RecyclerView.NO_POSITION
+            notifyItemChanged(oldPosition)
+            // Redraw all visible items just in case
+            notifyItemRangeChanged(0, itemCount)
         }
     }
 }

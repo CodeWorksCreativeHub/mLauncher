@@ -83,6 +83,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val launcherDefault = MutableLiveData<Boolean>()
 
     val showDate = MutableLiveData(prefs.showDate)
+    val showDayOfYear = MutableLiveData(prefs.showDayOfYear)
     val showClock = MutableLiveData(prefs.showClock)
     val showAlarm = MutableLiveData(prefs.showAlarm)
     val showDailyWord = MutableLiveData(prefs.showDailyWord)
@@ -184,6 +185,10 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     fun setShowDate(visibility: Boolean) {
         showDate.value = visibility
+    }
+
+    fun setShowDayOfYear(visibility: Boolean) {
+        showDayOfYear.value = visibility
     }
 
     fun setShowClock(visibility: Boolean) {
@@ -621,21 +626,23 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 activityClass = raw.cls,
                 user = raw.user,
                 profileType = raw.profileType,
-                customLabel = prefs.getAppAlias(raw.pkg),
                 customTag = prefs.getAppTag(raw.pkg, raw.user),
                 category = raw.category
             )
         }
-            // 🔹 Sort pinned apps first, then regular/recent alphabetically
-            .sortedWith(
-                compareByDescending<AppListItem> { it.category == AppCategory.PINNED }
-                    .thenBy { normalizeForSort(it.label) }
-            )
-            .toMutableList()
+        // 1. Perform the sort using Alias priority
+        val sortedApps = allApps.sortedWith(
+            compareByDescending<AppListItem> { it.category == AppCategory.PINNED }
+                .thenBy { item ->
+                    val alias = prefs.getAppAlias(item.activityPackage)
+                    val displayName = alias.takeIf { it.isNotBlank() } ?: item.activityLabel
+                    normalizeForSort(displayName)
+                }
+        ).toMutableList()
 
-        // 🔹 Build scroll map and finalize
+        // 2. Build the scroll map using the same Alias priority
         buildList(
-            items = allApps,
+            items = sortedApps, // Use the sorted list here
             seenKey = mutableSetOf(),
             scrollMapLiveData = _appScrollMap,
             includeHidden = includeHiddenApps,
@@ -643,7 +650,10 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             isHidden = { it.activityPackage in hiddenAppsSet },
             isPinned = { it.activityPackage in pinnedPackages },
             buildItem = { it },
-            getLabel = { it.label },
+            // UPDATE: Use the alias here so the scroll index matches the sort
+            getLabel = { item ->
+                prefs.getAppAlias(item.activityPackage).takeIf { it.isNotBlank() } ?: item.activityLabel
+            },
             normalize = ::normalizeForSort
         )
     }
@@ -816,7 +826,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 obj.put("class", item.activityClass)
                 obj.put("userHash", item.user.hashCode())
                 obj.put("profileType", item.profileType)
-                obj.put("customLabel", item.customLabel)
                 obj.put("customTag", item.customTag)
                 obj.put("category", item.category.ordinal)
                 array.put(obj)
@@ -850,7 +859,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                     activityClass = obj.optString("class", ""),
                     user = userHandle,
                     profileType = obj.optString("profileType", "SYSTEM"),
-                    customLabel = obj.optString("customLabel", ""),
                     customTag = obj.optString("customTag", ""),
                     category = AppCategory.entries.getOrNull(obj.optInt("category", 1)) ?: AppCategory.REGULAR
                 )

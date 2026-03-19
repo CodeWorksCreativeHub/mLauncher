@@ -26,6 +26,8 @@ import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.SearchView
 import androidx.core.net.toUri
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
@@ -88,6 +90,17 @@ class AppDrawerFragment : BaseFragment() {
             prefs.firstSettingsOpen = false
         }
 
+        ViewCompat.setOnApplyWindowInsetsListener(binding.mainLayout) { _, insets ->
+            val imeInsets = insets.getInsets(WindowInsetsCompat.Type.ime())
+
+            // Adjust menuView & sidebarContainer
+            val menuParams = binding.menuView.layoutParams as ViewGroup.MarginLayoutParams
+            menuParams.bottomMargin = resources.getDimensionPixelSize(R.dimen.bottom_margin_3_button_nav) + imeInsets.bottom
+            binding.menuView.layoutParams = menuParams
+
+            insets
+        }
+
         // Check if device is using gesture navigation or 3-button navigation
         val isGestureNav = isGestureNavigationEnabled(requireContext())
 
@@ -115,10 +128,11 @@ class AppDrawerFragment : BaseFragment() {
 
             sidebarContainer.layoutParams = layoutParams
 
-            searchSwitcher.setOnClickListener {
-                switchMenus()
-            }
             menuView.displayedChild = 0
+
+            mainLayout.setOnClickListener {
+                appsAdapter.closeOpenedMenu()
+            }
         }
 
         // Retrieve the letter key code from arguments
@@ -153,9 +167,6 @@ class AppDrawerFragment : BaseFragment() {
             AppDrawerFlag.SetAppUsage,
             AppDrawerFlag.SetClickDate,
             AppDrawerFlag.SetFloating -> {
-                binding.drawerButton.setOnClickListener {
-                    findNavController().popBackStack()
-                }
             }
 
             AppDrawerFlag.SetHomeApp -> {
@@ -168,14 +179,9 @@ class AppDrawerFragment : BaseFragment() {
                     activityClass = emptyString(),
                     user = userManager.userProfiles[0], // or use Process.myUserHandle() if it makes more sense
                     profileType = "SYSTEM",
-                    customLabel = "Clear",
                     customTag = emptyString(),
                     category = AppCategory.REGULAR
                 )
-
-                binding.drawerButton.setOnClickListener {
-                    findNavController().popBackStack()
-                }
 
                 binding.clearHomeButton.apply {
                     val currentApp = prefs.getHomeAppModel(n)
@@ -248,7 +254,7 @@ class AppDrawerFragment : BaseFragment() {
         }
 
         val contactAdapter = context?.let {
-            parentFragment?.let { fragment ->
+            parentFragment?.let { _ ->
                 ContactDrawerAdapter(
                     it,
                     gravity,
@@ -257,11 +263,8 @@ class AppDrawerFragment : BaseFragment() {
             }
         }
 
-
-        when (binding.menuView.displayedChild) {
-            0 -> appAdapter?.let { appsAdapter = it }
-            1 -> contactAdapter?.let { contactsAdapter = it }
-        }
+        appAdapter?.let { appsAdapter = it }
+        contactAdapter?.let { contactsAdapter = it }
 
         val searchTextView = binding.search.findViewById<TextView>(R.id.search_src_text)
 
@@ -301,7 +304,7 @@ class AppDrawerFragment : BaseFragment() {
 
                 val sectionLetter = when (item.category) {
                     AppCategory.PINNED -> "★"
-                    else -> item.label.firstOrNull()?.uppercaseChar()?.toString() ?: return
+                    else -> item.activityLabel.firstOrNull()?.uppercaseChar()?.toString() ?: return
                 }
 
                 // Skip redundant updates
@@ -313,8 +316,8 @@ class AppDrawerFragment : BaseFragment() {
 
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
+                appAdapter?.closeOpenedMenu()
                 when (newState) {
-
                     RecyclerView.SCROLL_STATE_DRAGGING -> {
                         onTop = !recyclerView.canScrollVertically(-1)
                         if (onTop) {
@@ -414,7 +417,6 @@ class AppDrawerFragment : BaseFragment() {
                 AppDrawerFlag.LaunchApp -> {
                     setupProfileButtons(flag, viewModel, appAdapter, contactAdapter, profileType)
 
-
                     binding.internetSearch.apply {
                         isVisible = appListButtonFlags[0]
                         setOnClickListener {
@@ -429,7 +431,12 @@ class AppDrawerFragment : BaseFragment() {
                                 "WORK", "PRIVATE" -> isVisible = false
                                 else -> {
                                     isVisible = appListButtonFlags[1]
-                                    setOnClickListener { switchMenus() }
+                                    setOnClickListener {
+                                        switchMenus()
+                                        binding.contactsRecyclerView.post {
+                                            appsAdapter.closeOpenedMenu()
+                                        }
+                                    }
                                 }
 
                             }
@@ -490,11 +497,6 @@ class AppDrawerFragment : BaseFragment() {
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 if (flag == AppDrawerFlag.SetHomeApp) {
-                    binding.drawerButton.apply {
-                        isVisible = !newText.isNullOrEmpty()
-                        text = if (isVisible) getLocalizedString(R.string.rename) else null
-                        setOnClickListener { if (isVisible) renameListener(flag, n) }
-                    }
                     binding.clearHomeButton.apply {
                         isVisible = newText.isNullOrEmpty()
                     }
@@ -572,14 +574,17 @@ class AppDrawerFragment : BaseFragment() {
             when (menuView.displayedChild) {
                 0 -> {
                     setAppViewDetails()
+                    updateAZSidebarForApps(appsAdapter.appsList)
                 }
 
                 1 -> {
                     setContactViewDetails()
+                    updateAZSidebarForContacts(contactsAdapter.contactsList)
                 }
             }
         }
     }
+
 
     private fun setAppViewDetails() {
         binding.apply {
@@ -731,16 +736,17 @@ class AppDrawerFragment : BaseFragment() {
 
 
     private fun View.showKeyboard() {
-        if (!Prefs(requireContext()).autoShowKeyboard) return
-        if (Prefs(requireContext()).hideSearchView) return
+        val prefs = Prefs(requireContext())
+        if (!prefs.autoShowKeyboard) return
+        if (prefs.hideSearchView) return
 
         val searchTextView = binding.search.findViewById<TextView>(R.id.search_src_text)
         searchTextView.requestFocus()
+
         val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         searchTextView.postDelayed({
             searchTextView.requestFocus()
-            @Suppress("DEPRECATION")
-            imm.showSoftInput(searchTextView, InputMethodManager.SHOW_FORCED)
+            imm.showSoftInput(searchTextView, InputMethodManager.SHOW_IMPLICIT)
         }, 100)
     }
 
@@ -757,6 +763,9 @@ class AppDrawerFragment : BaseFragment() {
             AnimationUtils.loadLayoutAnimation(requireContext(), R.anim.layout_anim_from_bottom)
         binding.appsRecyclerView.layoutAnimation = animation
         appAdapter.setAppList(apps.toMutableList())
+
+        // ✅ ENABLE dynamic AZ letters
+        updateAZSidebarForApps(apps)
     }
 
     private fun populateContactList(contacts: List<ContactListItem>, contactAdapter: ContactDrawerAdapter) {
@@ -764,6 +773,9 @@ class AppDrawerFragment : BaseFragment() {
             AnimationUtils.loadLayoutAnimation(requireContext(), R.anim.layout_anim_from_bottom)
         binding.contactsRecyclerView.layoutAnimation = animation
         contactAdapter.setContactList(contacts.toMutableList())
+
+        // ✅ ENABLE dynamic AZ letters
+        updateAZSidebarForContacts(contacts)
     }
 
     private fun appClickListener(
@@ -802,16 +814,6 @@ class AppDrawerFragment : BaseFragment() {
         findNavController().popBackStack()
     }
 
-    private fun renameListener(flag: AppDrawerFlag, i: Int) {
-        val name = binding.search.query.toString().trim()
-        if (name.isEmpty()) return
-        if (flag == AppDrawerFlag.SetHomeApp) {
-            Prefs(requireContext()).setHomeAppName(i, name)
-        }
-
-        findNavController().popBackStack()
-    }
-
     private fun appShowHideListener(): (flag: AppDrawerFlag, appListItem: AppListItem) -> Unit = { flag, appModel ->
         val prefs = Prefs(requireContext())
         val newSet = mutableSetOf<String>()
@@ -847,5 +849,31 @@ class AppDrawerFragment : BaseFragment() {
         viewModel.selectedContact(this, contactModel, n)
         // Close the drawer or fragment after selection
         findNavController().popBackStack()
+    }
+
+    private fun updateAZSidebarForApps(apps: List<AppListItem>) {
+        val letters = mutableSetOf<String>()
+
+        apps.forEach { item ->
+            when (item.category) {
+                AppCategory.PINNED -> letters.add("★")
+                else -> {
+                    item.activityLabel.firstOrNull()
+                        ?.uppercaseChar()
+                        ?.toString()
+                        ?.let { letters.add(it) }
+                }
+            }
+        }
+
+        binding.azSidebar.setAvailableLetters(letters)
+    }
+
+    private fun updateAZSidebarForContacts(contacts: List<ContactListItem>) {
+        val letters = contacts.mapNotNull {
+            it.displayName.firstOrNull()?.uppercaseChar()?.toString()
+        }.toSet()
+
+        binding.azSidebar.setAvailableLetters(letters)
     }
 }

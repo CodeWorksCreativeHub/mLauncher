@@ -1,8 +1,7 @@
-import java.util.Base64
+import com.android.build.api.dsl.ApplicationExtension
 
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
 }
@@ -13,12 +12,12 @@ plugins {
 
 val major = 1
 val minor = 11
-val patch = 3
-val build = 4
+val patch = 4
+val build = 3
 
 val baseVersionName = "$major.$minor.$patch Build $build"
 
-val versionCodeBase =
+val baseVersionCode =
     (String.format("%02d", major) +
             String.format("%02d", minor) +
             String.format("%02d", patch) +
@@ -28,7 +27,8 @@ val versionCodeBase =
 //   Android configuration
 // =========================
 
-android {
+extensions.configure<ApplicationExtension>("android") {
+
     namespace = "com.github.codeworkscreativehub.mlauncher"
 
     compileSdk = 36
@@ -36,7 +36,7 @@ android {
     defaultConfig {
         minSdk = 28
         targetSdk = 36
-        versionCode = versionCodeBase
+        versionCode = baseVersionCode
         versionName = baseVersionName
     }
 
@@ -72,43 +72,18 @@ android {
     }
 
     signingConfigs {
-        val keystoreB64: String =
-            System.getenv("KEY_STORE_FILE") ?: throw GradleException("KEY_STORE_FILE not set.")
-        val keystorePassword: String =
-            System.getenv("KEY_STORE_PASSWORD") ?: throw GradleException("KEY_STORE_PASSWORD not set")
-        val keyAlias: String =
-            System.getenv("KEY_ALIAS") ?: throw GradleException("KEY_ALIAS not set")
-        val keyPassword: String =
-            System.getenv("KEY_PASSWORD") ?: throw GradleException("KEY_PASSWORD not set")
-
-        // Use file helper to ensure correct path
-        val localKeystore = rootProject.file("app/mLauncher.jks")
-        val ciKeystore = layout.buildDirectory.file("temp-keystore.jks").get().asFile
-
-        val keystoreFile = when {
-            localKeystore.exists() -> localKeystore
-            else -> ciKeystore
-        }
-
-        if (!keystoreFile.exists()) {
-            keystoreFile.parentFile.mkdirs()
-
-            val bytes = Base64.getDecoder().decode(keystoreB64)
-
-            if (bytes.size < 1024) {
-                throw GradleException("Decoded keystore is too small (${bytes.size} bytes)")
-            }
-
-            keystoreFile.writeBytes(bytes)
-        }
-
-        println("Using keystore: ${keystoreFile.absolutePath} (${keystoreFile.length()} bytes)")
-
         create("release") {
+            val keystoreFile = rootProject.file("app/mLauncher.jks")
+
+            println("Using keystore: ${keystoreFile.absolutePath} (${keystoreFile.length()} bytes)")
+
             storeFile = keystoreFile
-            storePassword = keystorePassword
-            this.keyAlias = keyAlias
-            this.keyPassword = keyPassword
+            storePassword = System.getenv("KEY_STORE_PASSWORD")
+                ?: error("KEY_STORE_PASSWORD not set")
+            keyAlias = System.getenv("KEY_ALIAS")
+                ?: error("KEY_ALIAS not set")
+            keyPassword = System.getenv("KEY_PASSWORD")
+                ?: error("KEY_PASSWORD not set")
         }
     }
 
@@ -117,11 +92,11 @@ android {
             isDebuggable = true
             isMinifyEnabled = false
             isShrinkResources = false
-            applicationIdSuffix = ".dev"
-
+            applicationIdSuffix = ".debug"
             signingConfig = signingConfigs["release"]
 
-            resValue("string", "app_version", baseVersionName)
+            resValue("string", "app_version", baseVersionCode.toString())
+            resValue("string", "app_name", "Multi Launcher Debug")
             resValue("string", "empty", "")
         }
 
@@ -141,22 +116,11 @@ android {
         }
     }
 
-    applicationVariants.all {
-        val flavorName = this.flavorName
-
-        outputs.all {
-            val output =
-                this as com.android.build.gradle.internal.api.BaseVariantOutputImpl
-
-            output.outputFileName =
-                "app_${flavorName}_release.apk"
-        }
-    }
-
     buildFeatures {
         compose = true
         viewBinding = true
         buildConfig = true
+        resValues = true
     }
 
     compileOptions {
@@ -173,21 +137,13 @@ android {
             keepDebugSymbols.add("libandroidx.graphics.path.so")
         }
     }
-}
 
-// =========================
-//   Kotlin
-// =========================
-
-kotlin {
-    jvmToolchain(17)
-
-    compilerOptions {
-        jvmTarget.set(
-            org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17
-        )
+    dependenciesInfo {
+        includeInApk = false
+        includeInBundle = false
     }
 }
+
 
 // =========================
 //   KSP
@@ -256,4 +212,6 @@ dependencies {
 
     debugImplementation(libs.fragment.testing)
     androidTestImplementation(libs.navigation.testing)
+
+    testImplementation(libs.junit)
 }

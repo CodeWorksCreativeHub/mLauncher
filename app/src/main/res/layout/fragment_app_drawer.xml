@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mainLayout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:animateLayoutChanges="true"
-    android:background="?attr/primaryShadeDarkColor">
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/mainLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:animateLayoutChanges="true"
+                android:background="?attr/primaryShadeDarkColor">
 
     <!-- Search Bar positioned at the top -->
     <LinearLayout
@@ -121,21 +121,10 @@
 
     <!-- Drawer button and tip, positioned below search container -->
     <com.github.creativecodecat.components.views.FontAppCompatTextView
-        android:id="@+id/drawerButton"
-        style="@style/TextSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/clearHomeButton"
-        android:layout_alignParentEnd="true"
-        android:paddingHorizontal="@dimen/app_padding_vertical"
-        android:textAllCaps="true"
-        android:visibility="gone" />
-
-    <com.github.creativecodecat.components.views.FontAppCompatTextView
         android:id="@+id/appDrawerTip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/drawerButton"
+        android:layout_below="@id/clearHomeButton"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="4dp"
         android:ellipsize="end"

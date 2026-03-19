@@ -92,6 +92,7 @@ import com.github.codeworkscreativehub.mlauncher.ui.components.DialogManager
 import com.github.codeworkscreativehub.mlauncher.ui.widgets.WidgetActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.util.Calendar
 
 class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListener {
 
@@ -109,6 +110,13 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
+    private fun getDayOfYearText(): String {
+        val cal = Calendar.getInstance()
+        val day = cal.get(Calendar.DAY_OF_YEAR)
+        val max = cal.getActualMaximum(Calendar.DAY_OF_YEAR)
+        return "[$day/$max]"
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -118,7 +126,7 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
 
         val view = binding.root
         prefs = Prefs(requireContext())
-        batteryReceiver = BatteryReceiver()
+        batteryReceiver = BatteryReceiver(binding.battery, prefs)
         dialogBuilder = DialogManager(requireContext(), requireActivity())
         if (PrivateSpaceManager(requireContext()).isPrivateSpaceSupported()) {
             privateSpaceReceiver = PrivateSpaceReceiver()
@@ -188,8 +196,14 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
 
         // Register battery receiver
         context?.let { ctx ->
-            batteryReceiver = BatteryReceiver()
-            ctx.registerReceiver(batteryReceiver, IntentFilter(Intent.ACTION_BATTERY_CHANGED))
+            binding.battery.let { textView ->
+                batteryReceiver = BatteryReceiver(textView, prefs)
+                val intentFilter = IntentFilter(Intent.ACTION_BATTERY_CHANGED)
+                // Register receiver
+                val stickyIntent = ctx.registerReceiver(batteryReceiver, intentFilter)
+                // Immediately update UI with sticky intent
+                stickyIntent?.let { batteryReceiver.onReceive(ctx, it) }
+            }
 
             // Register private space receiver if supported
             if (PrivateSpaceManager(ctx).isPrivateSpaceSupported()) {
@@ -304,9 +318,21 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
             clock.format24Hour = timePattern
 
             // Date format
-            val datePattern = DateFormat.getBestDateTimePattern(locale, "EEEddMMM")
-            date.format12Hour = datePattern
-            date.format24Hour = datePattern
+            // val datePattern = DateFormat.getBestDateTimePattern(locale, "EEEddMMM")
+            // date.format12Hour = datePattern
+            // date.format24Hour = datePattern
+
+            val basePattern = DateFormat.getBestDateTimePattern(locale, "EEEddMMM")
+
+            val finalPattern = if (prefs.showDayOfYear) {
+                "$basePattern   ${getDayOfYearText()}"
+            } else {
+                basePattern
+            }
+
+            date.format12Hour = finalPattern
+            date.format24Hour = finalPattern
+
 
             alarm.text = getNextAlarm(requireContext(), prefs)
             dailyWord.text = wordOfTheDay(prefs)
@@ -485,6 +511,9 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
         with(viewModel) {
             showDate.observe(viewLifecycleOwner) {
                 binding.date.isVisible = it
+            }
+            showDayOfYear.observe(viewLifecycleOwner) {
+                updateTimeAndInfo()
             }
             showClock.observe(viewLifecycleOwner) {
                 binding.clock.isVisible = it
@@ -989,13 +1018,15 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
             for (i in oldAppsNum until newAppsNum) {
                 val homeAppLabel = layoutInflater.inflate(R.layout.home_app_button, null) as TextView
                 homeAppLabel.apply {
+                    val homeApp = prefs.getHomeAppModel(i)
                     textSize = prefs.appSize.toFloat()
                     id = i
-                    text = if (prefs.getHomeAppModel(i).activityPackage.isBlank()) {
+                    text = if (homeApp.activityPackage.isBlank()) {
                         getLocalizedString(R.string.select_app)
                     } else {
-                        prefs.getHomeAppModel(i).activityLabel
+                        prefs.getAppAlias(homeApp.activityPackage).takeIf { it.isNotBlank() } ?: homeApp.activityLabel
                     }
+
                     getHomeAppsGestureListener()
                     setOnClickListener(this@HomeFragment)
 
@@ -1088,7 +1119,7 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
 
                                 this.text = if (count > 0) {
                                     val circledNumber = getCircledDigit(count)
-                                    val newText = "${appModel.label} $circledNumber"
+                                    val newText = "${appModel.activityLabel} $circledNumber"
                                     val spannable = SpannableString(newText)
 
                                     val start = newText.indexOf(circledNumber)
@@ -1118,7 +1149,7 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
 
                                     spannable
                                 } else {
-                                    appModel.label
+                                    appModel.activityLabel
                                 }
 
                                 AppLogger.d("HomeFragment", "Notification count updated for $packageName: $count")

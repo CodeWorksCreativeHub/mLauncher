@@ -2,6 +2,67 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [1.11.4.2 → Unreleased](https://github.com/CodeWorksCreativeHub/mLauncher/tree/main) - In Development
+
+### :sparkles: Enhancements:
+
+* Feature: Added day-of-year indicator [77/365] next to date like 'Wed, Mar 18  [77/365]' ([#1024](https://github.com/CodeWorksCreativeHub/mLauncher/pull/1024)) ([f2a82841](https://github.com/CodeWorksCreativeHub/mLauncher/commit/f2a82841))
+
+### :wrench: Code Quality:
+
+* enhance release fetching to support multiple stable releases ([fdd8381c](https://github.com/CodeWorksCreativeHub/mLauncher/commit/fdd8381c))
+
+## [1110402 (1.11.4.2) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.4.2) - (16, February 2026)
+
+### :sparkles: Enhancements:
+
+* Prioritize app aliases for none fuzzy search ([fe592f71](https://github.com/CodeWorksCreativeHub/mLauncher/commit/fe592f71))
+* Prioritize app aliases for fuzzy search only ([ed61269a](https://github.com/CodeWorksCreativeHub/mLauncher/commit/ed61269a))
+
+## [1110305 (1.11.3.5) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.3.5) - (03, February 2026)
+
+### :sparkles: Enhancements:
+
+* Disable dependency metadata in builds ([b4dbdc1d](https://github.com/CodeWorksCreativeHub/mLauncher/commit/b4dbdc1d))
+* Add unit tests for FuzzyFinder ([5d311478](https://github.com/CodeWorksCreativeHub/mLauncher/commit/5d311478))
+
+### :bug: Bug Fixes:
+
+* update app rename condition to compare against prefs alias ([a85cbdba](https://github.com/CodeWorksCreativeHub/mLauncher/commit/a85cbdba))
+* Resolve icon loading and sorting bugs ([d04d371c](https://github.com/CodeWorksCreativeHub/mLauncher/commit/d04d371c))
+
+### :wrench: Code Quality:
+
+* Centralize and simplify list filtering logic ([f5d9184a](https://github.com/CodeWorksCreativeHub/mLauncher/commit/f5d9184a))
+* Implement advanced fuzzy search algorithm ([0c113375](https://github.com/CodeWorksCreativeHub/mLauncher/commit/0c113375))
+* Refactor settings font and icon sizing logic ([f70b7d67](https://github.com/CodeWorksCreativeHub/mLauncher/commit/f70b7d67))
+* Refactor BatteryReceiver to improve reliability and efficiency ([99345c31](https://github.com/CodeWorksCreativeHub/mLauncher/commit/99345c31))
+
+## [1110304 (1.11.3.4) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.3.4) - (13, January 2026)
+
+### :sparkles: Enhancements:
+
+* Add reset functionality to app renaming ([8ec4f806](https://github.com/CodeWorksCreativeHub/mLauncher/commit/8ec4f806))
+* Introduce FontText composable for custom font support ([5813f83c](https://github.com/CodeWorksCreativeHub/mLauncher/commit/5813f83c))
+* Implement dynamic and accessible AZ sidebar ([42c831fa](https://github.com/CodeWorksCreativeHub/mLauncher/commit/42c831fa))
+
+### :bug: Bug Fixes:
+
+* Fix keyboard handling and bottom margin ([6ced4384](https://github.com/CodeWorksCreativeHub/mLauncher/commit/6ced4384))
+
+### :wrench: Code Quality:
+
+* Clean up and improve changelog generation script ([27ed889e](https://github.com/CodeWorksCreativeHub/mLauncher/commit/27ed889e))
+* Simplify rename logic and UI ([f76aaf98](https://github.com/CodeWorksCreativeHub/mLauncher/commit/f76aaf98))
+* Refactor rename UI in app drawer ([d3d30f1b](https://github.com/CodeWorksCreativeHub/mLauncher/commit/d3d30f1b))
+* Simplify app rename logic in AppDrawerAdapter ([f5405c4b](https://github.com/CodeWorksCreativeHub/mLauncher/commit/f5405c4b))
+* Improve preference migration and build script variables ([a4a27359](https://github.com/CodeWorksCreativeHub/mLauncher/commit/a4a27359))
+* Use `activityLabel` directly, removing `customLabel` and `label` ([dc1a81f3](https://github.com/CodeWorksCreativeHub/mLauncher/commit/dc1a81f3))
+* Use FontManager for font loading in SettingsComposable ([54361a40](https://github.com/CodeWorksCreativeHub/mLauncher/commit/54361a40))
+* Use FontText in SettingsTextPreference ([1355be5a](https://github.com/CodeWorksCreativeHub/mLauncher/commit/1355be5a))
+* Remove redundant theme logic in SettingsFragment ([f2ea3277](https://github.com/CodeWorksCreativeHub/mLauncher/commit/f2ea3277))
+* Improve app drawer context menu and keyboard behavior ([e09b4411](https://github.com/CodeWorksCreativeHub/mLauncher/commit/e09b4411))
+
 ## [1110303 (1.11.3.3) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.3.3) - (06, January 2026)
 
 ### :sparkles: Enhancements:
@@ -93,29 +154,6 @@ All notable changes to this project will be documented in this file. See [conven
 ### :broom: Maintenance & Cleanup:
 
 * Add rules for DeviceInfo and Moshi ([bf067e79](https://github.com/CodeWorksCreativeHub/mLauncher/commit/bf067e79))
-
-## [1110206 (1.11.2.6) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.6) - (17, November 2025)
-
-### :sparkles: Enhancements:
-
-* Add smart weather app launcher ([d21717e7](https://github.com/CodeWorksCreativeHub/mLauncher/commit/d21717e7))
-* Add weather widget click handler ([09ace13b](https://github.com/CodeWorksCreativeHub/mLauncher/commit/09ace13b))
-
-### :bug: Bug Fixes:
-
-* Send actual exception string in crash report ([ba78f788](https://github.com/CodeWorksCreativeHub/mLauncher/commit/ba78f788))
-
-### :wrench: Code Quality:
-
-* Improve list building and sorting logic ([19dc35a5](https://github.com/CodeWorksCreativeHub/mLauncher/commit/19dc35a5))
-* Add comments to app filtering logic in MainViewModel ([ccafe0b0](https://github.com/CodeWorksCreativeHub/mLauncher/commit/ccafe0b0))
-* Optimize list sorting and indexing logic ([d1571acb](https://github.com/CodeWorksCreativeHub/mLauncher/commit/d1571acb))
-
-## [1110205 (1.11.2.5) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.2.5) - (21, October 2025)
-
-### :bug: Bug Fixes:
-
-* prevent icon pack icons from showing in app list when disabled ([6a3d504b](https://github.com/CodeWorksCreativeHub/mLauncher/commit/6a3d504b))
 
 ---
 > Generated by CodeWorks Creative Hub

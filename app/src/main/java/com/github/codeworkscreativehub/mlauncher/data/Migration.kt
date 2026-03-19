@@ -1,6 +1,7 @@
 package com.github.codeworkscreativehub.mlauncher.data
 
 import android.content.Context
+import androidx.core.content.edit
 import com.github.codeworkscreativehub.common.AppLogger
 import com.github.codeworkscreativehub.mlauncher.BuildConfig
 import java.io.File
@@ -10,7 +11,9 @@ class Migration(val context: Context) {
         val currentVersionCode = BuildConfig.VERSION_CODE
         val savedVersionCode = prefs.appVersion
 
-        // Define a map of version code -> preferences to clear
+        AppLogger.d("PrefsMigration", "Starting migration: savedVersion=$savedVersionCode, currentVersion=$currentVersionCode")
+
+        // Map of version code -> preferences to clear (wildcards allowed)
         val versionCleanupMap = mapOf(
             171 to listOf(
                 "APP_DARK_COLORS",
@@ -45,22 +48,57 @@ class Migration(val context: Context) {
                 "SHORT_SWIPE_THRESHOLD",
                 "LONG_SWIPE_THRESHOLD",
             ),
-            // Add more versions and preferences to remove here
+            1110303 to listOf(
+                "APP_ALIAS_*"
+            )
         )
 
-        // Iterate over the versions and clear the relevant preferences
+        var totalRemoved = 0
+
         for ((version, keys) in versionCleanupMap) {
-            // Only clear preferences for versions between savedVersionCode and currentVersionCode
-            if (version in (savedVersionCode + 1)..currentVersionCode) {
-                // Remove the preferences for this version
-                keys.forEach { key ->
-                    prefs.remove(key)
+            if (version in (savedVersionCode)..currentVersionCode) {
+                val allKeys = prefs.prefsNormal.all.keys
+                val removedThisVersion = mutableListOf<String>()
+
+                prefs.prefsNormal.edit {
+                    keys.forEach { keyPattern ->
+                        if (keyPattern.contains("*")) {
+                            val prefix = keyPattern.removeSuffix("*")
+                            val matchedKeys = allKeys.filter { it.startsWith(prefix) }
+                            matchedKeys.forEach { key ->
+                                remove(key)
+                                removedThisVersion.add(key)
+                                totalRemoved++
+                            }
+                            if (matchedKeys.isNotEmpty()) {
+                                AppLogger.d(
+                                    "PrefsMigration",
+                                    "Version $version wildcard pattern '$keyPattern' removed: ${matchedKeys.joinToString()}"
+                                )
+                            }
+                        } else {
+                            remove(keyPattern)
+                            removedThisVersion.add(keyPattern)
+                            totalRemoved++
+                            AppLogger.d(
+                                "PrefsMigration",
+                                "Version $version removed key: $keyPattern"
+                            )
+                        }
+                    }
+                }
+
+                if (removedThisVersion.isEmpty()) {
+                    AppLogger.d("PrefsMigration", "Version $version had no keys to remove.")
                 }
             }
         }
 
-        // Update the stored version code after cleanup
         prefs.appVersion = currentVersionCode
+        AppLogger.d(
+            "PrefsMigration",
+            "Migration completed: updated app version to $currentVersionCode, total keys removed: $totalRemoved"
+        )
     }
 
     fun migrateMessages(prefs: Prefs) {

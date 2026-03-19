@@ -43,11 +43,13 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.ExperimentalTextApi
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
@@ -57,9 +59,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.net.toUri
-import com.github.creativecodecat.components.views.FontAppCompatTextView
+import com.github.codeworkscreativehub.mlauncher.R
+import com.github.codeworkscreativehub.mlauncher.helper.FontManager
 import com.github.codeworkscreativehub.mlauncher.services.HapticFeedbackService
 import com.github.codeworkscreativehub.mlauncher.style.SettingsTheme
+import com.github.creativecodecat.components.views.FontAppCompatTextView
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -94,7 +98,7 @@ object SettingsComposable {
             Spacer(modifier = Modifier.width(12.dp)) // small spacing between icon and title
 
             // Title text
-            Text(
+            FontText(
                 text = title,
                 fontSize = titleFontSize,
                 color = fontColor,
@@ -131,7 +135,7 @@ object SettingsComposable {
                     .let { if (onIconClick != null) it.clickable { onIconClick() } else it }
             )
 
-            Text(
+            FontText(
                 text = title,
                 fontSize = if (titleFontSize != TextUnit.Unspecified) titleFontSize else 18.sp,
                 color = fontColor,
@@ -221,7 +225,7 @@ object SettingsComposable {
             Spacer(modifier = Modifier.width(12.dp))
 
             Column {
-                Text(
+                FontText(
                     text = title,
                     color = headerColor,
                     fontSize = if (titleFontSize != TextUnit.Unspecified) titleFontSize else 18.sp,
@@ -231,7 +235,7 @@ object SettingsComposable {
 
                 description?.let {
                     Spacer(modifier = Modifier.height(1.dp))
-                    Text(
+                    FontText(
                         text = it,
                         color = optionColor,
                         fontSize = if (descriptionFontSize != TextUnit.Unspecified) descriptionFontSize else 12.sp,
@@ -259,7 +263,7 @@ object SettingsComposable {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             // Title
-            Text(
+            FontText(
                 text = title,
                 color = titleColor,
                 fontSize = titleFontSize,
@@ -337,7 +341,7 @@ object SettingsComposable {
 
         val layoutResult = remember { mutableStateOf<TextLayoutResult?>(null) }
 
-        Text(
+        FontText(
             text = annotatedString,
             style = TextStyle(color = color, fontSize = fontSize),
             modifier = modifier.pointerInput(Unit) {
@@ -379,7 +383,7 @@ object SettingsComposable {
                     // Optional: touch ripple effect
                     val typedValue = TypedValue()
                     context.theme.resolveAttribute(
-                        android.R.attr.selectableItemBackground, typedValue, true
+                        R.attr.selectableItemBackground, typedValue, true
                     )
                     setBackgroundResource(typedValue.resourceId)
                 }
@@ -423,7 +427,7 @@ object SettingsComposable {
         ) {
 
             // Label
-            Text(
+            FontText(
                 text = text,
                 fontSize = resolvedFontSizeSp.sp,
                 color = titleColor,
@@ -514,7 +518,7 @@ object SettingsComposable {
             horizontalAlignment = Alignment.Start
         ) {
             // Title
-            Text(
+            FontText(
                 text = title,
                 fontSize = fontSizeSp.sp,
                 color = titleColor,
@@ -522,7 +526,7 @@ object SettingsComposable {
             )
 
             // Option / secondary text
-            Text(
+            FontText(
                 text = option,
                 fontSize = (fontSizeSp / 1.3f).sp,
                 color = optionColor,
@@ -530,4 +534,61 @@ object SettingsComposable {
             )
         }
     }
+
+    @Composable
+    fun FontText(
+        text: Any, // String or AnnotatedString
+        modifier: Modifier = Modifier,
+        fontSize: TextUnit = 16.sp,
+        color: Color = SettingsTheme.typography.title.color,
+        fontWeight: FontWeight? = null,
+        style: TextStyle? = null, // Optional additional style
+        textAlign: TextAlign? = null,
+        onClick: (() -> Unit)? = null,
+        onTextLayout: ((TextLayoutResult) -> Unit)? = null
+    ) {
+        val context = LocalContext.current
+
+        // Get Typeface from FontManager (like your FontEditText)
+        val typeface = remember { FontManager.getTypeface(context) }
+
+        // Convert Typeface to Compose FontFamily
+        val fontFamily: FontFamily = remember(typeface) {
+            typeface?.let { FontFamily(it) } ?: FontFamily.Default
+        }
+
+        val finalStyle = (style ?: TextStyle()).copy(
+            fontFamily = fontFamily,
+            fontSize = fontSize,
+            fontWeight = fontWeight,
+            color = color
+        )
+
+        val clickableModifier = if (onClick != null) {
+            Modifier.clickable(
+                onClick = onClick,
+            )
+        } else Modifier
+
+        when (text) {
+            is String -> Text(
+                text = text,
+                modifier = modifier.then(clickableModifier),
+                style = finalStyle,
+                textAlign = textAlign,
+                onTextLayout = onTextLayout // nullable is fine for String
+            )
+
+            is AnnotatedString -> Text(
+                text = text,
+                modifier = modifier.then(clickableModifier),
+                style = finalStyle,
+                textAlign = textAlign,
+                onTextLayout = onTextLayout ?: {} // must be non-null for AnnotatedString
+            )
+
+            else -> throw IllegalArgumentException("FontText supports only String or AnnotatedString")
+        }
+    }
+
 }
