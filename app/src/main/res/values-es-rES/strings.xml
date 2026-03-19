@@ -74,6 +74,7 @@
     <string name="show_clock">Mostrar reloj</string>
     <string name="show_clock_format">Formato del programa (AM/PM)</string>
     <string name="show_date">Mostrar fecha</string>
+    <string name="show_day_of_year">Día del espectáculo del año</string>
     <string name="show_alarm">Mostrar alarma</string>
     <string name="show_daily_word">Mostrar palabra diaria</string>
     <string name="show_battery">Mostrar nivel de batería</string>

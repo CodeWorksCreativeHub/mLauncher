@@ -74,6 +74,7 @@
     <string name="show_clock">Rodyti laikrodį</string>
     <string name="show_clock_format">Rodyti formatą (AM/PM)</string>
     <string name="show_date">Rodyti datą</string>
+    <string name="show_day_of_year">Rodyti metų dieną</string>
     <string name="show_alarm">Rodyti signalą</string>
     <string name="show_daily_word">Rodyti kasdienį žodį</string>
     <string name="show_battery">Rodyti bateriją</string>

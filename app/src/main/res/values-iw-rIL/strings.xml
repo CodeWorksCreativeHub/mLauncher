@@ -74,6 +74,7 @@
     <string name="show_clock">הצג שעון</string>
     <string name="show_clock_format">תצוגת זמן (AM/PM)</string>
     <string name="show_date">הצג תאריך</string>
+    <string name="show_day_of_year">הצג יום בשנה</string>
     <string name="show_alarm">הצג שעון מעורר</string>
     <string name="show_daily_word">הצג מסר יומי</string>
     <string name="show_battery">הצג סוללה</string>

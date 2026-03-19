@@ -74,6 +74,7 @@
     <string name="show_clock">Показать часы</string>
     <string name="show_clock_format">Формат показа (AM/PM)</string>
     <string name="show_date">Показать дату</string>
+    <string name="show_day_of_year">День выставки в году</string>
     <string name="show_alarm">Показать будильник</string>
     <string name="show_daily_word">Показать ежедневное слово</string>
     <string name="show_battery">Показать батарею</string>

@@ -74,6 +74,7 @@
     <string name="show_clock">Afișați ceasul</string>
     <string name="show_clock_format">Formatul emisiunii (AM/PM)</string>
     <string name="show_date">Data afișajului</string>
+    <string name="show_day_of_year">Afișează ziua anului</string>
     <string name="show_alarm">Afișare alarmă</string>
     <string name="show_daily_word">Afișează Cuvântul Zilnic</string>
     <string name="show_battery">Afișați bateria</string>

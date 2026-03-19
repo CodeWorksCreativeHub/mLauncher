@@ -74,6 +74,7 @@
     <string name="show_clock">Mostra orologio</string>
     <string name="show_clock_format">Mostra formato (AM/PM)</string>
     <string name="show_date">Mostra data</string>
+    <string name="show_day_of_year">Mostra il giorno dell\'anno</string>
     <string name="show_alarm">Mostra allarme</string>
     <string name="show_daily_word">Mostra Parola Giornaliera</string>
     <string name="show_battery">Mostra batteria</string>
