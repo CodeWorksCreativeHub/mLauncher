@@ -92,6 +92,7 @@ import com.github.codeworkscreativehub.mlauncher.ui.components.DialogManager
 import com.github.codeworkscreativehub.mlauncher.ui.widgets.WidgetActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.util.Calendar
 
 class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListener {
 
@@ -108,6 +109,13 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
     private var longPressToSelectApp: Int = 0
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+
+    private fun getDayOfYearText(): String {
+        val cal = Calendar.getInstance()
+        val day = cal.get(Calendar.DAY_OF_YEAR)
+        val max = cal.getActualMaximum(Calendar.DAY_OF_YEAR)
+        return "[$day/$max]"
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -310,9 +318,21 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
             clock.format24Hour = timePattern
 
             // Date format
-            val datePattern = DateFormat.getBestDateTimePattern(locale, "EEEddMMM")
-            date.format12Hour = datePattern
-            date.format24Hour = datePattern
+            // val datePattern = DateFormat.getBestDateTimePattern(locale, "EEEddMMM")
+            // date.format12Hour = datePattern
+            // date.format24Hour = datePattern
+
+            val basePattern = DateFormat.getBestDateTimePattern(locale, "EEEddMMM")
+
+            val finalPattern = if (prefs.showDayOfYear) {
+                "$basePattern   ${getDayOfYearText()}"
+            } else {
+                basePattern
+            }
+
+            date.format12Hour = finalPattern
+            date.format24Hour = finalPattern
+
 
             alarm.text = getNextAlarm(requireContext(), prefs)
             dailyWord.text = wordOfTheDay(prefs)
@@ -491,6 +511,9 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
         with(viewModel) {
             showDate.observe(viewLifecycleOwner) {
                 binding.date.isVisible = it
+            }
+            showDayOfYear.observe(viewLifecycleOwner) {
+                updateTimeAndInfo()
             }
             showClock.observe(viewLifecycleOwner) {
                 binding.clock.isVisible = it

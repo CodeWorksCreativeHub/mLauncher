@@ -211,6 +211,7 @@ class SettingsFragment : BaseFragment() {
         var toggledHomePager by remember { mutableStateOf(prefs.homePager) }
 
         var toggledShowDate by remember { mutableStateOf(prefs.showDate) }
+        var toggledShowDayOfYear by remember { mutableStateOf(prefs.showDayOfYear) }
         var toggledShowClock by remember { mutableStateOf(prefs.showClock) }
         var toggledShowClockFormat by remember { mutableStateOf(prefs.showClockFormat) }
         var toggledShowAlarm by remember { mutableStateOf(prefs.showAlarm) }
@@ -1009,6 +1010,17 @@ class SettingsFragment : BaseFragment() {
                             toggledShowDate = !prefs.showDate
                             prefs.showDate = toggledShowDate
                             viewModel.setShowDate(prefs.showDate)
+                        }
+                    )
+
+                    SettingsSwitch(
+                        text = getLocalizedString(R.string.show_day_of_year),
+                        fontSize = titleFontSize,
+                        defaultState = toggledShowDayOfYear,
+                        onCheckedChange = {
+                            toggledShowDayOfYear = !prefs.showDayOfYear
+                            prefs.showDayOfYear = toggledShowDayOfYear
+                            viewModel.setShowDayOfYear(prefs.showDayOfYear)
                         }
                     )
 

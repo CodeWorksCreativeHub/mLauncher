@@ -83,6 +83,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val launcherDefault = MutableLiveData<Boolean>()
 
     val showDate = MutableLiveData(prefs.showDate)
+    val showDayOfYear = MutableLiveData(prefs.showDayOfYear)
     val showClock = MutableLiveData(prefs.showClock)
     val showAlarm = MutableLiveData(prefs.showAlarm)
     val showDailyWord = MutableLiveData(prefs.showDailyWord)
@@ -184,6 +185,10 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     fun setShowDate(visibility: Boolean) {
         showDate.value = visibility
+    }
+
+    fun setShowDayOfYear(visibility: Boolean) {
+        showDayOfYear.value = visibility
     }
 
     fun setShowClock(visibility: Boolean) {
