@@ -74,6 +74,7 @@
     <string name="show_clock">Zobraziť hodiny</string>
     <string name="show_clock_format">Zobraziť formát (AM/PM)</string>
     <string name="show_date">Zobraziť dátum</string>
+    <string name="show_day_of_year">Show Day Of Year</string>
     <string name="show_alarm">Zobraziť budík</string>
     <string name="show_daily_word">Zobraziť denné slovo</string>
     <string name="show_battery">Zobraziť batériu</string>
