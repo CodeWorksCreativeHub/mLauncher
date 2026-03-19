@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file. See [conven
 
 ## [1.11.4.2 → Unreleased](https://github.com/CodeWorksCreativeHub/mLauncher/tree/main) - In Development
 
+### :sparkles: Enhancements:
+
+* Feature: Added day-of-year indicator [77/365] next to date like 'Wed, Mar 18  [77/365]' ([#1024](https://github.com/CodeWorksCreativeHub/mLauncher/pull/1024)) ([f2a82841](https://github.com/CodeWorksCreativeHub/mLauncher/commit/f2a82841))
+
 ### :wrench: Code Quality:
 
 * enhance release fetching to support multiple stable releases ([fdd8381c](https://github.com/CodeWorksCreativeHub/mLauncher/commit/fdd8381c))
