@@ -74,6 +74,7 @@
     <string name="show_clock">Saati göster</string>
     <string name="show_clock_format">Gösteri Formatı (AM/PM)</string>
     <string name="show_date">Tarih\'i göster</string>
+    <string name="show_day_of_year">Show Day Of Year</string>
     <string name="show_alarm">Alarmı Göster</string>
     <string name="show_daily_word">Günlük Sözcüğü Göster</string>
     <string name="show_battery">Pil\'i göster</string>
