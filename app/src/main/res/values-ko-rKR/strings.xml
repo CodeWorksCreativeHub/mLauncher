@@ -74,7 +74,7 @@
     <string name="show_clock">시계 표시</string>
     <string name="show_clock_format">쇼 형식(오전/오후)</string>
     <string name="show_date">Show date</string>
-    <string name="show_day_of_year">Show Day Of Year</string>
+    <string name="show_day_of_year">연중 쇼 데이</string>
     <string name="show_alarm">알람 표시</string>
     <string name="show_daily_word">일일 단어 표시</string>
     <string name="show_battery">배터리 표시</string>
