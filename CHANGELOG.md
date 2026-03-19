@@ -6,11 +6,15 @@ All notable changes to this project will be documented in this file. See [conven
 
 ### :sparkles: Enhancements:
 
-* Feature: Added day-of-year indicator [77/365] next to date like 'Wed, Mar 18  [77/365]' ([#1024](https://github.com/CodeWorksCreativeHub/mLauncher/pull/1024)) ([f2a82841](https://github.com/CodeWorksCreativeHub/mLauncher/commit/f2a82841))
+* Added day-of-year indicator [77/365] next to date like 'Wed, Mar 18  [77/365]' ([#1024](https://github.com/CodeWorksCreativeHub/mLauncher/pull/1024)) ([f2a82841](https://github.com/CodeWorksCreativeHub/mLauncher/commit/f2a82841))
 
 ### :wrench: Code Quality:
 
 * enhance release fetching to support multiple stable releases ([fdd8381c](https://github.com/CodeWorksCreativeHub/mLauncher/commit/fdd8381c))
+
+### :globe_with_meridians: Localization:
+
+* Updated Language Files. ([#1025](https://github.com/CodeWorksCreativeHub/mLauncher/pull/1025)) ([fb6688b1](https://github.com/CodeWorksCreativeHub/mLauncher/commit/fb6688b1))
 
 ## [1110402 (1.11.4.2) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.4.2) - (16, February 2026)
 
