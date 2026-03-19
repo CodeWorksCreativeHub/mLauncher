@@ -74,7 +74,7 @@
     <string name="show_clock">แสดงนาฬิกา</string>
     <string name="show_clock_format">รูปแบบการแสดง (AM/PM)</string>
     <string name="show_date">แสดงวันที่</string>
-    <string name="show_day_of_year">Show Day Of Year</string>
+    <string name="show_day_of_year">วันแสดงประจำปี</string>
     <string name="show_alarm">แสดงสัญญาณเตือน</string>
     <string name="show_daily_word">แสดงคำศัพท์ประจำวัน</string>
     <string name="show_battery">แสดงแบตเตอรี่</string>
