@@ -16,6 +16,10 @@ All notable changes to this project will be documented in this file. See [conven
 
 * Updated Language Files. ([#1025](https://github.com/CodeWorksCreativeHub/mLauncher/pull/1025)) ([fb6688b1](https://github.com/CodeWorksCreativeHub/mLauncher/commit/fb6688b1))
 
+### :rewind: Reverts:
+
+* Revert "Add Kurmanji Kurdish translation ([#1029](https://github.com/CodeWorksCreativeHub/mLauncher/pull/1029))" ([#1033](https://github.com/CodeWorksCreativeHub/mLauncher/pull/1033)) ([cb0b6a16](https://github.com/CodeWorksCreativeHub/mLauncher/commit/cb0b6a16))
+
 ## [1110402 (1.11.4.2) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.4.2) - (16, February 2026)
 
 ### :sparkles: Enhancements:
