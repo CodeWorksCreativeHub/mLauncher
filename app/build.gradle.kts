@@ -77,13 +77,15 @@ extensions.configure<ApplicationExtension>("android") {
 
             println("Using keystore: ${keystoreFile.absolutePath} (${keystoreFile.length()} bytes)")
 
+            fun required(name: String): String =
+                System.getenv(name)
+                    ?: project.findProperty(name) as String?
+                    ?: error("Missing required environment variable: $name")
+
             storeFile = keystoreFile
-            storePassword = System.getenv("KEY_STORE_PASSWORD")
-                ?: error("KEY_STORE_PASSWORD not set")
-            keyAlias = System.getenv("KEY_ALIAS")
-                ?: error("KEY_ALIAS not set")
-            keyPassword = System.getenv("KEY_PASSWORD")
-                ?: error("KEY_PASSWORD not set")
+            storePassword = required("KEY_STORE_PASSWORD")
+            keyAlias = required("KEY_ALIAS")
+            keyPassword = required("KEY_PASSWORD")
         }
     }
 
