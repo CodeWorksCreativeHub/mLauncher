@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="lang_arabic">Erebî</string>
+    <string name="lang_dutch">Holendî</string>
+    <string name="lang_czech">Çikî</string>
+    <string name="lang_english">Îngilîzî</string>
+    <string name="lang_french">Frensî</string>
+    <string name="lang_german">Elmanî</string>
+    <string name="lang_hebrew">Îbranî</string>
+    <string name="lang_italian">Îtalî</string>
+    <string name="lang_japanese">Japanî</string>
+    <string name="lang_korean">Koreyî</string>
+    <string name="lang_kurmanji kurdish">Kurdiya Kurmancî</string>
+    <string name="lang_lithuanian">Litwanî</string>
+    <string name="lang_polish">Polendî</string>
+    <string name="lang_portuguese">Portegalî</string>
+    <string name="lang_romanian">Romanî</string>
+    <string name="lang_russian">Rûsî</string>
+    <string name="lang_slovak">Slovakî</string>
+    <string name="lang_spanish">Spanî</string>
+    <string name="lang_thai">Taylendî</string>
+    <string name="lang_turkish">Tirkî</string>
+</resources>
