@@ -1,388 +1,388 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Base Settings -->
-    <string name="select_app">Select App</string>
-    <string name="show_apps">Search Apps</string>
-    <string name="show_private_apps">Search Private Apps</string>
-    <string name="show_work_apps">Search Work Apps</string>
-    <string name="show_contacts">Search Contacts</string>
-    <string name="welcome_to_launcher">Welcome to %1$s</string>
-    <string name="continue_by_you_agree">By continuing you agree to %1$s</string>
-    <string name="usage_access_permission">Usage Access Permissions</string>
-    <string name="location_access_permission">Location Access Permissions</string>
-    <string name="accessibility_access_permission">Accessibility Permissions</string>
-    <string name="grant_permission">Grant Permission</string>
-    <string name="grant_usage_permission">To continue, please grant Usage Access permission.</string>
-    <string name="reason_usage_permission">This app needs Usage Access to show your most used apps, track screen time, and improve your experience.We do not collect or share any personal data.</string>
-    <string name="grant_location_permission">To continue, please grant Location permission.</string>
-    <string name="reason_location_permission">This app needs Location Access to provide accurate weather updates based on your current location. We do not collect or share any personal data.</string>
-    <string name="grant_accessibility_permission">To continue, please grant Accessibility permission.</string>
-    <string name="reason_accessibility_permission">MultiLauncher needs Accessibility permission to provide enhanced features, such as locking the screen and opening quick settings. These functions help improve usability. We do not collect or share any data.</string>
-    <string name="permission_granted">Permission Granted! You can continue.</string>
-    <string name="this_can_be_disabled_later">* This permission may be disabled later.</string>
+    <string name="select_app">Sepanê hilbijêre</string>
+    <string name="show_apps">Sepanan nîşan bide</string>
+    <string name="show_private_apps">Sepanên taybet nîşan bide</string>
+    <string name="show_work_apps">Sepanên kar nîşan bide</string>
+    <string name="show_contacts">Di nav têkiliyan de bigere</string>
+    <string name="welcome_to_launcher">Bi xêr hatî bo %1$s</string>
+    <string name="continue_by_you_agree">Bi domandinê tu %1$s diperjînî</string>
+    <string name="usage_access_permission">Mafê gihîştina bikaranînê</string>
+    <string name="location_access_permission">Mafê gihîştina cihê</string>
+    <string name="accessibility_access_permission">Mafên gihîştinê</string>
+    <string name="grant_permission">Mafê bide</string>
+    <string name="grant_usage_permission">Ji bo domandinê,tika ye mafê gihîştina bikaranînê bide.</string>
+    <string name="reason_usage_permission">Ev sepan ji bo nîşandana sepanên herî pir tên bikaranîn, şopandina dema dîmenderê û baştirkirina ezmûna te, ji ber wê pêwistî bi gihîştina bikaranînê dike. Em tu daneyên kesane kom nakin û parve nakin.</string>
+    <string name="grant_location_permission">Ji bo domandinê,tika ye mafê cihê bide.</string>
+    <string name="reason_location_permission">Ev sepan ji bo nîşandana zanyariyên rast ên bayê li gorî cihê te yê niha ye, ji ber wê pêwistî bi gihîştina cihê dike. Em tu daneyên kesane kom nakin û parve nakin.</string>
+    <string name="grant_accessibility_permission">Ji bo domandinê, tika ye mafê gihîştinê bide.</string>
+    <string name="reason_accessibility_permission">MultiLauncher ji bo pêşkêşkirina taybetmendiyên pêşketî yên mîna girtina dîmenderê û vekirina sazkariyên bilez pêwistî bi mafê gihîştinê dike. Ev fonksiyon ji bo hêsankirina bikaranînê ne. Em tu daneyan kom nakin û parve nakin.</string>
+    <string name="permission_granted">Maf hat dayîn! Tu dikarî bidomînî.</string>
+    <string name="this_can_be_disabled_later">* Ev maf dikare paşê were neçalakkirin.</string>
     <!-- Strings used for settings menus -->
-    <string name="settings_name">MultiLauncher Settings</string>
-    <string name="settings_features_title">Features</string>
-    <string name="settings_features_description">Improve your productivity.</string>
-    <string name="settings_look_feel_title">Look &amp; Feel</string>
-    <string name="settings_look_feel_description">Give your home screen a personal touch.</string>
-    <string name="settings_gestures_title">Gestures</string>
-    <string name="settings_gestures_description">Customize gestures for quick and easy navigation.</string>
-    <string name="settings_notes_title">Notes</string>
-    <string name="settings_notes_description">Personalize your notes to match your style.</string>
+    <string name="settings_name">Sazkariyên MultiLauncher</string>
+    <string name="settings_features_title">Taybetmendî</string>
+    <string name="settings_features_description">Berhemdariya xwe pêş bixe.</string>
+    <string name="settings_look_feel_title">Xuyabûn &amp; Hest</string>
+    <string name="settings_look_feel_description">Dîmendera xwe kesane bike.</string>
+    <string name="settings_gestures_title">Tevger</string>
+    <string name="settings_gestures_description">Ji bo navîgasyona bilez û hêsan tevgeran kesane bike.</string>
+    <string name="settings_notes_title">Nîşe</string>
+    <string name="settings_notes_description">Nîşeyên xwe li gorî şêwaza xwe kesane bike.</string>
     <!-- Favorite Apps -->
     <!-- Favorite Apps -->
-    <string name="settings_favorite_apps_title">Favorite Apps</string>
-    <string name="settings_favorite_apps_description">Reorder your favorite apps for quick access from the home screen.</string>
+    <string name="settings_favorite_apps_title">Sepanên bijarte</string>
+    <string name="settings_favorite_apps_description">Ji bo gihîştina bilez ji dîmendera sereke, rêza sepanên xwe yên bijarte biguherîne.</string>
     <!-- Hidden Apps -->
-    <string name="settings_hidden_apps_title">Hidden Apps</string>
-    <string name="settings_hidden_apps_description">Manage hidden apps — unhide any app from this list when needed.</string>
-    <string name="settings_advanced_title">Advanced</string>
-    <string name="settings_advanced_description">Access app info, default launcher, backup tools and more.</string>
-    <string name="settings_expert_title">Expert</string>
-    <string name="settings_expert_description">Unlock hidden options, and advanced tweaks.</string>
-    <string name="settings_exit_mlauncher_title">Exit MultiLauncher</string>
-    <string name="settings_exit_mlauncher_description">Switch to your default launcher temporarily.</string>
-    <string name="settings_exit_mlauncher_dialog">Choose a launcher</string>
+    <string name="settings_hidden_apps_title">Sepanên veşartî</string>
+    <string name="settings_hidden_apps_description">Sepanên veşartî bi rê ve bibe — dema pêwist be sepanan ji vê lîsteyê derxîne.</string>
+    <string name="settings_advanced_title">Pêşketî</string>
+    <string name="settings_advanced_description">Bigihêje zanyariyên sepanê, launcherê berdest, amûrên vegerandinê û hwd.</string>
+    <string name="settings_expert_title">Pispor</string>
+    <string name="settings_expert_description">Vebijêrkên veşartî û sazkariyên pêşketî veke.</string>
+    <string name="settings_exit_mlauncher_title">Ji MultiLauncher derkeve</string>
+    <string name="settings_exit_mlauncher_description">Bi awayekî demkî derbasî launchera xwe ya berdest bibe.</string>
+    <string name="settings_exit_mlauncher_dialog">Destpêkarekî hilbijêre</string>
     <!-- Strings used for features settings -->
-    <string name="features_settings_title">Features</string>
-    <string name="personalization">Personalization</string>
-    <string name="theme_mode">Theme mode</string>
-    <string name="app_language">Interface Language</string>
-    <string name="font_family">Font Family</string>
-    <string name="search_and_app_list">Search &amp; App List</string>
-    <string name="hide_search_view">Hide Search View</string>
-    <string name="show_floating_button">Show Shortcut Buttons</string>
-    <string name="lock_orientation">Lock Orientation</string>
-    <string name="haptic_feedback">Haptic Feedback</string>
-    <string name="search">Search</string>
-    <string name="search_engine">Search Engine</string>
-    <string name="show_az_sidebar">Show A-Z Sidebar</string>
-    <string name="auto_show_keyboard">Auto Show Keyboard</string>
-    <string name="search_from_start">Search from Start</string>
-    <string name="home_management">Home &amp; App Management</string>
-    <string name="auto_open_apps">Auto Open Apps</string>
-    <string name="open_apps_on_enter">Open App on Enter</string>
-    <string name="lock_home_apps">Lock Home Apps</string>
-    <string name="lock_settings">Lock Settings</string>
-    <string name="apps_on_home_screen">Number of Home Apps</string>
-    <string name="pages_on_home_screen">Number of Pages</string>
-    <string name="enable_home_pager">Enable Home Pager</string>
-    <string name="enable_app_timer">Enable App Timer</string>
-    <string name="force_colored_wallpaper">Force Colored Wallpaper</string>
-    <string name="info_tiles">Info Tiles</string>
-    <string name="show_clock">Show Clock</string>
-    <string name="show_clock_format">Show Format (AM/PM)</string>
-    <string name="show_date">Show Date</string>
-    <string name="show_day_of_year">Show Day Of Year</string>
-    <string name="show_alarm">Show Alarm</string>
-    <string name="show_daily_word">Show Daily Word</string>
-    <string name="show_battery">Show Battery</string>
-    <string name="show_battery_icon">Show Battery Icon</string>
-    <string name="weather">Weather</string>
-    <string name="show_weather">Show Weather</string>
-    <string name="gps_location">GPS Location</string>
-    <string name="temp_unit">Temperature Unit</string>
-    <string name="manual_location">Set Manual Location</string>
-    <string name="icon_packs">Icon Packs</string>
+    <string name="features_settings_title">Taybetmendî</string>
+    <string name="personalization">Kesanekirin</string>
+    <string name="theme_mode">Awaya rûkarê</string>
+    <string name="app_language">Zimanê navrûyê</string>
+    <string name="font_family">Cûreyê nivîsê</string>
+    <string name="search_and_app_list">Lêgerîn &amp; Lîsteya sepanan</string>
+    <string name="hide_search_view">Dîmena lêgerînê veşêre</string>
+    <string name="show_floating_button">Bişkokên kurterê nîşan bide</string>
+    <string name="lock_orientation">Arasteyê kilît bike</string>
+    <string name="haptic_feedback">Bersiva haptîk</string>
+    <string name="search">Bigere</string>
+    <string name="search_engine">Motora lêgerînê</string>
+    <string name="show_az_sidebar">Darika kêlekê ya A-Z nîşan bide</string>
+    <string name="auto_show_keyboard">Kilîtdankê xweber nîşan bide</string>
+    <string name="search_from_start">Ji serî bigere</string>
+    <string name="home_management">Dîmendera sereke &amp; Rêveberiya sepanan</string>
+    <string name="auto_open_apps">Sepanan xweber veke</string>
+    <string name="open_apps_on_enter">Bi Enterê sepanê veke</string>
+    <string name="lock_home_apps">Sepanên dîmendera sereke kilît bike</string>
+    <string name="lock_settings">Sazkariyan kilît bike</string>
+    <string name="apps_on_home_screen">Jimara sepanên dîmendera sereke</string>
+    <string name="pages_on_home_screen">Jimara rûpelan</string>
+    <string name="enable_home_pager">Rûpelsaziya dîmendera sereke çalak bike</string>
+    <string name="enable_app_timer">Demjimêra sepanê çalak bike</string>
+    <string name="force_colored_wallpaper">Wêneyê dîwarê yê rengîn neçar bike</string>
+    <string name="info_tiles">Kariyên zanyariyê</string>
+    <string name="show_clock">Demjimêrê nîşan bide</string>
+    <string name="show_clock_format">Formatê nîşan bide (AM/PM)</string>
+    <string name="show_date">Dîrokê nîşan bide</string>
+    <string name="show_day_of_year">Roja salê nîşan bide</string>
+    <string name="show_alarm">Alarmê nîşan bide</string>
+    <string name="show_daily_word">Peyva rojê nîşan bide</string>
+    <string name="show_battery">Betariyê nîşan bide</string>
+    <string name="show_battery_icon">Îkona betariyê nîşan bide</string>
+    <string name="weather">Rewşa bayê</string>
+    <string name="show_weather">Rewşa bayê nîşan bide</string>
+    <string name="gps_location">Cihê GPS</string>
+    <string name="temp_unit">Yekîneya germahîyê</string>
+    <string name="manual_location">Cihê bi destan saz bike</string>
+    <string name="icon_packs">Pakêtê îkonan</string>
     <!-- Strings used for look & feel settings -->
-    <string name="look_feel_settings_title">Look &amp; Feel</string>
-    <string name="text_size_adjustments">Text &amp; Size Adjustments</string>
-    <string name="app_text_size">App Text Size</string>
-    <string name="date_text_size">Date Text Size</string>
-    <string name="clock_text_size">Clock Text Size</string>
-    <string name="alarm_text_size">Alarm Text Size</string>
-    <string name="daily_word_text_size">Daily Word Text Size</string>
-    <string name="battery_text_size">Battery Text Size</string>
-    <string name="layout_positioning">Layout &amp; Positioning</string>
-    <string name="app_padding_size">Padding Size</string>
-    <string name="extend_home_apps_area">Extend Clickable Area</string>
-    <string name="alignment_to_bottom">Align to Bottom</string>
-    <string name="visibility_display">Visibility &amp; Display</string>
-    <string name="show_status_bar">Show Status bar</string>
-    <string name="show_navigation_bar">Show Navigation bar</string>
-    <string name="show_recent_apps">Show Recent Apps</string>
-    <string name="number_of_recents">Number of Recent Apps</string>
-    <string name="show_app_usage_stats">Show App Usage Stats</string>
-    <string name="select_home_icons">Select Home Icon Pack</string>
-    <string name="select_app_list_icons">Select App List Icon Pack</string>
-    <string name="enable_filter_strength">Enable Fuzzy Finder</string>
-    <string name="filter_strength">Fuzzy Finder Strength</string>
-    <string name="show_background">Show Background</string>
-    <string name="background_opacity">Background Transparency</string>
-    <string name="total_screen_time">Total Screen Time</string>
-    <string name="element_alignment">Element Alignment</string>
-    <string name="date_alignment">Date</string>
-    <string name="clock_alignment">Clock</string>
+    <string name="look_feel_settings_title">Xuyabûn &amp; Hest</string>
+    <string name="text_size_adjustments">Sazkariyên nivîs &amp; mezinahiyê</string>
+    <string name="app_text_size">Mezinahiya nivîsa sepanê</string>
+    <string name="date_text_size">Mezinahiya nivîsa dîrokê</string>
+    <string name="clock_text_size">Mezinahiya nivîsa demjimêrê</string>
+    <string name="alarm_text_size">Mezinahiya nivîsa alarmê</string>
+    <string name="daily_word_text_size">Mezinahiya nivîsa peyva rojê</string>
+    <string name="battery_text_size">Mezinahiya nivîsa betariyê</string>
+    <string name="layout_positioning">Awa &amp; Bicihkirin</string>
+    <string name="app_padding_size">Mezinahiya valahiyê</string>
+    <string name="extend_home_apps_area">Qada tikandinê berfireh bike</string>
+    <string name="alignment_to_bottom">Li jêr rêz bike</string>
+    <string name="visibility_display">Xuyabûn &amp; Dîmen</string>
+    <string name="show_status_bar">Darika rewşê nîşan bide</string>
+    <string name="show_navigation_bar">Darika navîgasyonê nîşan bide</string>
+    <string name="show_recent_apps">Sepanên dawî nîşan bide</string>
+    <string name="number_of_recents">Jimara sepanên dawî</string>
+    <string name="show_app_usage_stats">Amarên bikaranîna sepanê nîşan bide</string>
+    <string name="select_home_icons">Pakêta îkonên dîmendera sereke hilbijêre</string>
+    <string name="select_app_list_icons">Pakêta îkonên lîsteya sepananan hilbijêre</string>
+    <string name="enable_filter_strength">Fuzzy finder çalak bike</string>
+    <string name="filter_strength">Hêza fuzzy finder</string>
+    <string name="show_background">Paşrûyê nîşan bide</string>
+    <string name="background_opacity">Zelalbûna paşrûyê</string>
+    <string name="total_screen_time">Tevahiya dema dîmenderê</string>
+    <string name="element_alignment">Rêzkirina hêmanan</string>
+    <string name="date_alignment">Dîrok</string>
+    <string name="clock_alignment">Demjimêr</string>
     <string name="alarm_alignment">Alarm</string>
-    <string name="daily_word_alignment">Daily Word</string>
-    <string name="home_alignment">Home Apps</string>
-    <string name="drawer_alignment">Drawer Apps</string>
-    <string name="element_colors">Element Colors</string>
-    <string name="background_color">Background</string>
-    <string name="app_color">Apps</string>
-    <string name="clock_color">Clock</string>
-    <string name="date_color">Date</string>
+    <string name="daily_word_alignment">Peyva rojê</string>
+    <string name="home_alignment">Sepanên dîmendera sereke</string>
+    <string name="drawer_alignment">Şemtokê sepanan</string>
+    <string name="element_colors">Rengên hêmanan</string>
+    <string name="background_color">Paşrû</string>
+    <string name="app_color">Sepan</string>
+    <string name="clock_color">Demjimêr</string>
+    <string name="date_color">Dîrok</string>
     <string name="alarm_color">Alarm</string>
-    <string name="daily_word_color">Daily Word</string>
-    <string name="battery_color">Battery</string>
-    <string name="rainbow_shortcuts">Rainbow Shortcuts</string>
-    <string name="shortcuts_color">Shortcuts</string>
+    <string name="daily_word_color">Peyva rojê</string>
+    <string name="battery_color">Betarî</string>
+    <string name="rainbow_shortcuts">Kurterêyên bûka baranê</string>
+    <string name="shortcuts_color">Kurterê</string>
     <!-- Strings used for gestures settings -->
-    <string name="gestures_settings_title">Gestures</string>
-    <string name="tap_click_actions">Tap/Click Actions</string>
-    <string name="double_tap">Double Tap</string>
-    <string name="clock_click_app">Click on Clock</string>
-    <string name="date_click_app">Click on Date</string>
-    <string name="usage_click_app">Click on Total Usage</string>
-    <string name="floating_click_app">Click on Logo</string>
-    <string name="swipe_movement">Swipe Movement</string>
-    <string name="short_swipe_up_app">Short Swipe up</string>
-    <string name="short_swipe_down_app">Short Swipe down</string>
-    <string name="short_swipe_left_app">Short Swipe left</string>
-    <string name="short_swipe_right_app">Short Swipe right</string>
-    <string name="long_swipe_up_app">Long Swipe up</string>
-    <string name="long_swipe_down_app">Long Swipe down</string>
-    <string name="long_swipe_left_app">Long Swipe left</string>
-    <string name="long_swipe_right_app">Long Swipe right</string>
-    <string name="open_app">Open App</string>
-    <string name="lock_screen">Lock Screen</string>
-    <string name="private_space">Private Spaces (%1$s)</string>
-    <string name="show_notifications">Show Notification</string>
-    <string name="show_app_list">Show App List</string>
-    <string name="show_widget_page">Show Widget Page</string>
-    <string name="show_notes_manager">Show Notes Manager</string>
-    <string name="show_digital_wellbeing">Show Digital Wellbeing</string>
-    <string name="open_quick_settings">Quick Settings</string>
-    <string name="show_recents">Show Recents</string>
-    <string name="open_power_dialog">Power Dialog</string>
-    <string name="take_a_screenshot">Take a Screenshot</string>
-    <string name="previous_page">Go to Previous Page</string>
-    <string name="next_page">Go to Next Page</string>
+    <string name="gestures_settings_title">Tevger</string>
+    <string name="tap_click_actions">Çalakiyên tikandinê</string>
+    <string name="double_tap">Du caran tikandin</string>
+    <string name="clock_click_app">Tikandina li ser demjimêrê</string>
+    <string name="date_click_app">Tikandina li ser dîrokê</string>
+    <string name="usage_click_app">Tikandina li ser tevahiya bikaranînê</string>
+    <string name="floating_click_app">Tikandina li ser logoyê</string>
+    <string name="swipe_movement">Tevgerên kaşkirinê</string>
+    <string name="short_swipe_up_app">Kaşkirina kurt ber bi jor</string>
+    <string name="short_swipe_down_app">Kaşkirina kurt ber bi jêr</string>
+    <string name="short_swipe_left_app">Kaşkirina kurt ber bi çepê</string>
+    <string name="short_swipe_right_app">Kaşkirina kurt ber bi rastê</string>
+    <string name="long_swipe_up_app">Kaşkirina dirêj ber bi jor</string>
+    <string name="long_swipe_down_app">Kaşkirina dirêj ber bi jêr</string>
+    <string name="long_swipe_left_app">Kaşkirina dirêj ber bi çepê</string>
+    <string name="long_swipe_right_app">Kaşkirina dirêj ber bi rastê</string>
+    <string name="open_app">Sepanê veke</string>
+    <string name="lock_screen">Dîmenderê kilît bike</string>
+    <string name="private_space">Qadên taybet (%1$s)</string>
+    <string name="show_notifications">Agahdariyan nîşan bide</string>
+    <string name="show_app_list">Lîsteya sepananan nîşan bide</string>
+    <string name="show_widget_page">Rûpela sepanokan nîşan bide</string>
+    <string name="show_notes_manager">Rêveberiyê nîşeyan nîşan bide</string>
+    <string name="show_digital_wellbeing">Başhêskirina jimarî nîşan bide</string>
+    <string name="open_quick_settings">Sazkariyên bilez</string>
+    <string name="show_recents">Sepanên dawî nîşan bide</string>
+    <string name="open_power_dialog">Gotûbêja hêzê</string>
+    <string name="take_a_screenshot">Wêneyê dîmenderê bigire</string>
+    <string name="previous_page">Biçe rûpela paş</string>
+    <string name="next_page">Biçe rûpela pêş</string>
     <!-- Strings used for notes settings -->
-    <string name="notes_settings_title">Notes</string>
-    <string name="display_options">Display Options</string>
-    <string name="auto_expand_notes">Auto Expand Notes</string>
-    <string name="click_to_edit_delete">Click To Edit/Delete</string>
-    <string name="notes_colors">Notes Colors</string>
-    <string name="notes_background_color">Notes Background</string>
-    <string name="bubble_background_color">Bubble Background</string>
-    <string name="bubble_message_color">Bubble Message</string>
-    <string name="bubble_date_time_color">Bubble Date/Time</string>
-    <string name="bubble_category_color">Bubble Category</string>
-    <string name="input_colors">Input Colors</string>
-    <string name="message_input_color">Message Input</string>
-    <string name="message_input_hint_color">Message Input Hint</string>
+    <string name="notes_settings_title">Nîşe</string>
+    <string name="display_options">Vebijêrkên nîşandanê</string>
+    <string name="auto_expand_notes">Nîşeyan xweber berfireh bike</string>
+    <string name="click_to_edit_delete">Ji bo Guhertin/Jêbirin bitikîne</string>
+    <string name="notes_colors">Rengê nîşeyan</string>
+    <string name="notes_background_color">Paşrûya nîşeyan</string>
+    <string name="bubble_background_color">Paşrûya bubble</string>
+    <string name="bubble_message_color">Peyama bubble</string>
+    <string name="bubble_date_time_color">Dîrok/dema bubble</string>
+    <string name="bubble_category_color">Kategoriya bubble</string>
+    <string name="input_colors">Rengê têketinê</string>
+    <string name="message_input_color">Têketina peyamê</string>
+    <string name="message_input_hint_color">Nîşana têketina peyamê</string>
     <!-- Strings used for advanced settings -->
-    <string name="advanced_settings_title">Advanced</string>
-    <string name="advanced_settings_app_info_title">App Info</string>
+    <string name="advanced_settings_title">Pêşketî</string>
+    <string name="advanced_settings_app_info_title">Zanyariyên sepanê</string>
     <string name="advanced_settings_app_info_description">%1$s</string>
-    <string name="advanced_settings_set_as_default_launcher">Set as Default Launcher</string>
-    <string name="advanced_settings_set_as_default_launcher_description">Make Multi Launcher your default home app.</string>
-    <string name="advanced_settings_change_default_launcher">Change Default Launcher</string>
-    <string name="advanced_settings_change_default_launcher_description">Choose a different launcher as your default.</string>
-    <string name="advanced_settings_restart_title">Restart Launcher</string>
-    <string name="advanced_settings_restart_description">Have you tried turning it on and off?</string>
-    <string name="advanced_settings_backup_restore_title">Backup/Restore</string>
-    <string name="advanced_settings_backup_restore_description">Please be careful what you wish for?</string>
-    <string name="advanced_settings_backup_restore_backup">Backup</string>
-    <string name="advanced_settings_backup_restore_restore">Restore</string>
-    <string name="advanced_settings_backup_restore_clear">Clear All Data</string>
-    <string name="advanced_settings_backup_restore_clear_title">Clear Preferences</string>
-    <string name="advanced_settings_backup_restore_clear_description">Are you sure you want to do this?</string>
-    <string name="advanced_settings_theme_title">Theme Creations</string>
-    <string name="advanced_settings_theme_description">Customize themes to suit you.</string>
-    <string name="advanced_settings_theme_download">Download</string>
-    <string name="advanced_settings_theme_export">Export</string>
-    <string name="advanced_settings_theme_import">Import</string>
-    <string name="advanced_settings_theme_clear">Clear</string>
-    <string name="advanced_settings_theme_clear_title">Reset Theme</string>
-    <string name="advanced_settings_theme_clear_description">Are you sure you want to reset all theme settings?</string>
-    <string name="advanced_settings_wotd_title">Word of the Day</string>
-    <string name="advanced_settings_wotd_description">Import custom Word of the Day list.</string>
-    <string name="advanced_settings_wotd_download">Download</string>
-    <string name="advanced_settings_wotd_import">Import</string>
-    <string name="advanced_settings_wotd_clear">Clear</string>
-    <string name="advanced_settings_wotd_clear_title">Reset Word Of The Day</string>
-    <string name="advanced_settings_wotd_clear_description">Are you sure you want to reset the Word Of The Day array?</string>
-    <string name="advanced_settings_clear_yes">Yes</string>
-    <string name="advanced_settings_clear_no">No</string>
-    <string name="advanced_settings_help_feedback_title">Help &amp; Feedback</string>
-    <string name="advanced_settings_community_support_title">Community Support</string>
-    <string name="advanced_settings_share_application_title">Share Application</string>
-    <string name="advanced_settings_share_application_description">Elevate your experience with %1$s!</string>
-    <string name="advanced_settings_share_application_description_addon">Get it now on %1$s and see what everyone is talking about! %2$s\n</string>
+    <string name="advanced_settings_set_as_default_launcher">Wekî destpêkarê berdest saz bike</string>
+    <string name="advanced_settings_set_as_default_launcher_description">Multi Launcher bike sepanê xwe ya dîmendera sereke.</string>
+    <string name="advanced_settings_change_default_launcher">Destpêkarê berdest biguherîne</string>
+    <string name="advanced_settings_change_default_launcher_description">Destpêkarekî din wekî berdest hilbijêre.</string>
+    <string name="advanced_settings_restart_title">Destpêkarê dîsa bide destpêkirin</string>
+    <string name="advanced_settings_restart_description">Te ceriband ku tu vemirînî û dîsa vexînî?</string>
+    <string name="advanced_settings_backup_restore_title">Hilanîn/Vegerandin</string>
+    <string name="advanced_settings_backup_restore_description">Tu dixwazî vê yekê bikî?</string>
+    <string name="advanced_settings_backup_restore_backup">Hilanîn</string>
+    <string name="advanced_settings_backup_restore_restore">Vegerandin</string>
+    <string name="advanced_settings_backup_restore_clear">Hemû daneyan pak bike</string>
+    <string name="advanced_settings_backup_restore_clear_title">Vebijêrkan pak bike</string>
+    <string name="advanced_settings_backup_restore_clear_description">Tu bawer î ku tu dixwazî vê yekê bikî?</string>
+    <string name="advanced_settings_theme_title">Afirandina rûkaranan</string>
+    <string name="advanced_settings_theme_description">Rûkaran li gorî dilê xwe kesane bike.</string>
+    <string name="advanced_settings_theme_download">Daxîne</string>
+    <string name="advanced_settings_theme_export">Derxîne</string>
+    <string name="advanced_settings_theme_import">Têxîne</string>
+    <string name="advanced_settings_theme_clear">Pak bike</string>
+    <string name="advanced_settings_theme_clear_title">Rûkarê ji nû ve saz bike</string>
+    <string name="advanced_settings_theme_clear_description">Tu bawer î ku tu dixwazî hemû sazkariyên rûkarê ji nû ve saz bikî?</string>
+    <string name="advanced_settings_wotd_title">Peyva rojê</string>
+    <string name="advanced_settings_wotd_description">Lîsteya peyva rojê ya taybet bîne.</string>
+    <string name="advanced_settings_wotd_download">Daxîne</string>
+    <string name="advanced_settings_wotd_import">Têxîne</string>
+    <string name="advanced_settings_wotd_clear">Pak bike</string>
+    <string name="advanced_settings_wotd_clear_title">Peyva rojê ji nû ve saz bike</string>
+    <string name="advanced_settings_wotd_clear_description">Tu bawer î ku tu dixwazî lîsteya peyva rojê ji nû ve saz bikî?</string>
+    <string name="advanced_settings_clear_yes">Erê</string>
+    <string name="advanced_settings_clear_no">Na</string>
+    <string name="advanced_settings_help_feedback_title">Alîkarî &amp; Nirxandin</string>
+    <string name="advanced_settings_community_support_title">Piştgiriya civakê</string>
+    <string name="advanced_settings_share_application_title">Sepanê parve bike</string>
+    <string name="advanced_settings_share_application_description">Bi %1$s ezmûna xwe bilind bike!</string>
+    <string name="advanced_settings_share_application_description_addon">Niha ji %1$s daxîne û bibîne bê her kes çi dibêje! %2$s\n</string>
     <!-- Strings used for about settings -->
-    <string name="about_settings_title">About %1$s</string>
+    <string name="about_settings_title">Derbarê %1$s</string>
     <!-- Strings used for expert settings -->
-    <string name="expert_settings_title">Expert</string>
-    <string name="toggleable_items">Toggleable Items</string>
-    <string name="threshold">Threshold</string>
-    <string name="expert_options_display">Show Expert Options</string>
-    <string name="expert_options_unlocked">Expert Options Unlocked!</string>
-    <string name="expert_options_tap_hint">%1$d more taps to unlock</string>
-    <string name="settings_text_size">Settings Text Size</string>
-    <string name="settings_short_threshold">Short Swipe Threshold</string>
-    <string name="settings_long_threshold">Long Swipe Threshold</string>
+    <string name="expert_settings_title">Pispor</string>
+    <string name="toggleable_items">Hêmanên guherbar</string>
+    <string name="threshold">Sînor</string>
+    <string name="expert_options_display">Vebijêrkên pispor nîşan bide</string>
+    <string name="expert_options_unlocked">Vebijêrkên pispor vebûn!</string>
+    <string name="expert_options_tap_hint">%1$d tikandinên din ji bo vekirinê</string>
+    <string name="settings_text_size">Mezinahiya nivîsa sazkariyan</string>
+    <string name="settings_short_threshold">Sînorê kaşkirina kurt</string>
+    <string name="settings_long_threshold">Sînorê kaşkirina dirêj</string>
     <!-- App Page Strings -->
-    <string name="hidden_apps">Hidden Apps</string>
-    <string name="favorite_apps">Favorite Apps</string>
-    <string name="clear_home_app">Clear Home App</string>
+    <string name="hidden_apps">Sepanên veşartî</string>
+    <string name="favorite_apps">Sepanên bijarte</string>
+    <string name="clear_home_app">Sepana dîmendera sereke pak bike</string>
     <!-- Accessibility/Help Strings -->
-    <string name="accessibility_service_name">MultiLauncher Action Services</string>
-    <string name="accessibility_service_why_we_need">Why We Need Accessibility Permission</string>
-    <string name="accessibility_service_description">This accessibility service allows MultiLauncher to do certain actions such as locking the screen or opening the quick settings. Our accessibility service does not collect or share any data.</string>
-    <string name="accessibility_service_more_info">    MultiLauncher requires access to the Accessibility Service to enable features such as:\n\n
-    • Locking the screen with a gesture or shortcut\n
-    • Opening the Quick Settings panel quickly\n\n
-    This permission allows MultiLauncher to perform these actions on your behalf, but we do not collect, store, or share any personal or sensitive data through this service.\n\n
-    You can disable this access anytime from your device settings.
-    </string>
-    <string name="can_not_delete_system_apps">Can\'t Delete System Apps</string>
-    <string name="please_select_app">Please select an app</string>
-    <string name="drawer_list_empty_hint">No apps found</string>
-    <string name="long_press_for_settings">Long press anywhere for settings</string>
-    <string name="long_press_to_select_app">Long press to select app</string>
-    <string name="long_press_to_select_app_locked">Unlock home apps to select app</string>
-    <string name="tap_button_for_notes">Tap launcher logo for notes</string>
-    <string name="swipe_up_for_apps">Swipe up for all apps</string>
-    <string name="app_drawer_tips">Tip: Swipe down to dismiss. Scroll to hide keyboard.</string>
+    <string name="accessibility_service_name">Rajeyên çalakiyê yên MultiLauncher</string>
+    <string name="accessibility_service_why_we_need">Çima pêwistiya me bi mafê gihîştinê heye</string>
+    <string name="accessibility_service_description">Ev rajeya gihîştinê rê dide MultiLauncher ku hin çalakiyan bike, mîna girtina dîmenderê yan vekirina sazkariyên bilez. Rajeya me ya gihîştinê tu daneyan kom nake û parve nake.</string>
+    <string name="accessibility_service_more_info">MultiLauncher ji bo çalakirina van taybetmendiyan pêwistî bi gihîştina rajeya gihîştinê heye:\n\n
+    • Girtina dîmenderê bi tevger an kurterêyekê\n
+    • Vekirina bilez a destgeha sazkariyên bilez\n\n
+    •Ev maf rê dide MultiLauncher ku li ser navê te van çalakiyan bike, lê em bi riya vê rajeyê tu          daneyên kesane an hesas kom nakin, hilnaynin û parve nakin.\n\n
+    •Tu dikarî her dem vê gihîştinê ji sazkariyên amûrê xwe bigirî.
+    •</string>
+    <string name="can_not_delete_system_apps">Sepanên pergalê nayên jêbirin</string>
+    <string name="please_select_app">Tika ye sepanekê hilbijêre</string>
+    <string name="drawer_list_empty_hint">Ti sepan nehat dîtin</string>
+    <string name="long_press_for_settings">Ji bo sazkariyan li her derê dirêj bitikîne</string>
+    <string name="long_press_to_select_app">Ji bo sazkariyan li her derê dirêj bitikîne</string>
+    <string name="long_press_to_select_app_locked">Ji bo bijartina sepanê, kilîda sepanên malê veke</string>
+    <string name="tap_button_for_notes">Ji bo nîşeyan li logoya despêkarê bitikîne</string>
+    <string name="swipe_up_for_apps">Ji bo hemû sepanan ber bi jor bikişîne</string>
+    <string name="app_drawer_tips">Nîşe: Ji bo girtinê ber bi jêr bikişîne. Ji bo veşartina kilîtdankê kaş bişemtîne.</string>
     <!-- PinCode Strings -->
-    <string name="text_authentication_cancel">Authentication Cancel.</string>
-    <string name="text_authentication_error">Authentication error: %1$s (code %2$d)</string>
-    <string name="text_authentication_failed">Authentication failed.</string>
-    <string name="text_biometric_login">Biometric login MultiLauncher Settings</string>
-    <string name="text_biometric_login_app">Biometric login for %1$s</string>
-    <string name="text_biometric_login_sub">Log in using your biometric credentials.</string>
+    <string name="text_authentication_cancel">Rastkirin hat têkbirin.</string>
+    <string name="text_authentication_error">Şaşetiya rastkirinê: %1$s (kod %2$d)</string>
+    <string name="text_authentication_failed">Rastkirin têk çû.</string>
+    <string name="text_biometric_login">Rastkirina biyometrîk ji bo sazkariyên MultiLauncher</string>
+    <string name="text_biometric_login_app">Rastkirina biyometrîk ji bo %1$s</string>
+    <string name="text_biometric_login_sub">Bi rastkirina xwe yên biyometrîk têkeve.</string>
     <!-- Crash Strings -->
-    <string name="acra_crash">Crash</string>
-    <string name="acra_dialog_text">We\'re sorry, but %1$s has encountered an unexpected issue and needs to close. Please help us improve by sending a crash report.\n\n%1$s values your privacy and the data collected is solely used for improving app stability. No personal information is collected. Thank you for your support!</string>
-    <string name="acra_send_report">Send Report</string>
-    <string name="acra_dont_send">Don\'t Send</string>
+    <string name="acra_crash">Têkçûn</string>
+    <string name="acra_dialog_text">Bibore, %1$s rastî pirsgirêkekê hat û divê were girtin. Tika ye bi şandina raporekê alîkariya me bike ku em sepanê baştir bikin.\n\n%1$s hêzabûnê dide taybetiya te û daneyên komkirî tenê ji bo baştirkirina sepanê têne bikaranîn. Tu zanyariyên kesane nayên komkirin. Spas bo piştgiriya te!</string>
+    <string name="acra_send_report">Raporê bişîne</string>
+    <string name="acra_dont_send">Neşîne</string>
     <!-- Share Strings -->
-    <string name="share_application">Share Application</string>
-    <string name="share_note">Share Note</string>
+    <string name="share_application">Sepanê parve bike</string>
+    <string name="share_note">Nîşeye parve bike</string>
     <!-- Icon Pack Strings -->
-    <string name="choose_icon_pack">Choose Icon Pack</string>
-    <string name="apply_icon_pack">Apply Icon Pack</string>
-    <string name="applying_icon_pack">Giving your icons a fresh look…</string>
-    <string name="apply_icon_pack_are_you_sure">Are you sure you want to apply this icon pack?\n\n%1$s</string>
-    <string name="apply_to_home">Apply To Home</string>
-    <string name="apply_to_app_list">Apply To App List</string>
-    <string name="default_icon_not_found">Default app icon drawable not found</string>
+    <string name="choose_icon_pack">Pakêta îkonan bibijêre</string>
+    <string name="apply_icon_pack">Pakêta îkonan bisepîne</string>
+    <string name="applying_icon_pack">Îkonên te tên rojanekirin…</string>
+    <string name="apply_icon_pack_are_you_sure">Tu bawer î ku tu dixwazî vê pakêta îkonan bisepînî?\n\n%1$s</string>
+    <string name="apply_to_home">Li dîmendera sereke bisepîne</string>
+    <string name="apply_to_app_list">Li lîsteya sepananan bisepîne</string>
+    <string name="default_icon_not_found">Îkona berdest a sepanê nehat dîtin</string>
     <!-- Settings Strings -->
-    <string name="left">Left</string>
-    <string name="right">Right</string>
-    <string name="center">Center</string>
-    <string name="dark">Dark</string>
-    <string name="light">Light</string>
-    <string name="system_default">System</string>
-    <string name="system_custom">Custom</string>
-    <string name="system_custom_plus">Custom (%1$s)</string>
-    <string name="restart_launcher">Restart Launcher</string>
-    <string name="delete">Delete</string>
-    <string name="hide">Hide</string>
-    <string name="show">Show</string>
-    <string name="lock">Lock</string>
-    <string name="unlock">Unlock</string>
-    <string name="locked">Locked</string>
-    <string name="unlocked">Unlocked</string>
-    <string name="pin">Pin</string>
-    <string name="unpin">Unpin</string>
-    <string name="rename">Rename</string>
-    <string name="tag">Tag</string>
-    <string name="info">Info</string>
-    <string name="okay">Okay</string>
-    <string name="apply">Apply</string>
-    <string name="reset">Reset</string>
-    <string name="cancel">Cancel</string>
-    <string name="save">Save</string>
-    <string name="disabled">Disabled</string>
-    <string name="open">Open</string>
-    <string name="close">Close</string>
-    <string name="next">Next</string>
-    <string name="start">Start</string>
-    <string name="copy">Copy</string>
-    <string name="none">None</string>
+    <string name="left">Çep</string>
+    <string name="right">Rast</string>
+    <string name="center">Navîn</string>
+    <string name="dark">Tarî</string>
+    <string name="light">Ronî</string>
+    <string name="system_default">Pergal</string>
+    <string name="system_custom">Kesane</string>
+    <string name="system_custom_plus">Kesane (%1$s)</string>
+    <string name="restart_launcher">Destpêkarê dîsa bide destpêkirin</string>
+    <string name="delete">Jê bibe</string>
+    <string name="hide">Veşêre</string>
+    <string name="show">Nîşan bide</string>
+    <string name="lock">Kilît bike</string>
+    <string name="unlock">Veke</string>
+    <string name="locked">Kilîtkirî</string>
+    <string name="unlocked">Vekirî</string>
+    <string name="pin">Bi darxîne</string>
+    <string name="unpin">Bi dar nexîne</string>
+    <string name="rename">Navê biguherîne</string>
+    <string name="tag">Etîket</string>
+    <string name="info">Zanyarî</string>
+    <string name="okay">Baş e</string>
+    <string name="apply">Bisepîne</string>
+    <string name="reset">Ji nû ve saz bike</string>
+    <string name="cancel">Têk bibe</string>
+    <string name="save">Tomar bike</string>
+    <string name="disabled">Neçalakkirî</string>
+    <string name="open">Veke</string>
+    <string name="close">Bigire</string>
+    <string name="next">Pêş</string>
+    <string name="start">Dest pê bike</string>
+    <string name="copy">Jê bigire</string>
+    <string name="none">Ne yek</string>
     <string name="celsius">Celsius</string>
     <string name="fahrenheit">Fahrenheit</string>
-    <string name="home_button_phone">Phone</string>
-    <string name="home_button_messages">Messages</string>
-    <string name="home_button_camera">Camera</string>
-    <string name="home_button_photos">Photos</string>
-    <string name="home_button_web">Web</string>
-    <string name="home_button_settings">Settings</string>
+    <string name="home_button_phone">Telefon</string>
+    <string name="home_button_messages">Peyam</string>
+    <string name="home_button_camera">Kamera</string>
+    <string name="home_button_photos">Wêne</string>
+    <string name="home_button_web">Tevn</string>
+    <string name="home_button_settings">Sazkarî</string>
     <string name="home_button_logo">Logo</string>
-    <string name="applist_button_web">Web</string>
-    <string name="applist_button_contacts">Contacts</string>
-    <string name="allow">Allow</string>
-    <string name="deny">Deny</string>
-    <string name="send">Send</string>
-    <string name="message_hint">Enter a message…</string>
-    <string name="message_category">Category: %1$s</string>
+    <string name="applist_button_web">Tevn</string>
+    <string name="applist_button_contacts">Têkilî</string>
+    <string name="allow">Mafê bide</string>
+    <string name="deny">Paşguh bik</string>
+    <string name="send">Bişîne</string>
+    <string name="message_hint">Peyamekê binivîse…</string>
+    <string name="message_category">Kategorî: %1$s</string>
     <!-- Permissions Strings -->
-    <string name="permission_required">Permission Required</string>
-    <string name="access_usage_data_permission">To proceed, please enable permission to access usage data in your device settings.</string>
-    <string name="goto_settings">Go to Settings</string>
+    <string name="permission_required">Maf pêwist e</string>
+    <string name="access_usage_data_permission">Ji bo domandinê, Tika ye di sazkariyên amûrê xwe de mafê gihîştina daneyên bikaranînê çalak bike.</string>
+    <string name="goto_settings">Biçe sazkariyan</string>
     <!-- Widget Stings -->
-    <string name="widgets_select_widget">Select a Widget</string>
-    <string name="widgets_add_widget">Add a Widget</string>
-    <string name="widgets_edit_widget">Edit Widgets</string>
-    <string name="widgets_stop_editing_widget">Stop Editing Widgets</string>
-    <string name="widgets_reset_widget">Reset all Widgets</string>
-    <string name="widgets_remove_widget">Remove all Widgets</string>
-    <string name="widgets_resize">Resize</string>
-    <string name="widgets_exit_resize">Exit Resize</string>
-    <string name="widgets_remove">Remove Widget</string>
-    <string name="widgets_open">Open App</string>
-    <string name="widgets_view_in_store">View App In Store</string>
-    <string name="widgets_settings">Widget Settings</string>
-    <string name="widgets_not_added">No widgets added yet. Long press to add one.</string>
+    <string name="widgets_select_widget">Sepanokê hilbijêre</string>
+    <string name="widgets_add_widget">Sepanokê tevlî bike</string>
+    <string name="widgets_edit_widget">Sepanokê biguherîne</string>
+    <string name="widgets_stop_editing_widget">Guhertina sepanokê rawestîne</string>
+    <string name="widgets_reset_widget">Hemû sepanokê ji nû ve saz bike</string>
+    <string name="widgets_remove_widget">Hemû sepanokên rake</string>
+    <string name="widgets_resize">Mezinahiyê biguherîne</string>
+    <string name="widgets_exit_resize">Ji guherandina mezinahiyê derkeve</string>
+    <string name="widgets_remove">Sepanokê rake</string>
+    <string name="widgets_open">Sepanê veke</string>
+    <string name="widgets_view_in_store">Sepanê di markêtê de bibîne</string>
+    <string name="widgets_settings">Sazkariyên sepanokê</string>
+    <string name="widgets_not_added">Hîn tu sepanok nehatine tevlîkirin. Ji bo tevlîkirinê dirêj bitikîne.</string>
     <!-- Private Spaces Strings -->
-    <string name="alert_requires_android_v">This functionality requires Android 15 or later.</string>
-    <string name="toast_private_space_default_home_screen">MultiLauncher needs to be the default home screen to access private space.</string>
-    <string name="toast_private_space_locked">Private space locked</string>
-    <string name="toast_private_space_unlocked">Private space unlocked</string>
-    <string name="toast_private_space_not_available">Private space is not available</string>
-    <string name="notes_list_empty_hint">Start your first note below.</string>
-    <string name="confirm_delete_title">Delete Note</string>
-    <string name="confirm_delete_message">Are you sure you want to delete this note?</string>
-    <string name="edit_note">Edit Note</string>
-    <string name="category">Category</string>
-    <string name="priority">Priority</string>
-    <string name="settings_context_menu_title">Context Menu</string>
-    <string name="settings_home_buttons_title">Home Buttons</string>
-    <string name="settings_applist_buttons_title">App List Buttons</string>
-    <string name="settings_source_code">Source Code</string>
-    <string name="settings_donations">Donations</string>
-    <string name="settings_credits">Credits</string>
+    <string name="alert_requires_android_v">Ev fonksiyon pêwistî bi Android 15 an bilindtir dike.</string>
+    <string name="toast_private_space_default_home_screen">MultiLauncher pêwistî bi vê dike ku bibe sepana dîmendera sereke ya berdest ji bo gihîştina qada taybet.</string>
+    <string name="toast_private_space_locked">Qada taybet hat kilîtkirin</string>
+    <string name="toast_private_space_unlocked">Qada taybet hat vekirin</string>
+    <string name="toast_private_space_not_available">Qada taybet tine ye</string>
+    <string name="notes_list_empty_hint">Nîşeya xwe ya yekem li jêr dest pê bike</string>
+    <string name="confirm_delete_title">Nîşeyê jê bibe</string>
+    <string name="confirm_delete_message">Tu bawer î ku tu dixwazî vê nîşeyê jê bibe?</string>
+    <string name="edit_note">Nîşeyê biguherîne</string>
+    <string name="category">Kategorî</string>
+    <string name="priority">Pêşîntî</string>
+    <string name="settings_context_menu_title">Menûya naverokê</string>
+    <string name="settings_home_buttons_title">Bişkokên dîmendera sereke</string>
+    <string name="settings_applist_buttons_title">Bişkokên lîsteya sepananan</string>
+    <string name="settings_source_code">Çavkaniya kodê</string>
+    <string name="settings_donations">Bexşîn</string>
+    <string name="settings_credits">Kedkar</string>
     <string-array name="priorities">
-        <item>Low</item>
-        <item>Medium</item>
-        <item>High</item>
+        <item>Nizm</item>
+        <item>Navîn</item>
+        <item>Bilind</item>
     </string-array>
     <string-array name="categories">
-        <item>None</item>
-        <item>Anniversaries</item>
-        <item>Appointments</item>
-        <item>Birthday</item>
-        <item>Chores</item>
-        <item>Creative</item>
-        <item>Entertainment</item>
-        <item>Errands</item>
-        <item>Finance</item>
-        <item>Fitness</item>
-        <item>Goals</item>
-        <item>Health</item>
-        <item>Hobbies</item>
-        <item>Home</item>
-        <item>Learning</item>
-        <item>Personal</item>
-        <item>Projects</item>
-        <item>Shopping</item>
-        <item>Social</item>
-        <item>Study</item>
-        <item>Travel</item>
-        <item>Work</item>
+        <item>Ne yek</item>
+        <item>Salveger</item>
+        <item>Hevdîtin</item>
+        <item>Rojbûn</item>
+        <item>Karên malê</item>
+        <item>Afirîner</item>
+        <item>Şahî</item>
+        <item></item>
+        <item>Fînans</item>
+        <item>Spor</item>
+        <item>Armanc</item>
+        <item>Tenduristî</item>
+        <item>Hobbî</item>
+        <item>Mal</item>
+        <item>Fêrbûn</item>
+        <item>Kesane</item>
+        <item>Proje</item>
+        <item>Kirîn</item>
+        <item>Civakî</item>
+        <item>Xwendin</item>
+        <item>Geşt</item>
+        <item>Kar</item>
     </string-array>
 </resources>
