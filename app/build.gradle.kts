@@ -31,10 +31,11 @@ extensions.configure<ApplicationExtension>("android") {
 
     namespace = "com.github.codeworkscreativehub.mlauncher"
 
-    compileSdk = 36
+    compileSdk = 37
 
     defaultConfig {
         minSdk = 28
+        //noinspection OldTargetApi
         targetSdk = 36
         versionCode = baseVersionCode
         versionName = baseVersionName
