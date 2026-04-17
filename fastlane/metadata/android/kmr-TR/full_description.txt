@@ -1,0 +1,35 @@
+<h1>Multi Launcher: Ravekerê Androidê yê Paqij û Sade ku ji bo Xwendin û Kontrolê hatiye Çêkirin</h1>
+
+<p>Li launcher'ekê digerin ku tevliheviyê ji holê rake û tiştan hêsan bihêle? <strong>Multi Launcher</strong>, lanserek Androidê ya bihêz lê mînîmalîst e ku îkonên biçûk bi bişkokên nivîsê yên zelal û xwîner diguherîne, û bi vî awayî gerîna li ser telefona we hêsantir dike.</p>
+
+<p>Çi hûn dîmenek malê ya sade bixwazin, çi ji bo dîtinê pêdiviya we bi nivîsa mezin hebe, an jî tevgerên bilez ên bi jestan tercîh bikin, Multi Launcher kontrolê bi tevahî dide we bêyî ku we bi vebijarkan serêş bike.</p>
+
+<h2>Çima Multi Launcher hilbijêrin?</h2>
+<ul>
+    <li><strong>Destpêkerê Teksta-Bingeh:</strong> Bê îkonên tevlihev — tenê bişkokên nivîsê yên bi etîket ji bo sepanên we.</li>
+    <li><strong>Pir Xwerûbar:</strong> Mîhengê, mezinahiya tîpan, cihê saetê, û hê bêtir eyar bike.</li>
+    <li><strong>Işaretên Lezgîn:</strong> Ji bo vekirina sepanan, kilîtkirina ekranê û gihîştina agahdariyan, tap, şûştin û şûştinên dirêj bikar bînin.</li>
+    <li><strong>Ewle:</strong> Qifla biyometrîk ji bo mîhengan û nepenîtiyê.</li>
+    <li><strong>Ji bo kal û pîran an jî hezkiriyên sadebûnê pir baş e:</strong> Xwendin, bikaranîn û xwerûkirina wê hêsan e.</li>
+</ul>
+
+<h2>Taybetmendiyên Sereke:</h2>
+<ul>
+    <li>Navên Sepanan ên Xweser: Navê sepanan biguherînin da ku li gorî awayê ramana we bin.</li>
+    <li>Rûberên Nerm: Sepanan bi awayekî ku ji bo we guncaw e birêxistin bikin.</li>
+    <li>Serrastkirina Demjimêr & Dîrokê: Widgetan li ku hûn bixwazin bi cih bikin.</li>
+    <li>Agahiyên Bikaranîna Sepanan: Bibînin ku hûn di her sepanê de çiqas dem derbas dikin.</li>
+    <li>Kurteyên Îşaretan: Ji bo tapên ducarî, şûştinan, û zêdetir çalakiyên xwerû diyar bikin.</li>
+</ul>
+
+<h2>Taybetmendiyên Gihîştinê:</h2>
+<p>Ev sepan <strong>APIya Xizmeta Gihîştinê</strong> bi kar tîne ji bo:</p>
+<ul>
+    <li>Ekranê bi jestekê kilît bike</li>
+    <li>Menuya hêzê veke</li>
+    <li>Çekqeya agahdariyê bikişîne xwarê</li>
+</ul>
+
+<p><em>Multi Launcher rêzê li nepeniya we digire. Ev taybetmendî daneyên kesane kom nakin û parve nakin.</em></p>
+
+<p>Heke hûn ji launcherên balkêş û tevlihev westiyane û tiştekî sade, şêk û bihêzker dixwazin, <strong>Multi Launcher</strong> ji bo ekrana weya malê çareseriya bêkêmasî ye.</p>
