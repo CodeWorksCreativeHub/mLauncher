@@ -10,6 +10,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 ### :wrench: Code Quality:
 
+* Enhance search ranking logic with detailed scoring and deterministic ordering ([3f0d6f1d](https://github.com/CodeWorksCreativeHub/mLauncher/commit/3f0d6f1d))
 * enhance release fetching to support multiple stable releases ([fdd8381c](https://github.com/CodeWorksCreativeHub/mLauncher/commit/fdd8381c))
 
 ### :globe_with_meridians: Localization:
