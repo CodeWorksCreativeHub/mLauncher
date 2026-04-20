@@ -157,23 +157,62 @@ object FuzzyFinder {
     ): MutableList<T> {
         if (query.isEmpty()) return itemsList.toMutableList()
 
-        return if (prefs.enableFilterStrength) {
-            // 1. Calculate scores and filter by threshold
-            itemsList.mapNotNull { item ->
+        val normalizedQuery = normalizeSearch(query)
+
+        // Keep original index as a final tie-breaker to preserve deterministic ordering.
+        data class RankedItem<T>(
+            val item: T,
+            val score: Int,
+            val startIndex: Int,
+            val startsWith: Boolean,
+            val wordStartsWith: Boolean,
+            val originalIndex: Int
+        )
+
+        val rankedMatches = itemsList.mapIndexedNotNull { index, item ->
+            val label = labelProvider(item)
+            val normalizedTarget = normalizeTarget(label)
+            val normalizedTargetCompact = normalizedTarget.replace(" ", emptyString())
+            val startIndex = normalizedTargetCompact.indexOf(normalizedQuery)
+            val startsWith = normalizedTargetCompact.startsWith(normalizedQuery)
+            val wordStartsWith = normalizedTarget
+                .split(Regex("\\s+"))
+                .any { it.startsWith(normalizedQuery) }
+
+            if (prefs.enableFilterStrength) {
                 val score = scoreProvider(item, query)
-                AppLogger.d(loggerTag, "item: ${labelProvider(item)} | score: $score")
-                if (score > prefs.filterStrength) item else null
-            }.toMutableList()
-        } else {
-            // 2. Simple Boolean matching
-            itemsList.filter { item ->
-                val target = labelProvider(item).lowercase()
-                if (prefs.searchFromStart) {
-                    target.startsWith(query)
+                AppLogger.d(loggerTag, "item: $label | score: $score")
+                val blockedByStartSetting = prefs.searchFromStart && !startsWith
+                if (score <= prefs.filterStrength || blockedByStartSetting) {
+                    null
                 } else {
-                    isMatch(target, query)
+                    RankedItem(item, score, startIndex, startsWith, wordStartsWith, index)
                 }
-            }.toMutableList()
+            } else {
+                val targetLower = label.lowercase()
+                val matched = if (prefs.searchFromStart) {
+                    targetLower.startsWith(query)
+                } else {
+                    isMatch(targetLower, query)
+                }
+                if (!matched) {
+                    null
+                } else {
+                    // Keep non-fuzzy mode deterministic but still prioritize stronger matches.
+                    RankedItem(item, 0, startIndex, startsWith, wordStartsWith, index)
+                }
+            }
         }
+
+        return rankedMatches
+            .sortedWith(
+                compareByDescending<RankedItem<T>> { it.startsWith }
+                    .thenByDescending { it.wordStartsWith }
+                    .thenByDescending { it.score }
+                    .thenBy { if (it.startIndex >= 0) it.startIndex else Int.MAX_VALUE }
+                    .thenBy { it.originalIndex }
+            )
+            .map { it.item }
+            .toMutableList()
     }
 }
