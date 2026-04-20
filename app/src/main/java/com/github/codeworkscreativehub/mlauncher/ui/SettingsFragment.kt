@@ -48,7 +48,6 @@ import androidx.compose.ui.unit.sp
 import androidx.core.graphics.createBitmap
 import androidx.core.graphics.drawable.toDrawable
 import androidx.core.graphics.toColorInt
-import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.github.codeworkscreativehub.common.AppLogger
@@ -2883,14 +2882,18 @@ class SettingsFragment : BaseFragment() {
         viewModel.getHiddenApps()
         findNavController().navigate(
             R.id.action_settingsFragment_to_appListFragment,
-            bundleOf("flag" to AppDrawerFlag.HiddenApps.toString())
+            Bundle().apply {
+                putString("flag", AppDrawerFlag.HiddenApps.toString())
+            }
         )
     }
 
     private fun showFavoriteApps() {
         findNavController().navigate(
             R.id.action_settingsFragment_to_appFavoriteFragment,
-            bundleOf("flag" to AppDrawerFlag.SetHomeApp.toString())
+            Bundle().apply {
+                putString("flag", AppDrawerFlag.SetHomeApp.toString())
+            }
         )
     }
 
@@ -2941,7 +2944,9 @@ class SettingsFragment : BaseFragment() {
                 viewModel.getAppList(true)
                 findNavController().navigate(
                     R.id.action_settingsFragment_to_appListFragment,
-                    bundleOf("flag" to flag.toString())
+                    Bundle().apply {
+                        putString("flag", flag.toString())
+                    }
                 )
             }
 

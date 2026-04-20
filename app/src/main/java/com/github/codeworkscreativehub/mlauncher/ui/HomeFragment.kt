@@ -32,7 +32,6 @@ import android.widget.TextView
 import androidx.biometric.BiometricPrompt
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
-import androidx.core.os.bundleOf
 import androidx.core.view.children
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
@@ -593,7 +592,11 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
             if (findNavController().currentDestination?.id == R.id.mainFragment) {
                 findNavController().navigate(
                     R.id.action_mainFragment_to_appListFragment,
-                    bundleOf("flag" to flag.toString(), "n" to n, "profileType" to "SYSTEM")
+                    Bundle().apply {
+                        putString("flag", flag.toString())
+                        putInt("n", n)
+                        putString("profileType", "SYSTEM")
+                    }
                 )
             }
         } catch (e: Exception) {
@@ -742,7 +745,7 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
             findNavController().navigate(R.id.action_mainFragment_to_notesManagerFragment)
     }
 
-    // This function handles all swipe actions that a independent of the actual swipe direction
+    // This function handles all swipe actions that an independent of the actual swipe direction
     @SuppressLint("NewApi")
     private fun handleOtherAction(action: Action) {
         when (action) {
@@ -925,8 +928,8 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
         binding.apply {
 
             privateLayout.apply {
-                // Set visibility
-                isVisible = PrivateSpaceManager(requireContext()).isPrivateSpaceSetUp()
+                // Set visibility based on both private space setup and hide logo preference
+                isVisible = PrivateSpaceManager(requireContext()).isPrivateSpaceSetUp() && prefs.showPrivateSpaces
 
                 // Initial icon
                 fun updatePrivateFabIcon() {

@@ -339,6 +339,10 @@ class Prefs(val context: Context) {
         get() = getSetting(HOME_CLICK_AREA, false)
         set(value) = prefsNormal.edit { putBoolean(HOME_CLICK_AREA, value) }
 
+    var showPrivateSpaces: Boolean
+        get() = getSetting(SHOW_PRIVATE_SPACES, true)
+        set(value) = prefsNormal.edit { putBoolean(SHOW_PRIVATE_SPACES, value) }
+
     var clockAlignment: Gravity
         get() {
             return getEnumSetting(CLOCK_ALIGNMENT, Gravity.Left)
