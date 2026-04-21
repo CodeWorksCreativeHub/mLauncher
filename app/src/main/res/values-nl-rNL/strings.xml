@@ -79,6 +79,7 @@
     <string name="show_daily_word">Dagelijks woord tonen</string>
     <string name="show_battery">Batterij weergeven</string>
     <string name="show_battery_icon">Batterijpictogram weergeven</string>
+    <string name="show_private_spaces">Toon pictogram voor privéruimtes</string>
     <string name="weather">Weer</string>
     <string name="show_weather">Weer weergeven</string>
     <string name="gps_location">GPS-locatie</string>
