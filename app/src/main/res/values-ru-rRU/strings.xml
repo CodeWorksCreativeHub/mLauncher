@@ -79,6 +79,7 @@
     <string name="show_daily_word">Показать ежедневное слово</string>
     <string name="show_battery">Показать батарею</string>
     <string name="show_battery_icon">Показать значок батареи</string>
+    <string name="show_private_spaces">Показать значок приватных пространств</string>
     <string name="weather">Погода</string>
     <string name="show_weather">Показать погоду</string>
     <string name="gps_location">Местоположение GPS</string>

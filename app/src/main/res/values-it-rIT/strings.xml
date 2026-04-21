@@ -79,6 +79,7 @@
     <string name="show_daily_word">Mostra Parola Giornaliera</string>
     <string name="show_battery">Mostra batteria</string>
     <string name="show_battery_icon">Mostra l\'icona della batteria</string>
+    <string name="show_private_spaces">Mostra l\'icona degli spazi privati</string>
     <string name="weather">Tempo atmosferico</string>
     <string name="show_weather">Mostra meteo</string>
     <string name="gps_location">Posizione GPS</string>

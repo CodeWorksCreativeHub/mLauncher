@@ -79,6 +79,7 @@
     <string name="show_daily_word">แสดงคำศัพท์ประจำวัน</string>
     <string name="show_battery">แสดงแบตเตอรี่</string>
     <string name="show_battery_icon">แสดงไอคอนแบตเตอรี่</string>
+    <string name="show_private_spaces">ไอคอนแสดงพื้นที่ส่วนตัว</string>
     <string name="weather">สภาพอากาศ</string>
     <string name="show_weather">แสดงสภาพอากาศ</string>
     <string name="gps_location">ตำแหน่ง GPS</string>

@@ -79,6 +79,7 @@
     <string name="show_daily_word">Günlük Sözcüğü Göster</string>
     <string name="show_battery">Pil\'i göster</string>
     <string name="show_battery_icon">Pil Simgesini Göster</string>
+    <string name="show_private_spaces">Özel Alanlar Simgesini Göster</string>
     <string name="weather">Hava durumu</string>
     <string name="show_weather">Hava Durumunu Göster</string>
     <string name="gps_location">GPS Konumu</string>

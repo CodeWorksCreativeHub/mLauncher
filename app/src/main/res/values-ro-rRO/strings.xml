@@ -79,6 +79,7 @@
     <string name="show_daily_word">Afișează Cuvântul Zilnic</string>
     <string name="show_battery">Afișați bateria</string>
     <string name="show_battery_icon">Afișează pictograma bateriei</string>
+    <string name="show_private_spaces">Pictogramă Afișare spații private</string>
     <string name="weather">Vreme</string>
     <string name="show_weather">Afișați vremea</string>
     <string name="gps_location">Locație GPS</string>
