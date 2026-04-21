@@ -79,6 +79,7 @@
     <string name="show_daily_word">일일 단어 표시</string>
     <string name="show_battery">배터리 표시</string>
     <string name="show_battery_icon">배터리 아이콘 표시</string>
+    <string name="show_private_spaces">개인 공간 표시 아이콘</string>
     <string name="weather">날씨</string>
     <string name="show_weather">날씨 표시</string>
     <string name="gps_location">GPS 위치</string>
