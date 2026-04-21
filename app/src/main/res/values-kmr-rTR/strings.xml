@@ -79,6 +79,7 @@
     <string name="show_daily_word">Peyva rojê nîşan bide</string>
     <string name="show_battery">Betariyê nîşan bide</string>
     <string name="show_battery_icon">Îkona betariyê nîşan bide</string>
+    <string name="show_private_spaces">Show Private Spaces Icon</string>
     <string name="weather">Rewşa bayê</string>
     <string name="show_weather">Rewşa bayê nîşan bide</string>
     <string name="gps_location">Cihê GPS</string>
