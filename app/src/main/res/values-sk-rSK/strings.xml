@@ -79,6 +79,7 @@
     <string name="show_daily_word">Zobraziť denné slovo</string>
     <string name="show_battery">Zobraziť batériu</string>
     <string name="show_battery_icon">Zobraziť ikonu batérie</string>
+    <string name="show_private_spaces">Ikona Zobraziť súkromné priestory</string>
     <string name="weather">Počasie</string>
     <string name="show_weather">Zobraziť Počasie</string>
     <string name="gps_location">GPS poloha</string>
