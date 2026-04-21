@@ -218,6 +218,7 @@ class SettingsFragment : BaseFragment() {
         var toggledShowBattery by remember { mutableStateOf(prefs.showBattery) }
         var toggledShowBatteryIcon by remember { mutableStateOf(prefs.showBatteryIcon) }
         var toggledShowWeather by remember { mutableStateOf(prefs.showWeather) }
+        var toggledShowPrivateSpaces by remember { mutableStateOf(prefs.showPrivateSpaces) }
         var toggledGPSLocation by remember { mutableStateOf(prefs.gpsLocation) }
         var selectedTempUnits by remember { mutableStateOf(prefs.tempUnit) }
         var selectedWeatherLocation by remember { mutableStateOf(prefs.loadLocationName()) }
@@ -1085,6 +1086,18 @@ class SettingsFragment : BaseFragment() {
                             prefs.showBatteryIcon = toggledShowBatteryIcon
                         }
                     )
+
+                    if (PrivateSpaceManager(requireContext()).isPrivateSpaceSetUp()) {
+                        SettingsSwitch(
+                            text = getLocalizedString(R.string.show_private_spaces),
+                            fontSize = titleFontSize,
+                            defaultState = toggledShowPrivateSpaces,
+                            onCheckedChange = {
+                                toggledShowPrivateSpaces = !prefs.showPrivateSpaces
+                                prefs.showPrivateSpaces = toggledShowPrivateSpaces
+                            }
+                        )
+                    }
 
                     Spacer(modifier = Modifier.height(12.dp))
 
