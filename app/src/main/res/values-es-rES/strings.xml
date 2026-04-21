@@ -79,6 +79,7 @@
     <string name="show_daily_word">Mostrar palabra diaria</string>
     <string name="show_battery">Mostrar nivel de batería</string>
     <string name="show_battery_icon">Mostrar icono de batería</string>
+    <string name="show_private_spaces">Mostrar iconos de espacios privados</string>
     <string name="weather">Clima</string>
     <string name="show_weather">Mostrar el tiempo</string>
     <string name="gps_location">Ubicación GPS</string>
