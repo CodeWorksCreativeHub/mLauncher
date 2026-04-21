@@ -79,6 +79,7 @@
     <string name="show_daily_word">إظهار الكلمة اليومية</string>
     <string name="show_battery">عرض البطارية</string>
     <string name="show_battery_icon">إظهار أيقونة البطارية</string>
+    <string name="show_private_spaces">إظهار أيقونة المساحات الخاصة</string>
     <string name="weather">طقس</string>
     <string name="show_weather">عرض الطقس</string>
     <string name="gps_location">موقع GPS</string>
