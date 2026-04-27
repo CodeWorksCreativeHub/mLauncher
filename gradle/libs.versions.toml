@@ -2,7 +2,7 @@
 
 [versions]
 agp = "9.1.1"
-kotlin = "2.3.20-206"
+kotlin = "2.3.21-303"
 viewpager2 = "1.1.0"
 junit = "4.13.2"
 
@@ -19,9 +19,9 @@ lifecycle-extensions = "2.2.0"
 lifecycle-viewmodel-ktx = "2.10.0"
 
 # Navigation
-navigation-fragment-ktx = "2.9.7"
-navigation-ui-ktx = "2.9.7"
-navigation-testing = "2.9.7"
+navigation-fragment-ktx = "2.9.8"
+navigation-ui-ktx = "2.9.8"
+navigation-testing = "2.9.8"
 
 # Work Manager
 work-runtime-ktx = "2.11.2"
@@ -32,12 +32,12 @@ constraintlayout-compose = "1.1.1"
 
 # Compose Versions
 activity-compose = "1.13.0"
-compose-android = "1.10.6"
-compose-material = "1.10.6"
-compose-animation = "1.10.6"
-compose-ui = "1.10.6"
-compose-foundation = "1.10.6"
-compose-ui-tooling = "1.10.6"
+compose-android = "1.11.0"
+compose-material = "1.11.0"
+compose-animation = "1.11.0"
+compose-ui = "1.11.0"
+compose-foundation = "1.11.0"
+compose-ui-tooling = "1.11.0"
 
 # Other Libraries
 commons-text = "1.15.0"
@@ -49,14 +49,14 @@ test-core-ktx = "1.7.0"
 test-runner = "1.7.0"
 test-rules = "1.7.0"
 fragment-testing = "1.8.9"
-ui-test-junit4 = "1.10.6"
-ui-test-manifest = "1.10.6"
+ui-test-junit4 = "1.11.0"
+ui-test-manifest = "1.11.0"
 activity = "1.13.0"
 
 # Database
 moshi = "1.15.2"
 room = "2.8.4"
-ksp = "2.3.6"
+ksp = "2.3.7"
 
 [libraries]
 # Core Libraries
