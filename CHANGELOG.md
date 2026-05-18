@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [1.11.4.3 → Unreleased](https://github.com/CodeWorksCreativeHub/mLauncher/tree/main) - In Development
+
+### :bug: Bug Fixes:
+
+* typos in french translation ([#1048](https://github.com/CodeWorksCreativeHub/mLauncher/pull/1048)) ([3e7bc998](https://github.com/CodeWorksCreativeHub/mLauncher/commit/3e7bc998))
+
 ## [1110403 (1.11.4.3) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.4.3) - (21, April 2026)
 
 ### :sparkles: Enhancements:
