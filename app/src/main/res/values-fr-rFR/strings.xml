@@ -28,7 +28,7 @@
     <string name="settings_look_feel_description">Donnez une touche personnelle à votre écran d\’accueil.</string>
     <string name="settings_gestures_title">Gestes</string>
     <string name="settings_gestures_description">Personnalisez les gestes pour une navigation rapide et facile.</string>
-    <string name="settings_notes_title">Notes</string>
+    <string name="settings_notes_title">Remarques</string>
     <string name="settings_notes_description">Personnalisez vos notes en fonction de votre style.</string>
     <!-- Favorite Apps -->
     <!-- Favorite Apps -->
@@ -58,7 +58,7 @@
     <string name="search">Recherche</string>
     <string name="search_engine">Moteur de recherche</string>
     <string name="show_az_sidebar">Afficher la barre latérale AZ</string>
-    <string name="auto_show_keyboard">Afficher le clavier automatiquement</string>
+    <string name="auto_show_keyboard">Auto show keyboard</string>
     <string name="search_from_start">Rechercher depuis le début</string>
     <string name="home_management">Accueil &amp; Gestion des applications</string>
     <string name="auto_open_apps">Ouvrir automatiquement les applications</string>
@@ -96,7 +96,7 @@
     <string name="daily_word_text_size">Taille du texte du mot quotidien</string>
     <string name="battery_text_size">Taille du texte de la batterie</string>
     <string name="layout_positioning">Disposition &amp; Positionnement</string>
-    <string name="app_padding_size">Espacement</string>
+    <string name="app_padding_size">Taille de rembourrage</string>
     <string name="extend_home_apps_area">Étendre la zone cliquable</string>
     <string name="alignment_to_bottom">Aligner vers le bas</string>
     <string name="visibility_display">Visibilité &amp; Affichage</string>
@@ -155,13 +155,13 @@
     <string name="show_notes_manager">Afficher le gestionnaire de notes</string>
     <string name="show_digital_wellbeing">Afficher le bien-être numérique</string>
     <string name="open_quick_settings">Paramètres Rapides</string>
-    <string name="show_recents">Afficher les récents</string>
+    <string name="show_recents">Show Recents</string>
     <string name="open_power_dialog">Boîte de dialogue d\'alimentation</string>
     <string name="take_a_screenshot">Prendre une capture d\'écran</string>
     <string name="previous_page">Aller à la page précédente</string>
     <string name="next_page">Aller à la page suivante</string>
     <!-- Strings used for notes settings -->
-    <string name="notes_settings_title">Notes</string>
+    <string name="notes_settings_title">Remarques</string>
     <string name="display_options">Options d\'affichage</string>
     <string name="auto_expand_notes">Développer les notes automatiquement</string>
     <string name="click_to_edit_delete">Cliquer pour modifier/supprimer</string>
@@ -295,7 +295,7 @@
     <string name="info">Info</string>
     <string name="okay">Ok</string>
     <string name="apply">Appliquer</string>
-    <string name="reset">Réinitialiser</string>
+    <string name="reset">Reset</string>
     <string name="cancel">Abandonner</string>
     <string name="save">Sauvegarder</string>
     <string name="disabled">Désactivé</string>
