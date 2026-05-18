@@ -22,18 +22,18 @@
     <string name="this_can_be_disabled_later">* Cette autorisation peut être désactivée ultérieurement.</string>
     <!-- Strings used for settings menus -->
     <string name="settings_name">Paramètres MultiLauncher</string>
-    <string name="settings_features_title">Caractéristiques</string>
+    <string name="settings_features_title">Fonctionnalités</string>
     <string name="settings_features_description">Améliorez votre productivité.</string>
-    <string name="settings_look_feel_title">Regarder &amp; Ressentir</string>
+    <string name="settings_look_feel_title">Apparence</string>
     <string name="settings_look_feel_description">Donnez une touche personnelle à votre écran d’accueil.</string>
     <string name="settings_gestures_title">Gestes</string>
     <string name="settings_gestures_description">Personnalisez les gestes pour une navigation rapide et facile.</string>
-    <string name="settings_notes_title">Remarques</string>
+    <string name="settings_notes_title">Notes</string>
     <string name="settings_notes_description">Personnalisez vos notes en fonction de votre style.</string>
     <!-- Favorite Apps -->
     <!-- Favorite Apps -->
-    <string name="settings_favorite_apps_title">Applications préférées</string>
-    <string name="settings_favorite_apps_description">Réorganisez vos applications préférées pour un accès rapide depuis l\'écran d\'accueil.</string>
+    <string name="settings_favorite_apps_title">Applications favorites</string>
+    <string name="settings_favorite_apps_description">Réorganisez vos applications favorites pour un accès rapide depuis l\'écran d\'accueil.</string>
     <!-- Hidden Apps -->
     <string name="settings_hidden_apps_title">Applications masquées</string>
     <string name="settings_hidden_apps_description">Gérer les applications masquées : affichez n\'importe quelle application de cette liste lorsque cela est nécessaire.</string>
@@ -45,7 +45,7 @@
     <string name="settings_exit_mlauncher_description">Basculez temporairement vers votre lanceur par défaut.</string>
     <string name="settings_exit_mlauncher_dialog">Choisissez un lanceur</string>
     <!-- Strings used for features settings -->
-    <string name="features_settings_title">Caractéristiques</string>
+    <string name="features_settings_title">Fonctionnalités</string>
     <string name="personalization">Personnalisation</string>
     <string name="theme_mode">Mode thème</string>
     <string name="app_language">Langue de l\'interface</string>
@@ -53,33 +53,33 @@
     <string name="search_and_app_list">Rechercher &amp; Liste des applications</string>
     <string name="hide_search_view">Masquer la vue de recherche</string>
     <string name="show_floating_button">Afficher les boutons de raccourci</string>
-    <string name="lock_orientation">Orientation du verrou</string>
+    <string name="lock_orientation">Verrouiller l'orientation</string>
     <string name="haptic_feedback">Retour haptique</string>
     <string name="search">Recherche</string>
     <string name="search_engine">Moteur de recherche</string>
     <string name="show_az_sidebar">Afficher la barre latérale AZ</string>
-    <string name="auto_show_keyboard">Auto show keyboard</string>
-    <string name="search_from_start">Recherche d\'applications depuis le début.</string>
+    <string name="auto_show_keyboard">Afficher le clavier automatiquement</string>
+    <string name="search_from_start">Rechercher depuis le début</string>
     <string name="home_management">Accueil &amp; Gestion des applications</string>
     <string name="auto_open_apps">Ouvrir automatiquement les applications</string>
     <string name="open_apps_on_enter">Ouvrir l\'application en entrant</string>
     <string name="lock_home_apps">Verrouiller les applications</string>
     <string name="lock_settings">Paramètres de verrouillage</string>
-    <string name="apps_on_home_screen">Nombre d\'applications domestiques</string>
+    <string name="apps_on_home_screen">Nombre d\'applications d'accueil</string>
     <string name="pages_on_home_screen">Nombre de pages</string>
     <string name="enable_home_pager">Activer la page d\'accueil</string>
     <string name="enable_app_timer">Activer la minuterie de l\'application</string>
-    <string name="force_colored_wallpaper">Fond d\'écran Force Colored</string>
+    <string name="force_colored_wallpaper">Forcer le fond d'écran coloré</string>
     <string name="info_tiles">Tuiles d\'information</string>
     <string name="show_clock">Afficher l\'horloge</string>
-    <string name="show_clock_format">Format de l\'émission (AM/PM)</string>
+    <string name="show_clock_format">Afficher le format (AM/PM)</string>
     <string name="show_date">Afficher la date</string>
-    <string name="show_day_of_year">Journée de l\'année du spectacle</string>
+    <string name="show_day_of_year">Afficher le jour de l'année</string>
     <string name="show_alarm">Afficher l\'alarme</string>
     <string name="show_daily_word">Afficher le mot quotidien</string>
     <string name="show_battery">Afficher la batterie</string>
     <string name="show_battery_icon">Afficher l\'icône de la batterie</string>
-    <string name="show_private_spaces">Icône Afficher les espaces privés</string>
+    <string name="show_private_spaces">Afficher l'icône Espaces privés</string>
     <string name="weather">Météo</string>
     <string name="show_weather">Afficher la météo</string>
     <string name="gps_location">Localisation GPS</string>
@@ -87,7 +87,7 @@
     <string name="manual_location">Définir l\'emplacement manuel</string>
     <string name="icon_packs">Packs d\'icônes</string>
     <!-- Strings used for look & feel settings -->
-    <string name="look_feel_settings_title">Regarder &amp; Ressentir</string>
+    <string name="look_feel_settings_title">Apparence</string>
     <string name="text_size_adjustments">Texte &amp; Ajustements de taille</string>
     <string name="app_text_size">Taille du texte de l\'application</string>
     <string name="date_text_size">Taille du texte de la date</string>
@@ -96,7 +96,7 @@
     <string name="daily_word_text_size">Taille du texte du mot quotidien</string>
     <string name="battery_text_size">Taille du texte de la batterie</string>
     <string name="layout_positioning">Disposition &amp; Positionnement</string>
-    <string name="app_padding_size">Taille de rembourrage</string>
+    <string name="app_padding_size">Espacement</string>
     <string name="extend_home_apps_area">Étendre la zone cliquable</string>
     <string name="alignment_to_bottom">Aligner vers le bas</string>
     <string name="visibility_display">Visibilité &amp; Affichage</string>
@@ -111,7 +111,7 @@
     <string name="filter_strength">Force du Fuzzy Finder</string>
     <string name="show_background">Afficher l\'arrière-plan</string>
     <string name="background_opacity">Transparence de l\'arrière-plan</string>
-    <string name="total_screen_time">Afficher le temps total d\'écran</string>
+    <string name="total_screen_time">Temps d'écran total</string>
     <string name="element_alignment">Alignement des éléments</string>
     <string name="date_alignment">Date</string>
     <string name="clock_alignment">Horloge</string>
@@ -133,10 +133,10 @@
     <string name="gestures_settings_title">Gestes</string>
     <string name="tap_click_actions">Actions de type Tap/Click</string>
     <string name="double_tap">Double appui</string>
-    <string name="clock_click_app">Cliquez sur l\'horloge</string>
+    <string name="clock_click_app">Cliquer sur l\'horloge</string>
     <string name="date_click_app">Cliquer sur Date</string>
-    <string name="usage_click_app">Cliquez sur Utilisation totale</string>
-    <string name="floating_click_app">Cliquez sur le logo</string>
+    <string name="usage_click_app">Cliquer sur Utilisation totale</string>
+    <string name="floating_click_app">Cliquer sur le logo</string>
     <string name="swipe_movement">Mouvement de balayage</string>
     <string name="short_swipe_up_app">Glisser vers le haut</string>
     <string name="short_swipe_down_app">Glisser vers le bas</string>
@@ -155,16 +155,16 @@
     <string name="show_notes_manager">Afficher le gestionnaire de notes</string>
     <string name="show_digital_wellbeing">Afficher le bien-être numérique</string>
     <string name="open_quick_settings">Paramètres Rapides</string>
-    <string name="show_recents">Show Recents</string>
+    <string name="show_recents">Afficher les récents</string>
     <string name="open_power_dialog">Boîte de dialogue d\'alimentation</string>
     <string name="take_a_screenshot">Prendre une capture d\'écran</string>
-    <string name="previous_page">Aller à la page de gauche</string>
-    <string name="next_page">Aller à la bonne page</string>
+    <string name="previous_page">Aller à la page précédente</string>
+    <string name="next_page">Aller à la page suivante</string>
     <!-- Strings used for notes settings -->
-    <string name="notes_settings_title">Remarques</string>
+    <string name="notes_settings_title">Notes</string>
     <string name="display_options">Options d\'affichage</string>
-    <string name="auto_expand_notes">Notes à développement automatique</string>
-    <string name="click_to_edit_delete">Cliquez pour modifier/supprimer</string>
+    <string name="auto_expand_notes">Développer les notes automatiquement</string>
+    <string name="click_to_edit_delete">Cliquer pour modifier/supprimer</string>
     <string name="notes_colors">Notes Couleurs</string>
     <string name="notes_background_color">Notes Contexte</string>
     <string name="bubble_background_color">Fond de bulle</string>
@@ -203,7 +203,7 @@
     <string name="advanced_settings_wotd_description">Importez une liste personnalisée de mots du jour.</string>
     <string name="advanced_settings_wotd_download">Télécharger</string>
     <string name="advanced_settings_wotd_import">Importer</string>
-    <string name="advanced_settings_wotd_clear">Clair</string>
+    <string name="advanced_settings_wotd_clear">Effacer</string>
     <string name="advanced_settings_wotd_clear_title">Réinitialiser le mot du jour</string>
     <string name="advanced_settings_wotd_clear_description">Êtes-vous sûr de vouloir réinitialiser le tableau du mot du jour ?</string>
     <string name="advanced_settings_clear_yes">Oui</string>
@@ -227,7 +227,7 @@
     <string name="settings_long_threshold">Seuil de balayage long</string>
     <!-- App Page Strings -->
     <string name="hidden_apps">Applications masquées</string>
-    <string name="favorite_apps">Applications préférées</string>
+    <string name="favorite_apps">Applications favorites</string>
     <string name="clear_home_app">Application Clear Home</string>
     <!-- Accessibility/Help Strings -->
     <string name="accessibility_service_name">Services d\'action MultiLauncher</string>
@@ -256,7 +256,7 @@
     <string name="text_biometric_login_app">Connexion biométrique pour %1$s</string>
     <string name="text_biometric_login_sub">Connectez-vous en utilisant votre identifiant biométrique</string>
     <!-- Crash Strings -->
-    <string name="acra_crash">Accident</string>
+    <string name="acra_crash">Erreur</string>
     <string name="acra_dialog_text">Nous sommes désolés, mais %1$s a rencontré un problème inattendu et doit être fermé. Aidez-nous à nous améliorer en envoyant un rapport d\'erreur.\n\n%1$s respecte votre vie privée et les données collectées sont uniquement utilisées pour améliorer la stabilité de l\'application. Aucune donnée personnelle n\'est collectée. Merci pour votre soutien!</string>
     <string name="acra_send_report">Envoyer un rapport</string>
     <string name="acra_dont_send">N\'envoyez pas</string>
@@ -268,8 +268,8 @@
     <string name="apply_icon_pack">Appliquer le pack d\'icônes</string>
     <string name="applying_icon_pack">Donner un nouveau look à vos icônes…</string>
     <string name="apply_icon_pack_are_you_sure">Êtes-vous sûr de vouloir appliquer ce pack d\'icônes ?\n\n%1$s</string>
-    <string name="apply_to_home">Postuler à la maison</string>
-    <string name="apply_to_app_list">Postuler à la liste des applications</string>
+    <string name="apply_to_home">Appliquer à l'accueil</string>
+    <string name="apply_to_app_list">Appliquer à la liste des applications</string>
     <string name="default_icon_not_found">Icône d\'application par défaut introuvable</string>
     <!-- Settings Strings -->
     <string name="left">Gauche</string>
@@ -278,7 +278,7 @@
     <string name="dark">Sombre</string>
     <string name="light">Lumière</string>
     <string name="system_default">Système</string>
-    <string name="system_custom">Coutume</string>
+    <string name="system_custom">Personnalisé</string>
     <string name="system_custom_plus">Personnalisé (%1$s)</string>
     <string name="restart_launcher">Redémarrer le lanceur</string>
     <string name="delete">Supprimer</string>
@@ -295,7 +295,7 @@
     <string name="info">Info</string>
     <string name="okay">Ok</string>
     <string name="apply">Appliquer</string>
-    <string name="reset">Reset</string>
+    <string name="reset">Réinitialiser</string>
     <string name="cancel">Abandonner</string>
     <string name="save">Sauvegarder</string>
     <string name="disabled">Désactivé</string>
