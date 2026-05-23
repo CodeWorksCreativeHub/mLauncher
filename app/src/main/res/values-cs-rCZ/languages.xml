@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="lang_arabic">arabština</string>
+    <string name="lang_chinese">čínština</string>
     <string name="lang_dutch">holandský</string>
     <string name="lang_czech">čeština</string>
     <string name="lang_english">angličtina</string>

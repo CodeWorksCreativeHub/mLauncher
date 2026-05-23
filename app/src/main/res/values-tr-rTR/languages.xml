@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="lang_arabic">Arapça</string>
+    <string name="lang_chinese">Çince</string>
     <string name="lang_dutch">Flemenkçe</string>
     <string name="lang_czech">Çek</string>
     <string name="lang_english">İngilizce</string>
