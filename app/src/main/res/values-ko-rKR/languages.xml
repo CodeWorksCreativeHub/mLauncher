@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="lang_arabic">아랍어</string>
+    <string name="lang_chinese">중국어</string>
     <string name="lang_dutch">네덜란드 사람</string>
     <string name="lang_czech">체코 사람</string>
     <string name="lang_english">영어</string>
