@@ -32,6 +32,7 @@ import com.github.codeworkscreativehub.mlauncher.data.Constants.AppDrawerFlag
 import com.github.codeworkscreativehub.mlauncher.data.ContactCategory
 import com.github.codeworkscreativehub.mlauncher.data.ContactListItem
 import com.github.codeworkscreativehub.mlauncher.data.Prefs
+import com.github.codeworkscreativehub.mlauncher.helper.ChineseSortHelper
 import com.github.codeworkscreativehub.mlauncher.helper.analytics.AppUsageMonitor
 import com.github.codeworkscreativehub.mlauncher.helper.ismlauncherDefault
 import com.github.codeworkscreativehub.mlauncher.helper.logActivitiesFromPackage
@@ -497,7 +498,13 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         list.forEachIndexed { index, item ->
             val label = getLabel(item)
             val pinned = pinnedStatusMap[item] == true
-            val key = if (pinned) "★" else label.firstOrNull()?.uppercaseChar()?.toString() ?: "#"
+            val key = if (pinned) {
+                "★"
+            } else {
+                ChineseSortHelper.sectionKey(label, prefs.appLanguage)
+                    ?: label.firstOrNull()?.uppercaseChar()?.toString()
+                    ?: "#"
+            }
             scrollMap.putIfAbsent(key, index)
         }
 
@@ -797,10 +804,12 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     // Helper: cheap normalization for sorting
     // Removes diacritics/unsupported characters cheaply and collapses whitespace.
     private fun normalizeForSort(s: String): String {
+        val source = ChineseSortHelper.sortKey(s, prefs.appLanguage) ?: s
+
         // Keep letters, digits and spaces. Collapse multiple spaces. Lowercase using default locale.
-        val sb = StringBuilder(s.length)
+        val sb = StringBuilder(source.length)
         var lastWasSpace = false
-        for (ch in s) {
+        for (ch in source) {
             if (ch.isLetterOrDigit()) {
                 sb.append(ch.lowercaseChar())
                 lastWasSpace = false
