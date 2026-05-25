@@ -31,11 +31,11 @@ extensions.configure<ApplicationExtension>("android") {
 
     namespace = "com.github.codeworkscreativehub.mlauncher"
 
-    compileSdk = 36
+    compileSdk = 37
 
     defaultConfig {
         minSdk = 28
-        targetSdk = 36
+        targetSdk = 37
         versionCode = baseVersionCode
         versionName = baseVersionName
     }
@@ -93,7 +93,6 @@ extensions.configure<ApplicationExtension>("android") {
         getByName("debug") {
             isDebuggable = true
             isMinifyEnabled = false
-            isShrinkResources = false
             applicationIdSuffix = ".debug"
             signingConfig = signingConfigs["release"]
 
