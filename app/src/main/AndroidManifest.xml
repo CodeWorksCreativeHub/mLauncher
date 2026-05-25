@@ -6,8 +6,12 @@
     <dist:module dist:instant="true" />
     <!-- Permissions your launcher uses -->
     <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
-    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" />
-    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
+    <uses-permission
+        android:name="android.permission.PACKAGE_USAGE_STATS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission
+        android:name="android.permission.QUERY_ALL_PACKAGES"
+        tools:ignore="PackageVisibilityPolicy,QueryAllPackagesPermission" />
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
     <uses-permission android:name="android.permission.ACCESS_HIDDEN_PROFILES" />
     <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES" />
@@ -17,8 +21,12 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.SET_WALLPAPER" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.BIND_APPWIDGET" />
-    <uses-permission android:name="android.permission.BIND_REMOTEVIEWS" />
+    <uses-permission
+        android:name="android.permission.BIND_APPWIDGET"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission
+        android:name="android.permission.BIND_REMOTEVIEWS"
+        tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -34,7 +42,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.mLauncher"
         android:windowSoftInputMode="adjustResize|stateHidden"
-        tools:targetApi="tiramisu">
+        tools:targetApi="36">
         <activity
             android:name=".ui.widgets.WidgetActivity"
             android:exported="false" />
