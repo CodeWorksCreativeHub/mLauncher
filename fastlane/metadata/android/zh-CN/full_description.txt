@@ -1,6 +1,6 @@
 <h1>Multi Launcher: A Clean, Simple Android Launcher Built for Readability and Control</h1>
 
-<p>正在寻找一款简洁易用的启动器吗？ <strong>Multi Launcher</strong> is a powerful yet minimalist Android launcher that replaces tiny icons with clear, readable text buttons, making your phone easier to navigate.</p>
+<p>正在寻找一款简洁易用的启动器吗？ <p>正在寻找一款简洁易用的启动器吗？ <strong>Multi Launcher</strong> is a powerful yet minimalist Android launcher that replaces tiny icons with clear, readable text buttons, making your phone easier to navigate.</p>
 
 <p>Whether you want a simple home screen, need large text for visibility, or prefer quick gesture-based actions, Multi Launcher gives you full control without overwhelming you with options.</p>
 
@@ -30,6 +30,6 @@
     <li>下拉通知面板</li>
 </ul>
 
-<p><em>Multi Launcher 尊重您的隐私。 These features do not collect or share personal data.</em></p>
+<p><em>Multi Launcher 尊重您的隐私。 <p><em>Multi Launcher 尊重您的隐私。 These features do not collect or share personal data.</em></p>
 
 <p>If you’re tired of flashy, cluttered launchers and want something straightforward, stylish, and empowering, <strong>Multi Launcher</strong> is your perfect home screen solution.</p>
