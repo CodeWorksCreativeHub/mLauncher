@@ -1,487 +1,389 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Base Settings -->
-    <string name="select_app">选择应用</string>
-    <string name="show_apps">搜索应用</string>
-    <string name="show_private_apps">搜索私密应用</string>
-    <string name="show_work_apps">搜索工作应用</string>
-    <string name="show_contacts">搜索联系人</string>
-
-    <string name="welcome_to_launcher">欢迎使用 %1$s</string>
-    <string name="continue_by_you_agree">继续即表示你同意 %1$s</string>
-
-    <string name="usage_access_permission">使用情况访问权限</string>
-    <string name="location_access_permission">位置访问权限</string>
-    <string name="accessibility_access_permission">无障碍权限</string>
-
-    <string name="grant_permission">授予权限</string>
-    <string name="grant_usage_permission">要继续，请授予使用情况访问权限。</string>
-    <string name="reason_usage_permission">此应用需要使用情况访问权限，以显示你最常用的应用、统计屏幕使用时间并改善体验。我们不会收集或分享任何个人数据。</string>
-    <string name="grant_location_permission">要继续，请授予位置权限。</string>
-    <string name="reason_location_permission">此应用需要位置访问权限，以根据你当前的位置提供准确的天气更新。我们不会收集或分享任何个人数据。</string>
-    <string name="grant_accessibility_permission">要继续，请授予无障碍权限。</string>
-    <string name="reason_accessibility_permission">MultiLauncher 需要无障碍权限来提供增强功能，例如锁定屏幕和打开快捷设置。这些功能有助于提升可用性。我们不会收集或分享任何数据。</string>
-    <string name="permission_granted">权限已授予！你可以继续。</string>
-
-    <string name="this_can_be_disabled_later">* 此权限稍后可以关闭。</string>
-
+    <string name="select_app">Select App</string>
+    <string name="show_apps">Search Apps</string>
+    <string name="show_private_apps">Search Private Apps</string>
+    <string name="show_work_apps">Search Work Apps</string>
+    <string name="show_contacts">Search Contacts</string>
+    <string name="welcome_to_launcher">Welcome to %1$s</string>
+    <string name="continue_by_you_agree">By continuing you agree to %1$s</string>
+    <string name="usage_access_permission">Usage Access Permissions</string>
+    <string name="location_access_permission">Location Access Permissions</string>
+    <string name="accessibility_access_permission">Accessibility Permissions</string>
+    <string name="grant_permission">Grant Permission</string>
+    <string name="grant_usage_permission">To continue, please grant Usage Access permission.</string>
+    <string name="reason_usage_permission">This app needs Usage Access to show your most used apps, track screen time, and improve your experience.We do not collect or share any personal data.</string>
+    <string name="grant_location_permission">To continue, please grant Location permission.</string>
+    <string name="reason_location_permission">This app needs Location Access to provide accurate weather updates based on your current location. We do not collect or share any personal data.</string>
+    <string name="grant_accessibility_permission">To continue, please grant Accessibility permission.</string>
+    <string name="reason_accessibility_permission">MultiLauncher needs Accessibility permission to provide enhanced features, such as locking the screen and opening quick settings. These functions help improve usability. We do not collect or share any data.</string>
+    <string name="permission_granted">Permission Granted! You can continue.</string>
+    <string name="this_can_be_disabled_later">* This permission may be disabled later.</string>
     <!-- Strings used for settings menus -->
-    <string name="settings_name">MultiLauncher 设置</string>
-
-    <string name="settings_features_title">功能</string>
-    <string name="settings_features_description">提升你的效率。</string>
-
-    <string name="settings_look_feel_title">外观与体验</string>
-    <string name="settings_look_feel_description">让主屏幕更符合你的风格。</string>
-
-    <string name="settings_gestures_title">手势</string>
-    <string name="settings_gestures_description">自定义手势，实现快速便捷的导航。</string>
-
-    <string name="settings_notes_title">笔记</string>
-    <string name="settings_notes_description">个性化笔记样式。</string>
-
+    <string name="settings_name">MultiLauncher Settings</string>
+    <string name="settings_features_title">Features</string>
+    <string name="settings_features_description">Improve your productivity.</string>
+    <string name="settings_look_feel_title">Look &amp; Feel</string>
+    <string name="settings_look_feel_description">Give your home screen a personal touch.</string>
+    <string name="settings_gestures_title">Gestures</string>
+    <string name="settings_gestures_description">Customize gestures for quick and easy navigation.</string>
+    <string name="settings_notes_title">Notes</string>
+    <string name="settings_notes_description">Personalize your notes to match your style.</string>
     <!-- Favorite Apps -->
-    <string name="settings_favorite_apps_title">收藏应用</string>
-    <string name="settings_favorite_apps_description">重新排序收藏应用，便于从主屏幕快速访问。</string>
-
+    <!-- Favorite Apps -->
+    <string name="settings_favorite_apps_title">Favorite Apps</string>
+    <string name="settings_favorite_apps_description">Reorder your favorite apps for quick access from the home screen.</string>
     <!-- Hidden Apps -->
-    <string name="settings_hidden_apps_title">隐藏应用</string>
-    <string name="settings_hidden_apps_description">管理隐藏应用，需要时可从此列表取消隐藏。</string>
-
-
-    <string name="settings_advanced_title">高级</string>
-    <string name="settings_advanced_description">访问应用信息、默认启动器、备份工具等。</string>
-
-    <string name="settings_expert_title">专家</string>
-    <string name="settings_expert_description">解锁隐藏选项和高级调整。</string>
-
-
-    <string name="settings_exit_mlauncher_title">退出 MultiLauncher</string>
-    <string name="settings_exit_mlauncher_description">临时切换到默认启动器。</string>
-    <string name="settings_exit_mlauncher_dialog">选择启动器</string>
-
+    <string name="settings_hidden_apps_title">Hidden Apps</string>
+    <string name="settings_hidden_apps_description">Manage hidden apps — unhide any app from this list when needed.</string>
+    <string name="settings_advanced_title">Advanced</string>
+    <string name="settings_advanced_description">Access app info, default launcher, backup tools and more.</string>
+    <string name="settings_expert_title">Expert</string>
+    <string name="settings_expert_description">Unlock hidden options, and advanced tweaks.</string>
+    <string name="settings_exit_mlauncher_title">Exit MultiLauncher</string>
+    <string name="settings_exit_mlauncher_description">Switch to your default launcher temporarily.</string>
+    <string name="settings_exit_mlauncher_dialog">Choose a launcher</string>
     <!-- Strings used for features settings -->
-    <string name="features_settings_title">功能</string>
-
-    <string name="personalization">个性化</string>
-
-    <string name="theme_mode">主题模式</string>
-    <string name="app_language">界面语言</string>
-    <string name="font_family">字体</string>
-
-    <string name="search_and_app_list">搜索与应用列表</string>
-
-    <string name="hide_search_view">隐藏搜索视图</string>
-    <string name="show_floating_button">显示快捷方式按钮</string>
-    <string name="lock_orientation">锁定方向</string>
-    <string name="haptic_feedback">触觉反馈</string>
-
-    <string name="search">搜索</string>
-
-    <string name="search_engine">搜索引擎</string>
-    <string name="show_az_sidebar">显示 A-Z 侧边栏</string>
-    <string name="auto_show_keyboard">自动显示键盘</string>
-    <string name="search_from_start">从开头搜索</string>
-
-    <string name="home_management">主屏幕与应用管理</string>
-
-    <string name="auto_open_apps">自动打开应用</string>
-    <string name="open_apps_on_enter">按回车打开应用</string>
-    <string name="lock_home_apps">锁定主屏幕应用</string>
-    <string name="lock_settings">锁定设置</string>
-    <string name="apps_on_home_screen">主屏幕应用数量</string>
-    <string name="pages_on_home_screen">主屏幕页数</string>
-    <string name="enable_home_pager">启用主屏幕分页指示器</string>
-    <string name="enable_app_timer">启用应用计时器</string>
-    <string name="force_colored_wallpaper">强制使用纯色壁纸</string>
-
-    <string name="info_tiles">信息磁贴</string>
-
-    <string name="show_clock">显示时钟</string>
-    <string name="show_clock_format">显示格式（AM/PM）</string>
-    <string name="show_date">显示日期</string>
-    <string name="show_day_of_year">显示一年中的第几天</string>
-    <string name="show_alarm">显示闹钟</string>
-    <string name="show_daily_word">显示每日单词</string>
-    <string name="show_battery">显示电量</string>
-    <string name="show_battery_icon">显示电量图标</string>
-    <string name="show_private_spaces">显示私密空间图标</string>
-
-    <string name="weather">天气</string>
-    <string name="show_weather">显示天气</string>
-    <string name="gps_location">GPS 位置</string>
-    <string name="temp_unit">温度单位</string>
-    <string name="manual_location">手动设置位置</string>
-
-    <string name="icon_packs">图标包</string>
-
+    <string name="features_settings_title">Features</string>
+    <string name="personalization">Personalization</string>
+    <string name="theme_mode">Theme mode</string>
+    <string name="app_language">Interface Language</string>
+    <string name="font_family">Font Family</string>
+    <string name="search_and_app_list">Search &amp; App List</string>
+    <string name="hide_search_view">Hide Search View</string>
+    <string name="show_floating_button">Show Shortcut Buttons</string>
+    <string name="lock_orientation">Lock Orientation</string>
+    <string name="haptic_feedback">Haptic Feedback</string>
+    <string name="search">Search</string>
+    <string name="search_engine">Search Engine</string>
+    <string name="show_az_sidebar">Show A-Z Sidebar</string>
+    <string name="auto_show_keyboard">Auto Show Keyboard</string>
+    <string name="search_from_start">Search from Start</string>
+    <string name="home_management">Home &amp; App Management</string>
+    <string name="auto_open_apps">Auto Open Apps</string>
+    <string name="open_apps_on_enter">Open App on Enter</string>
+    <string name="lock_home_apps">Lock Home Apps</string>
+    <string name="lock_settings">Lock Settings</string>
+    <string name="apps_on_home_screen">Number of Home Apps</string>
+    <string name="pages_on_home_screen">Number of Pages</string>
+    <string name="enable_home_pager">Enable Home Pager</string>
+    <string name="enable_app_timer">Enable App Timer</string>
+    <string name="force_colored_wallpaper">Force Colored Wallpaper</string>
+    <string name="info_tiles">Info Tiles</string>
+    <string name="show_clock">Show Clock</string>
+    <string name="show_clock_format">Show Format (AM/PM)</string>
+    <string name="show_date">Show Date</string>
+    <string name="show_day_of_year">Show Day Of Year</string>
+    <string name="show_alarm">Show Alarm</string>
+    <string name="show_daily_word">Show Daily Word</string>
+    <string name="show_battery">Show Battery</string>
+    <string name="show_battery_icon">Show Battery Icon</string>
+    <string name="show_private_spaces">Show Private Spaces Icon</string>
+    <string name="weather">Weather</string>
+    <string name="show_weather">Show Weather</string>
+    <string name="gps_location">GPS Location</string>
+    <string name="temp_unit">Temperature Unit</string>
+    <string name="manual_location">Set Manual Location</string>
+    <string name="icon_packs">Icon Packs</string>
     <!-- Strings used for look & feel settings -->
-    <string name="look_feel_settings_title">外观与体验</string>
-
-    <string name="text_size_adjustments">文字与尺寸调整</string>
-
-    <string name="app_text_size">应用文字大小</string>
-    <string name="date_text_size">日期文字大小</string>
-    <string name="clock_text_size">时钟文字大小</string>
-    <string name="alarm_text_size">闹钟文字大小</string>
-    <string name="daily_word_text_size">每日单词文字大小</string>
-    <string name="battery_text_size">电量文字大小</string>
-
-    <string name="layout_positioning">布局与位置</string>
-
-    <string name="app_padding_size">内边距大小</string>
-    <string name="extend_home_apps_area">扩展可点击区域</string>
-    <string name="alignment_to_bottom">底部对齐</string>
-
-    <string name="visibility_display">可见性与显示</string>
-
-    <string name="show_status_bar">显示状态栏</string>
-    <string name="show_navigation_bar">显示导航栏</string>
-    <string name="show_recent_apps">显示最近应用</string>
-    <string name="number_of_recents">最近应用数量</string>
-    <string name="show_app_usage_stats">显示应用使用统计</string>
-    <string name="select_home_icons">选择主屏幕图标包</string>
-    <string name="select_app_list_icons">选择应用列表图标包</string>
-    <string name="enable_filter_strength">启用模糊查找</string>
-    <string name="filter_strength">模糊查找强度</string>
-    <string name="show_background">显示背景</string>
-    <string name="background_opacity">背景透明度</string>
-    <string name="total_screen_time">总屏幕使用时间</string>
-
-    <string name="element_alignment">元素对齐</string>
-
-    <string name="date_alignment">日期</string>
-    <string name="clock_alignment">时钟</string>
-    <string name="alarm_alignment">闹钟</string>
-    <string name="daily_word_alignment">每日单词</string>
-    <string name="home_alignment">主屏幕应用</string>
-    <string name="drawer_alignment">抽屉应用</string>
-
-    <string name="element_colors">元素颜色</string>
-
-    <string name="background_color">背景</string>
-    <string name="app_color">应用</string>
-    <string name="clock_color">时钟</string>
-    <string name="date_color">日期</string>
-    <string name="alarm_color">闹钟</string>
-    <string name="daily_word_color">每日单词</string>
-    <string name="battery_color">电量</string>
-    <string name="rainbow_shortcuts">彩虹快捷方式</string>
-    <string name="shortcuts_color">快捷方式</string>
-
+    <string name="look_feel_settings_title">Look &amp; Feel</string>
+    <string name="text_size_adjustments">Text &amp; Size Adjustments</string>
+    <string name="app_text_size">App Text Size</string>
+    <string name="date_text_size">Date Text Size</string>
+    <string name="clock_text_size">Clock Text Size</string>
+    <string name="alarm_text_size">Alarm Text Size</string>
+    <string name="daily_word_text_size">Daily Word Text Size</string>
+    <string name="battery_text_size">Battery Text Size</string>
+    <string name="layout_positioning">Layout &amp; Positioning</string>
+    <string name="app_padding_size">Padding Size</string>
+    <string name="extend_home_apps_area">Extend Clickable Area</string>
+    <string name="alignment_to_bottom">Align to Bottom</string>
+    <string name="visibility_display">Visibility &amp; Display</string>
+    <string name="show_status_bar">Show Status bar</string>
+    <string name="show_navigation_bar">Show Navigation bar</string>
+    <string name="show_recent_apps">Show Recent Apps</string>
+    <string name="number_of_recents">Number of Recent Apps</string>
+    <string name="show_app_usage_stats">Show App Usage Stats</string>
+    <string name="select_home_icons">Select Home Icon Pack</string>
+    <string name="select_app_list_icons">Select App List Icon Pack</string>
+    <string name="enable_filter_strength">Enable Fuzzy Finder</string>
+    <string name="filter_strength">Fuzzy Finder Strength</string>
+    <string name="show_background">Show Background</string>
+    <string name="background_opacity">Background Transparency</string>
+    <string name="total_screen_time">Total Screen Time</string>
+    <string name="element_alignment">Element Alignment</string>
+    <string name="date_alignment">Date</string>
+    <string name="clock_alignment">Clock</string>
+    <string name="alarm_alignment">Alarm</string>
+    <string name="daily_word_alignment">Daily Word</string>
+    <string name="home_alignment">Home Apps</string>
+    <string name="drawer_alignment">Drawer Apps</string>
+    <string name="element_colors">Element Colors</string>
+    <string name="background_color">Background</string>
+    <string name="app_color">Apps</string>
+    <string name="clock_color">Clock</string>
+    <string name="date_color">Date</string>
+    <string name="alarm_color">Alarm</string>
+    <string name="daily_word_color">Daily Word</string>
+    <string name="battery_color">Battery</string>
+    <string name="rainbow_shortcuts">Rainbow Shortcuts</string>
+    <string name="shortcuts_color">Shortcuts</string>
     <!-- Strings used for gestures settings -->
-    <string name="gestures_settings_title">手势</string>
-
-    <string name="tap_click_actions">点击操作</string>
-
-    <string name="double_tap">双击</string>
-    <string name="clock_click_app">点击时钟</string>
-    <string name="date_click_app">点击日期</string>
-    <string name="usage_click_app">点击总使用时间</string>
-    <string name="floating_click_app">点击徽标</string>
-
-    <string name="swipe_movement">滑动动作</string>
-
-    <string name="short_swipe_up_app">短距离上滑</string>
-    <string name="short_swipe_down_app">短距离下滑</string>
-    <string name="short_swipe_left_app">短距离左滑</string>
-    <string name="short_swipe_right_app">短距离右滑</string>
-    <string name="long_swipe_up_app">长距离上滑</string>
-    <string name="long_swipe_down_app">长距离下滑</string>
-    <string name="long_swipe_left_app">长距离左滑</string>
-    <string name="long_swipe_right_app">长距离右滑</string>
-
-    <string name="open_app">打开应用</string>
-    <string name="lock_screen">锁定屏幕</string>
-    <string name="private_space">私密空间（%1$s）</string>
-    <string name="show_notifications">显示通知</string>
-    <string name="show_app_list">显示应用列表</string>
-    <string name="show_widget_page">显示小部件页面</string>
-    <string name="show_notes_manager">显示笔记管理器</string>
-    <string name="show_digital_wellbeing">显示数字健康</string>
-    <string name="open_quick_settings">快捷设置</string>
-    <string name="show_recents">显示最近任务</string>
-    <string name="open_power_dialog">电源菜单</string>
-    <string name="take_a_screenshot">截图</string>
-    <string name="previous_page">转到上一页</string>
-    <string name="next_page">转到下一页</string>
-
+    <string name="gestures_settings_title">Gestures</string>
+    <string name="tap_click_actions">Tap/Click Actions</string>
+    <string name="double_tap">Double Tap</string>
+    <string name="clock_click_app">Click on Clock</string>
+    <string name="date_click_app">Click on Date</string>
+    <string name="usage_click_app">Click on Total Usage</string>
+    <string name="floating_click_app">Click on Logo</string>
+    <string name="swipe_movement">Swipe Movement</string>
+    <string name="short_swipe_up_app">Short Swipe up</string>
+    <string name="short_swipe_down_app">Short Swipe down</string>
+    <string name="short_swipe_left_app">Short Swipe left</string>
+    <string name="short_swipe_right_app">Short Swipe right</string>
+    <string name="long_swipe_up_app">Long Swipe up</string>
+    <string name="long_swipe_down_app">Long Swipe down</string>
+    <string name="long_swipe_left_app">Long Swipe left</string>
+    <string name="long_swipe_right_app">Long Swipe right</string>
+    <string name="open_app">Open App</string>
+    <string name="lock_screen">Lock Screen</string>
+    <string name="private_space">Private Spaces (%1$s)</string>
+    <string name="show_notifications">Show Notification</string>
+    <string name="show_app_list">Show App List</string>
+    <string name="show_widget_page">Show Widget Page</string>
+    <string name="show_notes_manager">Show Notes Manager</string>
+    <string name="show_digital_wellbeing">Show Digital Wellbeing</string>
+    <string name="open_quick_settings">Quick Settings</string>
+    <string name="show_recents">Show Recents</string>
+    <string name="open_power_dialog">Power Dialog</string>
+    <string name="take_a_screenshot">Take a Screenshot</string>
+    <string name="previous_page">Go to Previous Page</string>
+    <string name="next_page">Go to Next Page</string>
     <!-- Strings used for notes settings -->
-    <string name="notes_settings_title">笔记</string>
-
-    <string name="display_options">显示选项</string>
-
-    <string name="auto_expand_notes">自动展开笔记</string>
-    <string name="click_to_edit_delete">点击以编辑/删除</string>
-
-    <string name="notes_colors">笔记颜色</string>
-
-    <string name="notes_background_color">笔记背景</string>
-    <string name="bubble_background_color">气泡背景</string>
-    <string name="bubble_message_color">气泡消息</string>
-    <string name="bubble_date_time_color">气泡日期/时间</string>
-    <string name="bubble_category_color">气泡分类</string>
-
-    <string name="input_colors">输入颜色</string>
-
-    <string name="message_input_color">消息输入</string>
-    <string name="message_input_hint_color">消息输入提示</string>
-
+    <string name="notes_settings_title">Notes</string>
+    <string name="display_options">Display Options</string>
+    <string name="auto_expand_notes">Auto Expand Notes</string>
+    <string name="click_to_edit_delete">Click To Edit/Delete</string>
+    <string name="notes_colors">Notes Colors</string>
+    <string name="notes_background_color">Notes Background</string>
+    <string name="bubble_background_color">Bubble Background</string>
+    <string name="bubble_message_color">Bubble Message</string>
+    <string name="bubble_date_time_color">Bubble Date/Time</string>
+    <string name="bubble_category_color">Bubble Category</string>
+    <string name="input_colors">Input Colors</string>
+    <string name="message_input_color">Message Input</string>
+    <string name="message_input_hint_color">Message Input Hint</string>
     <!-- Strings used for advanced settings -->
-    <string name="advanced_settings_title">高级</string>
-
-    <string name="advanced_settings_app_info_title">应用信息</string>
+    <string name="advanced_settings_title">Advanced</string>
+    <string name="advanced_settings_app_info_title">App Info</string>
     <string name="advanced_settings_app_info_description">%1$s</string>
-
-    <string name="advanced_settings_set_as_default_launcher">设为默认启动器</string>
-    <string name="advanced_settings_set_as_default_launcher_description">将 Multi Launcher 设为默认主屏幕应用。</string>
-    <string name="advanced_settings_change_default_launcher">更改默认启动器</string>
-    <string name="advanced_settings_change_default_launcher_description">选择其他启动器作为默认启动器。</string>
-
-
-    <string name="advanced_settings_restart_title">重启启动器</string>
-    <string name="advanced_settings_restart_description">试过关掉再打开吗？</string>
-
-    <string name="advanced_settings_backup_restore_title">备份/恢复</string>
-    <string name="advanced_settings_backup_restore_description">请谨慎操作。</string>
-
-    <string name="advanced_settings_backup_restore_backup">备份</string>
-    <string name="advanced_settings_backup_restore_restore">恢复</string>
-    <string name="advanced_settings_backup_restore_clear">清除所有数据</string>
-
-    <string name="advanced_settings_backup_restore_clear_title">清除偏好设置</string>
-    <string name="advanced_settings_backup_restore_clear_description">确定要这样做吗？</string>
-
-    <string name="advanced_settings_theme_title">主题制作</string>
-    <string name="advanced_settings_theme_description">按你的喜好自定义主题。</string>
-
-    <string name="advanced_settings_theme_download">下载</string>
-    <string name="advanced_settings_theme_export">导出</string>
-    <string name="advanced_settings_theme_import">导入</string>
-    <string name="advanced_settings_theme_clear">清除</string>
-
-    <string name="advanced_settings_theme_clear_title">重置主题</string>
-    <string name="advanced_settings_theme_clear_description">确定要重置所有主题设置吗？</string>
-
-    <string name="advanced_settings_wotd_title">每日单词</string>
-    <string name="advanced_settings_wotd_description">导入自定义每日单词列表。</string>
-
-    <string name="advanced_settings_wotd_download">下载</string>
-    <string name="advanced_settings_wotd_import">导入</string>
-    <string name="advanced_settings_wotd_clear">清除</string>
-
-    <string name="advanced_settings_wotd_clear_title">重置每日单词</string>
-    <string name="advanced_settings_wotd_clear_description">确定要重置每日单词列表吗？</string>
-
-    <string name="advanced_settings_clear_yes">是</string>
-    <string name="advanced_settings_clear_no">否</string>
-
-    <string name="advanced_settings_help_feedback_title">帮助与反馈</string>
-    <string name="advanced_settings_community_support_title">社区支持</string>
-
-    <string name="advanced_settings_share_application_title">分享应用</string>
-    <string name="advanced_settings_share_application_description">使用 %1$s 提升你的体验！</string>
-    <string name="advanced_settings_share_application_description_addon">立即在 %1$s 获取，看看大家都在讨论什么！%2$s\n</string>
-
-
+    <string name="advanced_settings_set_as_default_launcher">Set as Default Launcher</string>
+    <string name="advanced_settings_set_as_default_launcher_description">Make Multi Launcher your default home app.</string>
+    <string name="advanced_settings_change_default_launcher">Change Default Launcher</string>
+    <string name="advanced_settings_change_default_launcher_description">Choose a different launcher as your default.</string>
+    <string name="advanced_settings_restart_title">Restart Launcher</string>
+    <string name="advanced_settings_restart_description">Have you tried turning it on and off?</string>
+    <string name="advanced_settings_backup_restore_title">Backup/Restore</string>
+    <string name="advanced_settings_backup_restore_description">Please be careful what you wish for?</string>
+    <string name="advanced_settings_backup_restore_backup">Backup</string>
+    <string name="advanced_settings_backup_restore_restore">Restore</string>
+    <string name="advanced_settings_backup_restore_clear">Clear All Data</string>
+    <string name="advanced_settings_backup_restore_clear_title">Clear Preferences</string>
+    <string name="advanced_settings_backup_restore_clear_description">Are you sure you want to do this?</string>
+    <string name="advanced_settings_theme_title">Theme Creations</string>
+    <string name="advanced_settings_theme_description">Customize themes to suit you.</string>
+    <string name="advanced_settings_theme_download">Download</string>
+    <string name="advanced_settings_theme_export">Export</string>
+    <string name="advanced_settings_theme_import">Import</string>
+    <string name="advanced_settings_theme_clear">Clear</string>
+    <string name="advanced_settings_theme_clear_title">Reset Theme</string>
+    <string name="advanced_settings_theme_clear_description">Are you sure you want to reset all theme settings?</string>
+    <string name="advanced_settings_wotd_title">Word of the Day</string>
+    <string name="advanced_settings_wotd_description">Import custom Word of the Day list.</string>
+    <string name="advanced_settings_wotd_download">Download</string>
+    <string name="advanced_settings_wotd_import">Import</string>
+    <string name="advanced_settings_wotd_clear">Clear</string>
+    <string name="advanced_settings_wotd_clear_title">Reset Word Of The Day</string>
+    <string name="advanced_settings_wotd_clear_description">Are you sure you want to reset the Word Of The Day array?</string>
+    <string name="advanced_settings_clear_yes">Yes</string>
+    <string name="advanced_settings_clear_no">No</string>
+    <string name="advanced_settings_help_feedback_title">Help &amp; Feedback</string>
+    <string name="advanced_settings_community_support_title">Community Support</string>
+    <string name="advanced_settings_share_application_title">Share Application</string>
+    <string name="advanced_settings_share_application_description">Elevate your experience with %1$s!</string>
+    <string name="advanced_settings_share_application_description_addon">Get it now on %1$s and see what everyone is talking about! %2$s\n</string>
     <!-- Strings used for about settings -->
-    <string name="about_settings_title">关于 %1$s</string>
-
-
+    <string name="about_settings_title">About %1$s</string>
     <!-- Strings used for expert settings -->
-    <string name="expert_settings_title">专家</string>
-
-    <string name="toggleable_items">可切换项目</string>
-    <string name="threshold">阈值</string>
-
-    <string name="expert_options_display">显示专家选项</string>
-
-    <string name="expert_options_unlocked">专家选项已解锁！</string>
-    <string name="expert_options_tap_hint">再点 %1$d 次即可解锁</string>
-
-    <string name="settings_text_size">设置文字大小</string>
-
-    <string name="settings_short_threshold">短滑阈值</string>
-    <string name="settings_long_threshold">长滑阈值</string>
-
+    <string name="expert_settings_title">Expert</string>
+    <string name="toggleable_items">Toggleable Items</string>
+    <string name="threshold">Threshold</string>
+    <string name="expert_options_display">Show Expert Options</string>
+    <string name="expert_options_unlocked">Expert Options Unlocked!</string>
+    <string name="expert_options_tap_hint">%1$d more taps to unlock</string>
+    <string name="settings_text_size">Settings Text Size</string>
+    <string name="settings_short_threshold">Short Swipe Threshold</string>
+    <string name="settings_long_threshold">Long Swipe Threshold</string>
     <!-- App Page Strings -->
-    <string name="hidden_apps">隐藏应用</string>
-    <string name="favorite_apps">收藏应用</string>
-    <string name="clear_home_app">清除主屏幕应用</string>
-
+    <string name="hidden_apps">Hidden Apps</string>
+    <string name="favorite_apps">Favorite Apps</string>
+    <string name="clear_home_app">Clear Home App</string>
     <!-- Accessibility/Help Strings -->
-    <string name="accessibility_service_name">MultiLauncher 操作服务</string>
-    <string name="accessibility_service_why_we_need">为什么需要无障碍权限</string>
-    <string name="accessibility_service_description">此无障碍服务允许 MultiLauncher 执行某些操作，例如锁定屏幕或打开快捷设置面板。我们的无障碍服务不会收集或分享任何数据。</string>
-    <string name="accessibility_service_more_info">
-    MultiLauncher 需要访问无障碍服务，以启用以下功能：\n\n
-    • 通过手势或快捷方式锁定屏幕\n
-    • 快速打开快捷设置面板\n\n
-    此权限允许 MultiLauncher 代你执行这些操作，但我们不会通过此服务收集、存储或分享任何个人或敏感数据。\n\n
-    你可以随时在设备设置中关闭此访问权限。
+    <string name="accessibility_service_name">MultiLauncher Action Services</string>
+    <string name="accessibility_service_why_we_need">Why We Need Accessibility Permission</string>
+    <string name="accessibility_service_description">This accessibility service allows MultiLauncher to do certain actions such as locking the screen or opening the quick settings. Our accessibility service does not collect or share any data.</string>
+    <string name="accessibility_service_more_info">    MultiLauncher requires access to the Accessibility Service to enable features such as:\n\n
+    • Locking the screen with a gesture or shortcut\n
+    • Opening the Quick Settings panel quickly\n\n
+    This permission allows MultiLauncher to perform these actions on your behalf, but we do not collect, store, or share any personal or sensitive data through this service.\n\n
+    You can disable this access anytime from your device settings.
     </string>
-    <string name="can_not_delete_system_apps">无法删除系统应用</string>
-    <string name="please_select_app">请选择应用</string>
-    <string name="drawer_list_empty_hint">未找到应用</string>
-    <string name="long_press_for_settings">长按任意位置打开设置</string>
-    <string name="long_press_to_select_app">长按选择应用</string>
-    <string name="long_press_to_select_app_locked">解锁主屏幕应用后才能选择应用</string>
-    <string name="tap_button_for_notes">点击启动器徽标打开笔记</string>
-    <string name="swipe_up_for_apps">上滑查看所有应用</string>
-    <string name="app_drawer_tips">提示：下滑收起。滚动可隐藏键盘。</string>
-
+    <string name="can_not_delete_system_apps">Can\'t Delete System Apps</string>
+    <string name="please_select_app">Please select an app</string>
+    <string name="drawer_list_empty_hint">No apps found</string>
+    <string name="long_press_for_settings">Long press anywhere for settings</string>
+    <string name="long_press_to_select_app">Long press to select app</string>
+    <string name="long_press_to_select_app_locked">Unlock home apps to select app</string>
+    <string name="tap_button_for_notes">Tap launcher logo for notes</string>
+    <string name="swipe_up_for_apps">Swipe up for all apps</string>
+    <string name="app_drawer_tips">Tip: Swipe down to dismiss. Scroll to hide keyboard.</string>
     <!-- PinCode Strings -->
-    <string name="text_authentication_cancel">身份验证已取消。</string>
-    <string name="text_authentication_error">身份验证错误：%1$s（代码 %2$d）</string>
-    <string name="text_authentication_failed">身份验证失败。</string>
-    <string name="text_biometric_login">生物识别登录 MultiLauncher 设置</string>
-    <string name="text_biometric_login_app">对 %1$s 使用生物识别登录</string>
-    <string name="text_biometric_login_sub">使用生物识别凭据登录。</string>
-
+    <string name="text_authentication_cancel">Authentication Cancel.</string>
+    <string name="text_authentication_error">Authentication error: %1$s (code %2$d)</string>
+    <string name="text_authentication_failed">Authentication failed.</string>
+    <string name="text_biometric_login">Biometric login MultiLauncher Settings</string>
+    <string name="text_biometric_login_app">Biometric login for %1$s</string>
+    <string name="text_biometric_login_sub">Log in using your biometric credentials.</string>
     <!-- Crash Strings -->
-    <string name="acra_crash">崩溃</string>
-    <string name="acra_dialog_text">很抱歉，%1$s 遇到意外问题，需要关闭。请帮助我们改进并发送崩溃报告。\n\n%1$s 重视你的隐私，收集的数据仅用于提升应用稳定性。不会收集个人信息。感谢你的支持！</string>
-    <string name="acra_send_report">发送报告</string>
-    <string name="acra_dont_send">不发送</string>
-
+    <string name="acra_crash">Crash</string>
+    <string name="acra_dialog_text">We\'re sorry, but %1$s has encountered an unexpected issue and needs to close. Please help us improve by sending a crash report.\n\n%1$s values your privacy and the data collected is solely used for improving app stability. No personal information is collected. Thank you for your support!</string>
+    <string name="acra_send_report">Send Report</string>
+    <string name="acra_dont_send">Don\'t Send</string>
     <!-- Share Strings -->
-    <string name="share_application">分享应用</string>
-    <string name="share_note">分享笔记</string>
-
+    <string name="share_application">Share Application</string>
+    <string name="share_note">Share Note</string>
     <!-- Icon Pack Strings -->
-    <string name="choose_icon_pack">选择图标包</string>
-    <string name="apply_icon_pack">应用图标包</string>
-    <string name="applying_icon_pack">正在让你的图标焕然一新…</string>
-    <string name="apply_icon_pack_are_you_sure">确定要应用此图标包吗？\n\n%1$s</string>
-    <string name="apply_to_home">应用到主屏幕</string>
-    <string name="apply_to_app_list">应用到应用列表</string>
-    <string name="default_icon_not_found">未找到默认应用图标资源</string>
-
+    <string name="choose_icon_pack">Choose Icon Pack</string>
+    <string name="apply_icon_pack">Apply Icon Pack</string>
+    <string name="applying_icon_pack">Giving your icons a fresh look…</string>
+    <string name="apply_icon_pack_are_you_sure">Are you sure you want to apply this icon pack?\n\n%1$s</string>
+    <string name="apply_to_home">Apply To Home</string>
+    <string name="apply_to_app_list">Apply To App List</string>
+    <string name="default_icon_not_found">Default app icon drawable not found</string>
     <!-- Settings Strings -->
-    <string name="left">左</string>
-    <string name="right">右</string>
-    <string name="center">居中</string>
-    <string name="dark">深色</string>
-    <string name="light">浅色</string>
-    <string name="system_default">系统</string>
-    <string name="system_custom">自定义</string>
-    <string name="system_custom_plus">自定义（%1$s）</string>
-    <string name="restart_launcher">重启启动器</string>
-    <string name="delete">删除</string>
-    <string name="hide">隐藏</string>
-    <string name="show">显示</string>
-    <string name="lock">锁定</string>
-    <string name="unlock">解锁</string>
-    <string name="locked">已锁定</string>
-    <string name="unlocked">已解锁</string>
-    <string name="pin">固定</string>
-    <string name="unpin">取消固定</string>
-    <string name="rename">重命名</string>
-    <string name="tag">标签</string>
-    <string name="info">信息</string>
-    <string name="okay">确定</string>
-    <string name="apply">应用</string>
-    <string name="reset">重置</string>
-    <string name="cancel">取消</string>
-    <string name="save">保存</string>
-    <string name="disabled">已禁用</string>
-    <string name="open">打开</string>
-    <string name="close">关闭</string>
-    <string name="next">下一步</string>
-    <string name="start">开始</string>
-    <string name="copy">复制</string>
-    <string name="none">无</string>
-    <string name="celsius">摄氏度</string>
-    <string name="fahrenheit">华氏度</string>
-
-    <string name="home_button_phone">电话</string>
-    <string name="home_button_messages">短信</string>
-    <string name="home_button_camera">相机</string>
-    <string name="home_button_photos">照片</string>
-    <string name="home_button_web">网页</string>
-    <string name="home_button_settings">设置</string>
-    <string name="home_button_logo">徽标</string>
-
-    <string name="applist_button_web">网页</string>
-    <string name="applist_button_contacts">联系人</string>
-
-    <string name="allow">允许</string>
-    <string name="deny">拒绝</string>
-
-    <string name="send">发送</string>
-    <string name="message_hint">输入消息…</string>
-    <string name="message_category">分类：%1$s</string>
-
+    <string name="left">Left</string>
+    <string name="right">Right</string>
+    <string name="center">Center</string>
+    <string name="dark">Dark</string>
+    <string name="light">Light</string>
+    <string name="system_default">System</string>
+    <string name="system_custom">Custom</string>
+    <string name="system_custom_plus">Custom (%1$s)</string>
+    <string name="restart_launcher">Restart Launcher</string>
+    <string name="delete">Delete</string>
+    <string name="hide">Hide</string>
+    <string name="show">Show</string>
+    <string name="lock">Lock</string>
+    <string name="unlock">Unlock</string>
+    <string name="locked">Locked</string>
+    <string name="unlocked">Unlocked</string>
+    <string name="pin">Pin</string>
+    <string name="unpin">Unpin</string>
+    <string name="rename">Rename</string>
+    <string name="tag">Tag</string>
+    <string name="info">Info</string>
+    <string name="okay">Okay</string>
+    <string name="apply">Apply</string>
+    <string name="reset">Reset</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="disabled">Disabled</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="next">Next</string>
+    <string name="start">Start</string>
+    <string name="copy">Copy</string>
+    <string name="none">None</string>
+    <string name="celsius">Celsius</string>
+    <string name="fahrenheit">Fahrenheit</string>
+    <string name="home_button_phone">Phone</string>
+    <string name="home_button_messages">Messages</string>
+    <string name="home_button_camera">Camera</string>
+    <string name="home_button_photos">Photos</string>
+    <string name="home_button_web">Web</string>
+    <string name="home_button_settings">Settings</string>
+    <string name="home_button_logo">Logo</string>
+    <string name="applist_button_web">Web</string>
+    <string name="applist_button_contacts">Contacts</string>
+    <string name="allow">Allow</string>
+    <string name="deny">Deny</string>
+    <string name="send">Send</string>
+    <string name="message_hint">Enter a message…</string>
+    <string name="message_category">Category: %1$s</string>
     <!-- Permissions Strings -->
-    <string name="permission_required">需要权限</string>
-    <string name="access_usage_data_permission">要继续，请在设备设置中启用使用情况数据访问权限。</string>
-    <string name="goto_settings">前往设置</string>
-
+    <string name="permission_required">Permission Required</string>
+    <string name="access_usage_data_permission">To proceed, please enable permission to access usage data in your device settings.</string>
+    <string name="goto_settings">Go to Settings</string>
     <!-- Widget Stings -->
-    <string name="widgets_select_widget">选择小部件</string>
-    <string name="widgets_add_widget">添加小部件</string>
-    <string name="widgets_edit_widget">编辑小部件</string>
-    <string name="widgets_stop_editing_widget">停止编辑小部件</string>
-    <string name="widgets_reset_widget">重置所有小部件</string>
-    <string name="widgets_remove_widget">移除所有小部件</string>
-    <string name="widgets_resize">调整大小</string>
-    <string name="widgets_exit_resize">退出调整大小</string>
-    <string name="widgets_remove">移除小部件</string>
-    <string name="widgets_open">打开应用</string>
-    <string name="widgets_view_in_store">在商店中查看应用</string>
-    <string name="widgets_settings">小部件设置</string>
-    <string name="widgets_not_added">尚未添加小部件。长按添加一个。</string>
-
+    <string name="widgets_select_widget">Select a Widget</string>
+    <string name="widgets_add_widget">Add a Widget</string>
+    <string name="widgets_edit_widget">Edit Widgets</string>
+    <string name="widgets_stop_editing_widget">Stop Editing Widgets</string>
+    <string name="widgets_reset_widget">Reset all Widgets</string>
+    <string name="widgets_remove_widget">Remove all Widgets</string>
+    <string name="widgets_resize">Resize</string>
+    <string name="widgets_exit_resize">Exit Resize</string>
+    <string name="widgets_remove">Remove Widget</string>
+    <string name="widgets_open">Open App</string>
+    <string name="widgets_view_in_store">View App In Store</string>
+    <string name="widgets_settings">Widget Settings</string>
+    <string name="widgets_not_added">No widgets added yet. Long press to add one.</string>
     <!-- Private Spaces Strings -->
-    <string name="alert_requires_android_v">此功能需要 Android 15 或更高版本。</string>
-    <string name="toast_private_space_default_home_screen">MultiLauncher 需要成为默认主屏幕才能访问私密空间。</string>
-    <string name="toast_private_space_locked">私密空间已锁定</string>
-    <string name="toast_private_space_unlocked">私密空间已解锁</string>
-    <string name="toast_private_space_not_available">私密空间不可用</string>
-
-    <string name="notes_list_empty_hint">在下方开始你的第一条笔记。</string>
-    <string name="confirm_delete_title">删除笔记</string>
-    <string name="confirm_delete_message">确定要删除这条笔记吗？</string>
-    <string name="edit_note">编辑笔记</string>
-    <string name="category">分类</string>
-    <string name="priority">优先级</string>
-
-    <string name="settings_context_menu_title">上下文菜单</string>
-    <string name="settings_home_buttons_title">主屏幕按钮</string>
-    <string name="settings_applist_buttons_title">应用列表按钮</string>
-
-    <string name="settings_source_code">源代码</string>
-    <string name="settings_donations">捐赠</string>
-    <string name="settings_credits">鸣谢</string>
-
+    <string name="alert_requires_android_v">This functionality requires Android 15 or later.</string>
+    <string name="toast_private_space_default_home_screen">MultiLauncher needs to be the default home screen to access private space.</string>
+    <string name="toast_private_space_locked">Private space locked</string>
+    <string name="toast_private_space_unlocked">Private space unlocked</string>
+    <string name="toast_private_space_not_available">Private space is not available</string>
+    <string name="notes_list_empty_hint">Start your first note below.</string>
+    <string name="confirm_delete_title">Delete Note</string>
+    <string name="confirm_delete_message">Are you sure you want to delete this note?</string>
+    <string name="edit_note">Edit Note</string>
+    <string name="category">Category</string>
+    <string name="priority">Priority</string>
+    <string name="settings_context_menu_title">Context Menu</string>
+    <string name="settings_home_buttons_title">Home Buttons</string>
+    <string name="settings_applist_buttons_title">App List Buttons</string>
+    <string name="settings_source_code">Source Code</string>
+    <string name="settings_donations">Donations</string>
+    <string name="settings_credits">Credits</string>
     <string-array name="priorities">
-        <item>低</item>
-        <item>中</item>
-        <item>高</item>
+        <item>Low</item>
+        <item>Medium</item>
+        <item>High</item>
     </string-array>
-
     <string-array name="categories">
-        <item>无</item>
-        <item>纪念日</item>
-        <item>预约</item>
-        <item>生日</item>
-        <item>家务</item>
-        <item>创意</item>
-        <item>娱乐</item>
-        <item>办事</item>
-        <item>财务</item>
-        <item>健身</item>
-        <item>目标</item>
-        <item>健康</item>
-        <item>爱好</item>
-        <item>家庭</item>
-        <item>学习</item>
-        <item>个人</item>
-        <item>项目</item>
-        <item>购物</item>
-        <item>社交</item>
-        <item>学业</item>
-        <item>旅行</item>
-        <item>工作</item>
+        <item>None</item>
+        <item>Anniversaries</item>
+        <item>Appointments</item>
+        <item>Birthday</item>
+        <item>Chores</item>
+        <item>Creative</item>
+        <item>Entertainment</item>
+        <item>Errands</item>
+        <item>Finance</item>
+        <item>Fitness</item>
+        <item>Goals</item>
+        <item>Health</item>
+        <item>Hobbies</item>
+        <item>Home</item>
+        <item>Learning</item>
+        <item>Personal</item>
+        <item>Projects</item>
+        <item>Shopping</item>
+        <item>Social</item>
+        <item>Study</item>
+        <item>Travel</item>
+        <item>Work</item>
     </string-array>
-
 </resources>
