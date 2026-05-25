@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file. See [conven
 
 ## [1.11.4.3 → Unreleased](https://github.com/CodeWorksCreativeHub/mLauncher/tree/main) - In Development
 
+### :sparkles: Enhancements:
+
+* sort Chinese app labels by pinyin ([#1053](https://github.com/CodeWorksCreativeHub/mLauncher/pull/1053)) ([06215b22](https://github.com/CodeWorksCreativeHub/mLauncher/commit/06215b22))
+* add Simplified Chinese localization ([#1050](https://github.com/CodeWorksCreativeHub/mLauncher/pull/1050)) ([f1bc9d7c](https://github.com/CodeWorksCreativeHub/mLauncher/commit/f1bc9d7c))
+
 ### :bug: Bug Fixes:
 
 * typos in french translation ([#1048](https://github.com/CodeWorksCreativeHub/mLauncher/pull/1048)) ([3e7bc998](https://github.com/CodeWorksCreativeHub/mLauncher/commit/3e7bc998))

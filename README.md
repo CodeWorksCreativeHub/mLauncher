@@ -93,6 +93,7 @@ your hard work and dedication. Thank you all for your invaluable contributions!
 <details><summary>List of translations (click to expand)</summary>
 
 - Arabic
+- Chinese
 - Dutch
 - English
 - French
