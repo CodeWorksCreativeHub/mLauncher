@@ -52,6 +52,7 @@ import com.github.codeworkscreativehub.mlauncher.data.Constants.AppDrawerFlag
 import com.github.codeworkscreativehub.mlauncher.data.ContactListItem
 import com.github.codeworkscreativehub.mlauncher.data.Prefs
 import com.github.codeworkscreativehub.mlauncher.databinding.FragmentAppDrawerBinding
+import com.github.codeworkscreativehub.mlauncher.helper.ChineseSortHelper
 import com.github.codeworkscreativehub.mlauncher.helper.emptyString
 import com.github.codeworkscreativehub.mlauncher.helper.getHexForOpacity
 import com.github.codeworkscreativehub.mlauncher.helper.hasContactsPermission
@@ -304,7 +305,11 @@ class AppDrawerFragment : BaseFragment() {
 
                 val sectionLetter = when (item.category) {
                     AppCategory.PINNED -> "★"
-                    else -> item.activityLabel.firstOrNull()?.uppercaseChar()?.toString() ?: return
+                    else -> {
+                        ChineseSortHelper.sectionKey(item.activityLabel, prefs.appLanguage)
+                            ?: item.activityLabel.firstOrNull()?.uppercaseChar()?.toString()
+                            ?: return
+                    }
                 }
 
                 // Skip redundant updates
@@ -858,10 +863,9 @@ class AppDrawerFragment : BaseFragment() {
             when (item.category) {
                 AppCategory.PINNED -> letters.add("★")
                 else -> {
-                    item.activityLabel.firstOrNull()
-                        ?.uppercaseChar()
-                        ?.toString()
-                        ?.let { letters.add(it) }
+                    val sectionLetter = ChineseSortHelper.sectionKey(item.activityLabel, prefs.appLanguage)
+                        ?: item.activityLabel.firstOrNull()?.uppercaseChar()?.toString()
+                    sectionLetter?.let { letters.add(it) }
                 }
             }
         }
