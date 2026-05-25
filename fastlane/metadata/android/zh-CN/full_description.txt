@@ -1,0 +1,35 @@
+<h1>Multi Launcher: A Clean, Simple Android Launcher Built for Readability and Control</h1>
+
+<p>正在寻找一款简洁易用的启动器吗？ <strong>Multi Launcher</strong> is a powerful yet minimalist Android launcher that replaces tiny icons with clear, readable text buttons, making your phone easier to navigate.</p>
+
+<p>Whether you want a simple home screen, need large text for visibility, or prefer quick gesture-based actions, Multi Launcher gives you full control without overwhelming you with options.</p>
+
+<h2>Why Choose Multi Launcher?</h2>
+<ul>
+    <li><strong>基于文本的启动器：</strong> 没有令人困惑的图标——只有带有标签的应用文本按钮。</li>
+    <li><strong>Highly Customizable:</strong> Adjust layout, font sizes, clock position, and more.</li>
+    <li><strong>快捷手势：</strong> 使用轻点、滑动和长滑动来打开应用、锁定屏幕和访问通知。</li>
+    <li><strong>安全：</strong> 用于设置和隐私的生物识别锁定。</li>
+    <li><strong>非常适合老年人或喜欢简约风格的人士：</strong> 易于阅读、使用和自定义。</li>
+</ul>
+
+<h2>Key Features:</h2>
+<ul>
+    <li>自定义应用名称：重命名应用，使其符合您的个人喜好。</li>
+    <li>Flexible Layouts: Organize apps in the way that makes sense for you.</li>
+    <li>时钟和日期自定义：您可以将小部件放置在任何您想要的位置。</li>
+    <li>App Usage Insights: See how much time you spend in each app.</li>
+    <li>手势快捷键：为双击、滑动等操作设置自定义动作。</li>
+</ul>
+
+<h2>辅助功能：</h2>
+<p>This app uses the <strong>AccessibilityService API</strong> to:</p>
+<ul>
+    <li>使用手势锁定屏幕</li>
+    <li>打开电源菜单</li>
+    <li>下拉通知面板</li>
+</ul>
+
+<p><em>Multi Launcher 尊重您的隐私。 These features do not collect or share personal data.</em></p>
+
+<p>If you’re tired of flashy, cluttered launchers and want something straightforward, stylish, and empowering, <strong>Multi Launcher</strong> is your perfect home screen solution.</p>
