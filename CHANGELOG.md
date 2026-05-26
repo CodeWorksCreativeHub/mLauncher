@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 ### :bug: Bug Fixes:
 
+* correct Simplified Chinese translation typos ([#1055](https://github.com/CodeWorksCreativeHub/mLauncher/pull/1055)) ([19cfd97d](https://github.com/CodeWorksCreativeHub/mLauncher/commit/19cfd97d))
 * typos in french translation ([#1048](https://github.com/CodeWorksCreativeHub/mLauncher/pull/1048)) ([3e7bc998](https://github.com/CodeWorksCreativeHub/mLauncher/commit/3e7bc998))
 
 ### :globe_with_meridians: Localization:
