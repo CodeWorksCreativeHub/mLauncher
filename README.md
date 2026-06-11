@@ -162,7 +162,5 @@ Please note that while purchasing is not obligatory, even a small donation would
 We appreciate your continued support, and thank you for your contribution towards the betterment of our product. 😊
 
 <div align='center'>
-
 <a href="https://www.buymeacoffee.com/CreativeCodeCat"><img src="https://img.buymeacoffee.com/button-api/?text=Enjoy+a+Coffee+on+Me&emoji=&slug=CreativeCodeCat&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" /></a>
-
 </div>
