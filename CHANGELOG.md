@@ -14,6 +14,10 @@ All notable changes to this project will be documented in this file. See [conven
 * correct Simplified Chinese translation typos ([#1055](https://github.com/CodeWorksCreativeHub/mLauncher/pull/1055)) ([19cfd97d](https://github.com/CodeWorksCreativeHub/mLauncher/commit/19cfd97d))
 * typos in french translation ([#1048](https://github.com/CodeWorksCreativeHub/mLauncher/pull/1048)) ([3e7bc998](https://github.com/CodeWorksCreativeHub/mLauncher/commit/3e7bc998))
 
+### :wrench: Code Quality:
+
+* Improve messaging app launch logic in ContextExtensions ([c31d3f99](https://github.com/CodeWorksCreativeHub/mLauncher/commit/c31d3f99))
+
 ### :globe_with_meridians: Localization:
 
 * Updated Language Files. ([#1049](https://github.com/CodeWorksCreativeHub/mLauncher/pull/1049)) ([d29baf00](https://github.com/CodeWorksCreativeHub/mLauncher/commit/d29baf00))
