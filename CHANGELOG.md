@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [1.12.0.0 → Unreleased](https://github.com/CodeWorksCreativeHub/mLauncher/tree/main) - In Development
+
+### :globe_with_meridians: Localization:
+
+* Updated Language Files. ([#1063](https://github.com/CodeWorksCreativeHub/mLauncher/pull/1063)) ([12811d33](https://github.com/CodeWorksCreativeHub/mLauncher/commit/12811d33))
+
+### :broom: Maintenance & Cleanup:
+
+* configure commit message template ([cd11e8d2](https://github.com/CodeWorksCreativeHub/mLauncher/commit/cd11e8d2))
+
 ## [1120000 (1.12.0.0) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.12.0.0) - (11, June 2026)
 
 ### :sparkles: Enhancements:
