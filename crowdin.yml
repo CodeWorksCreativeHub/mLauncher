@@ -1,6 +1,9 @@
-project_id: 761591
+project_id: '761591'
 base_url: https://api.crowdin.com
 pull_request_title: 'Lang: Updated Language Files.'
+pull_request_labels:
+  - crowdin
+  - l10n
 files:
   - source: /app/src/main/res/values/strings.xml
     translation: /app/src/main/res/values-%android_code%/%original_file_name%
