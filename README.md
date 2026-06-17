@@ -84,34 +84,39 @@ We try to balance customizability and minimalization well still being simple :)<
 
 </details>
 
-## Translations:
+## Translations
 
-We would like to extend our sincere gratitude to the numerous individuals who have contributed to the translation of our application into various
-languages. Your efforts have made it possible for users around the world to access and benefit from our product, and we are immensely appreciative of
-your hard work and dedication. Thank you all for your invaluable contributions!
+🌍 Help translate mLauncher into your language:
+
+**Crowdin:** https://crowdin.com/project/mlauncher
+
+We welcome contributions from translators of all experience levels. If you'd like to help make mLauncher accessible to more people around the world, please join our Crowdin project and contribute translations.
+
+We would like to extend our sincere gratitude to the numerous individuals who have contributed to the translation of our application into various languages. Your efforts have made it possible for users around the world to access and benefit from our product, and we are immensely appreciative of your hard work and dedication. Thank you all for your invaluable contributions!
 
 <details><summary>List of translations (click to expand)</summary>
 
-- Arabic
-- Chinese
-- Dutch
-- English
-- French
-- German
-- Hebrew
-- Italian
-- Japanese
-- Korean
-- Lithuanian
-- Polish
-- Portuguese
-- Russian
-- Slovak
-- Spanish
-- Thai
-- Turkish
+* Arabic
+* Chinese
+* Dutch
+* English
+* French
+* German
+* Hebrew
+* Italian
+* Japanese
+* Korean
+* Lithuanian
+* Polish
+* Portuguese
+* Russian
+* Slovak
+* Spanish
+* Thai
+* Turkish
 
 </details>
+
 
 ## Contribute
 
