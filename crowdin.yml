@@ -4,6 +4,8 @@ pull_request_title: 'Lang: Updated Language Files.'
 pull_request_labels:
   - crowdin
   - l10n
+commit_message: "Lang: New translations %language%/%original_file_name% from Crowdin"
+append_commit_message: false
 files:
   - source: /app/src/main/res/values/strings.xml
     translation: /app/src/main/res/values-%android_code%/%original_file_name%
