@@ -1,3 +1,5 @@
+project_id: 761591
+base_url: https://api.crowdin.com
 pull_request_title: 'Lang: Updated Language Files.'
 files:
   - source: /app/src/main/res/values/strings.xml
