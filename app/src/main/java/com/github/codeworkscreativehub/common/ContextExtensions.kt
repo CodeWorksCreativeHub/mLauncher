@@ -126,26 +126,65 @@ fun Context.openDialerApp() {
 }
 
 fun Context.openTextMessagesApp() {
-    try {
-        val intent = Intent(Intent.ACTION_MAIN).apply {
-            addCategory(Intent.CATEGORY_APP_MESSAGING)
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK
-        }
-        this.startActivity(intent)
-    } catch (_: Exception) {
-        try {
-            val defaultSmsPackage = Telephony.Sms.getDefaultSmsPackage(this)
+    val launched = tryLaunchDefaultSmsApp()
+            || tryLaunchMessagingCategory()
+            || tryLaunchSmsCompose()
 
-            if (defaultSmsPackage != null) {
-                val intent = packageManager.getLaunchIntentForPackage(defaultSmsPackage)
-                intent?.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                startActivity(intent)
-            }
-        } catch (e: Exception) {
-            AppLogger.d("openTextMessagesApp", e.toString())
-        }
+    if (!launched) {
+        AppLogger.d("openTextMessagesApp", "No text messaging app found")
     }
+
     CrashHandler.logUserAction("Text Messages App Launched")
+}
+
+private fun Context.tryLaunchDefaultSmsApp(): Boolean {
+    return try {
+        val defaultSmsPackage = Telephony.Sms.getDefaultSmsPackage(this) ?: return false
+        val intent = packageManager.getLaunchIntentForPackage(defaultSmsPackage) ?: return false
+
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        startActivity(intent)
+        true
+    } catch (e: Exception) {
+        AppLogger.d("tryLaunchDefaultSmsApp", e.toString())
+        false
+    }
+}
+
+private fun Context.tryLaunchMessagingCategory(): Boolean {
+    return try {
+        val intent = Intent.makeMainSelectorActivity(
+            Intent.ACTION_MAIN,
+            Intent.CATEGORY_APP_MESSAGING
+        ).apply {
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        }
+
+        if (intent.resolveActivity(packageManager) == null) return false
+
+        startActivity(intent)
+        true
+    } catch (e: Exception) {
+        AppLogger.d("tryLaunchMessagingCategory", e.toString())
+        false
+    }
+}
+
+private fun Context.tryLaunchSmsCompose(): Boolean {
+    return try {
+        val intent = Intent(Intent.ACTION_SENDTO).apply {
+            data = "smsto:".toUri()
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        }
+
+        if (intent.resolveActivity(packageManager) == null) return false
+
+        startActivity(intent)
+        true
+    } catch (e: Exception) {
+        AppLogger.d("tryLaunchSmsCompose", e.toString())
+        false
+    }
 }
 
 fun Context.openAlarmApp() {

@@ -112,15 +112,6 @@ jobs:
           tag: ${{ github.ref }}
           overwrite: true
 
-      - name: Upload to Google Play
-        uses: r0adkll/upload-google-play@v1
-        with:
-          serviceAccountJsonPlainText: ${{ secrets.PLAY_SERVICE_ACCOUNT_JSON }}
-          packageName: app.mlauncher
-          releaseFiles: ${{ steps.detect_artifacts.outputs.aab }}
-          track: internal
-          status: completed
-
       - name: Set up Node.js
         uses: actions/setup-node@v6
         with:
@@ -133,3 +124,12 @@ jobs:
         run: |
           # Run your Discord release script
           node post-discord-release.js
+
+      - name: Upload to Google Play
+        uses: r0adkll/upload-google-play@v1
+        with:
+          serviceAccountJsonPlainText: ${{ secrets.PLAY_SERVICE_ACCOUNT_JSON }}
+          packageName: app.mlauncher
+          releaseFiles: ${{ steps.detect_artifacts.outputs.aab }}
+          tracks: internal
+          status: completed
