@@ -233,8 +233,7 @@
     <string name="accessibility_service_name">MultiLauncher 操作服务</string>
     <string name="accessibility_service_why_we_need">为什么需要无障碍权限</string>
     <string name="accessibility_service_description">此无障碍服务允许 MultiLauncher 执行某些操作，例如锁定屏幕或打开快捷设置面板。我们的无障碍服务不会收集或分享任何数据。</string>
-    <string name="accessibility_service_more_info">
-    MultiLauncher 需要访问无障碍服务，以启用以下功能：\n\n
+    <string name="accessibility_service_more_info">    MultiLauncher 需要访问无障碍服务，以启用以下功能：\n\n
     • 通过手势或快捷方式锁定屏幕\n
     • 快速打开快捷设置面板\n\n
     此权限允许 MultiLauncher 代你执行这些操作，但我们不会通过此服务收集、存储或分享任何个人或敏感数据。\n\n
@@ -312,10 +311,10 @@
     <string name="home_button_messages">信息</string>
     <string name="home_button_camera">相机</string>
     <string name="home_button_photos">照片</string>
-    <string name="home_button_web">Web</string>
+    <string name="home_button_web">网站</string>
     <string name="home_button_settings">设置</string>
     <string name="home_button_logo">徽标</string>
-    <string name="applist_button_web">Web</string>
+    <string name="applist_button_web">网站</string>
     <string name="applist_button_contacts">联系人</string>
     <string name="allow">允许</string>
     <string name="deny">拒绝</string>
