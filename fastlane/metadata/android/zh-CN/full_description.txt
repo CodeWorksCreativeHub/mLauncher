@@ -1,6 +1,6 @@
 <h1>Multi Launcher：清爽简洁、易读可控的 Android 启动器</h1>
 
-<p>正在寻找一款简洁易用的启动器吗？ <p>想找一款告别杂乱、用起来更轻松的启动器吗？<strong>Multi Launcher</strong> 是一款功能强大而简约的 Android 启动器，它用清晰易读的文字按钮取代小图标，让手机导航更直观。</p>
+<p>正在寻找一款简洁易用的启动器吗？ <p>正在寻找一款简洁易用的启动器吗？ <p>想找一款告别杂乱、用起来更轻松的启动器吗？<strong>Multi Launcher</strong> 是一款功能强大而简约的 Android 启动器，它用清晰易读的文字按钮取代小图标，让手机导航更直观。</p>
 
 <p>无论你想要更简单的主屏幕、需要更大的文字提升可读性，还是喜欢用手势快速操作，Multi Launcher 都能让你掌控体验，同时不被过多选项打扰。</p>
 
@@ -30,6 +30,6 @@
     <li>下拉通知面板</li>
 </ul>
 
-<p><em>Multi Launcher 尊重你的隐私。这些功能不会收集或分享个人数据。</em></p> <p><em>Multi Launcher 尊重您的隐私。 These features do not collect or share personal data.</em></p>
+<p><em>Multi Launcher 尊重你的隐私。这些功能不会收集或分享个人数据。</em></p> <p><em>Multi Launcher 尊重您的隐私。 These features do not collect or share personal data.</em></p> <p><em>Multi Launcher 尊重您的隐私。 These features do not collect or share personal data.</em></p>
 
 <p>如果你已经厌倦了花哨杂乱的启动器，想要一个直观、清爽且实用的主屏幕方案，<strong>Multi Launcher</strong> 会是很合适的选择。</p>
