@@ -277,7 +277,9 @@
     <string name="center">ศูนย์กลาง</string>
     <string name="dark">มืด</string>
     <string name="light">แสงสว่าง</string>
-    <string name="system_default">ระบบ</string>
+    <string name="system_default">
+		ระบบ
+	</string>
     <string name="system_custom">กำหนดเอง</string>
     <string name="system_custom_plus">กำหนดเอง (%1$s)</string>
     <string name="restart_launcher">รีสตาร์ทตัวเรียกใช้งาน</string>
