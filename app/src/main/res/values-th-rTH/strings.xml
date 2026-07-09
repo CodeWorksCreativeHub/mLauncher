@@ -229,6 +229,15 @@
     <string name="hidden_apps">แอพที่ซ่อนอยู่</string>
     <string name="favorite_apps">แอปพลิเคชั่นที่ชื่นชอบ</string>
     <string name="clear_home_app">เคลียร์โฮมแอพ</string>
+    <!-- Favorite management strings -->
+    <string name="add_app">Add App</string>
+    <string name="remove_app">Remove App</string>
+    <string name="max_apps_reached">Maximum number of home apps reached</string>
+    <string name="min_apps_reached">Minimum number of home apps reached</string>
+    <string name="no_apps_to_remove">No apps to remove</string>
+    <string name="select_app_to_remove">Select app to remove</string>
+    <string name="empty_favorite">Unused</string>
+    <string name="confirm_remove_favorite">Are you sure you want to remove this app from favorites?</string>
     <!-- Accessibility/Help Strings -->
     <string name="accessibility_service_name">บริการการดำเนินการ MultiLauncher</string>
     <string name="accessibility_service_why_we_need">เหตุใดเราจึงต้องได้รับอนุญาตการเข้าถึง</string>
