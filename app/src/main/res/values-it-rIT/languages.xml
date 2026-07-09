@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="lang_arabic">Arabo</string>
-    <string name="lang_chinese">Cinese</string>
+    <string name="lang_chinese">cinese</string>
     <string name="lang_dutch">Olandese</string>
     <string name="lang_czech">ceco</string>
     <string name="lang_english">Inglese</string>
