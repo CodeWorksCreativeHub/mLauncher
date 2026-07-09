@@ -1,35 +1,35 @@
 <h1>Multi Lanchar: Un lanzador de Android limpio y simple, diseñado para facilitar la lectura y el control</h1>
 
-<p>¿Buscas un lanzador que elimine el desorden y mantenga las cosas fáciles? <strong>Multi Launcher</strong> es un lanzador de Android potente pero minimalista que reemplaza pequeños íconos con botones de texto claros y legibles, lo que hace que su teléfono sea más fácil de navegar.</p>
+<p>¿Buscas un lanzador que elimine el desorden y mantenga las cosas fáciles? <strong>Multi Launcher</strong> es un lanzador de Android potente pero minimalista que reemplaza los iconos diminutos con botones de texto claros y legibles, lo que facilita la navegación por tu teléfono.</p>
 
-<p>Ya sea que desee una pantalla de inicio simple, necesite texto grande para mayor visibilidad o prefiera acciones rápidas basadas en gestos, Multi Launcher le brinda control total sin abrumarlo con opciones.</p>
+<p>Tanto si deseas una pantalla de inicio sencilla, como si necesitas texto grande para mayor visibilidad o prefieres acciones rápidas basadas en gestos, Multi Launcher te ofrece control total sin abrumarte con opciones.</p>
 
 <h2>¿Por qué elegir Múltiples lanzadores?</h2>
 <ul>
-    <li><strong>Lanzador basado en texto:</strong> Sin íconos confusos, solo botones de texto etiquetados para tus aplicaciones.</li>
-    <li><strong>Altamente personalizable:</strong> Ajusta el diseño, el tamaño de fuente, la posición del reloj y más.</li>
-    <li><strong>Gestos rápidos:</strong> Usa toques, deslizamientos y deslizamientos prolongados para abrir aplicaciones, bloquear la pantalla y acceder a las notificaciones.</li>
+    <li><strong>Lanzador basado en texto:</strong> Sin iconos confusos: solo botones de texto etiquetados para tus aplicaciones.</li>
+    <li><strong>Altamente personalizable:</strong> Ajusta el diseño, el tamaño de la fuente, la posición del reloj y más.</li>
+    <li><strong>Gestos rápidos:</strong> Usa toques, deslizamientos y deslizamientos largos para abrir aplicaciones, bloquear la pantalla y acceder a las notificaciones.</li>
     <li><strong>Seguro:</strong> Bloqueo biométrico para configuración y privacidad.</li>
     <li><strong>Ideal para personas mayores o amantes de la simplicidad:</strong> Fácil de leer, usar y personalizar.</li>
 </ul>
 
 <h2>Características principales:</h2>
 <ul>
-    <li>Nombres de aplicaciones personalizados: cambia el nombre de las aplicaciones para que coincidan con lo que piensas de ellas.</li>
-    <li>Diseños flexibles: organiza las aplicaciones de la forma que más te convenga.</li>
-    <li>Personalización del reloj y la fecha: coloca los widgets donde quieras.</li>
-    <li>Información sobre el uso de aplicaciones: vea cuánto tiempo pasa en cada aplicación.</li>
-    <li>Atajos de gestos: establece acciones personalizadas para toques dobles, deslizamientos y más.</li>
+    <li>Nombres de aplicaciones personalizados: Cambia el nombre de las aplicaciones para que coincidan con cómo las concibes.</li>
+    <li>Diseños flexibles: Organiza las aplicaciones de la forma que tenga sentido para ti.</li>
+    <li>Personalización de reloj y fecha: Coloca los widgets donde quieras.</li>
+    <li>Información sobre el uso de la app: Vea cuánto tiempo pasa en cada app.</li>
+    <li>Atajos de gestos: configura acciones personalizadas para toques dobles, deslizamientos y más.</li>
 </ul>
 
 <h2>Características de accesibilidad:</h2>
-<p>Esta aplicación utiliza la <strong>API de AccessibilityService</strong> para:</p>
+<p>Esta aplicación utiliza la API <strong>AccessibilityService</strong> para:</p>
 <ul>
     <li>Bloquear la pantalla con un gesto</li>
-    <li>Abre el menú de energía</li>
-    <li>Abre el cajón de notificaciones</li>
+    <li>Abrir el menú de encendido</li>
+    <li>Despliega el panel de notificaciones</li>
 </ul>
 
 <p><em>Multi Launcher respeta tu privacidad. Estas funciones no recopilan ni comparten datos personales.</em></p>
 
-<p>Si estás cansado de los lanzadores llamativos y desordenados y quieres algo sencillo, elegante y potente, <strong>Multi Launcher</strong> es tu solución perfecta para la pantalla de inicio.</p>
+<p>Si estás cansado de los lanzadores llamativos y recargados y quieres algo sencillo, elegante y potente, <strong>Multi Launcher</strong> es la solución perfecta para tu pantalla de inicio.</p>
