@@ -230,14 +230,14 @@
     <string name="favorite_apps">收藏应用</string>
     <string name="clear_home_app">清除主屏幕应用</string>
     <!-- Favorite management strings -->
-    <string name="add_app">Add App</string>
-    <string name="remove_app">Remove App</string>
-    <string name="max_apps_reached">Maximum number of home apps reached</string>
-    <string name="min_apps_reached">Minimum number of home apps reached</string>
-    <string name="no_apps_to_remove">No apps to remove</string>
-    <string name="select_app_to_remove">Select app to remove</string>
-    <string name="empty_favorite">Unused</string>
-    <string name="confirm_remove_favorite">Are you sure you want to remove this app from favorites?</string>
+    <string name="add_app">添加应用</string>
+    <string name="remove_app">移除应用</string>
+    <string name="max_apps_reached">已达到最大家庭应用数量</string>
+    <string name="min_apps_reached">达到的最低家庭应用数量</string>
+    <string name="no_apps_to_remove">没有要移除的应用</string>
+    <string name="select_app_to_remove">选择要移除的应用</string>
+    <string name="empty_favorite">未使用的</string>
+    <string name="confirm_remove_favorite">您确定要将此应用从收藏夹中移除吗？</string>
     <!-- Accessibility/Help Strings -->
     <string name="accessibility_service_name">MultiLauncher 操作服务</string>
     <string name="accessibility_service_why_we_need">为什么需要无障碍权限</string>
