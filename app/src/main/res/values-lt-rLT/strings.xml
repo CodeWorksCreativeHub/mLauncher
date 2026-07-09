@@ -240,7 +240,8 @@
 
 Šis leidimas leidžia MultiLauncher atlikti šiuos veiksmus jūsų vardu, tačiau mes nerenkame, nesaugome ir nesidalijame jokiais asmeniniais ar jautriais duomenimis per šią paslaugą.
 
-Jūs bet kada galite išjungti šią prieigą savo įrenginio nustatymuose.</string>
+Jūs bet kada galite išjungti šią prieigą savo įrenginio nustatymuose.
+</string>
     <string name="can_not_delete_system_apps">Nepavyksta ištrinti sistemos programų</string>
     <string name="please_select_app">Pasirinkite programėlę</string>
     <string name="drawer_list_empty_hint">Nerasta jokių programėlių</string>
