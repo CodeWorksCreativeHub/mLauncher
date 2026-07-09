@@ -2,81 +2,81 @@
 <resources>
     <!-- Base Settings -->
     <string name="select_app">アプリを選択</string>
-    <string name="show_apps">アプリを検索</string>
+    <string name="show_apps">検索アプリ</string>
     <string name="show_private_apps">プライベートアプリを検索</string>
-    <string name="show_work_apps">仕事用アプリを検索</string>
+    <string name="show_work_apps">仕事のアプリを探す</string>
     <string name="show_contacts">連絡先を検索</string>
     <string name="welcome_to_launcher">%1$sへようこそ</string>
-    <string name="continue_by_you_agree">続行すると、 %1$sに同意したことになります</string>
-    <string name="usage_access_permission">使用アクセス権限</string>
-    <string name="location_access_permission">位置情報アクセス権限</string>
-    <string name="accessibility_access_permission">アクセシビリティの許可</string>
+    <string name="continue_by_you_agree">続行すると、 %1$s に同意したことになります。</string>
+    <string name="usage_access_permission">使用状況アクセス権限</string>
+    <string name="location_access_permission">位置情報へのアクセス権限</string>
+    <string name="accessibility_access_permission">アクセシビリティ権限</string>
     <string name="grant_permission">許可を与える</string>
-    <string name="grant_usage_permission">続行するには、使用アクセス権限を付与してください。</string>
-    <string name="reason_usage_permission">このアプリは、最もよく使用するアプリを表示し、画面時間を追跡し、エクスペリエンスを向上させるために使用状況アクセスを必要とします。個人データは収集または共有されません。</string>
-    <string name="grant_location_permission">続行するには、位置情報の許可を付与してください。</string>
-    <string name="reason_location_permission">このアプリは、現在地に基づいて正確な天気情報を提供するために位置情報へのアクセスを必要とします。個人データの収集や共有は一切行いません。</string>
-    <string name="grant_accessibility_permission">続行するには、アクセシビリティの許可を付与してください。</string>
-    <string name="reason_accessibility_permission">MultiLauncherは、画面のロックやクイック設定の起動などの拡張機能を利用するために、アクセシビリティの許可が必要です。これらの機能はユーザビリティの向上に役立ちます。当社はいかなるデータの収集や共有も行いません。</string>
-    <string name="permission_granted">許可されました! 続行できます。</string>
-    <string name="this_can_be_disabled_later">* この権限は後で無効にされる可能性があります。</string>
+    <string name="grant_usage_permission">続行するには、使用状況へのアクセス権限を付与してください。</string>
+    <string name="reason_usage_permission">このアプリは、よく使うアプリを表示したり、スクリーンタイムを追跡したり、ユーザーエクスペリエンスを向上させるために、使用状況へのアクセス権限を必要とします。当社は個人データを収集したり、共有したりすることはありません。</string>
+    <string name="grant_location_permission">続行するには、位置情報へのアクセス許可を与えてください。</string>
+    <string name="reason_location_permission">このアプリは、現在地に基づいて正確な天気予報を提供するために、位置情報へのアクセス権限を必要とします。当社は個人データを収集したり、共有したりすることはありません。</string>
+    <string name="grant_accessibility_permission">続行するには、アクセシビリティのアクセス許可を与えてください。</string>
+    <string name="reason_accessibility_permission">MultiLauncherは、画面ロックやクイック設定の起動といった拡張機能を提供するために、アクセシビリティ権限を必要とします。これらの機能は、ユーザビリティの向上に役立ちます。当社は、いかなるデータも収集または共有しません。</string>
+    <string name="permission_granted">許可されました！続行してください。</string>
+    <string name="this_can_be_disabled_later">※この権限は後で無効にされる可能性があります。</string>
     <!-- Strings used for settings menus -->
     <string name="settings_name">マルチランチャー設定</string>
     <string name="settings_features_title">特徴</string>
-    <string name="settings_features_description">生産性を向上させます。</string>
+    <string name="settings_features_description">生産性を向上させましょう。</string>
     <string name="settings_look_feel_title">見て &amp; 感じて</string>
-    <string name="settings_look_feel_description">ホーム画面に個性的なタッチを加えましょう。</string>
+    <string name="settings_look_feel_description">ホーム画面に自分らしさを加えましょう。</string>
     <string name="settings_gestures_title">ジェスチャー</string>
-    <string name="settings_gestures_description">ジェスチャをカスタマイズして、すばやく簡単にナビゲーションできます。</string>
+    <string name="settings_gestures_description">ジェスチャーをカスタマイズして、素早く簡単に操作できます。</string>
     <string name="settings_notes_title">注記</string>
-    <string name="settings_notes_description">自分のスタイルに合わせてメモをカスタマイズします。</string>
+    <string name="settings_notes_description">自分のスタイルに合わせてメモをカスタマイズしましょう。</string>
     <!-- Favorite Apps -->
     <!-- Favorite Apps -->
     <string name="settings_favorite_apps_title">お気に入りのアプリ</string>
-    <string name="settings_favorite_apps_description">ホーム画面からすばやくアクセスできるように、お気に入りのアプリを並べ替えます。</string>
+    <string name="settings_favorite_apps_description">お気に入りのアプリを並べ替えて、ホーム画面からすぐにアクセスできるようにしましょう。</string>
     <!-- Hidden Apps -->
-    <string name="settings_hidden_apps_title">非表示のアプリ</string>
-    <string name="settings_hidden_apps_description">非表示のアプリを管理します - 必要に応じてこのリストから任意のアプリを表示します。</string>
+    <string name="settings_hidden_apps_title">隠しアプリ</string>
+    <string name="settings_hidden_apps_description">非表示アプリを管理する — 必要に応じて、このリストから任意のアプリを表示できます。</string>
     <string name="settings_advanced_title">詳細設定</string>
-    <string name="settings_advanced_description">アプリ情報、デフォルトのランチャー、バックアップ ツールなどにアクセスします。</string>
+    <string name="settings_advanced_description">アプリ情報、デフォルトランチャー、バックアップツールなどにアクセスできます。</string>
     <string name="settings_expert_title">専門家</string>
-    <string name="settings_expert_description">隠されたオプションや高度な調整をアンロックします。</string>
+    <string name="settings_expert_description">隠されたオプションや高度な設定をアンロックします。</string>
     <string name="settings_exit_mlauncher_title">マルチランチャーを終了する</string>
-    <string name="settings_exit_mlauncher_description">一時的にデフォルトのランチャーに切り替えます。</string>
-    <string name="settings_exit_mlauncher_dialog">ランチャーを選択</string>
+    <string name="settings_exit_mlauncher_description">一時的にデフォルトのランチャーに切り替えてください。</string>
+    <string name="settings_exit_mlauncher_dialog">ランチャーを選択してください</string>
     <!-- Strings used for features settings -->
     <string name="features_settings_title">特徴</string>
     <string name="personalization">パーソナライゼーション</string>
     <string name="theme_mode">テーマモード</string>
     <string name="app_language">インターフェース言語</string>
     <string name="font_family">フォントファミリー</string>
-    <string name="search_and_app_list">&amp; アプリリストを検索</string>
-    <string name="hide_search_view">検索ビューを非表示</string>
-    <string name="show_floating_button">ショートカットボタンを表示</string>
-    <string name="lock_orientation">方向をロック</string>
+    <string name="search_and_app_list">検索 &amp; アプリ一覧</string>
+    <string name="hide_search_view">検索ビューを非表示にする</string>
+    <string name="show_floating_button">ショートカットボタンを表示する</string>
+    <string name="lock_orientation">ロックの向き</string>
     <string name="haptic_feedback">触覚フィードバック</string>
     <string name="search">検索</string>
     <string name="search_engine">検索エンジン</string>
     <string name="show_az_sidebar">AZサイドバーを表示</string>
     <string name="auto_show_keyboard">Auto show keyboard</string>
-    <string name="search_from_start">最初からアプリ検索。</string>
+    <string name="search_from_start">スタート地点から検索</string>
     <string name="home_management">ホーム &amp; アプリ管理</string>
     <string name="auto_open_apps">アプリを自動的に開く</string>
-    <string name="open_apps_on_enter">Enterキーでアプリを開く</string>
-    <string name="lock_home_apps">アプリをロック</string>
+    <string name="open_apps_on_enter">エンターでアプリを開く</string>
+    <string name="lock_home_apps">ホームアプリをロックする</string>
     <string name="lock_settings">ロック設定</string>
     <string name="apps_on_home_screen">ホームアプリの数</string>
     <string name="pages_on_home_screen">ページ数</string>
-    <string name="enable_home_pager">ホーム ページャーを有効にする</string>
+    <string name="enable_home_pager">ホームページャーを有効にする</string>
     <string name="enable_app_timer">アプリタイマーを有効にする</string>
-    <string name="force_colored_wallpaper">フォースカラー壁紙</string>
+    <string name="force_colored_wallpaper">強制カラー壁紙</string>
     <string name="info_tiles">情報タイル</string>
     <string name="show_clock">時計を表示</string>
-    <string name="show_clock_format">表示形式 (AM/PM)</string>
+    <string name="show_clock_format">番組形式（午前／午後）</string>
     <string name="show_date">日付を表示</string>
     <string name="show_day_of_year">年間ショー開催日</string>
     <string name="show_alarm">アラームを表示</string>
-    <string name="show_daily_word">毎日の単語を表示</string>
+    <string name="show_daily_word">今日の単語を見る</string>
     <string name="show_battery">バッテリーを表示</string>
     <string name="show_battery_icon">バッテリーアイコンを表示</string>
     <string name="show_private_spaces">プライベートスペースアイコンを表示</string>
@@ -84,7 +84,7 @@
     <string name="show_weather">天気予報を表示</string>
     <string name="gps_location">GPS位置情報</string>
     <string name="temp_unit">温度単位</string>
-    <string name="manual_location">手動で場所を設定する</string>
+    <string name="manual_location">手動設定場所</string>
     <string name="icon_packs">アイコンパック</string>
     <!-- Strings used for look & feel settings -->
     <string name="look_feel_settings_title">見て &amp; 感じて</string>
@@ -93,31 +93,31 @@
     <string name="date_text_size">日付のテキストサイズ</string>
     <string name="clock_text_size">時計の文字サイズ</string>
     <string name="alarm_text_size">アラームのテキストサイズ</string>
-    <string name="daily_word_text_size">日々の単語のテキストサイズ</string>
+    <string name="daily_word_text_size">デイリーワードのテキストサイズ</string>
     <string name="battery_text_size">バッテリーのテキストサイズ</string>
-    <string name="layout_positioning">レイアウト &amp; 配置</string>
-    <string name="app_padding_size">パディングサイズ</string>
-    <string name="extend_home_apps_area">クリック可能な領域を拡張</string>
+    <string name="layout_positioning">レイアウト &amp; 位置</string>
+    <string name="app_padding_size">パッドサイズ</string>
+    <string name="extend_home_apps_area">クリック可能な領域を拡張する</string>
     <string name="alignment_to_bottom">下揃え</string>
     <string name="visibility_display">可視性 &amp; 表示</string>
-    <string name="show_status_bar">ステータスバーを表示</string>
-    <string name="show_navigation_bar">ナビゲーションバーを表示</string>
-    <string name="show_recent_apps">最近使ったアプリを表示</string>
+    <string name="show_status_bar">ステータスバーを表示する</string>
+    <string name="show_navigation_bar">ナビゲーションバーを表示する</string>
+    <string name="show_recent_apps">最近使用したアプリを表示</string>
     <string name="number_of_recents">最近使用したアプリの数</string>
-    <string name="show_app_usage_stats">アプリの使用状況統計を表示</string>
+    <string name="show_app_usage_stats">アプリの使用状況統計を表示する</string>
     <string name="select_home_icons">ホームアイコンパックを選択</string>
-    <string name="select_app_list_icons">アプリリストアイコンパックを選択</string>
+    <string name="select_app_list_icons">アプリ一覧アイコンパックを選択</string>
     <string name="enable_filter_strength">あいまい検索を有効にする</string>
-    <string name="filter_strength">ファジーファインダーの強さ</string>
+    <string name="filter_strength">ファジーファインダーの強度</string>
     <string name="show_background">背景を表示</string>
-    <string name="background_opacity">背景の透明度</string>
-    <string name="total_screen_time">合計スクリーンタイムを表示</string>
+    <string name="background_opacity">背景の透明性</string>
+    <string name="total_screen_time">総画面時間</string>
     <string name="element_alignment">要素の配置</string>
     <string name="date_alignment">日付</string>
     <string name="clock_alignment">クロック</string>
     <string name="alarm_alignment">アラーム</string>
-    <string name="daily_word_alignment">日々の単語</string>
-    <string name="home_alignment">ホームアプリ</string>
+    <string name="daily_word_alignment">デイリーワード</string>
+    <string name="home_alignment">ホーム アプリ</string>
     <string name="drawer_alignment">ドロワーアプリ</string>
     <string name="element_colors">要素の色</string>
     <string name="background_color">背景</string>
@@ -125,19 +125,19 @@
     <string name="clock_color">クロック</string>
     <string name="date_color">日付</string>
     <string name="alarm_color">アラーム</string>
-    <string name="daily_word_color">日々の単語</string>
+    <string name="daily_word_color">デイリーワード</string>
     <string name="battery_color">バッテリー</string>
     <string name="rainbow_shortcuts">レインボーショートカット</string>
     <string name="shortcuts_color">ショートカット</string>
     <!-- Strings used for gestures settings -->
     <string name="gestures_settings_title">ジェスチャー</string>
-    <string name="tap_click_actions">タップ/クリックアクション</string>
+    <string name="tap_click_actions">タップ/クリック操作</string>
     <string name="double_tap">ダブルタップ</string>
     <string name="clock_click_app">時計をクリックしてください</string>
     <string name="date_click_app">日付をクリックしてください</string>
-    <string name="usage_click_app">合計使用量をクリック</string>
+    <string name="usage_click_app">「合計使用量」をクリックしてください。</string>
     <string name="floating_click_app">ロゴをクリック</string>
-    <string name="swipe_movement">スワイプ動作</string>
+    <string name="swipe_movement">スワイプ操作</string>
     <string name="short_swipe_up_app">上にスワイプ</string>
     <string name="short_swipe_down_app">下にスワイプ</string>
     <string name="short_swipe_left_app">左にスワイプ</string>
@@ -148,7 +148,7 @@
     <string name="long_swipe_right_app">長押し 右にスワイプ</string>
     <string name="open_app">アプリを開く</string>
     <string name="lock_screen">ロック画面</string>
-    <string name="private_space">プライベートスペース (%1$s)</string>
+    <string name="private_space">プライベートスペース（%1$s）</string>
     <string name="show_notifications">通知を表示</string>
     <string name="show_app_list">アプリ一覧を表示</string>
     <string name="show_widget_page">ウィジェットページを表示</string>
@@ -158,128 +158,129 @@
     <string name="show_recents">Show Recents</string>
     <string name="open_power_dialog">電源ダイアログ</string>
     <string name="take_a_screenshot">スクリーンショットを撮る</string>
-    <string name="previous_page">左ページへ</string>
-    <string name="next_page">右ページへ</string>
+    <string name="previous_page">前のページへ</string>
+    <string name="next_page">次のページへ</string>
     <!-- Strings used for notes settings -->
     <string name="notes_settings_title">注記</string>
     <string name="display_options">表示オプション</string>
-    <string name="auto_expand_notes">ノートの自動展開</string>
+    <string name="auto_expand_notes">自動展開ノート</string>
     <string name="click_to_edit_delete">クリックして編集/削除</string>
     <string name="notes_colors">ノートの色</string>
-    <string name="notes_background_color">ノートの背景</string>
+    <string name="notes_background_color">注釈の背景</string>
     <string name="bubble_background_color">バブル背景</string>
     <string name="bubble_message_color">バブルメッセージ</string>
-    <string name="bubble_date_time_color">バブルの日付/時刻</string>
+    <string name="bubble_date_time_color">バブルの日時</string>
     <string name="bubble_category_color">バブルカテゴリー</string>
     <string name="input_colors">入力色</string>
     <string name="message_input_color">メッセージ入力</string>
     <string name="message_input_hint_color">メッセージ入力のヒント</string>
     <!-- Strings used for advanced settings -->
-    <string name="advanced_settings_title">詳細設定</string>
+    <string name="advanced_settings_title">高度な</string>
     <string name="advanced_settings_app_info_title">アプリ情報</string>
     <string name="advanced_settings_app_info_description">%1$s</string>
-    <string name="advanced_settings_set_as_default_launcher">デフォルトのランチャーに設定</string>
-    <string name="advanced_settings_set_as_default_launcher_description">Multi Launcher をデフォルトのホーム アプリにします。</string>
-    <string name="advanced_settings_change_default_launcher">デフォルトのランチャーを変更する</string>
-    <string name="advanced_settings_change_default_launcher_description">デフォルトとして別のランチャーを選択します。</string>
-    <string name="advanced_settings_restart_title">ランチャーを再起動</string>
-    <string name="advanced_settings_restart_description">オンとオフを切り替えてみましたか?</string>
+    <string name="advanced_settings_set_as_default_launcher">デフォルトランチャーとして設定</string>
+    <string name="advanced_settings_set_as_default_launcher_description">Multi Launcherをデフォルトのホームアプリに設定しましょう。</string>
+    <string name="advanced_settings_change_default_launcher">デフォルトランチャーを変更する</string>
+    <string name="advanced_settings_change_default_launcher_description">デフォルトのランチャーを別のものに変更してください。</string>
+    <string name="advanced_settings_restart_title">ランチャーを再起動してください</string>
+    <string name="advanced_settings_restart_description">電源をオンオフしてみましたか？</string>
     <string name="advanced_settings_backup_restore_title">バックアップ/復元</string>
-    <string name="advanced_settings_backup_restore_description">何を願うか注意してください。</string>
+    <string name="advanced_settings_backup_restore_description">願い事には気をつけた方がいいですよ。</string>
     <string name="advanced_settings_backup_restore_backup">バックアップ</string>
     <string name="advanced_settings_backup_restore_restore">復元する</string>
     <string name="advanced_settings_backup_restore_clear">すべてのデータを消去</string>
     <string name="advanced_settings_backup_restore_clear_title">設定をクリア</string>
-    <string name="advanced_settings_backup_restore_clear_description">本当にこれを実行しますか?</string>
+    <string name="advanced_settings_backup_restore_clear_description">本当にこれをやりたいのですか？</string>
     <string name="advanced_settings_theme_title">テーマ作成</string>
-    <string name="advanced_settings_theme_description">自分に合ったテーマをカスタマイズします。</string>
+    <string name="advanced_settings_theme_description">自分好みにテーマをカスタマイズしましょう。</string>
     <string name="advanced_settings_theme_download">ダウンロード</string>
     <string name="advanced_settings_theme_export">輸出</string>
     <string name="advanced_settings_theme_import">輸入</string>
     <string name="advanced_settings_theme_clear">クリア</string>
     <string name="advanced_settings_theme_clear_title">テーマをリセット</string>
-    <string name="advanced_settings_theme_clear_description">すべてのテーマ設定をリセットしてもよろしいですか?</string>
-    <string name="advanced_settings_wotd_title">今日の言葉</string>
-    <string name="advanced_settings_wotd_description">カスタムの今日の単語リストをインポートします。</string>
+    <string name="advanced_settings_theme_clear_description">テーマ設定をすべてリセットしてもよろしいですか？</string>
+    <string name="advanced_settings_wotd_title">今日の単語</string>
+    <string name="advanced_settings_wotd_description">カスタムの「今日の単語」リストをインポートします。</string>
     <string name="advanced_settings_wotd_download">ダウンロード</string>
     <string name="advanced_settings_wotd_import">輸入</string>
     <string name="advanced_settings_wotd_clear">クリア</string>
-    <string name="advanced_settings_wotd_clear_title">今日の単語をリセット</string>
-    <string name="advanced_settings_wotd_clear_description">「今日の単語」配列をリセットしてもよろしいですか?</string>
+    <string name="advanced_settings_wotd_clear_title">リセット 今日の単語</string>
+    <string name="advanced_settings_wotd_clear_description">「今日の単語」の配列をリセットしてもよろしいですか？</string>
     <string name="advanced_settings_clear_yes">はい</string>
     <string name="advanced_settings_clear_no">いいえ</string>
     <string name="advanced_settings_help_feedback_title">ヘルプ &amp; フィードバック</string>
     <string name="advanced_settings_community_support_title">コミュニティサポート</string>
-    <string name="advanced_settings_share_application_title">アプリケーションを共有する</string>
-    <string name="advanced_settings_share_application_description">%1$sで体験を向上させましょう!</string>
-    <string name="advanced_settings_share_application_description_addon">今すぐ %1$s で入手して、みんなが何を話しているか見てみましょう! %2$s\n</string>
+    <string name="advanced_settings_share_application_title">アプリを共有する</string>
+    <string name="advanced_settings_share_application_description">%1$s で体験を向上させましょう！</string>
+    <string name="advanced_settings_share_application_description_addon">今すぐ %1$s で入手して、みんなが話題にしているものをチェックしよう！ %2$s\n</string>
     <!-- Strings used for about settings -->
-    <string name="about_settings_title">%1$sについて</string>
+    <string name="about_settings_title">概要 %1$s</string>
     <!-- Strings used for expert settings -->
     <string name="expert_settings_title">専門家</string>
     <string name="toggleable_items">切り替え可能なアイテム</string>
     <string name="threshold">しきい値</string>
     <string name="expert_options_display">エキスパートオプションを表示</string>
-    <string name="expert_options_unlocked">エキスパートオプションがロック解除されました!</string>
-    <string name="expert_options_tap_hint">%1$d あとタップでロック解除</string>
+    <string name="expert_options_unlocked">エキスパート向けオプションが解放されました！</string>
+    <string name="expert_options_tap_hint">%1$d ロックを解除するには、さらにタップしてください</string>
     <string name="settings_text_size">設定文字サイズ</string>
-    <string name="settings_short_threshold">ショートスワイプしきい値</string>
+    <string name="settings_short_threshold">短いスワイプの閾値</string>
     <string name="settings_long_threshold">ロングスワイプしきい値</string>
     <!-- App Page Strings -->
-    <string name="hidden_apps">非表示のアプリ</string>
+    <string name="hidden_apps">隠しアプリ</string>
     <string name="favorite_apps">お気に入りのアプリ</string>
     <string name="clear_home_app">Clear Homeアプリ</string>
     <!-- Favorite management strings -->
-    <string name="add_app">Add App</string>
-    <string name="remove_app">Remove App</string>
-    <string name="max_apps_reached">Maximum number of home apps reached</string>
-    <string name="min_apps_reached">Minimum number of home apps reached</string>
-    <string name="no_apps_to_remove">No apps to remove</string>
-    <string name="select_app_to_remove">Select app to remove</string>
-    <string name="empty_favorite">Unused</string>
-    <string name="confirm_remove_favorite">Are you sure you want to remove this app from favorites?</string>
+    <string name="add_app">アプリを追加</string>
+    <string name="remove_app">アプリを削除</string>
+    <string name="max_apps_reached">ホームアプリの最大数に達しました</string>
+    <string name="min_apps_reached">ホームアプリの最小数に達しました</string>
+    <string name="no_apps_to_remove">削除するアプリはありません</string>
+    <string name="select_app_to_remove">削除するアプリを選択してください</string>
+    <string name="empty_favorite">未使用</string>
+    <string name="confirm_remove_favorite">このアプリをお気に入りから削除してもよろしいですか？</string>
     <!-- Accessibility/Help Strings -->
     <string name="accessibility_service_name">マルチランチャーアクションサービス</string>
     <string name="accessibility_service_why_we_need">アクセシビリティ許可が必要な理由</string>
-    <string name="accessibility_service_description">このアクセシビリティ サービスにより、MultiLauncher は画面のロックやクイック設定の起動などの特定のアクションを実行できます。当社のアクセシビリティ サービスは、データを収集または共有しません。</string>
-    <string name="accessibility_service_more_info">    MultiLauncher では、次のような機能を有効にするためにアクセシビリティ サービスへのアクセスが必要です。\n\n
-    • ジェスチャーまたはショートカットで画面をロックする\n
+    <string name="accessibility_service_description">このアクセシビリティサービスにより、MultiLauncherは画面のロックやクイック設定の起動などの特定のアクションを実行できます。当社のアクセシビリティサービスは、いかなるデータも収集または共有しません。</string>
+    <string name="accessibility_service_more_info">
+    MultiLauncher は、次のような機能を有効にするためにアクセシビリティ サービスへのアクセスを必要とします。\n\n
+    • ジェスチャーまたはショートカットによる画面のロック\n
     • クイック設定パネルをすばやく開く\n\n
-    この権限により、MultiLauncher がユーザーに代わってこれらのアクションを実行できるようになりますが、このサービスを通じて個人情報や機密データを収集、保存、共有することはありません。\n\n
-    このアクセスは、デバイスの設定からいつでも無効にできます。
+    この権限により、MultiLauncher はユーザーに代わってこれらのアクションを実行できますが、このサービスを通じて個人データや機密データを収集、保存、または共有することはありません。\n\n
+    デバイスの設定からいつでもこのアクセスを無効にできます。
     </string>
-    <string name="can_not_delete_system_apps">システムアプリを削除できない</string>
+    <string name="can_not_delete_system_apps">システムアプリを削除できません</string>
     <string name="please_select_app">アプリを選択してください</string>
     <string name="drawer_list_empty_hint">アプリが見つかりません</string>
     <string name="long_press_for_settings">設定用に長押ししてください</string>
-    <string name="long_press_to_select_app">長押ししてアプリを選択</string>
-    <string name="long_press_to_select_app_locked">ホームアプリのロックを解除してアプリを選択する</string>
-    <string name="tap_button_for_notes">メモを表示するにはランチャーロゴをタップしてください</string>
+    <string name="long_press_to_select_app">アプリを選択するには長押ししてください</string>
+    <string name="long_press_to_select_app_locked">ホームアプリのロックを解除してアプリを選択</string>
+    <string name="tap_button_for_notes">メモを表示するにはランチャーのロゴをタップしてください</string>
     <string name="swipe_up_for_apps">すべてのアプリで上にスワイプ</string>
     <string name="app_drawer_tips">ヒント: 下にスワイプして解除します。スクロールしてキーボードを非表示にします。</string>
     <!-- PinCode Strings -->
-    <string name="text_authentication_cancel">認証をキャンセルします。</string>
-    <string name="text_authentication_error">認証エラー:%1$s(コード %2$d)</string>
+    <string name="text_authentication_cancel">認証キャンセル。</string>
+    <string name="text_authentication_error">認証エラー: %1$s (コード %2$d)</string>
     <string name="text_authentication_failed">認証に失敗しました。</string>
     <string name="text_biometric_login">生体認証ログイン マルチランチャー設定</string>
-    <string name="text_biometric_login_app">%1$sの生体認証ログイン</string>
+    <string name="text_biometric_login_app">%1$s の生体認証ログイン</string>
     <string name="text_biometric_login_sub">生体認証資格情報を使用してログインします</string>
     <!-- Crash Strings -->
     <string name="acra_crash">クラッシュ</string>
-    <string name="acra_dialog_text">申し訳ございませんが、 %1$s で予期しない問題が発生したため、終了する必要があります。クラッシュ レポートを送信して改善にご協力ください。\n\n%1$s はお客様のプライバシーを重視しており、収集されたデータはアプリの安定性を向上させるためにのみ使用されます。個人情報は収集されません。ご協力ありがとうございます!</string>
+    <string name="acra_dialog_text">申し訳ありませんが、 %1$s で予期せぬ問題が発生したため、終了する必要があります。クラッシュレポートを送信して、改善にご協力ください。\n\n%1$s はお客様のプライバシーを尊重し、収集されたデータはアプリの安定性向上のみに使用されます。個人情報は収集されません。ご協力ありがとうございます。</string>
     <string name="acra_send_report">レポートを送信</string>
-    <string name="acra_dont_send">送信しない</string>
+    <string name="acra_dont_send">送信しないでください</string>
     <!-- Share Strings -->
-    <string name="share_application">共有アプリケーション</string>
-    <string name="share_note">メモを共有</string>
+    <string name="share_application">アプリを共有する</string>
+    <string name="share_note">シェアノート</string>
     <!-- Icon Pack Strings -->
     <string name="choose_icon_pack">アイコンパックを選択</string>
     <string name="apply_icon_pack">アイコンパックを適用する</string>
-    <string name="applying_icon_pack">アイコンを新鮮に見せる…</string>
-    <string name="apply_icon_pack_are_you_sure">このアイコンパックを適用してもよろしいですか?\n\n%1$s</string>
+    <string name="applying_icon_pack">アイコンに新鮮な外観を与えましょう…</string>
+    <string name="apply_icon_pack_are_you_sure">このアイコンパックを適用してもよろしいですか？\n\n%1$s</string>
     <string name="apply_to_home">ホームに応募する</string>
-    <string name="apply_to_app_list">アプリリストに適用</string>
-    <string name="default_icon_not_found">デフォルトのアプリアイコン描画可能ファイルが見つかりません</string>
+    <string name="apply_to_app_list">アプリ一覧に申し込む</string>
+    <string name="default_icon_not_found">デフォルトのアプリアイコンのドローアブルが見つかりません</string>
     <!-- Settings Strings -->
     <string name="left">左</string>
     <string name="right">右</string>
@@ -289,16 +290,16 @@
     <string name="system_default">システム</string>
     <string name="system_custom">カスタム</string>
     <string name="system_custom_plus">カスタム (%1$s)</string>
-    <string name="restart_launcher">ランチャーを再起動</string>
+    <string name="restart_launcher">ランチャーを再起動してください</string>
     <string name="delete">消去</string>
     <string name="hide">非表示</string>
     <string name="show">表示</string>
     <string name="lock">ロック</string>
     <string name="unlock">ロック解除</string>
-    <string name="locked">ロックされています</string>
-    <string name="unlocked">ロック解除</string>
+    <string name="locked">ロック済み</string>
+    <string name="unlocked">ロック解除済み</string>
     <string name="pin">ピン</string>
-    <string name="unpin">ピンを外す</string>
+    <string name="unpin">ピン留めを解除</string>
     <string name="rename">名前の変更</string>
     <string name="tag">タグ</string>
     <string name="info">情報</string>
@@ -308,7 +309,7 @@
     <string name="cancel">キャンセル</string>
     <string name="save">保存</string>
     <string name="disabled">無効</string>
-    <string name="open">開く</string>
+    <string name="open">開ける</string>
     <string name="close">閉じる</string>
     <string name="next">次</string>
     <string name="start">始める</string>
@@ -329,40 +330,40 @@
     <string name="deny">拒否</string>
     <string name="send">送信</string>
     <string name="message_hint">メッセージを入力してください…</string>
-    <string name="message_category">カテゴリー: %1$s</string>
+    <string name="message_category">カテゴリ: %1$s</string>
     <!-- Permissions Strings -->
-    <string name="permission_required">許可が必要</string>
-    <string name="access_usage_data_permission">続行するには、デバイス設定で使用状況データにアクセスする権限を有効にしてください。</string>
+    <string name="permission_required">許可が必要です</string>
+    <string name="access_usage_data_permission">続行するには、デバイスの設定で使用状況データへのアクセス許可を有効にしてください。</string>
     <string name="goto_settings">設定に移動</string>
     <!-- Widget Stings -->
-    <string name="widgets_select_widget">ウィジェットを選択</string>
+    <string name="widgets_select_widget">ウィジェットを選択してください</string>
     <string name="widgets_add_widget">ウィジェットを追加する</string>
-    <string name="widgets_edit_widget">ウィジェットを編集</string>
-    <string name="widgets_stop_editing_widget">ウィジェットの編集を停止</string>
-    <string name="widgets_reset_widget">すべてのウィジェットをリセット</string>
-    <string name="widgets_remove_widget">すべてのウィジェットを削除</string>
+    <string name="widgets_edit_widget">ウィジェットを編集する</string>
+    <string name="widgets_stop_editing_widget">ウィジェットの編集を停止してください</string>
+    <string name="widgets_reset_widget">すべてのウィジェットをリセットする</string>
+    <string name="widgets_remove_widget">すべてのウィジェットを削除する</string>
     <string name="widgets_resize">サイズ変更</string>
-    <string name="widgets_exit_resize">サイズ変更を終了</string>
+    <string name="widgets_exit_resize">終了 サイズ変更</string>
     <string name="widgets_remove">ウィジェットを削除</string>
     <string name="widgets_open">アプリを開く</string>
-    <string name="widgets_view_in_store">ストアでアプリを表示</string>
+    <string name="widgets_view_in_store">アプリストアでアプリを見る</string>
     <string name="widgets_settings">ウィジェット設定</string>
-    <string name="widgets_not_added">まだウィジェットが追加されていません。長押しして追加してください。</string>
+    <string name="widgets_not_added">ウィジェットはまだ追加されていません。長押しして追加してください。</string>
     <!-- Private Spaces Strings -->
-    <string name="alert_requires_android_v">この機能には Android 15 以降が必要です。</string>
-    <string name="toast_private_space_default_home_screen">プライベート スペースにアクセスするには、MultiLauncher をデフォルトのホーム画面にする必要があります。</string>
-    <string name="toast_private_space_locked">プライベートスペースはロックされています</string>
-    <string name="toast_private_space_unlocked">プライベートスペースのロック解除</string>
-    <string name="toast_private_space_not_available">プライベートスペースは利用できません</string>
+    <string name="alert_requires_android_v">この機能を利用するには、Android 15以降が必要です。</string>
+    <string name="toast_private_space_default_home_screen">プライベートスペースにアクセスするには、MultiLauncherをデフォルトのホーム画面に設定する必要があります。</string>
+    <string name="toast_private_space_locked">プライベート空間は施錠されています</string>
+    <string name="toast_private_space_unlocked">プライベート空間のロックを解除</string>
+    <string name="toast_private_space_not_available">個室は利用できません</string>
     <string name="notes_list_empty_hint">最初のメモを以下に書き始めてください。</string>
     <string name="confirm_delete_title">メモを削除</string>
-    <string name="confirm_delete_message">このメモを削除してもよろしいですか?</string>
-    <string name="edit_note">メモを編集</string>
+    <string name="confirm_delete_message">このメモを削除してもよろしいですか？</string>
+    <string name="edit_note">編集メモ</string>
     <string name="category">カテゴリ</string>
     <string name="priority">優先度</string>
     <string name="settings_context_menu_title">コンテキストメニュー</string>
     <string name="settings_home_buttons_title">ホームボタン</string>
-    <string name="settings_applist_buttons_title">アプリリストボタン</string>
+    <string name="settings_applist_buttons_title">アプリ一覧ボタン</string>
     <string name="settings_source_code">ソースコード</string>
     <string name="settings_donations">寄付</string>
     <string name="settings_credits">クレジット</string>
@@ -379,7 +380,7 @@
         <item>家事</item>
         <item>クリエイティブ</item>
         <item>エンターテインメント</item>
-        <item>用事</item>
+        <item>お使い</item>
         <item>ファイナンス</item>
         <item>フィットネス</item>
         <item>目標</item>
