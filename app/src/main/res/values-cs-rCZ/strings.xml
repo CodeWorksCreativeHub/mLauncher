@@ -22,10 +22,10 @@
     <string name="this_can_be_disabled_later">* Toto oprávnění může být později zakázáno.</string>
     <!-- Strings used for settings menus -->
     <string name="settings_name">Nastavení MultiLauncheru</string>
-    <string name="settings_features_title">Vlastnosti</string>
+    <string name="settings_features_title">Funkce</string>
     <string name="settings_features_description">Zlepšete svou produktivitu.</string>
     <string name="settings_look_feel_title">Vzhled &amp; Cítit</string>
-    <string name="settings_look_feel_description">Dodejte své domovské obrazovce osobní nádech.</string>
+    <string name="settings_look_feel_description">Dejte své domovské obrazovce osobní nádech.</string>
     <string name="settings_gestures_title">Gesta</string>
     <string name="settings_gestures_description">Přizpůsobte si gesta pro rychlou a snadnou navigaci.</string>
     <string name="settings_notes_title">Poznámky</string>
@@ -47,10 +47,10 @@
     <!-- Strings used for features settings -->
     <string name="features_settings_title">Funkce</string>
     <string name="personalization">Personalizace</string>
-    <string name="theme_mode">Tématický režim</string>
+    <string name="theme_mode">Režim motivu</string>
     <string name="app_language">Jazyk rozhraní</string>
     <string name="font_family">Rodina písem</string>
-    <string name="search_and_app_list">Seznam aplikací &amp;</string>
+    <string name="search_and_app_list">Hledat &amp; Seznam aplikací</string>
     <string name="hide_search_view">Skrýt zobrazení vyhledávání</string>
     <string name="show_floating_button">Zobrazit tlačítka zkratek</string>
     <string name="lock_orientation">Zamknout orientaci</string>
@@ -58,7 +58,7 @@
     <string name="search">Vyhledávání</string>
     <string name="search_engine">Vyhledávač</string>
     <string name="show_az_sidebar">Zobrazit postranní panel AZ</string>
-    <string name="auto_show_keyboard">Automatické zobrazení klávesnice</string>
+    <string name="auto_show_keyboard">Automaticky zobrazit klávesnici</string>
     <string name="search_from_start">Hledat od začátku</string>
     <string name="home_management">Domů &amp; Správa aplikací</string>
     <string name="auto_open_apps">Automatické otevírání aplikací</string>
@@ -67,13 +67,13 @@
     <string name="lock_settings">Nastavení zámku</string>
     <string name="apps_on_home_screen">Počet domácích aplikací</string>
     <string name="pages_on_home_screen">Počet stránek</string>
-    <string name="enable_home_pager">Povolit domovskou stránku</string>
+    <string name="enable_home_pager">Povolit domovský pager</string>
     <string name="enable_app_timer">Povolit časovač aplikace</string>
     <string name="force_colored_wallpaper">Vynucená barevná tapeta</string>
     <string name="info_tiles">Informační dlaždice</string>
     <string name="show_clock">Zobrazit hodiny</string>
     <string name="show_clock_format">Formát zobrazení (AM/PM)</string>
-    <string name="show_date">Zobrazit datum</string>
+    <string name="show_date">Datum představení</string>
     <string name="show_day_of_year">Zobrazit den v roce</string>
     <string name="show_alarm">Zobrazit budík</string>
     <string name="show_daily_word">Zobrazit denní slovo</string>
@@ -90,28 +90,28 @@
     <string name="look_feel_settings_title">Vzhled &amp; Cítit</string>
     <string name="text_size_adjustments">Úpravy velikosti textu &amp;</string>
     <string name="app_text_size">Velikost textu aplikace</string>
-    <string name="date_text_size">Datum Velikost textu</string>
+    <string name="date_text_size">Velikost textu data</string>
     <string name="clock_text_size">Velikost textu hodin</string>
     <string name="alarm_text_size">Velikost textu alarmu</string>
     <string name="daily_word_text_size">Denní velikost textu ve slově</string>
     <string name="battery_text_size">Velikost textu baterie</string>
     <string name="layout_positioning">Rozvržení &amp; Umístění</string>
-    <string name="app_padding_size">Velikost vycpávky</string>
-    <string name="extend_home_apps_area">Rozšířit oblast, na kterou lze kliknout</string>
+    <string name="app_padding_size">Velikost odsazení</string>
+    <string name="extend_home_apps_area">Rozšířit klikatelnou oblast</string>
     <string name="alignment_to_bottom">Zarovnat dolů</string>
     <string name="visibility_display">Viditelnost &amp; Displej</string>
     <string name="show_status_bar">Zobrazit stavový řádek</string>
     <string name="show_navigation_bar">Zobrazit navigační panel</string>
-    <string name="show_recent_apps">Zobrazit poslední aplikace</string>
+    <string name="show_recent_apps">Zobrazit nedávné aplikace</string>
     <string name="number_of_recents">Počet nedávných aplikací</string>
-    <string name="show_app_usage_stats">Zobrazit statistiky používání aplikací</string>
+    <string name="show_app_usage_stats">Zobrazit statistiky používání aplikace</string>
     <string name="select_home_icons">Vyberte sadu ikon pro domov</string>
     <string name="select_app_list_icons">Vyberte sadu ikon seznamu aplikací</string>
     <string name="enable_filter_strength">Povolit fuzzy vyhledávač</string>
     <string name="filter_strength">Síla fuzzy vyhledávače</string>
     <string name="show_background">Zobrazit pozadí</string>
     <string name="background_opacity">Průhlednost pozadí</string>
-    <string name="total_screen_time">Zobrazit celkový čas u obrazovky</string>
+    <string name="total_screen_time">Celkový čas u obrazovky</string>
     <string name="element_alignment">Zarovnání prvků</string>
     <string name="date_alignment">Datum</string>
     <string name="clock_alignment">Hodiny</string>
@@ -134,20 +134,20 @@
     <string name="tap_click_actions">Akce klepnutí/kliknutí</string>
     <string name="double_tap">Dvojité klepnutí</string>
     <string name="clock_click_app">Klikněte na Hodiny</string>
-    <string name="date_click_app">Klepněte na Datum</string>
+    <string name="date_click_app">Klikněte na Datum</string>
     <string name="usage_click_app">Klikněte na Celkové využití</string>
     <string name="floating_click_app">Klikněte na logo</string>
     <string name="swipe_movement">Pohyb přejetím prstem</string>
-    <string name="short_swipe_up_app">Krátké přejetí nahoru</string>
-    <string name="short_swipe_down_app">Krátké přejetí dolů</string>
-    <string name="short_swipe_left_app">Krátké přejetí doleva</string>
+    <string name="short_swipe_up_app">Krátké přejetí prstem nahoru</string>
+    <string name="short_swipe_down_app">Krátké přejetí prstem dolů</string>
+    <string name="short_swipe_left_app">Krátké přejetí prstem doleva</string>
     <string name="short_swipe_right_app">Krátké přejetí prstem doprava</string>
-    <string name="long_swipe_up_app">Dlouhé přejetí nahoru</string>
-    <string name="long_swipe_down_app">Dlouhé přejetí dolů</string>
-    <string name="long_swipe_left_app">Dlouhé přejetí doleva</string>
-    <string name="long_swipe_right_app">Dlouhé přejeďte doprava</string>
-    <string name="open_app">Otevřete aplikaci</string>
-    <string name="lock_screen">Uzamknout obrazovku</string>
+    <string name="long_swipe_up_app">Dlouhé přejetí prstem nahoru</string>
+    <string name="long_swipe_down_app">Dlouhé přejetí prstem dolů</string>
+    <string name="long_swipe_left_app">Dlouhé přejetí prstem doleva</string>
+    <string name="long_swipe_right_app">Dlouhé přejetí prstem doprava</string>
+    <string name="open_app">Otevřít aplikaci</string>
+    <string name="lock_screen">Zamčená obrazovka</string>
     <string name="private_space">Soukromé prostory (%1$s)</string>
     <string name="show_notifications">Zobrazit oznámení</string>
     <string name="show_app_list">Zobrazit seznam aplikací</string>
@@ -155,11 +155,11 @@
     <string name="show_notes_manager">Zobrazit Správce poznámek</string>
     <string name="show_digital_wellbeing">Zobrazit digitální pohodu</string>
     <string name="open_quick_settings">Rychlé nastavení</string>
-    <string name="show_recents">Zobrazit poslední</string>
+    <string name="show_recents">Zobrazit nedávné</string>
     <string name="open_power_dialog">Dialog napájení</string>
-    <string name="take_a_screenshot">Udělejte snímek obrazovky</string>
-    <string name="previous_page">Přejděte na levou stránku</string>
-    <string name="next_page">Přejděte na Pravou stránku</string>
+    <string name="take_a_screenshot">Pořiďte snímek obrazovky</string>
+    <string name="previous_page">Přejít na předchozí stránku</string>
+    <string name="next_page">Přejít na další stránku</string>
     <!-- Strings used for notes settings -->
     <string name="notes_settings_title">Poznámky</string>
     <string name="display_options">Možnosti zobrazení</string>
@@ -211,7 +211,7 @@
     <string name="advanced_settings_help_feedback_title">Nápověda &amp; Zpětná vazba</string>
     <string name="advanced_settings_community_support_title">Podpora komunity</string>
     <string name="advanced_settings_share_application_title">Sdílet aplikaci</string>
-    <string name="advanced_settings_share_application_description">Vylepšete si zážitek s %1$s!</string>
+    <string name="advanced_settings_share_application_description">Vylepšete si svůj zážitek s %1$s!</string>
     <string name="advanced_settings_share_application_description_addon">Stáhněte si to hned teď na %1$s a podívejte se, o čem všichni mluví! %2$s\n</string>
     <!-- Strings used for about settings -->
     <string name="about_settings_title">O %1$s</string>
@@ -222,7 +222,7 @@
     <string name="expert_options_display">Zobrazit možnosti pro experty</string>
     <string name="expert_options_unlocked">Možnosti pro experty odemčeny!</string>
     <string name="expert_options_tap_hint">%1$d více klepnutí k odemčení</string>
-    <string name="settings_text_size">Nastavení Velikost textu</string>
+    <string name="settings_text_size">Velikost textu v nastavení</string>
     <string name="settings_short_threshold">Práh krátkého přejetí</string>
     <string name="settings_long_threshold">Dlouhý práh přejetí prstem</string>
     <!-- App Page Strings -->
@@ -230,35 +230,36 @@
     <string name="favorite_apps">Oblíbené aplikace</string>
     <string name="clear_home_app">Vymazat domovskou aplikaci</string>
     <!-- Favorite management strings -->
-    <string name="add_app">Add App</string>
-    <string name="remove_app">Remove App</string>
-    <string name="max_apps_reached">Maximum number of home apps reached</string>
-    <string name="min_apps_reached">Minimum number of home apps reached</string>
-    <string name="no_apps_to_remove">No apps to remove</string>
-    <string name="select_app_to_remove">Select app to remove</string>
-    <string name="empty_favorite">Unused</string>
-    <string name="confirm_remove_favorite">Are you sure you want to remove this app from favorites?</string>
+    <string name="add_app">Přidat aplikaci</string>
+    <string name="remove_app">Odebrat aplikaci</string>
+    <string name="max_apps_reached">Dosažen maximální počet domácích aplikací</string>
+    <string name="min_apps_reached">Dosažen minimální počet domácích aplikací</string>
+    <string name="no_apps_to_remove">Žádné aplikace k odstranění</string>
+    <string name="select_app_to_remove">Vyberte aplikaci, kterou chcete odstranit</string>
+    <string name="empty_favorite">Nepoužitý</string>
+    <string name="confirm_remove_favorite">Opravdu chcete tuto aplikaci odebrat z oblíbených?</string>
     <!-- Accessibility/Help Strings -->
     <string name="accessibility_service_name">Akční služby MultiLauncheru</string>
     <string name="accessibility_service_why_we_need">Proč potřebujeme oprávnění k přístupnosti</string>
     <string name="accessibility_service_description">Tato služba usnadnění přístupu umožňuje aplikaci MultiLauncher provádět určité akce, jako je uzamčení obrazovky nebo otevření rychlého nastavení. Naše služba usnadnění přístupu neshromažďuje ani nesdílí žádná data.</string>
-    <string name="accessibility_service_more_info">    MultiLauncher vyžaduje přístup ke Službě usnadnění přístupu, aby mohl používat funkce jako:\n\n
-    • Zamykání obrazovky gestem nebo zkratkou\n
+    <string name="accessibility_service_more_info">
+    MultiLauncher vyžaduje přístup ke Službě usnadnění přístupu, aby mohl používat funkce, jako například:\n\n
+    • Uzamčení obrazovky gestem nebo zkratkou\n
     • Rychlé otevření panelu Rychlé nastavení\n\n
     Toto oprávnění umožňuje MultiLauncheru provádět tyto akce vaším jménem, ale prostřednictvím této služby neshromažďujeme, neukládáme ani nesdílíme žádné osobní ani citlivé údaje.\n\n
     Tento přístup můžete kdykoli zakázat v nastavení zařízení.
     </string>
-    <string name="can_not_delete_system_apps">Systémové aplikace nelze smazat</string>
-    <string name="please_select_app">Vyberte aplikaci</string>
-    <string name="drawer_list_empty_hint">Nebyly nalezeny žádné aplikace</string>
-    <string name="long_press_for_settings">Dlouhým stisknutím kdekoli pro nastavení</string>
+    <string name="can_not_delete_system_apps">Nelze smazat systémové aplikace</string>
+    <string name="please_select_app">Vyberte prosím aplikaci</string>
+    <string name="drawer_list_empty_hint">Nenalezeny žádné aplikace</string>
+    <string name="long_press_for_settings">Dlouhým stisknutím kdekoli zobrazíte nastavení</string>
     <string name="long_press_to_select_app">Dlouhým stisknutím vyberete aplikaci</string>
     <string name="long_press_to_select_app_locked">Odemkněte aplikace Domů pro výběr aplikace</string>
     <string name="tap_button_for_notes">Klepnutím na logo spouštěče zobrazíte poznámky</string>
-    <string name="swipe_up_for_apps">Přejetím nahoru zobrazíte všechny aplikace</string>
-    <string name="app_drawer_tips">Tip: Přejetím dolů zavřete. Posunutím skryjete klávesnici.</string>
+    <string name="swipe_up_for_apps">Přejetím prstem nahoru zobrazíte všechny aplikace</string>
+    <string name="app_drawer_tips">Tip: Přejetím prstem dolů klávesnici zavřete. Posouváním skryjete klávesnici.</string>
     <!-- PinCode Strings -->
-    <string name="text_authentication_cancel">Zrušení ověřování.</string>
+    <string name="text_authentication_cancel">Zrušení ověření.</string>
     <string name="text_authentication_error">Chyba ověřování: %1$s (kód %2$d)</string>
     <string name="text_authentication_failed">Ověření se nezdařilo.</string>
     <string name="text_biometric_login">Biometrické přihlášení Nastavení MultiLauncheru</string>
@@ -266,9 +267,9 @@
     <string name="text_biometric_login_sub">Přihlaste se pomocí svých biometrických údajů.</string>
     <!-- Crash Strings -->
     <string name="acra_crash">Pád</string>
-    <string name="acra_dialog_text">Je nám líto, ale %1$s došlo k neočekávanému problému a je třeba ji zavřít. Pomozte nám zlepšit se zasláním zprávy o selhání.\n\n%1$s si váží vašeho soukromí a shromážděná data slouží výhradně ke zlepšení stability aplikace. Neshromažďují se žádné osobní údaje. Děkujeme za vaši podporu!</string>
+    <string name="acra_dialog_text">Je nám líto, ale aplikace %1$s narazila na neočekávaný problém a je třeba ji zavřít. Pomozte nám se zlepšit zasláním hlášení o pádu.\n\n%1$s si váží vašeho soukromí a shromážděná data slouží výhradně ke zlepšení stability aplikace. Neshromažďujeme žádné osobní údaje. Děkujeme za vaši podporu!</string>
     <string name="acra_send_report">Odeslat zprávu</string>
-    <string name="acra_dont_send">Neposílejte</string>
+    <string name="acra_dont_send">Neodesílat</string>
     <!-- Share Strings -->
     <string name="share_application">Sdílet aplikaci</string>
     <string name="share_note">Sdílet poznámku</string>
@@ -301,10 +302,10 @@
     <string name="unpin">Odepnout</string>
     <string name="rename">Přejmenovat</string>
     <string name="tag">Štítek</string>
-    <string name="info">Info</string>
+    <string name="info">Informace</string>
     <string name="okay">Dobře</string>
     <string name="apply">Použít</string>
-    <string name="reset">Resetovat</string>
+    <string name="reset">Obnovit</string>
     <string name="cancel">Zrušit</string>
     <string name="save">Uložit</string>
     <string name="disabled">Zakázáno</string>
