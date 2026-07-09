@@ -1,8 +1,6 @@
 package com.github.codeworkscreativehub.mlauncher.ui
 
 import android.app.admin.DevicePolicyManager
-import android.content.Context
-import android.content.Context.VIBRATOR_SERVICE
 import android.os.Bundle
 import android.os.Vibrator
 import android.view.LayoutInflater
@@ -37,11 +35,8 @@ class FavoriteFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentFavoriteBinding.inflate(inflater, container, false)
-
-        val view = binding.root
         prefs = Prefs(requireContext())
-
-        return view
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -49,23 +44,20 @@ class FavoriteFragment : BaseFragment() {
 
         val backgroundColor = getHexForOpacity(prefs)
         binding.mainLayout.setBackgroundColor(backgroundColor)
+        viewModel = ViewModelProvider(requireActivity())[MainViewModel::class.java]
 
-        viewModel = activity?.run {
-            ViewModelProvider(this)[MainViewModel::class.java]
-        } ?: throw Exception("Invalid Activity")
-
-        deviceManager =
-            context?.getSystemService(Context.DEVICE_POLICY_SERVICE) as DevicePolicyManager
-        @Suppress("DEPRECATION")
-        vibrator = context?.getSystemService(VIBRATOR_SERVICE) as Vibrator
+        deviceManager = requireContext().getSystemService(DevicePolicyManager::class.java)
+            ?: throw IllegalStateException("DevicePolicyManager unavailable")
+        vibrator = requireContext().getSystemService(Vibrator::class.java)
+            ?: throw IllegalStateException("Vibrator unavailable")
 
         // Initialize the adapter and pass prefs to it
-        val adapter = FavoriteAdapter(mutableListOf(), { from, to ->
-            viewModel.updateAppOrder(from, to)
-        }, prefs)  // Pass prefs to the adapter
+        val adapter = FavoriteAdapter(mutableListOf(), viewModel::updateAppOrder, prefs)
 
-        binding.homeAppsRecyclerview.layoutManager = LinearLayoutManager(requireContext()) // Set LayoutManager
-        binding.homeAppsRecyclerview.adapter = adapter
+        binding.homeAppsRecyclerview.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            this.adapter = adapter
+        }
 
         // Initialize the ItemTouchHelper to enable drag-and-drop
         val callback = object : ItemTouchHelper.Callback() {
@@ -82,18 +74,20 @@ class FavoriteFragment : BaseFragment() {
                 source: RecyclerView.ViewHolder,
                 target: RecyclerView.ViewHolder
             ): Boolean {
-                val fromPosition = source.bindingAdapterPosition  // Use bindingAdapterPosition here
-                val toPosition = target.bindingAdapterPosition  // Use bindingAdapterPosition here
+                val fromPosition = source.bindingAdapterPosition
+                val toPosition = target.bindingAdapterPosition
 
                 // Change the background color when the item is being dragged
-                source.itemView.setBackgroundColor(ContextCompat.getColor(source.itemView.context, R.color.hover_effect))
+                source.itemView.setBackgroundColor(
+                    ContextCompat.getColor(source.itemView.context, R.color.hover_effect)
+                )
 
-                // Check if the positions are valid
                 if (fromPosition != RecyclerView.NO_POSITION && toPosition != RecyclerView.NO_POSITION) {
-                    // Update the order of the items in the adapter
-                    (recyclerView.adapter as FavoriteAdapter).moveItem(fromPosition, toPosition)
+                    val favAdapter = recyclerView.adapter as? FavoriteAdapter ?: return false
+                    favAdapter.moveItem(fromPosition, toPosition)
                     return true
                 }
+
                 return false
             }
 
@@ -101,12 +95,8 @@ class FavoriteFragment : BaseFragment() {
                 // Not handling swipe-to-dismiss here
             }
 
-            override fun onSelectedChanged(
-                viewHolder: RecyclerView.ViewHolder?,
-                actionState: Int
-            ) {
+            override fun onSelectedChanged(viewHolder: RecyclerView.ViewHolder?, actionState: Int) {
                 super.onSelectedChanged(viewHolder, actionState)
-
                 viewHolder?.itemView?.setBackgroundColor(
                     ContextCompat.getColor(viewHolder.itemView.context, R.color.hover_effect)
                 )
@@ -140,6 +130,11 @@ class FavoriteFragment : BaseFragment() {
         }
 
         initObservers()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     override fun onResume() {
