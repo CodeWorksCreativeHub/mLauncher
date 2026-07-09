@@ -192,7 +192,7 @@
     <string name="advanced_settings_backup_restore_clear_title">Ștergeți preferințele</string>
     <string name="advanced_settings_backup_restore_clear_description">Sigur vrei să faci asta?</string>
     <string name="advanced_settings_theme_title">Creații tematice</string>
-    <string name="advanced_settings_theme_description">Personalizează temele care ți se potrivesc.</string>
+    <string name="advanced_settings_theme_description">Personalizează temele care să ți se potrivească.</string>
     <string name="advanced_settings_theme_download">Descărcare</string>
     <string name="advanced_settings_theme_export">Export</string>
     <string name="advanced_settings_theme_import">Import</string>
@@ -211,7 +211,7 @@
     <string name="advanced_settings_help_feedback_title">Ajutor &amp; Feedback</string>
     <string name="advanced_settings_community_support_title">Sprijin comunitar</string>
     <string name="advanced_settings_share_application_title">Partajați aplicația</string>
-    <string name="advanced_settings_share_application_description">Îmbunătățește-ți experiența cu %1$s!</string>
+    <string name="advanced_settings_share_application_description">Îmbunătățiți-vă experiența cu %1$s!</string>
     <string name="advanced_settings_share_application_description_addon">Descarcă-l acum pe %1$s și vezi despre ce vorbește toată lumea! %2$s\n</string>
     <!-- Strings used for about settings -->
     <string name="about_settings_title">Despre %1$s</string>
@@ -230,22 +230,23 @@
     <string name="favorite_apps">Aplicații preferate</string>
     <string name="clear_home_app">Aplicația Clear Home</string>
     <!-- Favorite management strings -->
-    <string name="add_app">Add App</string>
-    <string name="remove_app">Remove App</string>
-    <string name="max_apps_reached">Maximum number of home apps reached</string>
-    <string name="min_apps_reached">Minimum number of home apps reached</string>
-    <string name="no_apps_to_remove">No apps to remove</string>
-    <string name="select_app_to_remove">Select app to remove</string>
-    <string name="empty_favorite">Unused</string>
-    <string name="confirm_remove_favorite">Are you sure you want to remove this app from favorites?</string>
+    <string name="add_app">Adăugați o aplicație</string>
+    <string name="remove_app">Eliminați aplicația</string>
+    <string name="max_apps_reached">Numărul maxim de aplicații pentru acasă a fost atins</string>
+    <string name="min_apps_reached">Numărul minim de aplicații pentru acasă a fost atins</string>
+    <string name="no_apps_to_remove">Nicio aplicație de eliminat</string>
+    <string name="select_app_to_remove">Selectați aplicația de eliminat</string>
+    <string name="empty_favorite">Neutilizat</string>
+    <string name="confirm_remove_favorite">Sigur vrei să elimini această aplicație din favorite?</string>
     <!-- Accessibility/Help Strings -->
     <string name="accessibility_service_name">Servicii de acțiune MultiLauncher</string>
     <string name="accessibility_service_why_we_need">De ce avem nevoie de permisiune de accesibilitate</string>
     <string name="accessibility_service_description">Acest serviciu de accesibilitate permite MultiLauncher să efectueze anumite acțiuni, cum ar fi blocarea ecranului sau deschiderea setărilor rapide. Serviciul nostru de accesibilitate nu colectează și nu partajează date.</string>
-    <string name="accessibility_service_more_info">    MultiLauncher necesită acces la Serviciul de accesibilitate pentru a activa funcții precum:\n\n
+    <string name="accessibility_service_more_info">
+    MultiLauncher necesită acces la Serviciul de accesibilitate pentru a activa funcții precum:\n\n
     • Blocarea ecranului cu un gest sau o comandă rapidă\n
     • Deschiderea rapidă a panoului Setări rapide\n\n
-    Această permisiune permite MultiLauncher să efectueze aceste acțiuni în numele dvs., dar nu colectăm, stocăm și partajăm date personale sau sensibile prin intermediul acestui serviciu.\n\n
+    Această permisiune permite MultiLauncher să efectueze aceste acțiuni în numele dvs., dar nu colectăm, stocăm și nu partajăm date personale sau sensibile prin intermediul acestui serviciu.\n\n
     Puteți dezactiva acest acces oricând din setările dispozitivului.
     </string>
     <string name="can_not_delete_system_apps">Nu se pot șterge aplicațiile de sistem</string>
@@ -266,7 +267,7 @@
     <string name="text_biometric_login_sub">Conectați-vă folosind acreditările biometrice.</string>
     <!-- Crash Strings -->
     <string name="acra_crash">Accident</string>
-    <string name="acra_dialog_text">Ne pare rău, dar %1$s a întâmpinat o problemă neașteptată și trebuie să se închidă. Vă rugăm să ne ajutați să ne îmbunătățim trimițând un raport de eroare.\n\n%1$s vă prețuim confidențialitatea, iar datele colectate sunt utilizate exclusiv pentru îmbunătățirea stabilității aplicației. Nu se colectează informații personale. Vă mulțumim pentru sprijin!</string>
+    <string name="acra_dialog_text">Ne pare rău, dar %1$s a întâmpinat o problemă neașteptată și trebuie să se închidă. Vă rugăm să ne ajutați să ne îmbunătățim trimițând un raport de eroare.\n\n%1$s vă prețuiește confidențialitatea, iar datele colectate sunt utilizate exclusiv pentru îmbunătățirea stabilității aplicației. Nu sunt colectate informații personale. Vă mulțumim pentru sprijin!</string>
     <string name="acra_send_report">Trimiteți raportul</string>
     <string name="acra_dont_send">Nu trimite</string>
     <!-- Share Strings -->
@@ -275,11 +276,11 @@
     <!-- Icon Pack Strings -->
     <string name="choose_icon_pack">Alegeți pachetul de pictograme</string>
     <string name="apply_icon_pack">Aplicați pachetul de pictograme</string>
-    <string name="applying_icon_pack">Oferind pictogramelor tale un aspect proaspăt…</string>
+    <string name="applying_icon_pack">Oferirea unui aspect proaspăt pictogramelor…</string>
     <string name="apply_icon_pack_are_you_sure">Sigur vrei să aplici acest pachet de pictograme?\n\n%1$s</string>
     <string name="apply_to_home">Aplicați la domiciliu</string>
     <string name="apply_to_app_list">Aplicați la lista de aplicații</string>
-    <string name="default_icon_not_found">Pictograma implicită a aplicației, care poate fi desenată, nu a fost găsită</string>
+    <string name="default_icon_not_found">Pictograma implicită a aplicației, care poate fi desenată, nu a fost găsită.</string>
     <!-- Settings Strings -->
     <string name="left">Stânga</string>
     <string name="right">Corect</string>
@@ -347,7 +348,7 @@
     <string name="widgets_open">Deschide aplicația</string>
     <string name="widgets_view_in_store">Vizualizați aplicația în magazin</string>
     <string name="widgets_settings">Setări widget</string>
-    <string name="widgets_not_added">Încă nu au fost adăugate widgeturi. Apăsați lung pentru a adăuga unul.</string>
+    <string name="widgets_not_added">Nu au fost adăugate încă widgeturi. Apăsați lung pentru a adăuga unul.</string>
     <!-- Private Spaces Strings -->
     <string name="alert_requires_android_v">Această funcționalitate necesită Android 15 sau o versiune ulterioară.</string>
     <string name="toast_private_space_default_home_screen">MultiLauncher trebuie să fie ecranul de pornire implicit pentru a accesa spațiul privat.</string>
