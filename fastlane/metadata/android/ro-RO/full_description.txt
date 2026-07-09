@@ -4,7 +4,7 @@
 
 <p>Indiferent dacă doriți un ecran de pornire simplu, aveți nevoie de text mare pentru vizibilitate sau preferați acțiuni rapide bazate pe gesturi, Multi Launcher vă oferă control deplin fără a vă copleși cu opțiuni.</p>
 
-<h2>De ce să alegi lansatorul multiplu?</h2>
+<h2>De ce să alegeți lansatorul multiplu?</h2>
 <ul>
     <li><strong>Lansator bazat pe text:</strong> Fără pictograme confuze — doar butoane text etichetate pentru aplicațiile tale.</li>
     <li><strong>Foarte personalizabil:</strong> Ajustați aspectul, dimensiunile fontului, poziția ceasului și multe altele.</li>
@@ -15,7 +15,7 @@
 
 <h2>Caracteristici cheie:</h2>
 <ul>
-    <li>Nume personalizate de aplicații: Redenumiți aplicațiile pentru a se potrivi cu modul în care vă gândiți la ele.</li>
+    <li>Nume personalizate ale aplicațiilor: Redenumiți aplicațiile pentru a se potrivi cu modul în care vă gândiți la ele.</li>
     <li>Aspecte flexibile: Organizați aplicațiile în modul care vă convine.</li>
     <li>Personalizare ceas și dată: Plasați widget-uri oriunde doriți.</li>
     <li>Statistici privind utilizarea aplicației: Vedeți cât timp petreceți în fiecare aplicație.</li>
@@ -26,10 +26,10 @@
 <p>Această aplicație folosește API-ul <strong>AccessibilityService</strong> pentru:</p>
 <ul>
     <li>Blocați ecranul cu un gest</li>
-    <li>Deschide meniul de pornire</li>
-    <li>Trageți în jos sertarul de notificări</li>
+    <li>Deschideți meniul de pornire</li>
+    <li>Trageți în jos panoul de notificări</li>
 </ul>
 
-<p><em>Multi Launcher respectă confidențialitatea dumneavoastră. Aceste funcții nu colectează și nu partajează date cu caracter personal.</em></p>
+<p><em>Multi Launcher respectă confidențialitatea dvs. Aceste funcții nu colectează și nu partajează date cu caracter personal.</em></p>
 
 <p>Dacă te-ai săturat de lansatoarele stridente și aglomerate și vrei ceva simplu, elegant și captivant, <strong>Multi Launcher</strong> este soluția perfectă pentru ecranul de pornire.</p>
