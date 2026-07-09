@@ -19,7 +19,8 @@ import com.github.codeworkscreativehub.mlauncher.helper.utils.AppDiffCallback
 class FavoriteAdapter(
     private val apps: MutableList<AppListItem>, // List of AppListItem objects
     private val onItemMoved: (fromPosition: Int, toPosition: Int) -> Unit,
-    private val prefs: Prefs
+    private val prefs: Prefs,
+    private val onItemClick: ((position: Int) -> Unit)? = null // optional click callback
 ) : RecyclerView.Adapter<FavoriteAdapter.AppViewHolder>() {
 
     class AppViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -49,6 +50,12 @@ class FavoriteAdapter(
         val prefixDrawable: Drawable? =
             ContextCompat.getDrawable(holder.itemView.context, R.drawable.ic_order_apps)
         holder.appTextView.setCompoundDrawablesWithIntrinsicBounds(null, null, prefixDrawable, null)
+
+        // Click -> delegate to callback if provided
+        holder.itemView.setOnClickListener {
+            val pos = holder.bindingAdapterPosition
+            if (pos != RecyclerView.NO_POSITION) onItemClick?.invoke(pos)
+        }
     }
 
 

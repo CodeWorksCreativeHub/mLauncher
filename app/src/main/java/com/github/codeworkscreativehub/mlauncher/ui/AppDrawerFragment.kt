@@ -170,34 +170,7 @@ class AppDrawerFragment : BaseFragment() {
             AppDrawerFlag.SetFloating -> {
             }
 
-            AppDrawerFlag.SetHomeApp -> {
-                // Get UserManager
-                val userManager = requireContext().getSystemService(Context.USER_SERVICE) as UserManager
-
-                val clearApp = AppListItem(
-                    activityLabel = "Clear",
-                    activityPackage = emptyString(),
-                    activityClass = emptyString(),
-                    user = userManager.userProfiles[0], // or use Process.myUserHandle() if it makes more sense
-                    profileType = "SYSTEM",
-                    customTag = emptyString(),
-                    category = AppCategory.REGULAR
-                )
-
-                binding.clearHomeButton.apply {
-                    val currentApp = prefs.getHomeAppModel(n)
-                    if (currentApp.activityPackage.isNotEmpty() && currentApp.activityClass.isNotEmpty()) {
-                        isVisible = true
-                        text = getLocalizedString(R.string.clear_home_app)
-                        setTextColor(prefs.appColor)
-                        textSize = prefs.appSize.toFloat()
-                        setOnClickListener {
-                            prefs.setHomeAppModel(n, clearApp)
-                            findNavController().popBackStack()
-                        }
-                    }
-                }
-            }
+            AppDrawerFlag.SetHomeApp -> setupClearHomeButton(n)
 
 
             else -> {}
@@ -751,7 +724,7 @@ class AppDrawerFragment : BaseFragment() {
         val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         searchTextView.postDelayed({
             searchTextView.requestFocus()
-            imm.showSoftInput(searchTextView, InputMethodManager.SHOW_IMPLICIT)
+            imm.showSoftInput(searchTextView, 0)
         }, 100)
     }
 
@@ -879,5 +852,37 @@ class AppDrawerFragment : BaseFragment() {
         }.toSet()
 
         binding.azSidebar.setAvailableLetters(letters)
+    }
+
+    private fun createClearApp(): AppListItem {
+        val userManager = requireContext().getSystemService(Context.USER_SERVICE) as UserManager
+        return AppListItem(
+            activityLabel = "Clear",
+            activityPackage = emptyString(),
+            activityClass = emptyString(),
+            user = userManager.userProfiles[0],
+            profileType = "SYSTEM",
+            customTag = emptyString(),
+            category = AppCategory.REGULAR
+        )
+    }
+
+    private fun setupClearHomeButton(position: Int) {
+        val currentApp = prefs.getHomeAppModel(position)
+        val hasCurrentApp =
+            currentApp.activityPackage.isNotEmpty() && currentApp.activityClass.isNotEmpty()
+
+        binding.clearHomeButton.apply {
+            isVisible = hasCurrentApp
+            if (hasCurrentApp) {
+                text = getLocalizedString(R.string.clear_home_app)
+                setTextColor(prefs.appColor)
+                textSize = prefs.appSize.toFloat()
+                setOnClickListener {
+                    prefs.setHomeAppModel(position, createClearApp())
+                    findNavController().popBackStack()
+                }
+            }
+        }
     }
 }

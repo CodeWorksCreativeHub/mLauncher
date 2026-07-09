@@ -1,5 +1,6 @@
 package com.github.codeworkscreativehub.mlauncher.ui
 
+// ...existing imports...
 import android.app.admin.DevicePolicyManager
 import android.os.Bundle
 import android.os.Vibrator
@@ -8,12 +9,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.github.codeworkscreativehub.common.getLocalizedString
 import com.github.codeworkscreativehub.mlauncher.MainViewModel
 import com.github.codeworkscreativehub.mlauncher.R
+import com.github.codeworkscreativehub.mlauncher.data.Constants.AppDrawerFlag
 import com.github.codeworkscreativehub.mlauncher.data.Prefs
 import com.github.codeworkscreativehub.mlauncher.databinding.FragmentFavoriteBinding
 import com.github.codeworkscreativehub.mlauncher.helper.getHexForOpacity
@@ -52,7 +55,19 @@ class FavoriteFragment : BaseFragment() {
             ?: throw IllegalStateException("Vibrator unavailable")
 
         // Initialize the adapter and pass prefs to it
-        val adapter = FavoriteAdapter(mutableListOf(), viewModel::updateAppOrder, prefs)
+        val adapter = FavoriteAdapter(
+            mutableListOf(),
+            viewModel::updateAppOrder,
+            prefs,
+            onItemClick = { position ->
+                // Open the AppDrawerFragment to set a home app for this position
+                val args = Bundle().apply {
+                    putString("flag", AppDrawerFlag.SetHomeApp.toString())
+                    putInt("n", position)
+                }
+                findNavController().navigate(R.id.appListFragment, args)
+            }
+        )
 
         binding.homeAppsRecyclerview.apply {
             layoutManager = LinearLayoutManager(requireContext())
@@ -142,6 +157,8 @@ class FavoriteFragment : BaseFragment() {
 
         val backgroundColor = getHexForOpacity(prefs)
         binding.mainLayout.setBackgroundColor(backgroundColor)
+        // Reload the saved order in case the user selected a new app from the app drawer
+        viewModel.loadAppOrder()
     }
 
     private fun initObservers() {
