@@ -19,6 +19,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 ### :globe_with_meridians: Localization:
 
+* Updated Language Files. ([#1079](https://github.com/CodeWorksCreativeHub/mLauncher/pull/1079)) ([1680eb85](https://github.com/CodeWorksCreativeHub/mLauncher/commit/1680eb85))
 * Updated Language Files. ([#1078](https://github.com/CodeWorksCreativeHub/mLauncher/pull/1078)) ([cc462c69](https://github.com/CodeWorksCreativeHub/mLauncher/commit/cc462c69))
 * New translations Chinese Simplified/full_description.txt from Crowdin ([#1071](https://github.com/CodeWorksCreativeHub/mLauncher/pull/1071)) ([0c36057f](https://github.com/CodeWorksCreativeHub/mLauncher/commit/0c36057f))
 * New translations Chinese Simplified/full_description.txt from Crowdin ([#1069](https://github.com/CodeWorksCreativeHub/mLauncher/pull/1069)) ([cef1ae32](https://github.com/CodeWorksCreativeHub/mLauncher/commit/cef1ae32))
