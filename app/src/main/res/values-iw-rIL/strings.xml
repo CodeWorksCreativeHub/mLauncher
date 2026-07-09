@@ -230,14 +230,14 @@
     <string name="favorite_apps">יישומים מועדפים</string>
     <string name="clear_home_app">נקה את אפליקציית הבית</string>
     <!-- Favorite management strings -->
-    <string name="add_app">Add App</string>
-    <string name="remove_app">Remove App</string>
-    <string name="max_apps_reached">Maximum number of home apps reached</string>
-    <string name="min_apps_reached">Minimum number of home apps reached</string>
-    <string name="no_apps_to_remove">No apps to remove</string>
-    <string name="select_app_to_remove">Select app to remove</string>
-    <string name="empty_favorite">Unused</string>
-    <string name="confirm_remove_favorite">Are you sure you want to remove this app from favorites?</string>
+    <string name="add_app">הוסף אפליקציה</string>
+    <string name="remove_app">הסר אפליקציה</string>
+    <string name="max_apps_reached">הגעת למספר המרבי של אפליקציות בית</string>
+    <string name="min_apps_reached">הגעת למספר המינימלי של אפליקציות בית</string>
+    <string name="no_apps_to_remove">אין אפליקציות להסרה</string>
+    <string name="select_app_to_remove">בחר אפליקציה להסרה</string>
+    <string name="empty_favorite">לא בשימוש</string>
+    <string name="confirm_remove_favorite">האם אתה בטוח שברצונך להסיר את האפליקציה הזו מהמועדפים?</string>
     <!-- Accessibility/Help Strings -->
     <string name="accessibility_service_name">שירותי פעולה של משגרים מרובים</string>
     <string name="accessibility_service_why_we_need">למה אנחנו צריכים אישור נגישות</string>
