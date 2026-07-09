@@ -1,33 +1,33 @@
-<h1>Multi Launcher : un lanceur Android simple et épuré, conçu pour la lisibilité et le contrôle.</h1>
+<h1>Multi Launcher : Un lanceur Android épuré et simple, conçu pour une lisibilité et un contrôle optimaux</h1>
 
-<p>Vous recherchez un lanceur qui élimine l'encombrement et simplifie les choses ? <strong>Multi Launcher</strong> est un lanceur Android puissant mais minimaliste qui remplace les petites icônes par des boutons de texte clairs et lisibles, ce qui facilite la navigation sur votre téléphone.</p>
+<p>Vous cherchez un lanceur qui élimine le superflu et simplifie les choses ? <strong>Multi Launcher</strong> est un lanceur Android puissant mais minimaliste qui remplace les petites icônes par des boutons de texte clairs et lisibles, ce qui facilite la navigation sur votre téléphone.</p>
 
-<p>Que vous souhaitiez un écran d'accueil simple, que vous ayez besoin d'un texte volumineux pour plus de visibilité ou que vous préfériez des actions rapides basées sur des gestes, Multi Launcher vous donne un contrôle total sans vous submerger d'options.</p>
+<p>Que vous souhaitiez un écran d'accueil simple, ayez besoin d'un texte de grande taille pour une meilleure visibilité ou préfériez des actions rapides par gestes, Multi Launcher vous offre un contrôle total sans vous submerger d'options.</p>
 
 <h2>Pourquoi choisir Multi Launcher ?</h2>
 <ul>
     <li><strong>Lanceur textuel :</strong> Pas d'icônes déroutantes — juste des boutons de texte étiquetés pour vos applications.</li>
-    <li><strong>Hautement personnalisable :</strong> Ajustez la mise en page, les tailles de police, la position de l'horloge, etc.</li>
-    <li><strong>Gestes rapides :</strong> Utilisez des appuis, des balayages et des balayages longs pour ouvrir des applications, verrouiller l'écran et accéder aux notifications.</li>
-    <li><strong>Sécurisé :</strong> Verrouillage biométrique pour les paramètres et la confidentialité.</li>
-    <li><strong>Idéal pour les seniors ou les amateurs de simplicité :</strong> Facile à lire, à utiliser et à personnaliser.</li>
+    <li><strong>Hautement personnalisable :</strong> Ajustez la mise en page, la taille des polices, la position de l’horloge et bien plus encore.</li>
+    <li><strong>Gestes rapides :</strong> Utilisez des tapotements, des glissements et des glissements longs pour ouvrir des applications, verrouiller l’écran et accéder aux notifications.</li>
+    <li><strong>Sécurisé :</strong> Verrouillage biométrique pour les paramètres et la confidentialité.</li>
+    <li><strong>Idéal pour les seniors ou les adeptes de la simplicité :</strong> Facile à lire, à utiliser et à personnaliser.</li>
 </ul>
 
-<h2>Principales caractéristiques :</h2>
+<h2>Caractéristiques principales :</h2>
 <ul>
-    <li>Noms d'applications personnalisés : renommez les applications en fonction de la façon dont vous les concevez.</li>
-    <li>Dispositions flexibles : organisez les applications de la manière qui vous convient.</li>
-    <li>Personnalisation de l'horloge et de la date : placez les widgets où vous le souhaitez.</li>
-    <li>Aperçu de l'utilisation des applications : découvrez combien de temps vous passez dans chaque application.</li>
-    <li>Raccourcis gestuels : définissez des actions personnalisées pour les doubles appuis, les balayages, etc.</li>
+    <li>Noms d'applications personnalisés : renommez les applications selon vos préférences.</li>
+    <li>Agencements flexibles : Organisez vos applications comme vous le souhaitez.</li>
+    <li>Personnalisation de l'horloge et de la date : placez les widgets où vous le souhaitez.</li>
+    <li>Statistiques d'utilisation des applications : Découvrez le temps passé dans chaque application.</li>
+    <li>Raccourcis gestuels : définissez des actions personnalisées pour les doubles tapotements, les balayages, etc.</li>
 </ul>
 
-<h2>Fonctionnalités d'accessibilité :</h2>
-<p>Cette application utilise l'API AccessibilityService <strong></strong> pour :</p>
+<h2>Fonctionnalités d'accessibilité :</h2>
+<p>Cette application utilise l'API <strong>AccessibilityService</strong> pour :</p>
 <ul>
     <li>Verrouiller l'écran avec un geste</li>
     <li>Ouvrir le menu d'alimentation</li>
-    <li>Déroulez le tiroir de notification</li>
+    <li>Déroulez le panneau de notifications</li>
 </ul>
 
 <p><em>Multi Launcher respecte votre vie privée. Ces fonctionnalités ne collectent ni ne partagent de données personnelles.</em></p>
