@@ -240,7 +240,8 @@
 
 Toto povolenie umožňuje aplikácii MultiLauncher vykonávať tieto akcie vo vašom mene, ale nezhromažďujeme, neukladáme ani nezdieľame žiadne osobné ani citlivé údaje prostredníctvom tejto služby.  
 
-Tento prístup môžete kedykoľvek vypnúť v nastaveniach zariadenia.</string>
+Tento prístup môžete kedykoľvek vypnúť v nastaveniach zariadenia.
+</string>
     <string name="can_not_delete_system_apps">Systémové aplikácie sa nedajú odstrániť</string>
     <string name="please_select_app">Vyberte aplikáciu</string>
     <string name="drawer_list_empty_hint">Nenašli sa žiadne aplikácie</string>

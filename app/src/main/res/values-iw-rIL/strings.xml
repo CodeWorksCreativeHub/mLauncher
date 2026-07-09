@@ -240,7 +240,8 @@
 
 הרשאה זו מאפשרת ל-MultiLauncher לבצע את הפעולות האלו עבורך, אך איננו אוספים, שומרים או משתפים מידע אישי או רגיש דרך שירות זה.
 
-תוכל להשבית גישה זו בכל עת מהגדרות המכשיר שלך.</string>
+תוכל להשבית גישה זו בכל עת מהגדרות המכשיר שלך.
+</string>
     <string name="can_not_delete_system_apps">לא ניתן למחוק יישומי מערכת</string>
     <string name="please_select_app">אנא בחר יישום</string>
     <string name="drawer_list_empty_hint">לא נמצאו יישומים</string>

@@ -30,6 +30,6 @@
     <li>下拉通知面板</li>
 </ul>
 
-<p><em>Multi Launcher 尊重你的隐私。这些功能不会收集或分享个人数据。</em></p> <p><em>Multi Launcher 尊重您的隐私。 These features do not collect or share personal data.</em></p> <p><em>Multi Launcher 尊重您的隐私。 These features do not collect or share personal data.</em></p> <p><em>Multi Launcher 尊重您的隐私。 These features do not collect or share personal data.</em></p> <p><em>Multi Launcher 尊重您的隐私。 These features do not collect or share personal data.</em></p>
+<p><em>Multi Launcher 尊重您的隐私。 这些功能不会收集或共享个人数据。</em></p>
 
 <p>如果你已经厌倦了花哨杂乱的启动器，想要一个直观、清爽且实用的主屏幕方案，<strong>Multi Launcher</strong> 会是很合适的选择。</p>
