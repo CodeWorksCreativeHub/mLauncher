@@ -1,25 +1,25 @@
-<h1>Multi Launcher: een schone, eenvoudige Android-launcher, gebouwd voor leesbaarheid en controle</h1>
+<h1>Multi Launcher: Een overzichtelijke, eenvoudige Android-launcher ontworpen voor leesbaarheid en controle</h1>
 
-<p>Bent u op zoek naar een launcher die alles overzichtelijk houdt en alles simpel houdt? <strong>Multi Launcher</strong> is een krachtige maar minimalistische Android-launcher die kleine pictogrammen vervangt door duidelijke, leesbare tekstknoppen, waardoor je gemakkelijker op je telefoon kunt navigeren.</p>
+<p>Op zoek naar een launcher die overzichtelijk is en alles eenvoudig houdt? <strong>Multi Launcher</strong> is een krachtige maar minimalistische Android-launcher die kleine pictogrammen vervangt door duidelijke, leesbare tekstknoppen, waardoor je telefoon gemakkelijker te navigeren is.</p>
 
-<p>Of u nu een eenvoudig startscherm wilt, grote tekst nodig hebt voor goede leesbaarheid of de voorkeur geeft aan snelle acties op basis van gebaren, Multi Launcher geeft u volledige controle zonder u te overweldigen met opties.</p>
+<p>Of je nu een eenvoudig startscherm wilt, grote tekst nodig hebt voor betere leesbaarheid, of de voorkeur geeft aan snelle acties op basis van gebaren, Multi Launcher geeft je volledige controle zonder je te overweldigen met opties.</p>
 
 <h2>Waarom kiezen voor Multi Launcher?</h2>
 <ul>
-    <li><strong>Tekstgebaseerde launcher:</strong> Geen verwarrende pictogrammen — alleen gelabelde tekstknoppen voor uw apps.</li>
-    <li><strong>Zeer aanpasbaar:</strong> Pas de lay-out, lettergrootte, klokpositie en meer aan.</li>
-    <li><strong>Snelle gebaren:</strong> Gebruik tikken, vegen en lange vegen om apps te openen, het scherm te vergrendelen en toegang te krijgen tot meldingen.</li>
-    <li><strong>Veilig:</strong> Biometrisch slot voor instellingen en privacy.</li>
+    <li><strong>Tekstgebaseerde launcher:</strong> Geen verwarrende pictogrammen — alleen tekstknoppen met labels voor je apps.</li>
+    <li><strong>Zeer aanpasbaar:</strong> Pas de lay-out, lettergroottes, klokpositie en meer aan.</li>
+    <li><strong>Snelle gebaren:</strong> Gebruik tikken, vegen en lang vegen om apps te openen, het scherm te vergrendelen en meldingen te bekijken.</li>
+    <li><strong>Beveiligd:</strong> Biometrisch slot voor instellingen en privacy.</li>
     <li><strong>Ideaal voor senioren of liefhebbers van eenvoud:</strong> Gemakkelijk te lezen, te gebruiken en aan te passen.</li>
 </ul>
 
 <h2>Belangrijkste kenmerken:</h2>
 <ul>
-    <li>Aangepaste app-namen: hernoem apps zodat ze passen bij hoe jij ze ziet.</li>
-    <li>Flexibele lay-outs: organiseer apps op de manier die voor u logisch is.</li>
-    <li>Klok en datum aanpassen: plaats widgets waar u maar wilt.</li>
-    <li>Inzichten in app-gebruik: bekijk hoeveel tijd u in elke app doorbrengt.</li>
-    <li>Sneltoetsen voor gebaren: stel aangepaste acties in voor dubbeltikken, vegen en meer.</li>
+    <li>Aangepaste appnamen: Hernoem apps zodat ze overeenkomen met hoe je ze ziet.</li>
+    <li>Flexibele lay-outs: Organiseer apps op de manier die voor jou het meest logisch is.</li>
+    <li>Klok- en datumaanpassing: Plaats widgets waar u maar wilt.</li>
+    <li>Inzichten in appgebruik: Bekijk hoeveel tijd je in elke app doorbrengt.</li>
+    <li>Gebarensnelkoppelingen: Stel aangepaste acties in voor dubbeltikken, vegen en meer.</li>
 </ul>
 
 <h2>Toegankelijkheidsfuncties:</h2>
@@ -27,9 +27,9 @@
 <ul>
     <li>Vergrendel het scherm met een gebaar</li>
     <li>Open het energiemenu</li>
-    <li>Trek de meldingslade naar beneden</li>
+    <li>Trek het meldingenpaneel naar beneden</li>
 </ul>
 
 <p><em>Multi Launcher respecteert uw privacy. Deze functies verzamelen of delen geen persoonlijke gegevens.</em></p>
 
-<p>Als je genoeg hebt van flitsende, rommelige launchers en iets eenvoudigs, stijlvols en krachtigs wilt, dan is <strong>Multi Launcher</strong> de perfecte oplossing voor je startscherm.</p>
+<p>Als je genoeg hebt van flitsende, rommelige launchers en iets wilt dat rechttoe rechtaan, stijlvol en krachtig is, <strong>Multi Launcher</strong> is de perfecte oplossing voor je startscherm.</p>
