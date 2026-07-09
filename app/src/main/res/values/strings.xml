@@ -487,4 +487,13 @@
         <item>Work</item>
     </string-array>
 
+    <string name="add_app" translatable="false">Add App</string>
+    <string name="remove_app" translatable="false">Remove App</string>
+    <string name="max_apps_reached" translatable="false">Maximum number of home apps reached</string>
+    <string name="min_apps_reached" translatable="false">Minimum number of home apps reached</string>
+    <string name="no_apps_to_remove" translatable="false">No apps to remove</string>
+    <string name="select_app_to_remove" translatable="false">Select app to remove</string>
+    <string name="empty_favorite" translatable="false">Unused</string>
+    <string name="confirm_remove_favorite" translatable="false">Are you sure you want to remove this app from favorites?</string>
+
 </resources>

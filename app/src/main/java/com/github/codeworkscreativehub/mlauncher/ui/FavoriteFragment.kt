@@ -2,11 +2,14 @@ package com.github.codeworkscreativehub.mlauncher.ui
 
 // ...existing imports...
 import android.app.admin.DevicePolicyManager
+import android.content.Context
 import android.os.Bundle
+import android.os.UserManager
 import android.os.Vibrator
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -14,11 +17,15 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.github.codeworkscreativehub.common.getLocalizedString
+import com.github.codeworkscreativehub.common.showShortToast
 import com.github.codeworkscreativehub.mlauncher.MainViewModel
 import com.github.codeworkscreativehub.mlauncher.R
+import com.github.codeworkscreativehub.mlauncher.data.AppCategory
+import com.github.codeworkscreativehub.mlauncher.data.AppListItem
 import com.github.codeworkscreativehub.mlauncher.data.Constants.AppDrawerFlag
 import com.github.codeworkscreativehub.mlauncher.data.Prefs
 import com.github.codeworkscreativehub.mlauncher.databinding.FragmentFavoriteBinding
+import com.github.codeworkscreativehub.mlauncher.helper.emptyString
 import com.github.codeworkscreativehub.mlauncher.helper.getHexForOpacity
 import com.github.codeworkscreativehub.mlauncher.ui.adapter.FavoriteAdapter
 
@@ -168,11 +175,123 @@ class FavoriteFragment : BaseFragment() {
             setTextColor(prefs.appColor)
         }
 
+        // Setup add/remove buttons
+        setupAddRemoveButtons()
+
         with(viewModel) {
             homeAppsNum.observe(viewLifecycleOwner) { newAppsNum ->
                 updateRecyclerView(newAppsNum)
             }
         }
+    }
+
+    private fun setupAddRemoveButtons() {
+        binding.addAppButton.apply {
+            setOnClickListener {
+                addHomeAppSlot()
+            }
+        }
+
+        binding.removeAppButton.apply {
+            setOnClickListener {
+                removeHomeAppSlot()
+            }
+        }
+    }
+
+    private fun addHomeAppSlot() {
+        val currentNum = prefs.homeAppsNum
+        val maxSlots = 12  // Set a reasonable maximum
+
+        if (currentNum >= maxSlots) {
+            requireContext().showShortToast(getLocalizedString(R.string.max_apps_reached))
+            return
+        }
+
+        val newNum = currentNum + 1
+        prefs.homeAppsNum = newNum
+        viewModel.homeAppsNum.postValue(newNum)
+        // Refresh order so UI shows the new empty slot immediately
+        viewModel.loadAppOrder()
+
+        // Open app drawer to select an app for the newly added favorite
+        val args = Bundle().apply {
+            putString("flag", AppDrawerFlag.SetHomeApp.toString())
+            putInt("n", newNum - 1) // index of new favorite
+            putString("profileType", "SYSTEM")
+        }
+        try {
+            findNavController().navigate(R.id.appListFragment, args)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    private fun removeHomeAppSlot() {
+        val currentNum = prefs.homeAppsNum
+        val minSlots = 1  // Minimum one slot
+
+        if (currentNum <= minSlots) {
+            requireContext().showShortToast(getLocalizedString(R.string.min_apps_reached))
+            return
+        }
+
+        // Build a list of favorite descriptions (show alias or app label, or "Empty favorite")
+        val favoriteLabels = (0 until currentNum).map { index ->
+            val app = prefs.getHomeAppModel(index)
+            if (app.activityPackage.isNotEmpty() && app.activityClass.isNotEmpty()) {
+                prefs.getAppAlias(app.activityPackage).takeIf { it.isNotBlank() }
+                    ?: app.activityLabel
+            } else {
+                getLocalizedString(R.string.empty_favorite)
+            }
+        }.toTypedArray()
+
+        AlertDialog.Builder(requireContext())
+            .setTitle(R.string.select_app_to_remove)
+            .setItems(favoriteLabels) { _, which ->
+                // Confirm removal of the selected favorite
+                val favoriteIndex = which
+                AlertDialog.Builder(requireContext())
+                    .setMessage(getLocalizedString(R.string.confirm_remove_favorite))
+                    .setPositiveButton(android.R.string.ok) { _, _ ->
+                        removeFavoriteAtPosition(favoriteIndex)
+                    }
+                    .setNegativeButton(android.R.string.cancel, null)
+                    .show()
+            }
+            .setNegativeButton(android.R.string.cancel, null)
+            .show()
+    }
+
+    private fun removeFavoriteAtPosition(position: Int) {
+        val currentNum = prefs.homeAppsNum
+        if (position < 0 || position >= currentNum) return
+
+        // Shift all subsequent favorites left by one
+        for (i in position until currentNum - 1) {
+            val next = prefs.getHomeAppModel(i + 1)
+            prefs.setHomeAppModel(i, next)
+        }
+
+        // Clear the last favorite now duplicated
+        val userManager = requireContext().getSystemService(Context.USER_SERVICE) as UserManager
+        val clearApp = AppListItem(
+            activityLabel = "Clear",
+            activityPackage = emptyString(),
+            activityClass = emptyString(),
+            user = userManager.userProfiles[0],
+            profileType = "SYSTEM",
+            customTag = emptyString(),
+            category = AppCategory.REGULAR
+        )
+        prefs.setHomeAppModel(currentNum - 1, clearApp)
+
+        // Decrease favorites count and refresh
+        val newNum = currentNum - 1
+        prefs.homeAppsNum = newNum
+        viewModel.homeAppsNum.postValue(newNum)
+        viewModel.loadAppOrder()
     }
 
     private fun updateRecyclerView(newAppsNum: Int) {
