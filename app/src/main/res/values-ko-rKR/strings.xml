@@ -1,48 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Base Settings -->
-    <string name="select_app">앱 선택</string>
+    <string name="select_app">앱을 선택하세요</string>
     <string name="show_apps">앱 검색</string>
-    <string name="show_private_apps">비공개 앱 검색</string>
-    <string name="show_work_apps">업무용 앱 검색</string>
+    <string name="show_private_apps">개인 정보 보호 앱 검색</string>
+    <string name="show_work_apps">검색 작업 앱</string>
     <string name="show_contacts">연락처 검색</string>
     <string name="welcome_to_launcher">%1$s에 오신 것을 환영합니다</string>
-    <string name="continue_by_you_agree">계속하시면 %1$s에 동의하게 됩니다.</string>
-    <string name="usage_access_permission">사용 액세스 권한</string>
-    <string name="location_access_permission">위치 액세스 권한</string>
+    <string name="continue_by_you_agree">계속 진행하시면 %1$s에 동의하시는 것입니다.</string>
+    <string name="usage_access_permission">사용 접근 권한</string>
+    <string name="location_access_permission">위치 접근 권한</string>
     <string name="accessibility_access_permission">접근성 권한</string>
-    <string name="grant_permission">허가를 부여하다</string>
-    <string name="grant_usage_permission">계속하려면 사용 액세스 권한을 부여하세요.</string>
-    <string name="reason_usage_permission">이 앱에는 가장 많이 사용하는 앱을 표시하고, 화면 시간을 추적하고, 사용자 경험을 개선하기 위한 사용 권한 액세스가 필요합니다. 당사는 개인 데이터를 수집하거나 공유하지 않습니다.</string>
-    <string name="grant_location_permission">계속하려면 위치 권한을 부여하세요.</string>
-    <string name="reason_location_permission">이 앱은 현재 위치를 기반으로 정확한 날씨 업데이트를 제공하기 위해 위치 접근 권한이 필요합니다. 당사는 어떠한 개인 정보도 수집하거나 공유하지 않습니다.</string>
-    <string name="grant_accessibility_permission">계속하려면 접근성 권한을 부여하세요.</string>
-    <string name="reason_accessibility_permission">MultiLauncher는 화면 잠금 및 빠른 설정 열기와 같은 향상된 기능을 제공하기 위해 접근성 권한이 필요합니다. 이러한 기능은 사용성 향상에 도움이 됩니다. 당사는 어떠한 데이터도 수집하거나 공유하지 않습니다.</string>
-    <string name="permission_granted">허가되었습니다! 계속할 수 있습니다.</string>
+    <string name="grant_permission">허가해 주세요</string>
+    <string name="grant_usage_permission">계속하려면 사용 접근 권한을 부여해 주세요.</string>
+    <string name="reason_usage_permission">이 앱은 사용자가 가장 많이 사용하는 앱을 표시하고, 화면 사용 시간을 추적하며, 사용자 경험을 개선하기 위해 사용 권한 접근이 필요합니다. 당사는 어떠한 개인 정보도 수집하거나 공유하지 않습니다.</string>
+    <string name="grant_location_permission">계속하려면 위치 권한을 허용해 주세요.</string>
+    <string name="reason_location_permission">이 앱은 사용자의 현재 위치를 기반으로 정확한 날씨 정보를 제공하기 위해 위치 접근 권한이 필요합니다. 당사는 어떠한 개인 정보도 수집하거나 공유하지 않습니다.</string>
+    <string name="grant_accessibility_permission">계속하려면 접근성 권한을 부여해 주세요.</string>
+    <string name="reason_accessibility_permission">MultiLauncher는 화면 잠금 및 빠른 설정 열기와 같은 향상된 기능을 제공하기 위해 접근성 권한이 필요합니다. 이러한 기능은 사용 편의성을 개선하는 데 도움이 됩니다. 당사는 어떠한 데이터도 수집하거나 공유하지 않습니다.</string>
+    <string name="permission_granted">승인되었습니다! 계속 진행하셔도 됩니다.</string>
     <string name="this_can_be_disabled_later">* 이 권한은 나중에 비활성화될 수 있습니다.</string>
     <!-- Strings used for settings menus -->
     <string name="settings_name">멀티런처 설정</string>
     <string name="settings_features_title">특징</string>
     <string name="settings_features_description">생산성을 향상시키세요.</string>
     <string name="settings_look_feel_title">보세요 &amp; 느껴보세요</string>
-    <string name="settings_look_feel_description">홈 화면에 개성을 더해보세요.</string>
+    <string name="settings_look_feel_description">홈 화면에 나만의 개성을 더해보세요.</string>
     <string name="settings_gestures_title">Gestures</string>
-    <string name="settings_gestures_description">빠르고 쉬운 탐색을 위해 제스처를 사용자 지정하세요.</string>
-    <string name="settings_notes_title">노트</string>
-    <string name="settings_notes_description">귀하의 스타일에 맞게 노트를 개인화하세요.</string>
+    <string name="settings_gestures_description">빠르고 간편한 탐색을 위해 제스처를 맞춤 설정하세요.</string>
+    <string name="settings_notes_title">메모</string>
+    <string name="settings_notes_description">나만의 스타일에 맞춰 메모를 꾸며보세요.</string>
     <!-- Favorite Apps -->
     <!-- Favorite Apps -->
-    <string name="settings_favorite_apps_title">즐겨찾는 앱</string>
-    <string name="settings_favorite_apps_description">홈 화면에서 자주 사용하는 앱을 빠르게 액세스할 수 있도록 순서를 변경하세요.</string>
+    <string name="settings_favorite_apps_title">즐겨 사용하는 앱</string>
+    <string name="settings_favorite_apps_description">홈 화면에서 자주 사용하는 앱의 순서를 바꿔 빠르게 실행할 수 있습니다.</string>
     <!-- Hidden Apps -->
     <string name="settings_hidden_apps_title">Hidden apps</string>
-    <string name="settings_hidden_apps_description">숨겨진 앱 관리 - 필요할 때 이 목록에서 모든 앱을 숨겨진 상태로 유지합니다.</string>
+    <string name="settings_hidden_apps_description">숨겨진 앱 관리 — 필요할 때 이 목록에서 앱을 표시하세요.</string>
     <string name="settings_advanced_title">고급 설정</string>
-    <string name="settings_advanced_description">앱 정보, 기본 런처, 백업 도구 등에 액세스하세요.</string>
+    <string name="settings_advanced_description">앱 정보, 기본 실행기, 백업 도구 등에 액세스할 수 있습니다.</string>
     <string name="settings_expert_title">전문가</string>
-    <string name="settings_expert_description">숨겨진 옵션과 고급 조정 기능을 잠금 해제하세요.</string>
-    <string name="settings_exit_mlauncher_title">MultiLauncher 종료</string>
-    <string name="settings_exit_mlauncher_description">일시적으로 기본 런처로 전환합니다.</string>
+    <string name="settings_expert_description">숨겨진 옵션과 고급 설정을 이용해 보세요.</string>
+    <string name="settings_exit_mlauncher_title">멀티런처 종료</string>
+    <string name="settings_exit_mlauncher_description">기본 실행 프로그램으로 잠시 전환하세요.</string>
     <string name="settings_exit_mlauncher_dialog">런처를 선택하세요</string>
     <!-- Strings used for features settings -->
     <string name="features_settings_title">특징</string>
@@ -50,33 +50,33 @@
     <string name="theme_mode">Theme mode</string>
     <string name="app_language">Interface Language</string>
     <string name="font_family">글꼴군</string>
-    <string name="search_and_app_list">검색 &amp; 앱 목록</string>
-    <string name="hide_search_view">검색보기 숨기기</string>
+    <string name="search_and_app_list">&amp; 앱 목록 검색</string>
+    <string name="hide_search_view">검색 보기 숨기기</string>
     <string name="show_floating_button">바로가기 버튼 표시</string>
     <string name="lock_orientation">잠금 방향</string>
-    <string name="haptic_feedback">촉각 피드백</string>
+    <string name="haptic_feedback">햅틱 피드백</string>
     <string name="search">찾다</string>
     <string name="search_engine">검색 엔진</string>
     <string name="show_az_sidebar">AZ 사이드바 표시</string>
     <string name="auto_show_keyboard">Auto show keyboard</string>
-    <string name="search_from_start">처음부터 앱 검색.</string>
+    <string name="search_from_start">시작부터 검색</string>
     <string name="home_management">홈 &amp; 앱 관리</string>
     <string name="auto_open_apps">Auto open apps</string>
-    <string name="open_apps_on_enter">Enter에서 앱 열기</string>
+    <string name="open_apps_on_enter">입장 시 앱 열기</string>
     <string name="lock_home_apps">Lock Apps</string>
     <string name="lock_settings">잠금 설정</string>
-    <string name="apps_on_home_screen">홈 앱 수</string>
+    <string name="apps_on_home_screen">홈 앱 개수</string>
     <string name="pages_on_home_screen">페이지 수</string>
     <string name="enable_home_pager">홈 호출기 활성화</string>
     <string name="enable_app_timer">앱 타이머 활성화</string>
-    <string name="force_colored_wallpaper">포스 컬러드 월페이퍼</string>
+    <string name="force_colored_wallpaper">강렬한 색상의 벽지</string>
     <string name="info_tiles">정보 타일</string>
     <string name="show_clock">시계 표시</string>
-    <string name="show_clock_format">쇼 형식(오전/오후)</string>
+    <string name="show_clock_format">방송 형식 (오전/오후)</string>
     <string name="show_date">Show date</string>
     <string name="show_day_of_year">연중 쇼 데이</string>
     <string name="show_alarm">알람 표시</string>
-    <string name="show_daily_word">일일 단어 표시</string>
+    <string name="show_daily_word">오늘의 단어 보기</string>
     <string name="show_battery">배터리 표시</string>
     <string name="show_battery_icon">배터리 아이콘 표시</string>
     <string name="show_private_spaces">개인 공간 표시 아이콘</string>
@@ -96,27 +96,27 @@
     <string name="daily_word_text_size">일일 단어 텍스트 크기</string>
     <string name="battery_text_size">배터리 텍스트 크기</string>
     <string name="layout_positioning">레이아웃 &amp; 위치 지정</string>
-    <string name="app_padding_size">패딩 크기</string>
-    <string name="extend_home_apps_area">클릭 가능한 영역 확장</string>
-    <string name="alignment_to_bottom">아래쪽에 정렬</string>
+    <string name="app_padding_size">패딩 사이즈</string>
+    <string name="extend_home_apps_area">클릭 가능 영역 확장</string>
+    <string name="alignment_to_bottom">하단에 정렬</string>
     <string name="visibility_display">가시성 &amp; 표시</string>
     <string name="show_status_bar">상태 표시줄 표시</string>
-    <string name="show_navigation_bar">탐색 표시줄 표시</string>
-    <string name="show_recent_apps">최근 앱 표시</string>
-    <string name="number_of_recents">최근 앱 수</string>
+    <string name="show_navigation_bar">탐색 모음 표시</string>
+    <string name="show_recent_apps">최근 사용한 앱 표시</string>
+    <string name="number_of_recents">최근 앱 개수</string>
     <string name="show_app_usage_stats">앱 사용 통계 표시</string>
-    <string name="select_home_icons">홈 아이콘 팩 선택</string>
+    <string name="select_home_icons">홈 아이콘 팩을 선택하세요</string>
     <string name="select_app_list_icons">앱 목록 아이콘 팩 선택</string>
     <string name="enable_filter_strength">퍼지 파인더 활성화</string>
     <string name="filter_strength">퍼지 파인더 강도</string>
-    <string name="show_background">배경보기</string>
+    <string name="show_background">배경 표시</string>
     <string name="background_opacity">배경 투명성</string>
-    <string name="total_screen_time">총 화면 시간 표시</string>
+    <string name="total_screen_time">총 화면 사용 시간</string>
     <string name="element_alignment">요소 정렬</string>
     <string name="date_alignment">날짜</string>
     <string name="clock_alignment">시계</string>
     <string name="alarm_alignment">경보</string>
-    <string name="daily_word_alignment">데일리 워드</string>
+    <string name="daily_word_alignment">오늘의 말씀</string>
     <string name="home_alignment">홈 앱</string>
     <string name="drawer_alignment">서랍 앱</string>
     <string name="element_colors">요소 색상</string>
@@ -125,10 +125,10 @@
     <string name="clock_color">시계</string>
     <string name="date_color">날짜</string>
     <string name="alarm_color">경보</string>
-    <string name="daily_word_color">데일리 워드</string>
+    <string name="daily_word_color">오늘의 말씀</string>
     <string name="battery_color">배터리</string>
-    <string name="rainbow_shortcuts">레인보우 단축키</string>
-    <string name="shortcuts_color">단축키</string>
+    <string name="rainbow_shortcuts">레인보우 바로가기</string>
+    <string name="shortcuts_color">바로가기</string>
     <!-- Strings used for gestures settings -->
     <string name="gestures_settings_title">Gestures</string>
     <string name="tap_click_actions">탭/클릭 동작</string>
@@ -157,18 +157,18 @@
     <string name="open_quick_settings">Quick Settings</string>
     <string name="show_recents">Show Recents</string>
     <string name="open_power_dialog">전원 대화 상자</string>
-    <string name="take_a_screenshot">스크린샷 찍기</string>
-    <string name="previous_page">왼쪽 페이지로 이동</string>
-    <string name="next_page">오른쪽 페이지로 이동</string>
+    <string name="take_a_screenshot">스크린샷을 찍으세요</string>
+    <string name="previous_page">이전 페이지로 이동</string>
+    <string name="next_page">다음 페이지로 이동</string>
     <!-- Strings used for notes settings -->
-    <string name="notes_settings_title">노트</string>
+    <string name="notes_settings_title">메모</string>
     <string name="display_options">표시 옵션</string>
-    <string name="auto_expand_notes">자동 확장 노트</string>
-    <string name="click_to_edit_delete">편집/삭제를 클릭하세요</string>
-    <string name="notes_colors">노트 색상</string>
-    <string name="notes_background_color">노트 배경</string>
-    <string name="bubble_background_color">거품 배경</string>
-    <string name="bubble_message_color">버블 메시지</string>
+    <string name="auto_expand_notes">메모 자동 확장</string>
+    <string name="click_to_edit_delete">클릭하여 수정/삭제</string>
+    <string name="notes_colors">참고 사항 색상</string>
+    <string name="notes_background_color">참고 사항 배경</string>
+    <string name="bubble_background_color">버블 배경</string>
+    <string name="bubble_message_color">말풍선 메시지</string>
     <string name="bubble_date_time_color">버블 날짜/시간</string>
     <string name="bubble_category_color">버블 카테고리</string>
     <string name="input_colors">입력 색상</string>
@@ -178,21 +178,21 @@
     <string name="advanced_settings_title">고급 설정</string>
     <string name="advanced_settings_app_info_title">앱 정보</string>
     <string name="advanced_settings_app_info_description">%1$s</string>
-    <string name="advanced_settings_set_as_default_launcher">Set as default launcher</string>
+    <string name="advanced_settings_set_as_default_launcher">기본 실행기로 설정</string>
     <string name="advanced_settings_set_as_default_launcher_description">Multi Launcher를 기본 홈 앱으로 설정하세요.</string>
-    <string name="advanced_settings_change_default_launcher">Change default launcher</string>
-    <string name="advanced_settings_change_default_launcher_description">기본 런처로 다른 런처를 선택하세요.</string>
+    <string name="advanced_settings_change_default_launcher">기본 실행기 변경</string>
+    <string name="advanced_settings_change_default_launcher_description">기본 실행 프로그램으로 다른 프로그램을 선택하세요.</string>
     <string name="advanced_settings_restart_title">런처 재시작</string>
-    <string name="advanced_settings_restart_description">켜고 끄는 걸 시도해 보셨나요?</string>
+    <string name="advanced_settings_restart_description">전원을 껐다 켜보셨나요?</string>
     <string name="advanced_settings_backup_restore_title">백업/복원</string>
-    <string name="advanced_settings_backup_restore_description">원하는 것이 무엇인지 조심하세요.</string>
+    <string name="advanced_settings_backup_restore_description">소원을 빌 때는 신중해야 합니다.</string>
     <string name="advanced_settings_backup_restore_backup">지원</string>
     <string name="advanced_settings_backup_restore_restore">복원하다</string>
-    <string name="advanced_settings_backup_restore_clear">모든 데이터 지우기</string>
-    <string name="advanced_settings_backup_restore_clear_title">환경 설정 지우기</string>
-    <string name="advanced_settings_backup_restore_clear_description">정말로 이 작업을 수행하시겠습니까?</string>
-    <string name="advanced_settings_theme_title">테마 크리에이션</string>
-    <string name="advanced_settings_theme_description">나에게 맞는 테마를 설정하세요.</string>
+    <string name="advanced_settings_backup_restore_clear">모든 데이터 삭제</string>
+    <string name="advanced_settings_backup_restore_clear_title">환경설정 지우기</string>
+    <string name="advanced_settings_backup_restore_clear_description">정말 이렇게 하시겠어요?</string>
+    <string name="advanced_settings_theme_title">테마 제작</string>
+    <string name="advanced_settings_theme_description">원하는 대로 테마를 맞춤 설정하세요.</string>
     <string name="advanced_settings_theme_download">다운로드</string>
     <string name="advanced_settings_theme_export">내보내다</string>
     <string name="advanced_settings_theme_import">수입</string>
@@ -200,7 +200,7 @@
     <string name="advanced_settings_theme_clear_title">테마 초기화</string>
     <string name="advanced_settings_theme_clear_description">테마 설정을 모두 초기화하시겠습니까?</string>
     <string name="advanced_settings_wotd_title">오늘의 단어</string>
-    <string name="advanced_settings_wotd_description">사용자 정의 단어 목록을 가져옵니다.</string>
+    <string name="advanced_settings_wotd_description">오늘의 단어 목록을 직접 만들어서 가져옵니다.</string>
     <string name="advanced_settings_wotd_download">다운로드</string>
     <string name="advanced_settings_wotd_import">수입</string>
     <string name="advanced_settings_wotd_clear">분명한</string>
@@ -209,51 +209,52 @@
     <string name="advanced_settings_clear_yes">예</string>
     <string name="advanced_settings_clear_no">아니요</string>
     <string name="advanced_settings_help_feedback_title">도움말 &amp; 피드백</string>
-    <string name="advanced_settings_community_support_title">커뮤니티 지원</string>
-    <string name="advanced_settings_share_application_title">공유 응용 프로그램</string>
-    <string name="advanced_settings_share_application_description">%1$s로 더욱 향상된 경험을 느껴보세요!</string>
-    <string name="advanced_settings_share_application_description_addon">지금 %1$s 에서 받아보시고 모두가 무슨 이야기를 하는지 확인해보세요! %2$s\n</string>
+    <string name="advanced_settings_community_support_title">지역사회 지원</string>
+    <string name="advanced_settings_share_application_title">공유 애플리케이션</string>
+    <string name="advanced_settings_share_application_description">%1$s로 더욱 풍성한 경험을 만끽하세요!</string>
+    <string name="advanced_settings_share_application_description_addon">지금 바로 %1$s 에서 다운로드하고 모두가 이야기하는 이유를 직접 확인해 보세요! %2$s\n</string>
     <!-- Strings used for about settings -->
     <string name="about_settings_title">%1$s에 대하여</string>
     <!-- Strings used for expert settings -->
     <string name="expert_settings_title">전문가</string>
     <string name="toggleable_items">토글 가능한 항목</string>
     <string name="threshold">한계점</string>
-    <string name="expert_options_display">전문가 옵션 표시</string>
-    <string name="expert_options_unlocked">전문가 옵션 잠금 해제!</string>
-    <string name="expert_options_tap_hint">%1$d 잠금 해제를 위해 더 많은 탭을 하세요</string>
+    <string name="expert_options_display">전문가 옵션 보기</string>
+    <string name="expert_options_unlocked">전문가용 옵션이 잠금 해제되었습니다!</string>
+    <string name="expert_options_tap_hint">%1$d 잠금 해제하려면 더 탭하세요</string>
     <string name="settings_text_size">설정 텍스트 크기</string>
     <string name="settings_short_threshold">짧은 스와이프 임계값</string>
-    <string name="settings_long_threshold">긴 스와이프 임계값</string>
+    <string name="settings_long_threshold">길게 스와이프 임계값</string>
     <!-- App Page Strings -->
     <string name="hidden_apps">Hidden apps</string>
-    <string name="favorite_apps">즐겨찾는 앱</string>
+    <string name="favorite_apps">즐겨 사용하는 앱</string>
     <string name="clear_home_app">클리어 홈 앱</string>
     <!-- Favorite management strings -->
-    <string name="add_app">Add App</string>
-    <string name="remove_app">Remove App</string>
-    <string name="max_apps_reached">Maximum number of home apps reached</string>
-    <string name="min_apps_reached">Minimum number of home apps reached</string>
-    <string name="no_apps_to_remove">No apps to remove</string>
-    <string name="select_app_to_remove">Select app to remove</string>
-    <string name="empty_favorite">Unused</string>
-    <string name="confirm_remove_favorite">Are you sure you want to remove this app from favorites?</string>
+    <string name="add_app">앱 추가</string>
+    <string name="remove_app">앱 삭제</string>
+    <string name="max_apps_reached">홈 앱 최대 개수에 도달했습니다.</string>
+    <string name="min_apps_reached">최소 홈 앱 개수에 도달했습니다.</string>
+    <string name="no_apps_to_remove">삭제할 앱이 없습니다</string>
+    <string name="select_app_to_remove">삭제할 앱을 선택하세요</string>
+    <string name="empty_favorite">미사용</string>
+    <string name="confirm_remove_favorite">즐겨찾기에서 이 앱을 삭제하시겠습니까?</string>
     <!-- Accessibility/Help Strings -->
     <string name="accessibility_service_name">멀티런처 액션 서비스</string>
-    <string name="accessibility_service_why_we_need">접근성 허가가 필요한 이유</string>
-    <string name="accessibility_service_description">이 접근성 서비스를 통해 MultiLauncher는 화면 잠금이나 빠른 설정 열기와 같은 특정 작업을 수행할 수 있습니다. 당사의 접근성 서비스는 어떠한 데이터도 수집하거나 공유하지 않습니다.</string>
-    <string name="accessibility_service_more_info">    MultiLauncher는 다음과 같은 기능을 활성화하기 위해 접근성 서비스에 액세스해야 합니다.\n\n
-    • 제스처 또는 바로 가기로 화면 잠금\n
-    • 빠른 설정 패널을 빠르게 열기\n\n
-    이 권한을 통해 MultiLauncher는 사용자를 대신하여 이러한 작업을 수행할 수 있지만 이 서비스를 통해 개인 정보나 민감한 데이터를 수집, 저장 또는 공유하지 않습니다.\n\n
-    언제든지 기기 설정에서 이 액세스를 비활성화할 수 있습니다.
+    <string name="accessibility_service_why_we_need">접근성 권한이 필요한 이유</string>
+    <string name="accessibility_service_description">이 접근성 서비스는 MultiLauncher가 화면 잠금이나 빠른 설정 열기와 같은 특정 작업을 수행할 수 있도록 합니다. 당사의 접근성 서비스는 어떠한 데이터도 수집하거나 공유하지 않습니다.</string>
+    <string name="accessibility_service_more_info">
+    MultiLauncher는 다음과 같은 기능을 활성화하기 위해 접근성 서비스에 대한 접근 권한이 필요합니다.\n\n
+    • 제스처 또는 바로가기를 이용한 화면 잠금\n
+    • 빠른 설정 패널 빠르게 열기\n\n
+    이 권한을 통해 MultiLauncher는 사용자를 대신하여 이러한 작업을 수행할 수 있지만, 당사는 이 서비스를 통해 어떠한 개인 정보나 민감한 데이터도 수집, 저장 또는 공유하지 않습니다.\n\n
+    기기 설정에서 언제든지 이 접근 권한을 비활성화할 수 있습니다.
     </string>
     <string name="can_not_delete_system_apps">시스템 앱을 삭제할 수 없습니다</string>
     <string name="please_select_app">앱을 선택하세요</string>
     <string name="drawer_list_empty_hint">No apps found</string>
     <string name="long_press_for_settings">Long press anywhere for settings</string>
-    <string name="long_press_to_select_app">앱을 선택하려면 길게 누르세요</string>
-    <string name="long_press_to_select_app_locked">홈 앱을 잠금 해제하여 앱을 선택하세요</string>
+    <string name="long_press_to_select_app">길게 눌러 앱을 선택하세요</string>
+    <string name="long_press_to_select_app_locked">홈 앱 잠금 해제 후 앱 선택</string>
     <string name="tap_button_for_notes">메모를 위한 탭 런처 로고</string>
     <string name="swipe_up_for_apps">Swipe up for all apps</string>
     <string name="app_drawer_tips">Tip: Swipe down to dismiss. Scroll to hide keyboard.</string>
@@ -261,25 +262,25 @@
     <string name="text_authentication_cancel">인증 취소.</string>
     <string name="text_authentication_error">인증 오류:%1$s(코드 %2$d)</string>
     <string name="text_authentication_failed">인증 실패.</string>
-    <string name="text_biometric_login">생체 인식 로그인 MultiLauncher 설정</string>
+    <string name="text_biometric_login">생체인식 로그인 멀티런처 설정</string>
     <string name="text_biometric_login_app">%1$s에 대한 생체 인식 로그인</string>
     <string name="text_biometric_login_sub">생체 인식 자격 증명을 사용하여 로그인</string>
     <!-- Crash Strings -->
     <string name="acra_crash">충돌</string>
-    <string name="acra_dialog_text">죄송합니다. %1$s 에 예상치 못한 문제가 발생하여 종료해야 합니다. 충돌 보고서를 보내 개선에 도움을 주세요.\n\n%1$s 은 귀하의 개인정보를 소중히 여기며, 수집된 데이터는 앱 안정성 향상을 위해서만 사용됩니다. 개인정보는 수집되지 않습니다. 귀하의 지원에 감사드립니다!</string>
+    <string name="acra_dialog_text">죄송하지만 %1$s 에서 예기치 않은 문제가 발생하여 종료되었습니다. 오류 보고서를 보내주시면 앱 개선에 도움이 됩니다.\n\n%1$s 는 사용자의 개인정보를 소중히 여기며, 수집된 데이터는 앱 안정성 개선에만 사용됩니다. 어떠한 개인정보도 수집하지 않습니다. 이용해 주셔서 감사합니다!</string>
     <string name="acra_send_report">보고서 보내기</string>
     <string name="acra_dont_send">보내지 마세요</string>
     <!-- Share Strings -->
-    <string name="share_application">공유 응용 프로그램</string>
-    <string name="share_note">노트 공유</string>
+    <string name="share_application">공유 애플리케이션</string>
+    <string name="share_note">공유 메모</string>
     <!-- Icon Pack Strings -->
     <string name="choose_icon_pack">아이콘 팩을 선택하세요</string>
     <string name="apply_icon_pack">아이콘 팩 적용</string>
     <string name="applying_icon_pack">아이콘에 새로운 모습을 더해보세요…</string>
     <string name="apply_icon_pack_are_you_sure">이 아이콘 팩을 적용하시겠습니까?\n\n%1$s</string>
-    <string name="apply_to_home">홈에 적용</string>
+    <string name="apply_to_home">홈으로 지원하세요</string>
     <string name="apply_to_app_list">앱 목록에 적용</string>
-    <string name="default_icon_not_found">기본 앱 아이콘 그리기를 찾을 수 없습니다.</string>
+    <string name="default_icon_not_found">기본 앱 아이콘 드로어블을 찾을 수 없습니다.</string>
     <!-- Settings Strings -->
     <string name="left">Left</string>
     <string name="right">Right</string>
@@ -288,7 +289,7 @@
     <string name="light">Light</string>
     <string name="system_default">System</string>
     <string name="system_custom">관습</string>
-    <string name="system_custom_plus">사용자 정의 (%1$s)</string>
+    <string name="system_custom_plus">사용자 지정(%1$s)</string>
     <string name="restart_launcher">런처 재시작</string>
     <string name="delete">삭제</string>
     <string name="hide">Hide</string>
@@ -298,7 +299,7 @@
     <string name="locked">잠김</string>
     <string name="unlocked">잠금 해제됨</string>
     <string name="pin">핀</string>
-    <string name="unpin">고정 해제</string>
+    <string name="unpin">핀을 해제하세요</string>
     <string name="rename">Rename</string>
     <string name="tag">꼬리표</string>
     <string name="info">정보</string>
@@ -308,7 +309,7 @@
     <string name="cancel">Cancel</string>
     <string name="save">구하다</string>
     <string name="disabled">Disabled</string>
-    <string name="open">Open</string>
+    <string name="open">열려 있는</string>
     <string name="close">Close</string>
     <string name="next">다음</string>
     <string name="start">시작</string>
@@ -331,33 +332,33 @@
     <string name="message_hint">메시지를 입력하세요…</string>
     <string name="message_category">카테고리: %1$s</string>
     <!-- Permissions Strings -->
-    <string name="permission_required">허가 필요</string>
-    <string name="access_usage_data_permission">계속하려면 기기 설정에서 사용 데이터에 액세스할 수 있는 권한을 허용하세요.</string>
+    <string name="permission_required">권한이 필요합니다</string>
+    <string name="access_usage_data_permission">계속 진행하려면 기기 설정에서 사용량 데이터 접근 권한을 활성화해 주세요.</string>
     <string name="goto_settings">설정으로 이동</string>
     <!-- Widget Stings -->
     <string name="widgets_select_widget">위젯을 선택하세요</string>
     <string name="widgets_add_widget">위젯 추가</string>
     <string name="widgets_edit_widget">위젯 편집</string>
-    <string name="widgets_stop_editing_widget">위젯 편집 중지</string>
-    <string name="widgets_reset_widget">모든 위젯 재설정</string>
-    <string name="widgets_remove_widget">모든 위젯 제거</string>
+    <string name="widgets_stop_editing_widget">위젯 편집을 중지하세요</string>
+    <string name="widgets_reset_widget">모든 위젯 초기화</string>
+    <string name="widgets_remove_widget">모든 위젯을 제거하세요</string>
     <string name="widgets_resize">크기 조정</string>
-    <string name="widgets_exit_resize">크기 조정 종료</string>
+    <string name="widgets_exit_resize">종료 크기 조정</string>
     <string name="widgets_remove">위젯 제거</string>
     <string name="widgets_open">앱 열기</string>
-    <string name="widgets_view_in_store">스토어에서 앱 보기</string>
+    <string name="widgets_view_in_store">앱 스토어에서 보기</string>
     <string name="widgets_settings">위젯 설정</string>
-    <string name="widgets_not_added">아직 위젯이 추가되지 않았습니다. 위젯을 추가하려면 길게 누르세요.</string>
+    <string name="widgets_not_added">아직 위젯이 추가되지 않았습니다. 길게 눌러서 위젯을 추가하세요.</string>
     <!-- Private Spaces Strings -->
     <string name="alert_requires_android_v">이 기능을 사용하려면 Android 15 이상이 필요합니다.</string>
-    <string name="toast_private_space_default_home_screen">개인 공간에 접근하려면 MultiLauncher를 기본 홈 화면으로 설정해야 합니다.</string>
-    <string name="toast_private_space_locked">개인 공간 잠금</string>
-    <string name="toast_private_space_unlocked">개인 공간 잠금 해제</string>
-    <string name="toast_private_space_not_available">개인 공간이 제공되지 않습니다</string>
-    <string name="notes_list_empty_hint">아래에서 첫 번째 메모를 시작하세요.</string>
+    <string name="toast_private_space_default_home_screen">개인 공간에 접근하려면 MultiLauncher가 기본 홈 화면으로 설정되어 있어야 합니다.</string>
+    <string name="toast_private_space_locked">개인 공간 잠금됨</string>
+    <string name="toast_private_space_unlocked">개인 공간 잠금 해제됨</string>
+    <string name="toast_private_space_not_available">개인 공간을 이용할 수 없습니다.</string>
+    <string name="notes_list_empty_hint">아래에 첫 번째 메모를 작성해 주세요.</string>
     <string name="confirm_delete_title">메모 삭제</string>
-    <string name="confirm_delete_message">이 메모를 삭제하시겠습니까?</string>
-    <string name="edit_note">편집 노트</string>
+    <string name="confirm_delete_message">이 메모를 정말 삭제하시겠습니까?</string>
+    <string name="edit_note">편집 참고</string>
     <string name="category">범주</string>
     <string name="priority">우선 사항</string>
     <string name="settings_context_menu_title">컨텍스트 메뉴</string>
