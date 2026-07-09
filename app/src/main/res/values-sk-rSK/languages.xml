@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="lang_arabic">Arabský</string>
-    <string name="lang_chinese">Čínsky</string>
-    <string name="lang_dutch">holandský</string>
+    <string name="lang_chinese">Číňan</string>
+    <string name="lang_dutch">Holandčina</string>
     <string name="lang_czech">čeština</string>
-    <string name="lang_english">Anglický</string>
-    <string name="lang_french">Francúzsky</string>
-    <string name="lang_german">Nemecky</string>
-    <string name="lang_hebrew">Hebrejsky</string>
-    <string name="lang_italian">Taliansky</string>
-    <string name="lang_japanese">Japonsky</string>
-    <string name="lang_korean">Kórejský</string>
-    <string name="lang_lithuanian">Litovský</string>
-    <string name="lang_polish">Poľský</string>
-    <string name="lang_portuguese">portugalčina</string>
+    <string name="lang_english">Angličtina</string>
+    <string name="lang_french">Francúzština</string>
+    <string name="lang_german">Nemčina</string>
+    <string name="lang_hebrew">Hebrejčina</string>
+    <string name="lang_italian">taliančina</string>
+    <string name="lang_japanese">Japončina</string>
+    <string name="lang_korean">kórejčina</string>
+    <string name="lang_lithuanian">Litovčina</string>
+    <string name="lang_polish">poľština</string>
+    <string name="lang_portuguese">Portugalčina</string>
     <string name="lang_romanian">Rumunčina</string>
-    <string name="lang_russian">Ruský</string>
-    <string name="lang_slovak">Slovensky</string>
+    <string name="lang_russian">Ruština</string>
+    <string name="lang_slovak">Slovák</string>
     <string name="lang_spanish">Španielsky</string>
-    <string name="lang_thai">thajčina</string>
+    <string name="lang_thai">Thajčina</string>
     <string name="lang_turkish">Turecký</string>
 </resources>

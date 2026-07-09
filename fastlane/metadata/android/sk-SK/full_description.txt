@@ -18,7 +18,7 @@
     <li>Vlastné názvy aplikácií: Premenujte aplikácie tak, aby zodpovedali vašej predstave.</li>
     <li>Flexibilné rozloženia: Usporiadajte si aplikácie tak, ako vám to vyhovuje.</li>
     <li>Prispôsobenie hodín a dátumu: Umiestnite widgety kamkoľvek chcete.</li>
-    <li>Štatistiky používania aplikácií: Pozrite sa, koľko času trávite v každej aplikácii.</li>
+    <li>Štatistiky používania aplikácií: Pozrite si, koľko času trávite v každej aplikácii.</li>
     <li>Skratky gest: Nastavte si vlastné akcie pre dvojité ťuknutia, potiahnutia prstom a ďalšie.</li>
 </ul>
 
@@ -27,7 +27,7 @@
 <ul>
     <li>Uzamknutie obrazovky gestom</li>
     <li>Otvorte ponuku napájania</li>
-    <li>Potiahnite nadol panel s upozorneniami</li>
+    <li>Potiahnite panel s upozorneniami nadol</li>
 </ul>
 
 <p><em>Multi Launcher rešpektuje vaše súkromie. Tieto funkcie nezhromažďujú ani nezdieľajú osobné údaje.</em></p>

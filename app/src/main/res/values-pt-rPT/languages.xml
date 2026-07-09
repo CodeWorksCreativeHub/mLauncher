@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="lang_arabic">árabe</string>
-    <string name="lang_chinese">Chinês</string>
+    <string name="lang_chinese">chinês</string>
     <string name="lang_dutch">Holandês</string>
     <string name="lang_czech">Tcheco</string>
     <string name="lang_english">Inglês</string>
@@ -12,12 +12,12 @@
     <string name="lang_japanese">Japonês</string>
     <string name="lang_korean">Coreano</string>
     <string name="lang_lithuanian">Lituano</string>
-    <string name="lang_polish">Polaco</string>
+    <string name="lang_polish">polaco</string>
     <string name="lang_portuguese">Português</string>
     <string name="lang_romanian">romeno</string>
     <string name="lang_russian">Russo</string>
     <string name="lang_slovak">Eslovaco</string>
     <string name="lang_spanish">Espanhol</string>
-    <string name="lang_thai">tailandês</string>
+    <string name="lang_thai">Tailandês</string>
     <string name="lang_turkish">Turco</string>
 </resources>

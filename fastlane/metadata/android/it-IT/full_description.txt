@@ -1,29 +1,29 @@
 <h1>Multi Launcher: un launcher Android pulito e semplice, progettato per la leggibilità e il controllo</h1>
 
-<p>Cerchi un launcher che elimini il disordine e renda le cose semplici? <strong>Multi Launcher</strong> è un launcher Android potente ma minimalista che sostituisce piccole icone con pulsanti di testo chiari e leggibili, rendendo il tuo telefono più facile da usare.</p>
+<p>Cerchi un launcher che elimini il superfluo e semplifichi le cose? <strong>Multi Launcher</strong> è un launcher Android potente ma minimalista che sostituisce le piccole icone con pulsanti di testo chiari e leggibili, rendendo il telefono più facile da usare.</p>
 
-<p>Che tu voglia una schermata iniziale semplice, necessiti di testo di grandi dimensioni per una maggiore visibilità o preferisca azioni rapide basate su gesti, Multi Launcher ti offre il pieno controllo senza sommergerti di opzioni.</p>
+<p>Che tu voglia una schermata iniziale semplice, abbia bisogno di un testo grande per una migliore visibilità o preferisca azioni rapide basate sui gesti, Multi Launcher ti offre il pieno controllo senza sommergerti di opzioni.</p>
 
 <h2>Perché scegliere Multi Launcher?</h2>
 <ul>
-    <li><strong>Launcher basato su testo:</strong> Nessuna icona confusa: solo pulsanti di testo etichettati per le tue app.</li>
-    <li><strong>Altamente personalizzabile:</strong> Regola layout, dimensioni carattere, posizione orologio e altro.</li>
-    <li><strong>Gesti rapidi:</strong> Usa tocchi, scorrimenti e scorrimenti lunghi per aprire app, bloccare lo schermo e accedere alle notifiche.</li>
+    <li><strong>Launcher basato su testo:</strong> Niente icone confuse: solo pulsanti di testo etichettati per le tue app.</li>
+    <li><strong>Altamente personalizzabile:</strong> Regola il layout, le dimensioni dei caratteri, la posizione dell'orologio e altro ancora.</li>
+    <li><strong>Gesti rapidi:</strong> Usa tocchi, scorrimenti e scorrimenti prolungati per aprire app, bloccare lo schermo e accedere alle notifiche.</li>
     <li><strong>Sicuro:</strong> Blocco biometrico per impostazioni e privacy.</li>
     <li><strong>Ottimo per anziani o amanti della semplicità:</strong> Facile da leggere, usare e personalizzare.</li>
 </ul>
 
 <h2>Caratteristiche principali:</h2>
 <ul>
-    <li>Nomi app personalizzati: rinomina le app in base a come le pensi.</li>
-    <li>Layout flessibili: organizza le app nel modo più adatto a te.</li>
+    <li>Nomi personalizzati per le app: rinomina le app in base a come le immagini.</li>
+    <li>Layout flessibili: organizza le app nel modo che ha più senso per te.</li>
     <li>Personalizzazione di orologio e data: posiziona i widget dove vuoi.</li>
-    <li>Informazioni sull'utilizzo delle app: scopri quanto tempo trascorri su ogni app.</li>
-    <li>Scorciatoie gestuali: imposta azioni personalizzate per doppi tocchi, scorrimenti e altro.</li>
+    <li>Statistiche sull'utilizzo delle app: scopri quanto tempo trascorri in ogni app.</li>
+    <li>Scorciatoie gestuali: imposta azioni personalizzate per doppi tocchi, scorrimenti e altro ancora.</li>
 </ul>
 
-<h2>Funzioni di accessibilità:</h2>
-<p>Questa app utilizza l'API AccessibilityService <strong></strong> per:</p>
+<h2>Funzionalità di accessibilità:</h2>
+<p>Questa app utilizza l'API <strong>AccessibilityService</strong> per:</p>
 <ul>
     <li>Blocca lo schermo con un gesto</li>
     <li>Apri il menu di accensione</li>
@@ -32,4 +32,4 @@
 
 <p><em>Multi Launcher rispetta la tua privacy. Queste funzionalità non raccolgono né condividono dati personali.</em></p>
 
-<p>Se sei stanco dei launcher appariscenti e disordinati e desideri qualcosa di semplice, elegante e potente, <strong>Multi Launcher</strong> è la soluzione perfetta per la schermata iniziale.</p>
+<p>Se sei stanco di launcher appariscenti e disordinati e desideri qualcosa di semplice, elegante e potente, <strong>Multi Launcher</strong> è la soluzione perfetta per la tua schermata iniziale.</p>

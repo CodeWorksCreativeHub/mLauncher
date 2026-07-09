@@ -1,35 +1,35 @@
-<h1>Multi Launcher: Ein sauberer, einfacher Android Launcher, der auf Lesbarkeit und Kontrolle ausgelegt ist</h1>
+<h1>Multi Launcher: Ein übersichtlicher, einfacher Android Launcher, der für Lesbarkeit und Kontrolle entwickelt wurde</h1>
 
-<p>Suchen Sie nach einem Launcher, der Ordnung schafft und die Dinge einfach hält? <strong>Multi Launcher</strong> ist ein leistungsstarker und dennoch minimalistischer Android-Launcher, der winzige Symbole durch klare, lesbare Textschaltflächen ersetzt und so die Navigation auf Ihrem Telefon erleichtert.</p>
+<p>Suchen Sie einen Launcher, der auf unnötigen Schnickschnack verzichtet und die Bedienung einfach hält? <strong>Multi Launcher</strong> ist ein leistungsstarker und dennoch minimalistischer Android-Launcher, der winzige Symbole durch klare, gut lesbare Textschaltflächen ersetzt und so die Navigation auf Ihrem Smartphone vereinfacht.</p>
 
 <p>Egal, ob Sie einen einfachen Startbildschirm wünschen, großen Text zur besseren Sichtbarkeit benötigen oder schnelle gestenbasierte Aktionen bevorzugen, Multi Launcher gibt Ihnen die volle Kontrolle, ohne Sie mit Optionen zu überfordern.</p>
 
 <h2>Warum Multi Launcher wählen?</h2>
 <ul>
     <li><strong>Textbasierter Launcher:</strong> Keine verwirrenden Symbole – nur beschriftete Textschaltflächen für Ihre Apps.</li>
-    <li><strong>Hochgradig anpassbar:</strong> Passen Sie Layout, Schriftgrößen, Uhrposition und mehr an.</li>
-    <li><strong>Schnelle Gesten:</strong> Verwenden Sie Tippen, Wischen und langes Wischen, um Apps zu öffnen, den Bildschirm zu sperren und auf Benachrichtigungen zuzugreifen.</li>
+    <li><strong>Hochgradig anpassbar:</strong> Layout, Schriftgrößen, Uhrenposition und mehr anpassen.</li>
+    <li><strong>Schnellgesten:</strong> Tippen, Wischen und langes Wischen öffnen Apps, sperren den Bildschirm und Benachrichtigungen.</li>
     <li><strong>Sicher:</strong> Biometrische Sperre für Einstellungen und Datenschutz.</li>
-    <li><strong>Ideal für Senioren oder Liebhaber der Einfachheit:</strong> Einfach zu lesen, zu verwenden und anzupassen.</li>
+    <li><strong>Ideal für Senioren oder alle, die es schlicht mögen:</strong> Leicht zu lesen, zu bedienen und individuell anzupassen.</li>
 </ul>
 
 <h2>Hauptmerkmale:</h2>
 <ul>
-    <li>Benutzerdefinierte App-Namen: Benennen Sie Apps so um, dass sie Ihren Vorstellungen entsprechen.</li>
-    <li>Flexible Layouts: Organisieren Sie Apps so, wie es für Sie sinnvoll ist.</li>
-    <li>Uhr- und Datumsanpassung: Platzieren Sie Widgets, wo immer Sie möchten.</li>
-    <li>Einblicke in die App-Nutzung: Sehen Sie, wie viel Zeit Sie in jeder App verbringen.</li>
+    <li>Benutzerdefinierte App-Namen: Benennen Sie Apps so um, wie Sie sie sich vorstellen.</li>
+    <li>Flexible Layouts: Ordnen Sie Apps so an, wie es für Sie am sinnvollsten ist.</li>
+    <li>Uhrzeit- und Datumsanpassung: Platzieren Sie Widgets nach Belieben.</li>
+    <li>App-Nutzungsanalysen: Sehen Sie, wie viel Zeit Sie in jeder App verbringen.</li>
     <li>Gesten-Shortcuts: Legen Sie benutzerdefinierte Aktionen für Doppeltippen, Wischen und mehr fest.</li>
 </ul>
 
-<h2>Bedienungshilfen:</h2>
-<p>Diese App verwendet die <strong>AccessibilityService API</strong> um:</p>
+<h2>Barrierefreiheitsfunktionen:</h2>
+<p>Diese App verwendet die <strong>AccessibilityService API</strong> für folgende Zwecke:</p>
 <ul>
-    <li>Bildschirm mit einer Geste sperren</li>
-    <li>Öffne das Power-Menü</li>
-    <li>Ziehe die Benachrichtigungsleiste herunter</li>
+    <li>Sperre den Bildschirm mit einer Geste</li>
+    <li>Öffnen Sie das Power-Menü</li>
+    <li>Benachrichtigungsleiste herunterziehen</li>
 </ul>
 
-<p><em>Multi Launcher respektiert Ihre Privatsphäre. Diese Funktionen sammeln oder geben keine personenbezogenen Daten weiter.</em></p>
+<p><em>Multi Launcher respektiert Ihre Privatsphäre. Diese Funktionen erfassen oder teilen keine personenbezogenen Daten.</em></p>
 
 <p>Wenn Sie genug von auffälligen, überladenen Launchern haben und etwas Einfaches, Stilvolles und Leistungsstarkes wollen, ist <strong>Multi Launcher</strong> die perfekte Lösung für Ihren Startbildschirm.</p>

@@ -1,29 +1,29 @@
-<h1>Çoklu Başlatıcı: Okunabilirlik ve Kontrol için Oluşturulmuş Temiz, Basit Bir Android Başlatıcı</h1>
+<h1>Multi Launcher: Okunabilirlik ve Kontrol İçin Tasarlanmış Temiz ve Basit Bir Android Başlatıcı</h1>
 
-<p>Karmaşıklığı ortadan kaldıran ve işleri kolaylaştıran bir başlatıcı mı arıyorsunuz? <strong>Çoklu Başlatıcı</strong> küçük ikonları net, okunabilir metin düğmeleriyle değiştiren, telefonunuzda gezinmeyi kolaylaştıran güçlü ancak minimalist bir Android başlatıcısıdır.</p>
+<p>Karmaşadan arındırılmış ve işleri kolaylaştıran bir başlatıcı mı arıyorsunuz? <strong>Multi Launcher</strong> , küçük simgeleri net ve okunabilir metin düğmeleriyle değiştirerek telefonunuzda gezinmeyi kolaylaştıran, güçlü ancak minimalist bir Android başlatıcısıdır.</p>
 
 <p>Basit bir ana ekran istiyorsanız, görünürlük için büyük metne ihtiyacınız varsa veya hızlı hareket tabanlı eylemleri tercih ediyorsanız, Multi Launcher sizi seçeneklerle boğmadan tam kontrol sağlar.</p>
 
-<h2>Neden Multi Launcher'ı Seçmelisiniz?</h2>
+<h2>Neden Çoklu Başlatıcıyı Seçmelisiniz?</h2>
 <ul>
-    <li><strong>Metin Tabanlı Başlatıcı:</strong> Kafa karıştırıcı simgeler yok — sadece uygulamalarınız için etiketli metin düğmeleri.</li>
-    <li><strong>Son Derece Özelleştirilebilir:</strong> Düzeni, yazı tiplerini, saat konumunu ve daha fazlasını ayarlayın.</li>
+    <li><strong>Metin Tabanlı Başlatıcı:</strong> Kafa karıştırıcı simgeler yok — uygulamalarınız için yalnızca etiketli metin düğmeleri.</li>
+    <li><strong>Son derece özelleştirilebilir:</strong> Düzeni, yazı tipi boyutlarını, saat konumunu ve daha fazlasını ayarlayın.</li>
     <li><strong>Hızlı Hareketler:</strong> Uygulamaları açmak, ekranı kilitlemek ve bildirimlere erişmek için dokunma, kaydırma ve uzun kaydırma hareketlerini kullanın.</li>
     <li><strong>Güvenli:</strong> Ayarlar ve gizlilik için biyometrik kilit.</li>
-    <li><strong>Yaşlılar veya Sadelik Tutkunları için Harika:</strong> Okunması, kullanılması ve özelleştirilmesi kolay.</li>
+    <li><strong>Yaşlılar veya sadeliği sevenler için harika:</strong> Okuması, kullanması ve özelleştirmesi kolay.</li>
 </ul>
 
 <h2>Temel Özellikler:</h2>
 <ul>
-    <li>Özel Uygulama Adları: Uygulamaları düşündüğünüz şekilde yeniden adlandırın.</li>
-    <li>Esnek Düzenler: Uygulamaları sizin için mantıklı olacak şekilde düzenleyin.</li>
+    <li>Özel Uygulama Adları: Uygulamaları, onları nasıl düşündüğünüze uyacak şekilde yeniden adlandırın.</li>
+    <li>Esnek Düzenler: Uygulamaları sizin için mantıklı olan şekilde düzenleyin.</li>
     <li>Saat ve Tarih Özelleştirme: Widget'ları istediğiniz yere yerleştirin.</li>
-    <li>Uygulama Kullanım İçgörüleri: Her uygulamada ne kadar zaman harcadığınızı görün.</li>
-    <li>Hareket Kısayolları: Çift dokunuşlar, kaydırmalar ve daha fazlası için özel eylemler ayarlayın.</li>
+    <li>Uygulama Kullanım Analizleri: Her uygulamada ne kadar zaman geçirdiğinizi görün.</li>
+    <li>Hareket Kısayolları: Çift dokunmalar, kaydırmalar ve daha fazlası için özel eylemler ayarlayın.</li>
 </ul>
 
 <h2>Erişilebilirlik Özellikleri:</h2>
-<p>Bu uygulama <strong>AccessibilityService API'sini</strong> kullanarak şunları yapar:</p>
+<p>Bu uygulama, <strong>AccessibilityService API'sini</strong> şu amaçlarla kullanır:</p>
 <ul>
     <li>Ekranı bir hareketle kilitle</li>
     <li>Güç menüsünü aç</li>
@@ -32,4 +32,4 @@
 
 <p><em>Multi Launcher gizliliğinize saygı duyar. Bu özellikler kişisel verileri toplamaz veya paylaşmaz.</em></p>
 
-<p>Gösterişli, karmaşık başlatıcılardan sıkıldıysanız ve sade, şık ve güçlendirici bir şey istiyorsanız, <strong>Çoklu Başlatıcı</strong> sizin için mükemmel ana ekran çözümüdür.</p>
+<p>Gösterişli, karmaşık başlatıcılardan sıkıldıysanız ve sade, şık ve güçlü bir şey istiyorsanız, <strong>Multi Launcher</strong> mükemmel ana ekran çözümünüzdür.</p>

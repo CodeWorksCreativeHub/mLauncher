@@ -1,14 +1,14 @@
-<h1>Multi Launcher: Čistý a jednoduchý launcher pro Android vytvořený pro snadnou čitelnost a ovládání</h1>
+<h1>Multi Launcher: Čistý a jednoduchý launcher pro Android, vytvořený pro snadnou čitelnost a snadné ovládání</h1>
 
-<p>Hledáte launcher, který se zbaví nepořádku a usnadní vám práci? <strong>Multi Launcher</strong> je výkonný, ale minimalistický launcher pro Android, který nahrazuje drobné ikony jasnými a čitelnými textovými tlačítky, díky čemuž se v telefonu snáze orientuje.</p>
+<p>Hledáte launcher, který se zbaví nepořádku a usnadní práci? <strong>Multi Launcher</strong> je výkonný, ale minimalistický launcher pro Android, který nahrazuje drobné ikony jasnými a čitelnými textovými tlačítky, což usnadňuje navigaci v telefonu.</p>
 
 <p>Ať už chcete jednoduchou domovskou obrazovku, potřebujete velký text pro lepší viditelnost nebo dáváte přednost rychlým akcím pomocí gest, Multi Launcher vám poskytne plnou kontrolu, aniž by vás zahltil možnostmi.</p>
 
 <h2>Proč zvolit Multi Launcher?</h2>
 <ul>
-    <li><strong>Textový spouštěč:</strong> Žádné matoucí ikony – pouze textově označená tlačítka pro vaše aplikace.</li>
+    <li><strong>Textový spouštěč:</strong> Žádné matoucí ikony – pouze textová tlačítka pro vaše aplikace.</li>
     <li><strong>Vysoce přizpůsobitelné:</strong> Upravte rozvržení, velikost písma, polohu hodin a další.</li>
-    <li><strong>Rychlá gesta:</strong> Klepnutím, přejetím prstem a dlouhým přejetím můžete otevírat aplikace, zamykat obrazovku a zobrazovat oznámení.</li>
+    <li><strong>Rychlá gesta:</strong> Klepnutím, přejetím prstem a dlouhým přejetím prstem otevírejte aplikace, zamykejte obrazovku a zobrazujte oznámení.</li>
     <li><strong>Zabezpečení:</strong> Biometrický zámek pro nastavení a soukromí.</li>
     <li><strong>Skvělé pro seniory nebo milovníky jednoduchosti:</strong> Snadno se čte, používá a přizpůsobuje.</li>
 </ul>
@@ -23,7 +23,7 @@
 </ul>
 
 <h2>Funkce usnadnění přístupu:</h2>
-<p>Tato aplikace používá <strong>AccessibilityService API</strong> k:</p>
+<p>Tato aplikace používá rozhraní <strong>AccessibilityService API</strong> k:</p>
 <ul>
     <li>Zamknutí obrazovky gestem</li>
     <li>Otevřete nabídku napájení</li>
