@@ -8,7 +8,7 @@
     <string name="lang_french">французский</string>
     <string name="lang_german">немецкий</string>
     <string name="lang_hebrew">иврит</string>
-    <string name="lang_italian">итальянский</string>
+    <string name="lang_italian">итальянского</string>
     <string name="lang_japanese">японец</string>
     <string name="lang_korean">корейский</string>
     <string name="lang_lithuanian">литовский</string>
@@ -18,6 +18,6 @@
     <string name="lang_russian">русский</string>
     <string name="lang_slovak">словацкий</string>
     <string name="lang_spanish">испанский</string>
-    <string name="lang_thai">тайский</string>
+    <string name="lang_thai">Тайский</string>
     <string name="lang_turkish">турецкий</string>
 </resources>
