@@ -1,29 +1,29 @@
-<h1>Multi Launcher: Czysty, prosty program uruchamiający Androida, stworzony z myślą o czytelności i kontroli</h1>
+<h1>Multi Launcher: Czysty i prosty program uruchamiający Androida, stworzony z myślą o czytelności i kontroli</h1>
 
-<p>Szukasz launchera, który uporządkuje wszystko i ułatwi działanie? <strong>Multi Launcher</strong> to potężny, a zarazem minimalistyczny launcher Androida, który zastępuje małe ikony wyraźnymi, czytelnymi przyciskami tekstowymi, dzięki czemu nawigacja w telefonie jest łatwiejsza.</p>
+<p>Szukasz launchera, który uporządkuje wszystko i ułatwi działanie? <strong>Multi Launcher</strong> to potężny, a zarazem minimalistyczny launcher Androida, który zastępuje małe ikony wyraźnymi, czytelnymi przyciskami tekstowymi, ułatwiając nawigację po telefonie.</p>
 
-<p>Niezależnie od tego, czy chcesz mieć prosty ekran główny, potrzebujesz dużego tekstu dla lepszej widoczności, czy wolisz szybkie akcje oparte na gestach, Multi Launcher zapewnia pełną kontrolę bez przytłaczania Cię opcjami.</p>
+<p>Niezależnie od tego, czy chcesz mieć prosty ekran główny, potrzebujesz dużego tekstu dla lepszej widoczności, czy wolisz szybkie akcje oparte na gestach, Multi Launcher zapewnia Ci pełną kontrolę bez przytłaczania Cię opcjami.</p>
 
 <h2>Dlaczego warto wybrać Multi Launcher?</h2>
 <ul>
-    <li><strong>Program uruchamiający oparty na tekście:</strong> Żadnych mylących ikon — tylko opisane przyciski tekstowe dla Twoich aplikacji.</li>
-    <li><strong>Wysoki poziom personalizacji:</strong> Dostosuj układ, rozmiary czcionek, położenie zegara i wiele więcej.</li>
-    <li><strong>Szybkie gesty:</strong> Użyj stuknięć, przesunięć i długich przesunięć, aby otwierać aplikacje, blokować ekran i uzyskiwać dostęp do powiadomień.</li>
-    <li><strong>Bezpieczne:</strong> Biometryczna blokada ustawień i prywatności.</li>
+    <li><strong>Program uruchamiający oparty na tekście:</strong> Żadnych mylących ikon — tylko oznaczone przyciski tekstowe dla Twoich aplikacji.</li>
+    <li><strong>Wysokie możliwości dostosowania:</strong> Dostosuj układ, rozmiary czcionek, położenie zegara i wiele więcej.</li>
+    <li><strong>Szybkie gesty:</strong> Za pomocą stuknięć, przesunięć i długich przesunięć możesz otwierać aplikacje, blokować ekran i uzyskiwać dostęp do powiadomień.</li>
+    <li><strong>Bezpieczeństwo:</strong> Blokada biometryczna ustawień i prywatności.</li>
     <li><strong>Idealne dla seniorów i miłośników prostoty:</strong> Łatwe do odczytania, użycia i dostosowania.</li>
 </ul>
 
 <h2>Główne cechy:</h2>
 <ul>
-    <li>Niestandardowe nazwy aplikacji: Zmień nazwy aplikacji tak, aby odpowiadały temu, jak o nich myślisz.</li>
-    <li>Elastyczne układy: Organizuj aplikacje w sposób, który ma dla Ciebie sens.</li>
-    <li>Dostosowywanie zegara i daty: Umieść widżety gdziekolwiek chcesz.</li>
-    <li>Wgląd w korzystanie z aplikacji: Zobacz, ile czasu spędzasz w każdej aplikacji.</li>
-    <li>Skróty gestów: Ustaw niestandardowe akcje dla dwukrotnego dotknięcia, przesunięcia i innych.</li>
+    <li>Niestandardowe nazwy aplikacji: Zmień nazwy aplikacji, aby odpowiadały temu, jak je sobie wyobrażasz.</li>
+    <li>Elastyczne układy: organizuj aplikacje w sposób, który ma dla Ciebie sens.</li>
+    <li>Dostosowywanie zegara i daty: Umieść widżety w dowolnym miejscu.</li>
+    <li>Wgląd w korzystanie z aplikacji: zobacz, ile czasu spędzasz w każdej aplikacji.</li>
+    <li>Skróty gestów: ustaw niestandardowe akcje dla dwukrotnego stuknięcia, przesunięcia i innych czynności.</li>
 </ul>
 
 <h2>Funkcje ułatwień dostępu:</h2>
-<p>Ta aplikacja używa <strong>interfejsu API usługi dostępności</strong> w celu:</p>
+<p>Ta aplikacja używa interfejsu API usługi dostępności <strong></strong> w celu:</p>
 <ul>
     <li>Zablokuj ekran gestem</li>
     <li>Otwórz menu zasilania</li>
@@ -32,4 +32,4 @@
 
 <p><em>Multi Launcher szanuje Twoją prywatność. Funkcje te nie gromadzą ani nie udostępniają danych osobowych.</em></p>
 
-<p>Jeśli masz dość efektownych, zagraconych launcherów i chcesz czegoś prostego, stylowego i wydajnego, <strong>Multi Launcher</strong> będzie dla Ciebie idealnym rozwiązaniem na ekran główny.</p>
+<p>Jeśli masz dość krzykliwych, zagraconych launcherów i chcesz czegoś prostego, stylowego i dającego mnóstwo możliwości, <strong>Multi Launcher</strong> będzie dla Ciebie idealnym rozwiązaniem na ekran główny.</p>
