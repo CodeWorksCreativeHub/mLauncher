@@ -115,7 +115,7 @@
     <string name="element_alignment">Zarovnanie prvkov</string>
     <string name="date_alignment">Dátum</string>
     <string name="clock_alignment">Hodiny</string>
-    <string name="alarm_alignment">Alarm</string>
+    <string name="alarm_alignment">Budík</string>
     <string name="daily_word_alignment">Slovo na každý deň</string>
     <string name="home_alignment">Domáce aplikácie</string>
     <string name="drawer_alignment">Zásuvkové aplikácie</string>
@@ -124,7 +124,7 @@
     <string name="app_color">Aplikácie</string>
     <string name="clock_color">Hodiny</string>
     <string name="date_color">Dátum</string>
-    <string name="alarm_color">Alarm</string>
+    <string name="alarm_color">Budík</string>
     <string name="daily_word_color">Slovo na každý deň</string>
     <string name="battery_color">Batéria</string>
     <string name="rainbow_shortcuts">Dúhové skratky</string>
@@ -230,14 +230,14 @@
     <string name="favorite_apps">Obľúbené aplikácie</string>
     <string name="clear_home_app">Vymazať domovskú aplikáciu</string>
     <!-- Favorite management strings -->
-    <string name="add_app">Add App</string>
-    <string name="remove_app">Remove App</string>
-    <string name="max_apps_reached">Maximum number of home apps reached</string>
-    <string name="min_apps_reached">Minimum number of home apps reached</string>
-    <string name="no_apps_to_remove">No apps to remove</string>
-    <string name="select_app_to_remove">Select app to remove</string>
-    <string name="empty_favorite">Unused</string>
-    <string name="confirm_remove_favorite">Are you sure you want to remove this app from favorites?</string>
+    <string name="add_app">Pridať aplikáciu</string>
+    <string name="remove_app">Odstrániť aplikáciu</string>
+    <string name="max_apps_reached">Dosiahol sa maximálny počet domácich aplikácií</string>
+    <string name="min_apps_reached">Dosiahnutý minimálny počet domácich aplikácií</string>
+    <string name="no_apps_to_remove">Žiadne aplikácie na odstránenie</string>
+    <string name="select_app_to_remove">Vyberte aplikáciu, ktorú chcete odstrániť</string>
+    <string name="empty_favorite">Nepoužité</string>
+    <string name="confirm_remove_favorite">Naozaj chcete túto aplikáciu odstrániť z obľúbených?</string>
     <!-- Accessibility/Help Strings -->
     <string name="accessibility_service_name">Služby akcií MultiLauncher</string>
     <string name="accessibility_service_why_we_need">Prečo potrebujeme povolenie na prístupnosť</string>
