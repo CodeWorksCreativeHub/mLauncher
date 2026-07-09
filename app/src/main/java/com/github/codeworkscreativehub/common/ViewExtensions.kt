@@ -11,7 +11,7 @@ fun View.showKeyboard() {
     if (this.requestFocus()) {
         val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         // Show the soft keyboard
-        imm.showSoftInput(this, InputMethodManager.SHOW_IMPLICIT)
+        imm.showSoftInput(this, 0)
     }
 }
 
