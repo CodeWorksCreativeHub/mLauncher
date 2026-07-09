@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file. See [conven
 
 ## [1.12.0.0 → Unreleased](https://github.com/CodeWorksCreativeHub/mLauncher/tree/main) - In Development
 
+### :sparkles: Enhancements:
+
+* Allow assigning home apps by clicking favorite items ([f296a61c](https://github.com/CodeWorksCreativeHub/mLauncher/commit/f296a61c))
+
+### :bug: Bug Fixes:
+
+* Update showSoftInput flag in ViewExtensions ([b9a92651](https://github.com/CodeWorksCreativeHub/mLauncher/commit/b9a92651))
+
+### :wrench: Code Quality:
+
+* modernize FavoriteFragment and improve lifecycle safety ([8d3add50](https://github.com/CodeWorksCreativeHub/mLauncher/commit/8d3add50))
+
 ### :globe_with_meridians: Localization:
 
 * Updated Language Files. ([#1078](https://github.com/CodeWorksCreativeHub/mLauncher/pull/1078)) ([cc462c69](https://github.com/CodeWorksCreativeHub/mLauncher/commit/cc462c69))
