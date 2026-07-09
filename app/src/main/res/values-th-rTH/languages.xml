@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="lang_arabic">ภาษาอาหรับ</string>
-    <string name="lang_chinese">ภาษาจีน</string>
+    <string name="lang_chinese">ชาวจีน</string>
     <string name="lang_dutch">ดัตช์</string>
     <string name="lang_czech">เช็ก</string>
     <string name="lang_english">ภาษาอังกฤษ</string>
@@ -13,11 +13,11 @@
     <string name="lang_korean">เกาหลี</string>
     <string name="lang_lithuanian">ภาษาลิทัวเนีย</string>
     <string name="lang_polish">ขัด</string>
-    <string name="lang_portuguese">โปรตุเกส</string>
+    <string name="lang_portuguese">ภาษาโปรตุเกส</string>
     <string name="lang_romanian">โรมาเนีย</string>
     <string name="lang_russian">รัสเซีย</string>
     <string name="lang_slovak">สโลวัก</string>
     <string name="lang_spanish">ภาษาสเปน</string>
     <string name="lang_thai">แบบไทย</string>
-    <string name="lang_turkish">ภาษาตุรกี</string>
+    <string name="lang_turkish">ตุรกี</string>
 </resources>
