@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 ### :sparkles: Enhancements:
 
+* Allow users to add and remove favorite apps ([c49a91a2](https://github.com/CodeWorksCreativeHub/mLauncher/commit/c49a91a2))
 * Allow assigning home apps by clicking favorite items ([f296a61c](https://github.com/CodeWorksCreativeHub/mLauncher/commit/f296a61c))
 
 ### :bug: Bug Fixes:
@@ -26,6 +27,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 ### :broom: Maintenance & Cleanup:
 
+* enable translation and reorganize favorite management strings ([1f0e70fc](https://github.com/CodeWorksCreativeHub/mLauncher/commit/1f0e70fc))
 * configure commit message template ([cd11e8d2](https://github.com/CodeWorksCreativeHub/mLauncher/commit/cd11e8d2))
 
 ## [1120000 (1.12.0.0) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.12.0.0) - (11, June 2026)
