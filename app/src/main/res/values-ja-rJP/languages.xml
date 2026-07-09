@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="lang_arabic">アラビア語</string>
-    <string name="lang_chinese">中国語</string>
+    <string name="lang_chinese">中国</string>
     <string name="lang_dutch">オランダ語</string>
-    <string name="lang_czech">チェコ語</string>
+    <string name="lang_czech">チェコ</string>
     <string name="lang_english">イングリッシュ</string>
     <string name="lang_french">フレンチ</string>
     <string name="lang_german">ジャーマン</string>
@@ -18,6 +18,6 @@
     <string name="lang_russian">ロシア語</string>
     <string name="lang_slovak">スロバキア語</string>
     <string name="lang_spanish">スパニッシュ</string>
-    <string name="lang_thai">タイ語</string>
+    <string name="lang_thai">タイ</string>
     <string name="lang_turkish">トルコ語</string>
 </resources>
