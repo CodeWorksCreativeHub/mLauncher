@@ -33,7 +33,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: set up JDK 17
-        uses: actions/setup-java@v5.4.0
+        uses: actions/setup-java@v5.6.0
         with:
           java-version: "17"
           distribution: "temurin"
@@ -95,7 +95,7 @@ jobs:
         shell: bash
 
       - name: Create and Upload Release
-        uses: softprops/action-gh-release@v3.0.1
+        uses: softprops/action-gh-release@v3.0.2
         with:
           tag_name: nightly-${{ env.version }}
           name: Nightly Release ${{ env.version }}
