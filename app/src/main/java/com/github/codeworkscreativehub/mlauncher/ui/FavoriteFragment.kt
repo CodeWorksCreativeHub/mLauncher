@@ -125,7 +125,10 @@ class FavoriteFragment : BaseFragment() {
             }
 
 
-            override fun clearView(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder) {
+            override fun clearView(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder
+            ) {
                 // Reset the background color after dragging is finished
                 super.clearView(recyclerView, viewHolder)
                 viewHolder.itemView.setBackgroundColor(
@@ -186,6 +189,13 @@ class FavoriteFragment : BaseFragment() {
     }
 
     private fun setupAddRemoveButtons() {
+        val margin = resources.getDimensionPixelSize(R.dimen.bottom_margin_gesture_nav)
+        binding.addRemoveAppButton.apply {
+            val params = layoutParams as ViewGroup.MarginLayoutParams
+            params.bottomMargin = margin
+            layoutParams = params
+        }
+
         binding.addAppButton.apply {
             setOnClickListener {
                 addHomeAppSlot()
@@ -266,7 +276,7 @@ class FavoriteFragment : BaseFragment() {
 
     private fun removeFavoriteAtPosition(position: Int) {
         val currentNum = prefs.homeAppsNum
-        if (position < 0 || position >= currentNum) return
+        if (position !in 0..<currentNum) return
 
         // Shift all subsequent favorites left by one
         for (i in position until currentNum - 1) {
