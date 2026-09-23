@@ -2,7 +2,7 @@
 
 [versions]
 agp = "9.4.1"
-kotlin = "2.4.20-352"
+kotlin = "2.4.20-378"
 viewpager2 = "1.1.0"
 junit = "4.13.2"
 
@@ -19,9 +19,9 @@ lifecycle-extensions = "2.2.0"
 lifecycle-viewmodel-ktx = "2.11.0"
 
 # Navigation
-navigation-fragment-ktx = "2.10.0"
-navigation-ui-ktx = "2.10.0"
-navigation-testing = "2.10.0"
+navigation-fragment-ktx = "2.10.1"
+navigation-ui-ktx = "2.10.1"
+navigation-testing = "2.10.1"
 
 # Work Manager
 work-runtime-ktx = "2.11.2"
@@ -55,8 +55,8 @@ activity = "1.13.0"
 
 # Database
 moshi = "1.15.2"
-room = "2.8.4"
-ksp = "2.3.11"
+room = "2.8.5"
+ksp = "2.3.12"
 
 [libraries]
 # Core Libraries
