@@ -81,6 +81,7 @@ import com.github.codeworkscreativehub.mlauncher.helper.hasLocationPermission
 import com.github.codeworkscreativehub.mlauncher.helper.helpFeedbackButton
 import com.github.codeworkscreativehub.mlauncher.helper.hideNavigationBar
 import com.github.codeworkscreativehub.mlauncher.helper.hideStatusBar
+import com.github.codeworkscreativehub.mlauncher.helper.isInstalledFromGooglePlay
 import com.github.codeworkscreativehub.mlauncher.helper.isSystemInDarkMode
 import com.github.codeworkscreativehub.mlauncher.helper.ismlauncherDefault
 import com.github.codeworkscreativehub.mlauncher.helper.openAppInfo
@@ -103,6 +104,7 @@ import com.github.codeworkscreativehub.mlauncher.ui.compose.SettingsComposable.T
 import com.github.codeworkscreativehub.mlauncher.ui.compose.SettingsComposable.TopMainHeader
 import com.github.codeworkscreativehub.mlauncher.ui.iconpack.CustomIconSelectionActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+
 
 class SettingsFragment : BaseFragment() {
 
@@ -304,11 +306,19 @@ class SettingsFragment : BaseFragment() {
         var selectedLongSwipeLeftAction by remember { mutableStateOf(prefs.longSwipeLeftAction) }
         var selectedLongSwipeRightAction by remember { mutableStateOf(prefs.longSwipeRightAction) }
 
+        val installedFromPlay = isInstalledFromGooglePlay(
+            context,
+            "app.mlauncher"
+        )
+
         val actions = Action.entries
 
         // Filter out 'TogglePrivateSpace' if private space is not supported
         val filteredActions =
-            if (!PrivateSpaceManager(requireContext()).isPrivateSpaceSetUp() || !ismlauncherDefault(requireContext())) {
+            if (!PrivateSpaceManager(requireContext()).isPrivateSpaceSetUp() || !ismlauncherDefault(
+                    requireContext()
+                )
+            ) {
                 actions.filter { it != Action.TogglePrivateSpace }
             } else {
                 actions
@@ -341,7 +351,10 @@ class SettingsFragment : BaseFragment() {
         }
 
         // Advanced Settings
-        val (changeLauncherText, changeLauncherTextDescription) = if (ismlauncherDefault(requireContext())) {
+        val (changeLauncherText, changeLauncherTextDescription) = if (ismlauncherDefault(
+                requireContext()
+            )
+        ) {
             R.string.advanced_settings_change_default_launcher to
                     R.string.advanced_settings_change_default_launcher_description
         } else {
@@ -424,13 +437,20 @@ class SettingsFragment : BaseFragment() {
                     // 5. Private Spaces (if supported)
                     if (PrivateSpaceManager(context).isPrivateSpaceSetUp()) {
                         SettingsHomeItem(
-                            title = getLocalizedString(R.string.private_space, getLocalizedString(setPrivateSpacesStatus)),
+                            title = getLocalizedString(
+                                R.string.private_space,
+                                getLocalizedString(setPrivateSpacesStatus)
+                            ),
                             iconRes = setPrivateSpacesIcon,
                             titleFontSize = titleFontSize,
                             descriptionFontSize = descriptionFontSize,
                             iconSize = iconSize,
                             onClick = {
-                                if (PrivateSpaceManager(context).isPrivateSpaceSetUp(showToast = false, launchSettings = false)) {
+                                if (PrivateSpaceManager(context).isPrivateSpaceSetUp(
+                                        showToast = false,
+                                        launchSettings = false
+                                    )
+                                ) {
 
                                     PrivateSpaceManager(context).togglePrivateSpaceLock(
                                         showToast = false,
@@ -488,7 +508,10 @@ class SettingsFragment : BaseFragment() {
                     Spacer(modifier = Modifier.weight(1f))
 
                     SettingsHomeItem(
-                        title = getLocalizedString(R.string.about_settings_title, getLocalizedString(R.string.app_name)),
+                        title = getLocalizedString(
+                            R.string.about_settings_title,
+                            getLocalizedString(R.string.app_name)
+                        ),
                         iconRes = R.drawable.ic_toast,
                         titleFontSize = titleFontSize,
                         descriptionFontSize = descriptionFontSize,
@@ -498,7 +521,12 @@ class SettingsFragment : BaseFragment() {
                         onMultiClick = { count ->
                             if (!prefs.enableExpertOptions) {
                                 if (count in 2..4) {
-                                    showInstantToast(getLocalizedString(R.string.expert_options_tap_hint, count))
+                                    showInstantToast(
+                                        getLocalizedString(
+                                            R.string.expert_options_tap_hint,
+                                            count
+                                        )
+                                    )
                                 } else if (count == 5) {
                                     showInstantToast(getLocalizedString(R.string.expert_options_unlocked))
                                     toggledExpertOptions = !prefs.enableExpertOptions
@@ -539,7 +567,8 @@ class SettingsFragment : BaseFragment() {
 
                             val themeOptions = themeEntries.map { it.getString() }
 
-                            val selectedIndex = themeEntries.indexOf(selectedTheme).takeIf { it >= 0 } ?: 1
+                            val selectedIndex =
+                                themeEntries.indexOf(selectedTheme).takeIf { it >= 0 } ?: 1
 
                             dialogBuilder.showSingleChoiceBottomSheetPill(
                                 context = requireContext(),
@@ -547,7 +576,8 @@ class SettingsFragment : BaseFragment() {
                                 title = getLocalizedString(R.string.theme_mode),
                                 selectedIndex = selectedIndex,
                                 onItemSelected = { newThemeName ->
-                                    val newThemeIndex = themeOptions.indexOfFirst { it == newThemeName }
+                                    val newThemeIndex =
+                                        themeOptions.indexOfFirst { it == newThemeName }
                                     if (newThemeIndex != -1) {
                                         val newTheme = themeEntries[newThemeIndex]
                                         selectedTheme = newTheme
@@ -567,10 +597,12 @@ class SettingsFragment : BaseFragment() {
                             // Generate options
                             val languageEntries = Constants.Language.entries
 
-                            val languageOptions = languageEntries.map { it.getString() } // get localized names to display
+                            val languageOptions =
+                                languageEntries.map { it.getString() } // get localized names to display
 
                             // Determine selected index based on current prefs value
-                            val selectedIndex = languageEntries.indexOf(selectedLanguage).takeIf { it >= 0 } ?: 1
+                            val selectedIndex =
+                                languageEntries.indexOf(selectedLanguage).takeIf { it >= 0 } ?: 1
 
                             dialogBuilder.showSingleChoiceBottomSheet(
                                 context = requireContext(),
@@ -579,12 +611,16 @@ class SettingsFragment : BaseFragment() {
                                 selectedIndex = selectedIndex,
                                 onItemSelected = { newLanguageName ->
                                     // Find the actual enum by matching its localized name
-                                    val newLanguageIndex = languageOptions.indexOfFirst { it == newLanguageName }
+                                    val newLanguageIndex =
+                                        languageOptions.indexOfFirst { it == newLanguageName }
                                     if (newLanguageIndex != -1) {
                                         val newLanguage = languageEntries[newLanguageIndex]
                                         selectedLanguage = newLanguage // Update state
                                         prefs.appLanguage = newLanguage // Persist in preferences
-                                        LauncherLocaleManager.updateLanguage(requireContext(), newLanguage)
+                                        LauncherLocaleManager.updateLanguage(
+                                            requireContext(),
+                                            newLanguage
+                                        )
                                         LocalizedResources.invalidate()
                                         reloadLauncher() // force reload with new language
                                     }
@@ -607,7 +643,9 @@ class SettingsFragment : BaseFragment() {
                             }
 
                             // Determine selected index based on current prefs value
-                            val selectedIndex = fontFamilyEntries.indexOf(selectedFontFamily).takeIf { it >= 0 } ?: 1
+                            val selectedIndex =
+                                fontFamilyEntries.indexOf(selectedFontFamily).takeIf { it >= 0 }
+                                    ?: 1
 
                             dialogBuilder.showSingleChoiceBottomSheet(
                                 context = requireContext(),
@@ -676,7 +714,8 @@ class SettingsFragment : BaseFragment() {
                             val searchEnginesOptions = searchEnginesEntries.map { it.getString() }
 
                             // Determine selected index based on current prefs value
-                            val selectedIndex = searchEnginesEntries.indexOf(selectedSearchEngine).takeIf { it >= 0 } ?: 1
+                            val selectedIndex = searchEnginesEntries.indexOf(selectedSearchEngine)
+                                .takeIf { it >= 0 } ?: 1
 
                             dialogBuilder.showSingleChoiceBottomSheet(
                                 context = requireContext(),
@@ -690,7 +729,8 @@ class SettingsFragment : BaseFragment() {
                                         val newSearchEngine =
                                             searchEnginesEntries[newFontFamilyIndex] // Get the selected FontFamily enum
                                         selectedSearchEngine = newSearchEngine // Update state
-                                        prefs.searchEngines = newSearchEngine // Persist selection in preferences
+                                        prefs.searchEngines =
+                                            newSearchEngine // Persist selection in preferences
                                     }
                                 }
                             )
@@ -754,8 +794,10 @@ class SettingsFragment : BaseFragment() {
                                     maxValue = Constants.MAX_FILTER_STRENGTH,
                                     currentValue = prefs.filterStrength,
                                     onValueSelected = { newFilterStrength ->
-                                        selectedFilterStrength = newFilterStrength.toInt() // Update state
-                                        prefs.filterStrength = newFilterStrength.toInt() // Persist selection in preferences
+                                        selectedFilterStrength =
+                                            newFilterStrength.toInt() // Update state
+                                        prefs.filterStrength =
+                                            newFilterStrength.toInt() // Persist selection in preferences
                                         viewModel.filterStrength.value = newFilterStrength.toInt()
                                     }
                                 )
@@ -817,17 +859,20 @@ class SettingsFragment : BaseFragment() {
                                 currentValue = prefs.homeAppsNum,
                                 onValueSelected = { newHomeAppsNum ->
                                     selectedHomeAppsNum = newHomeAppsNum.toInt() // Update state
-                                    prefs.homeAppsNum = newHomeAppsNum.toInt() // Persist selection in preferences
+                                    prefs.homeAppsNum =
+                                        newHomeAppsNum.toInt() // Persist selection in preferences
                                     viewModel.homeAppsNum.value = newHomeAppsNum.toInt()
 
                                     // Check if homeAppsNum is less than homePagesNum and update homePagesNum accordingly
                                     if (newHomeAppsNum in 1..<selectedHomePagesNum) {
                                         selectedHomePagesNum = newHomeAppsNum.toInt()
-                                        prefs.homePagesNum = newHomeAppsNum.toInt() // Persist the new homePagesNum
+                                        prefs.homePagesNum =
+                                            newHomeAppsNum.toInt() // Persist the new homePagesNum
                                         viewModel.homePagesNum.value = newHomeAppsNum.toInt()
                                     }
 
-                                    val userManager = requireContext().getSystemService(Context.USER_SERVICE) as UserManager
+                                    val userManager =
+                                        requireContext().getSystemService(Context.USER_SERVICE) as UserManager
 
                                     val clearApp = AppListItem(
                                         activityLabel = "Clear",
@@ -840,8 +885,8 @@ class SettingsFragment : BaseFragment() {
                                     )
 
                                     for (n in newHomeAppsNum.toInt()..oldHomeAppsNum) {
-                                        // i is outside the range between oldHomeAppsNum and newHomeAppsNum
-                                        // Do something with i
+                                        // n is outside the range between oldHomeAppsNum and newHomeAppsNum
+                                        // Do something with n
                                         prefs.setHomeAppModel(n, clearApp)
                                     }
 
@@ -866,7 +911,8 @@ class SettingsFragment : BaseFragment() {
                                 currentValue = prefs.homePagesNum,
                                 onValueSelected = { newHomePagesNum ->
                                     selectedHomePagesNum = newHomePagesNum.toInt() // Update state
-                                    prefs.homePagesNum = newHomePagesNum.toInt() // Persist selection in preferences
+                                    prefs.homePagesNum =
+                                        newHomePagesNum.toInt() // Persist selection in preferences
                                     viewModel.homePagesNum.value = newHomePagesNum.toInt()
                                 }
                             )
@@ -1128,7 +1174,10 @@ class SettingsFragment : BaseFragment() {
 
                                 if (toggledGPSLocation && !hasLocationPermission(context)) {
                                     context.requestRuntimePermission(
-                                        arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION),
+                                        arrayOf(
+                                            Manifest.permission.ACCESS_FINE_LOCATION,
+                                            Manifest.permission.ACCESS_COARSE_LOCATION
+                                        ),
                                         Constants.ACCESS_FINE_LOCATION,
                                         "Location"
                                     )
@@ -1144,7 +1193,9 @@ class SettingsFragment : BaseFragment() {
                             fontSize = titleFontSize,
                             onClick = {
                                 val tempUnitsOptions = Constants.TempUnits.entries.toTypedArray()
-                                val selectedIndex = tempUnitsOptions.indexOf(selectedTempUnits).takeIf { it >= 0 } ?: 1
+                                val selectedIndex =
+                                    tempUnitsOptions.indexOf(selectedTempUnits).takeIf { it >= 0 }
+                                        ?: 1
 
                                 dialogBuilder.showSingleChoiceBottomSheetPill(
                                     context = requireContext(),
@@ -1153,7 +1204,8 @@ class SettingsFragment : BaseFragment() {
                                     selectedIndex = selectedIndex,
                                     onItemSelected = { newTempUnit ->
                                         selectedTempUnits = newTempUnit // Update state
-                                        prefs.tempUnit = selectedTempUnits // Persist selection in preferences
+                                        prefs.tempUnit =
+                                            selectedTempUnits // Persist selection in preferences
                                     }
                                 )
                             }
@@ -1211,7 +1263,8 @@ class SettingsFragment : BaseFragment() {
                                 currentValue = prefs.textPaddingSize,
                                 onValueSelected = { newPaddingSize ->
                                     selectedPaddingSize = newPaddingSize.toInt() // Update state
-                                    prefs.textPaddingSize = newPaddingSize.toInt() // Persist selection in preferences
+                                    prefs.textPaddingSize =
+                                        newPaddingSize.toInt() // Persist selection in preferences
                                 }
                             )
                         }
@@ -1296,8 +1349,10 @@ class SettingsFragment : BaseFragment() {
                                     maxValue = Constants.MAX_RECENT_COUNTER,
                                     currentValue = prefs.recentCounter,
                                     onValueSelected = { newRecentCounter ->
-                                        selectedRecentCounter = newRecentCounter.toInt() // Update state
-                                        prefs.recentCounter = newRecentCounter.toInt() // Persist selection in preferences
+                                        selectedRecentCounter =
+                                            newRecentCounter.toInt() // Update state
+                                        prefs.recentCounter =
+                                            newRecentCounter.toInt() // Persist selection in preferences
                                         viewModel.recentCounter.value = newRecentCounter.toInt()
                                     }
                                 )
@@ -1337,8 +1392,10 @@ class SettingsFragment : BaseFragment() {
                                     maxValue = Constants.MAX_OPACITY,
                                     currentValue = prefs.opacityNum,
                                     onValueSelected = { newBackgroundOpacity ->
-                                        selectedBackgroundOpacity = newBackgroundOpacity.toInt() // Update state
-                                        prefs.opacityNum = newBackgroundOpacity.toInt() // Persist selection in preferences
+                                        selectedBackgroundOpacity =
+                                            newBackgroundOpacity.toInt() // Update state
+                                        prefs.opacityNum =
+                                            newBackgroundOpacity.toInt() // Persist selection in preferences
                                         viewModel.opacityNum.value = newBackgroundOpacity.toInt()
                                     }
                                 )
@@ -1360,7 +1417,9 @@ class SettingsFragment : BaseFragment() {
                         fontSize = titleFontSize,
                         onClick = {
                             val gravityOptions = Constants.Gravity.entries.toTypedArray()
-                            val selectedIndex = gravityOptions.indexOf(selectedClockAlignment).takeIf { it >= 0 } ?: 1
+                            val selectedIndex =
+                                gravityOptions.indexOf(selectedClockAlignment).takeIf { it >= 0 }
+                                    ?: 1
 
                             dialogBuilder.showSingleChoiceBottomSheetPill(
                                 context = requireContext(),
@@ -1369,7 +1428,8 @@ class SettingsFragment : BaseFragment() {
                                 selectedIndex = selectedIndex,
                                 onItemSelected = { newGravity ->
                                     selectedClockAlignment = newGravity // Update state
-                                    prefs.clockAlignment = newGravity // Persist selection in preferences
+                                    prefs.clockAlignment =
+                                        newGravity // Persist selection in preferences
                                     viewModel.updateClockAlignment(newGravity)
                                 }
                             )
@@ -1382,7 +1442,9 @@ class SettingsFragment : BaseFragment() {
                         fontSize = titleFontSize,
                         onClick = {
                             val gravityOptions = Constants.Gravity.entries.toTypedArray()
-                            val selectedIndex = gravityOptions.indexOf(selectedDateAlignment).takeIf { it >= 0 } ?: 1
+                            val selectedIndex =
+                                gravityOptions.indexOf(selectedDateAlignment).takeIf { it >= 0 }
+                                    ?: 1
 
                             dialogBuilder.showSingleChoiceBottomSheetPill(
                                 context = requireContext(),
@@ -1391,7 +1453,8 @@ class SettingsFragment : BaseFragment() {
                                 selectedIndex = selectedIndex,
                                 onItemSelected = { newGravity ->
                                     selectedDateAlignment = newGravity // Update state
-                                    prefs.dateAlignment = newGravity // Persist selection in preferences
+                                    prefs.dateAlignment =
+                                        newGravity // Persist selection in preferences
                                     viewModel.updateDateAlignment(newGravity)
                                 }
                             )
@@ -1404,7 +1467,9 @@ class SettingsFragment : BaseFragment() {
                         fontSize = titleFontSize,
                         onClick = {
                             val gravityOptions = Constants.Gravity.entries.toTypedArray()
-                            val selectedIndex = gravityOptions.indexOf(selectedAlarmAlignment).takeIf { it >= 0 } ?: 1
+                            val selectedIndex =
+                                gravityOptions.indexOf(selectedAlarmAlignment).takeIf { it >= 0 }
+                                    ?: 1
 
                             dialogBuilder.showSingleChoiceBottomSheetPill(
                                 context = requireContext(),
@@ -1413,7 +1478,8 @@ class SettingsFragment : BaseFragment() {
                                 selectedIndex = selectedIndex,
                                 onItemSelected = { newGravity ->
                                     selectedAlarmAlignment = newGravity // Update state
-                                    prefs.alarmAlignment = newGravity // Persist selection in preferences
+                                    prefs.alarmAlignment =
+                                        newGravity // Persist selection in preferences
                                     viewModel.updateAlarmAlignment(newGravity)
                                 }
                             )
@@ -1426,7 +1492,8 @@ class SettingsFragment : BaseFragment() {
                         fontSize = titleFontSize,
                         onClick = {
                             val gravityOptions = Constants.Gravity.entries.toTypedArray()
-                            val selectedIndex = gravityOptions.indexOf(selectedDailyWordAlignment).takeIf { it >= 0 } ?: 1
+                            val selectedIndex = gravityOptions.indexOf(selectedDailyWordAlignment)
+                                .takeIf { it >= 0 } ?: 1
 
                             dialogBuilder.showSingleChoiceBottomSheetPill(
                                 context = requireContext(),
@@ -1435,7 +1502,8 @@ class SettingsFragment : BaseFragment() {
                                 selectedIndex = selectedIndex,
                                 onItemSelected = { newGravity ->
                                     selectedDailyWordAlignment = newGravity // Update state
-                                    prefs.dailyWordAlignment = newGravity // Persist selection in preferences
+                                    prefs.dailyWordAlignment =
+                                        newGravity // Persist selection in preferences
                                     viewModel.updateDailyWordAlignment(newGravity)
                                 }
                             )
@@ -1448,7 +1516,9 @@ class SettingsFragment : BaseFragment() {
                         fontSize = titleFontSize,
                         onClick = {
                             val gravityOptions = Constants.Gravity.entries.toTypedArray()
-                            val selectedIndex = gravityOptions.indexOf(selectedHomeAlignment).takeIf { it >= 0 } ?: 1
+                            val selectedIndex =
+                                gravityOptions.indexOf(selectedHomeAlignment).takeIf { it >= 0 }
+                                    ?: 1
 
                             dialogBuilder.showSingleChoiceBottomSheetPill(
                                 context = requireContext(),
@@ -1457,7 +1527,8 @@ class SettingsFragment : BaseFragment() {
                                 selectedIndex = selectedIndex,
                                 onItemSelected = { newGravity ->
                                     selectedHomeAlignment = newGravity // Update state
-                                    prefs.homeAlignment = newGravity // Persist selection in preferences
+                                    prefs.homeAlignment =
+                                        newGravity // Persist selection in preferences
                                     viewModel.updateHomeAppsAlignment(
                                         prefs.homeAlignment,
                                         prefs.homeAlignmentBottom
@@ -1473,7 +1544,9 @@ class SettingsFragment : BaseFragment() {
                         fontSize = titleFontSize,
                         onClick = {
                             val gravityOptions = Constants.Gravity.entries.toTypedArray()
-                            val selectedIndex = gravityOptions.indexOf(selectedDrawAlignment).takeIf { it >= 0 } ?: 1
+                            val selectedIndex =
+                                gravityOptions.indexOf(selectedDrawAlignment).takeIf { it >= 0 }
+                                    ?: 1
 
                             dialogBuilder.showSingleChoiceBottomSheetPill(
                                 context = requireContext(),
@@ -1482,7 +1555,8 @@ class SettingsFragment : BaseFragment() {
                                 selectedIndex = selectedIndex,
                                 onItemSelected = { newGravity ->
                                     selectedDrawAlignment = newGravity // Update state
-                                    prefs.drawerAlignment = newGravity // Persist selection in preferences
+                                    prefs.drawerAlignment =
+                                        newGravity // Persist selection in preferences
                                     viewModel.updateDrawerAlignment(newGravity)
                                 }
                             )
@@ -1497,7 +1571,8 @@ class SettingsFragment : BaseFragment() {
                         fontSize = titleFontSize
                     )
 
-                    val hexBackgroundColor = String.format("#%06X", (0xFFFFFF and selectedBackgroundColor))
+                    val hexBackgroundColor =
+                        String.format("#%06X", (0xFFFFFF and selectedBackgroundColor))
                     SettingsSelect(
                         title = getLocalizedString(R.string.background_color),
                         option = hexBackgroundColor,
@@ -1590,7 +1665,8 @@ class SettingsFragment : BaseFragment() {
                         }
                     )
 
-                    val hexDailyWordColor = String.format("#%06X", (0xFFFFFF and selectedDailyWordColor))
+                    val hexDailyWordColor =
+                        String.format("#%06X", (0xFFFFFF and selectedDailyWordColor))
                     SettingsSelect(
                         title = getLocalizedString(R.string.daily_word_color),
                         option = hexDailyWordColor,
@@ -1608,7 +1684,8 @@ class SettingsFragment : BaseFragment() {
                         }
                     )
 
-                    val hexBatteryColor = String.format("#%06X", (0xFFFFFF and selectedBatteryColor))
+                    val hexBatteryColor =
+                        String.format("#%06X", (0xFFFFFF and selectedBatteryColor))
                     SettingsSelect(
                         title = getLocalizedString(R.string.battery_color),
                         option = hexBatteryColor,
@@ -1639,7 +1716,12 @@ class SettingsFragment : BaseFragment() {
                         title = getLocalizedString(R.string.shortcuts_color),
                         option = String.format("#%06X", (0xFFFFFF and selectedShortcutIconsColor)),
                         fontSize = titleFontSize,
-                        optionColor = Color(String.format("#%06X", (0xFFFFFF and selectedShortcutIconsColor)).toColorInt()),
+                        optionColor = Color(
+                            String.format(
+                                "#%06X",
+                                (0xFFFFFF and selectedShortcutIconsColor)
+                            ).toColorInt()
+                        ),
                         onClick = {
                             dialogBuilder.showColorPickerBottomSheet(
                                 context = requireContext(),
@@ -1668,10 +1750,13 @@ class SettingsFragment : BaseFragment() {
                             // Generate options and icons
                             val iconPacksEntries = Constants.IconPacks.entries
 
-                            val iconPacksOptions = iconPacksEntries.map { it.getString(emptyString()) }
+                            val iconPacksOptions =
+                                iconPacksEntries.map { it.getString(emptyString()) }
 
                             // Determine selected index based on current prefs value
-                            val selectedIndex = iconPacksEntries.indexOf(selectedIconPackHome).takeIf { it >= 0 } ?: 1
+                            val selectedIndex =
+                                iconPacksEntries.indexOf(selectedIconPackHome).takeIf { it >= 0 }
+                                    ?: 1
 
                             dialogBuilder.showSingleChoiceBottomSheet(
                                 context = requireContext(),
@@ -1710,10 +1795,13 @@ class SettingsFragment : BaseFragment() {
                             // Generate options and icons
                             val iconPacksEntries = Constants.IconPacks.entries
 
-                            val iconPacksOptions = iconPacksEntries.map { it.getString(emptyString()) }
+                            val iconPacksOptions =
+                                iconPacksEntries.map { it.getString(emptyString()) }
 
                             // Determine selected index based on current prefs value
-                            val selectedIndex = iconPacksEntries.indexOf(selectedIconPackAppList).takeIf { it >= 0 } ?: 1
+                            val selectedIndex =
+                                iconPacksEntries.indexOf(selectedIconPackAppList).takeIf { it >= 0 }
+                                    ?: 1
 
                             dialogBuilder.showSingleChoiceBottomSheet(
                                 context = requireContext(),
@@ -1762,7 +1850,8 @@ class SettingsFragment : BaseFragment() {
                                 currentValue = prefs.appSize,
                                 onValueSelected = { newAppSize ->
                                     selectedAppSize = newAppSize.toInt() // Update state
-                                    prefs.appSize = newAppSize.toInt() // Persist selection in preferences
+                                    prefs.appSize =
+                                        newAppSize.toInt() // Persist selection in preferences
                                 }
                             )
                         }
@@ -1781,7 +1870,8 @@ class SettingsFragment : BaseFragment() {
                                 currentValue = prefs.dateSize,
                                 onValueSelected = { newDateSize ->
                                     selectedDateSize = newDateSize.toInt() // Update state
-                                    prefs.dateSize = newDateSize.toInt() // Persist selection in preferences
+                                    prefs.dateSize =
+                                        newDateSize.toInt() // Persist selection in preferences
                                 }
                             )
                         }
@@ -1800,7 +1890,8 @@ class SettingsFragment : BaseFragment() {
                                 currentValue = prefs.clockSize,
                                 onValueSelected = { newClockSize ->
                                     selectedClockSize = newClockSize.toInt() // Update state
-                                    prefs.clockSize = newClockSize.toInt() // Persist selection in preferences
+                                    prefs.clockSize =
+                                        newClockSize.toInt() // Persist selection in preferences
                                 }
                             )
                         }
@@ -1819,7 +1910,8 @@ class SettingsFragment : BaseFragment() {
                                 currentValue = prefs.alarmSize,
                                 onValueSelected = { newDateSize ->
                                     selectedAlarmSize = newDateSize.toInt() // Update state
-                                    prefs.alarmSize = newDateSize.toInt() // Persist selection in preferences
+                                    prefs.alarmSize =
+                                        newDateSize.toInt() // Persist selection in preferences
                                 }
                             )
                         }
@@ -1838,7 +1930,8 @@ class SettingsFragment : BaseFragment() {
                                 currentValue = prefs.dailyWordSize,
                                 onValueSelected = { newDateSize ->
                                     selectedDailyWordSize = newDateSize.toInt() // Update state
-                                    prefs.dailyWordSize = newDateSize.toInt() // Persist selection in preferences
+                                    prefs.dailyWordSize =
+                                        newDateSize.toInt() // Persist selection in preferences
                                 }
                             )
                         }
@@ -1857,7 +1950,8 @@ class SettingsFragment : BaseFragment() {
                                 currentValue = prefs.batterySize,
                                 onValueSelected = { newBatterySize ->
                                     selectedBatterySize = newBatterySize.toInt() // Update state
-                                    prefs.batterySize = newBatterySize.toInt() // Persist selection in preferences
+                                    prefs.batterySize =
+                                        newBatterySize.toInt() // Persist selection in preferences
                                 }
                             )
                         }
@@ -1903,7 +1997,8 @@ class SettingsFragment : BaseFragment() {
                                     val selectedAction =
                                         actions.firstOrNull { it.getString() == newDoubleTapAction }
                                     if (selectedAction != null) {
-                                        selectedDoubleTapAction = selectedAction // Store the enum itself
+                                        selectedDoubleTapAction =
+                                            selectedAction // Store the enum itself
                                         setGesture(
                                             AppDrawerFlag.SetDoubleTap,
                                             selectedAction
@@ -1914,7 +2009,8 @@ class SettingsFragment : BaseFragment() {
                         }
                     )
 
-                    val appLabelClickClockAction = prefs.appClickClock.activityLabel.ifEmpty { "Clock" }
+                    val appLabelClickClockAction =
+                        prefs.appClickClock.activityLabel.ifEmpty { "Clock" }
                     SettingsSelect(
                         title = getLocalizedString(R.string.clock_click_app),
                         option = if (selectedClickClockAction == Action.OpenApp) {
@@ -1932,7 +2028,8 @@ class SettingsFragment : BaseFragment() {
                                     val selectedAction =
                                         actions.firstOrNull { it.getString() == newClickClock }
                                     if (selectedAction != null) {
-                                        selectedClickClockAction = selectedAction // Store the enum itself
+                                        selectedClickClockAction =
+                                            selectedAction // Store the enum itself
                                         setGesture(
                                             AppDrawerFlag.SetClickClock,
                                             selectedAction
@@ -1943,7 +2040,8 @@ class SettingsFragment : BaseFragment() {
                         }
                     )
 
-                    val appLabelClickDateAction = prefs.appClickDate.activityLabel.ifEmpty { "Calendar" }
+                    val appLabelClickDateAction =
+                        prefs.appClickDate.activityLabel.ifEmpty { "Calendar" }
                     SettingsSelect(
                         title = getLocalizedString(R.string.date_click_app),
                         option = if (selectedClickDateAction == Action.OpenApp) {
@@ -1961,7 +2059,8 @@ class SettingsFragment : BaseFragment() {
                                     val selectedAction =
                                         actions.firstOrNull { it.getString() == newClickDate }
                                     if (selectedAction != null) {
-                                        selectedClickDateAction = selectedAction // Store the enum itself
+                                        selectedClickDateAction =
+                                            selectedAction // Store the enum itself
                                         setGesture(
                                             AppDrawerFlag.SetClickDate,
                                             selectedAction
@@ -2003,7 +2102,8 @@ class SettingsFragment : BaseFragment() {
                         }
                     )
 
-                    val appLabelClickFloatingAction = prefs.appFloating.activityLabel.ifEmpty { "Notes" }
+                    val appLabelClickFloatingAction =
+                        prefs.appFloating.activityLabel.ifEmpty { "Notes" }
                     SettingsSelect(
                         title = getLocalizedString(R.string.floating_click_app),
                         option = if (selectedClickFloatingAction == Action.OpenApp) {
@@ -2061,7 +2161,8 @@ class SettingsFragment : BaseFragment() {
                                     val selectedAction =
                                         actions.firstOrNull { it.getString() == newShortSwipeUpAction }
                                     if (selectedAction != null) {
-                                        selectedShortSwipeUpAction = selectedAction // Store the enum itself
+                                        selectedShortSwipeUpAction =
+                                            selectedAction // Store the enum itself
                                         setGesture(
                                             AppDrawerFlag.SetShortSwipeUp,
                                             selectedAction
@@ -2184,7 +2285,8 @@ class SettingsFragment : BaseFragment() {
                                     val selectedAction =
                                         actions.firstOrNull { it.getString() == newLongSwipeUpAction }
                                     if (selectedAction != null) {
-                                        selectedLongSwipeUpAction = selectedAction // Store the enum itself
+                                        selectedLongSwipeUpAction =
+                                            selectedAction // Store the enum itself
                                         setGesture(
                                             AppDrawerFlag.SetLongSwipeUp,
                                             selectedAction
@@ -2691,7 +2793,10 @@ class SettingsFragment : BaseFragment() {
 
                     PageHeader(
                         iconRes = R.drawable.ic_back,
-                        title = getLocalizedString(R.string.about_settings_title, getLocalizedString(R.string.app_name)),
+                        title = getLocalizedString(
+                            R.string.about_settings_title,
+                            getLocalizedString(R.string.app_name)
+                        ),
 
                         onClick = {
                             currentScreen = "main"
@@ -2727,16 +2832,18 @@ class SettingsFragment : BaseFragment() {
 
                     Spacer(modifier = Modifier.height(16.dp))
 
-                    TitleWithHtmlLinks(
-                        title = getLocalizedString(R.string.settings_donations),
-                        descriptions = listOf(
-                            getLocalizedString(R.string.sponsor_link),
-                            getLocalizedString(R.string.coffee_link),
-                            getLocalizedString(R.string.libera_link)
-                        ),
-                        titleFontSize = titleFontSize,
-                        descriptionFontSize = descriptionFontSize
-                    )
+                    if (!installedFromPlay) {
+                        TitleWithHtmlLinks(
+                            title = getLocalizedString(R.string.settings_donations),
+                            descriptions = listOf(
+                                getLocalizedString(R.string.sponsor_link),
+                                getLocalizedString(R.string.coffee_link),
+                                getLocalizedString(R.string.libera_link)
+                            ),
+                            titleFontSize = titleFontSize,
+                            descriptionFontSize = descriptionFontSize
+                        )
+                    }
 
                     Spacer(modifier = Modifier.weight(1f))
 
@@ -2820,7 +2927,8 @@ class SettingsFragment : BaseFragment() {
                             prefs.lockOrientation = toggledLockOrientation
 
                             val currentOrientation = resources.configuration.orientation
-                            prefs.lockOrientationPortrait = currentOrientation == Configuration.ORIENTATION_PORTRAIT
+                            prefs.lockOrientationPortrait =
+                                currentOrientation == Configuration.ORIENTATION_PORTRAIT
                             AppReloader.restartApp(requireContext())
                         }
                     )
@@ -2992,21 +3100,22 @@ class SettingsFragment : BaseFragment() {
 
         val font = FontManager.getTypeface(context)
 
-        val adapter = object : ArrayAdapter<String>(context, android.R.layout.select_dialog_item, labels) {
-            override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-                val view = super.getView(position, convertView, parent)
-                val tv = view.findViewById<TextView>(android.R.id.text1)
-                font?.let { tv.typeface = it }
+        val adapter =
+            object : ArrayAdapter<String>(context, android.R.layout.select_dialog_item, labels) {
+                override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+                    val view = super.getView(position, convertView, parent)
+                    val tv = view.findViewById<TextView>(android.R.id.text1)
+                    font?.let { tv.typeface = it }
 
-                val origDrawable = icons[position]
-                val bmp = drawableToBitmap(origDrawable, iconSizePx)
-                val drw = bmp.toDrawable(context.resources)
+                    val origDrawable = icons[position]
+                    val bmp = drawableToBitmap(origDrawable, iconSizePx)
+                    val drw = bmp.toDrawable(context.resources)
 
-                tv.setCompoundDrawablesWithIntrinsicBounds(drw, null, null, null)
-                tv.compoundDrawablePadding = 16
-                return view
+                    tv.setCompoundDrawablesWithIntrinsicBounds(drw, null, null, null)
+                    tv.compoundDrawablePadding = 16
+                    return view
+                }
             }
-        }
 
         val titleView = TextView(context).apply {
             text = getLocalizedString(R.string.settings_exit_mlauncher_dialog)

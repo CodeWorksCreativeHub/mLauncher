@@ -152,7 +152,8 @@ fun getNextAlarm(context: Context, prefs: Prefs): CharSequence {
     val nextAlarmClock = alarmManager.nextAlarmClock ?: return "No alarm is set."
 
     val alarmTime = nextAlarmClock.triggerTime
-    val timezone = prefs.appLanguage.locale()  // Assuming this returns a string like "America/New_York"
+    val timezone =
+        prefs.appLanguage.locale()  // Assuming this returns a string like "America/New_York"
     val formattedDate = DateFormat.getBestDateTimePattern(timezone, "eeeddMMM")
     val best12 = DateFormat.getBestDateTimePattern(
         timezone,
@@ -211,7 +212,8 @@ fun ismlauncherDefault(context: Context): Boolean {
         val intent = Intent(Intent.ACTION_MAIN).apply {
             addCategory(Intent.CATEGORY_HOME)
         }
-        val resolveInfo = context.packageManager.resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY)
+        val resolveInfo =
+            context.packageManager.resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY)
         val defaultLauncherPackage = resolveInfo?.activityInfo?.packageName
         return context.packageName == defaultLauncherPackage
     }
@@ -319,7 +321,8 @@ fun showStatusBar(window: Window) {
         window.decorView.let { decorView ->
             val flags = decorView.systemUiVisibility and
                     (View.SYSTEM_UI_FLAG_FULLSCREEN.inv()) // clear fullscreen flag
-            decorView.systemUiVisibility = flags or View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+            decorView.systemUiVisibility =
+                flags or View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
         }
     }
 }
@@ -360,7 +363,8 @@ fun showNavigationBar(window: Window) {
         (window.decorView.let { decorView ->
             val flags = decorView.systemUiVisibility and
                     (View.SYSTEM_UI_FLAG_HIDE_NAVIGATION.inv()) // clear hide nav flag
-            decorView.systemUiVisibility = flags or View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+            decorView.systemUiVisibility =
+                flags or View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
         })
     }
 }
@@ -538,11 +542,17 @@ fun Context.openFirstWeatherApp() {
     if (installedKnownApps.isNotEmpty()) {
         val intent = pm.getLaunchIntentForPackage(installedKnownApps.first())
         if (intent != null) {
-            AppLogger.d("WeatherAppLauncher", "Launching known weather app: ${installedKnownApps.first()}")
+            AppLogger.d(
+                "WeatherAppLauncher",
+                "Launching known weather app: ${installedKnownApps.first()}"
+            )
             this.startActivity(intent)
             return
         } else {
-            AppLogger.d("WeatherAppLauncher", "Launch intent null for: ${installedKnownApps.first()}")
+            AppLogger.d(
+                "WeatherAppLauncher",
+                "Launch intent null for: ${installedKnownApps.first()}"
+            )
         }
     } else {
         AppLogger.d("WeatherAppLauncher", "No known weather apps installed.")
@@ -555,11 +565,17 @@ fun Context.openFirstWeatherApp() {
         val packageName = resolvedApps.first().activityInfo.packageName
         val intent = pm.getLaunchIntentForPackage(packageName)
         if (intent != null) {
-            AppLogger.d("WeatherAppLauncher", "Launching app via generic weather intent: $packageName")
+            AppLogger.d(
+                "WeatherAppLauncher",
+                "Launching app via generic weather intent: $packageName"
+            )
             this.startActivity(intent)
             return
         } else {
-            AppLogger.d("WeatherAppLauncher", "Launch intent null for generic weather app: $packageName")
+            AppLogger.d(
+                "WeatherAppLauncher",
+                "Launch intent null for generic weather app: $packageName"
+            )
         }
     } else {
         AppLogger.d("WeatherAppLauncher", "No apps found via generic weather intent.")
@@ -570,18 +586,27 @@ fun Context.openFirstWeatherApp() {
         .filter { app ->
             val name = pm.getApplicationLabel(app).toString().lowercase()
             val containsWeather = name.contains("weather")
-            if (containsWeather) AppLogger.d("WeatherAppLauncher", "Found app by name: ${app.packageName} ($name)")
+            if (containsWeather) AppLogger.d(
+                "WeatherAppLauncher",
+                "Found app by name: ${app.packageName} ($name)"
+            )
             containsWeather
         }
 
     if (weatherAppsByName.isNotEmpty()) {
         val intent = pm.getLaunchIntentForPackage(weatherAppsByName.first().packageName)
         if (intent != null) {
-            AppLogger.d("WeatherAppLauncher", "Launching first app found by name: ${weatherAppsByName.first().packageName}")
+            AppLogger.d(
+                "WeatherAppLauncher",
+                "Launching first app found by name: ${weatherAppsByName.first().packageName}"
+            )
             this.startActivity(intent)
             return
         } else {
-            AppLogger.d("WeatherAppLauncher", "Launch intent null for: ${weatherAppsByName.first().packageName}")
+            AppLogger.d(
+                "WeatherAppLauncher",
+                "Launch intent null for: ${weatherAppsByName.first().packageName}"
+            )
         }
     } else {
         AppLogger.d("WeatherAppLauncher", "No apps found by name containing 'weather'.")
@@ -607,7 +632,10 @@ fun Context.openFirstWeatherApp() {
         val intent = Intent(Intent.ACTION_VIEW, url.toUri())
         this.startActivity(intent)
 
-        AppLogger.d("WeatherAppLauncher", "Opened weather.com for coordinates: $lat,$lon with unit: $unitParam")
+        AppLogger.d(
+            "WeatherAppLauncher",
+            "Opened weather.com for coordinates: $lat,$lon with unit: $unitParam"
+        )
     } else {
         AppLogger.d("WeatherAppLauncher", "No coordinates found in prefs.")
     }
@@ -616,7 +644,7 @@ fun Context.openFirstWeatherApp() {
 
 
 fun formatLongToCalendar(longTimestamp: Long): String {
-    // Create a Calendar instance and set its time to the given timestamp (in milliseconds)
+    // Create a Calendar instance and set it's time to the given timestamp (in milliseconds)
     val calendar = Calendar.getInstance().apply {
         timeInMillis = longTimestamp
     }
@@ -750,51 +778,77 @@ fun getDeviceInfoJson(context: Context): String {
     }
 }
 
-fun getInstallSource(packageManager: PackageManager, packageName: String): String {
-    try {
+fun getInstallSource(
+    packageManager: PackageManager,
+    packageName: String
+): String {
+    return try {
         val installer = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            // For API level 30 and above
-            packageManager.getInstallSourceInfo(packageName).installingPackageName ?: "Unknown"
+            packageManager
+                .getInstallSourceInfo(packageName)
+                .installingPackageName
         } else {
-            // For below API level 30
             @Suppress("DEPRECATION")
-            packageManager.getInstallerPackageName(packageName) ?: "Unknown"
+            packageManager.getInstallerPackageName(packageName)
         }
 
-        return when (installer) {
-            "com.android.vending" -> "Google Play Store"
-            "org.fdroid.fdroid" -> "F-Droid"
-            "dev.imranr.obtainium" -> "Obtanium"
-            "com.amazon.venezia" -> "Amazon Appstore"
-            "com.sec.android.app.samsungapps" -> "Samsung Galaxy Store"
-            "com.huawei.appmarket" -> "Huawei AppGallery"
-            "com.xiaomi.market" -> "Xiaomi GetApps"
-            "com.oppo.market" -> "OPPO App Market"
-            "com.vivo.appstore" -> "Vivo App Store"
-            "com.oneplus.mstore" -> "OnePlus Store"
-            "com.android.shell" -> "Android Studio (ADB)"
+        when (installer) {
+            "com.android.vending" ->
+                "Google Play Store"
 
-            // Popular browsers
-            "com.android.chrome" -> "Chrome"
-            "org.mozilla.firefox" -> "Firefox"
-            "com.brave.browser" -> "Brave"
-            "com.microsoft.emmx" -> "Edge"
-            "com.opera.browser" -> "Opera"
-            "com.sec.android.app.sbrowser" -> "Samsung Internet"
+            "com.android.shell" ->
+                "ADB / Android Studio"
 
-            // Popular file managers
-            "com.google.android.documentsui" -> "Files by Google"
-            "com.samsung.android.myfiles" -> "Samsung My Files"
-            "com.mi.android.globalFileexplorer" -> "Xiaomi File Manager"
-            "com.asus.filemanager" -> "ASUS File Manager"
-            "com.lonelycatgames.Xplore" -> "X-plore File Manager"
-            "nextapp.fx" -> "FX File Explorer"
-            "com.amazon.filemanager" -> "Amazon File Manager"
+            "org.fdroid.fdroid" ->
+                "F-Droid"
 
-            else -> "Unknown"
+            "dev.imranr.obtainium" ->
+                "Obtainium"
+
+            "com.amazon.venezia" ->
+                "Amazon Appstore"
+
+            "com.sec.android.app.samsungapps" ->
+                "Samsung Galaxy Store"
+
+            "com.huawei.appmarket" ->
+                "Huawei AppGallery"
+
+            "com.xiaomi.market" ->
+                "Xiaomi GetApps"
+
+            "com.oppo.market" ->
+                "OPPO App Market"
+
+            "com.vivo.appstore" ->
+                "Vivo App Store"
+
+            else ->
+                installer ?: "Unknown"
         }
+
     } catch (_: Exception) {
-        return "Unknown"
+        "Unknown"
+    }
+}
+
+fun isInstalledFromGooglePlay(context: Context, packageName: String): Boolean {
+    return try {
+        val pm = context.packageManager
+        val packageInfo = pm.getPackageInfo(packageName, 0)
+
+        val installer = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            pm.getInstallSourceInfo(packageName).installingPackageName
+        } else {
+            @Suppress("DEPRECATION")
+            pm.getInstallerPackageName(packageName)
+        }
+
+        packageInfo.applicationInfo != null &&
+                installer == "com.android.vending"
+
+    } catch (_: PackageManager.NameNotFoundException) {
+        false
     }
 }
 
@@ -842,7 +896,10 @@ fun updateWordWidget(context: Context) {
 
 fun updateFabWidget(context: Context) {
     val appWidgetManager = AppWidgetManager.getInstance(context)
-    val componentName = ComponentName(context, HomeAppsWidgetProvider::class.java) // Replace with your FAB widget class
+    val componentName = ComponentName(
+        context,
+        HomeAppsWidgetProvider::class.java
+    ) // Replace with your FAB widget class
     val appWidgetIds = appWidgetManager.getAppWidgetIds(componentName)
 
     val intent = Intent(context, HomeAppsWidgetProvider::class.java).apply {
