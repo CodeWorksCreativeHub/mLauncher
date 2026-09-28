@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file. See [conven
 
 ## [1.12.0.1 → Unreleased](https://github.com/CodeWorksCreativeHub/mLauncher/tree/main) - In Development
 
+### :sparkles: Enhancements:
+
+* add isInstalledFromGooglePlay helper function and update UI logic based on installation source ([41e4e99e](https://github.com/CodeWorksCreativeHub/mLauncher/commit/41e4e99e))
+
 ### :bug: Bug Fixes:
 
 * adjust button margin and improve clearView formatting ([bd8f8d0a](https://github.com/CodeWorksCreativeHub/mLauncher/commit/bd8f8d0a))
