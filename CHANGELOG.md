@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 ### :bug: Bug Fixes:
 
+* handle contact permission checks and observer lifecycle ([51601188](https://github.com/CodeWorksCreativeHub/mLauncher/commit/51601188))
 * adjust button margin and improve clearView formatting ([bd8f8d0a](https://github.com/CodeWorksCreativeHub/mLauncher/commit/bd8f8d0a))
 * correct wording in app-drawer alignment description ([6c731908](https://github.com/CodeWorksCreativeHub/mLauncher/commit/6c731908))
 * update Google Play badge URLs to use the correct endpoint ([62cfa25d](https://github.com/CodeWorksCreativeHub/mLauncher/commit/62cfa25d))
