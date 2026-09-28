@@ -2,12 +2,12 @@
 
 [versions]
 agp = "9.4.1"
-kotlin = "2.4.20-352"
+kotlin = "2.4.20-378"
 viewpager2 = "1.1.0"
 junit = "4.13.2"
 
 # AndroidX Core and AppCompat
-core-ktx = "1.19.0"
+core-ktx = "1.19.1"
 appcompat = "1.8.0"
 recyclerview = "1.4.0"
 paletteKtx = "1.0.0"
@@ -19,12 +19,12 @@ lifecycle-extensions = "2.2.0"
 lifecycle-viewmodel-ktx = "2.11.0"
 
 # Navigation
-navigation-fragment-ktx = "2.10.0"
-navigation-ui-ktx = "2.10.0"
-navigation-testing = "2.10.0"
+navigation-fragment-ktx = "2.10.2"
+navigation-ui-ktx = "2.10.2"
+navigation-testing = "2.10.2"
 
 # Work Manager
-work-runtime-ktx = "2.11.2"
+work-runtime-ktx = "2.12.0"
 
 # ConstraintLayout
 constraintlayout = "2.2.2"
@@ -48,15 +48,15 @@ espresso = "3.7.0"
 test-core-ktx = "1.7.0"
 test-runner = "1.7.0"
 test-rules = "1.7.0"
-fragment-testing = "1.9.0"
+fragment-testing = "1.9.1"
 ui-test-junit4 = "1.11.4"
 ui-test-manifest = "1.11.4"
 activity = "1.13.0"
 
 # Database
 moshi = "1.15.2"
-room = "2.8.4"
-ksp = "2.3.11"
+room = "2.8.5"
+ksp = "2.3.12"
 
 [libraries]
 # Core Libraries
