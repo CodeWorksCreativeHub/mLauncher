@@ -18,6 +18,9 @@ const commitParsers = [
 	{ message: /^fixes/i, skip: true },
 	{ message: /^build/i, skip: true },
 
+	// Skip all CI-scoped commits
+	{ message: /^(ci|changelog)(:|$)|^[a-z]+\((ci|changelog)\)(:|$)/i, skip: true },
+
 	// Enhancements
 	{ message: /^feat|^perf|^style|^ui|^ux/i, group: "### :sparkles: Enhancements:" },
 
