@@ -49,6 +49,12 @@ extensions.configure<ApplicationExtension>("android") {
             resValue("string", "app_name", "Multi Launcher")
         }
 
+        create("play") {
+            dimension = "channel"
+            applicationId = "app.mlauncher"
+            resValue("string", "app_name", "Multi Launcher")
+        }
+
         create("beta") {
             dimension = "channel"
             applicationId = "app.mlauncher.beta"
