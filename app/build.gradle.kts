@@ -105,9 +105,9 @@ extensions.configure<ApplicationExtension>("android") {
             isDebuggable = true
             isMinifyEnabled = false
             applicationIdSuffix = ".debug"
-            signingConfig = signingConfigs["release"]
+            signingConfig = signingConfigs["debug"]
 
-            resValue("string", "app_version", baseVersionCode.toString())
+            resValue("string", "app_version", baseVersionName)
             resValue("string", "app_name", "Multi Launcher Debug")
             resValue("string", "empty", "")
         }
