@@ -7,7 +7,6 @@ All notable changes to this project will be documented in this file. See [conven
 ### :sparkles: Enhancements:
 
 * add is_play_store resource to differentiate installation source ([50b69c10](https://github.com/CodeWorksCreativeHub/mLauncher/commit/50b69c10))
-* update Gradle build command to use bundlePlayRelease and add play build variant ([7b47cda1](https://github.com/CodeWorksCreativeHub/mLauncher/commit/7b47cda1))
 * add isInstalledFromGooglePlay helper function and update UI logic based on installation source ([41e4e99e](https://github.com/CodeWorksCreativeHub/mLauncher/commit/41e4e99e))
 
 ### :bug: Bug Fixes:
