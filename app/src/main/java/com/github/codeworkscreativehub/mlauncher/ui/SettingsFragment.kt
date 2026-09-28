@@ -81,7 +81,6 @@ import com.github.codeworkscreativehub.mlauncher.helper.hasLocationPermission
 import com.github.codeworkscreativehub.mlauncher.helper.helpFeedbackButton
 import com.github.codeworkscreativehub.mlauncher.helper.hideNavigationBar
 import com.github.codeworkscreativehub.mlauncher.helper.hideStatusBar
-import com.github.codeworkscreativehub.mlauncher.helper.isInstalledFromGooglePlay
 import com.github.codeworkscreativehub.mlauncher.helper.isSystemInDarkMode
 import com.github.codeworkscreativehub.mlauncher.helper.ismlauncherDefault
 import com.github.codeworkscreativehub.mlauncher.helper.openAppInfo
@@ -305,11 +304,6 @@ class SettingsFragment : BaseFragment() {
         var selectedLongSwipeDownAction by remember { mutableStateOf(prefs.longSwipeDownAction) }
         var selectedLongSwipeLeftAction by remember { mutableStateOf(prefs.longSwipeLeftAction) }
         var selectedLongSwipeRightAction by remember { mutableStateOf(prefs.longSwipeRightAction) }
-
-        val installedFromPlay = isInstalledFromGooglePlay(
-            context,
-            "app.mlauncher"
-        )
 
         val actions = Action.entries
 
@@ -2832,7 +2826,7 @@ class SettingsFragment : BaseFragment() {
 
                     Spacer(modifier = Modifier.height(16.dp))
 
-                    if (!installedFromPlay) {
+                    if (!resources.getBoolean(R.bool.is_play_store)) {
                         TitleWithHtmlLinks(
                             title = getLocalizedString(R.string.settings_donations),
                             descriptions = listOf(
@@ -2844,6 +2838,7 @@ class SettingsFragment : BaseFragment() {
                             descriptionFontSize = descriptionFontSize
                         )
                     }
+
 
                     Spacer(modifier = Modifier.weight(1f))
 

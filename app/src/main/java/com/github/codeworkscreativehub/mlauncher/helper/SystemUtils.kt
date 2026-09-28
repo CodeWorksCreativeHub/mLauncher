@@ -832,26 +832,6 @@ fun getInstallSource(
     }
 }
 
-fun isInstalledFromGooglePlay(context: Context, packageName: String): Boolean {
-    return try {
-        val pm = context.packageManager
-        val packageInfo = pm.getPackageInfo(packageName, 0)
-
-        val installer = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            pm.getInstallSourceInfo(packageName).installingPackageName
-        } else {
-            @Suppress("DEPRECATION")
-            pm.getInstallerPackageName(packageName)
-        }
-
-        packageInfo.applicationInfo != null &&
-                installer == "com.android.vending"
-
-    } catch (_: PackageManager.NameNotFoundException) {
-        false
-    }
-}
-
 fun getSystemIcons(
     context: Context,
     prefs: Prefs,
