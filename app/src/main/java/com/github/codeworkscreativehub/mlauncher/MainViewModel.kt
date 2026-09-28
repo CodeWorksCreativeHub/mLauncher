@@ -33,6 +33,7 @@ import com.github.codeworkscreativehub.mlauncher.data.ContactCategory
 import com.github.codeworkscreativehub.mlauncher.data.ContactListItem
 import com.github.codeworkscreativehub.mlauncher.data.Prefs
 import com.github.codeworkscreativehub.mlauncher.helper.ChineseSortHelper
+import com.github.codeworkscreativehub.mlauncher.helper.hasContactsPermission
 import com.github.codeworkscreativehub.mlauncher.helper.analytics.AppUsageMonitor
 import com.github.codeworkscreativehub.mlauncher.helper.ismlauncherDefault
 import com.github.codeworkscreativehub.mlauncher.helper.logActivitiesFromPackage
@@ -114,10 +115,16 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    private var isContactsObserverRegistered = false
+
     // ContentObserver for contacts - invalidate cache on change
     private val contactsObserver = object : ContentObserver(Handler(Looper.getMainLooper())) {
         override fun onChange(selfChange: Boolean) {
             super.onChange(selfChange)
+            if (!hasContactsPermission(appContext)) {
+                unregisterContactsObserverIfNeeded()
+                return
+            }
             AppLogger.d("MainViewModel", "Contacts changed - invalidating cache")
             contactsMemoryCache = null
             // trigger background refresh
@@ -125,19 +132,35 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    init {
-        prefsNormal.registerOnSharedPreferenceChangeListener(pinnedAppsListener)
-
-        // Register content observer for contacts to refresh cache only when changes occur
+    private fun registerContactsObserverIfNeeded() {
+        if (isContactsObserverRegistered) return
+        if (!hasContactsPermission(appContext)) return
         try {
             appContext.contentResolver.registerContentObserver(
                 ContactsContract.Contacts.CONTENT_URI,
                 true,
-                contactsObserver
+                contactsObserver,
             )
+            isContactsObserverRegistered = true
         } catch (t: Throwable) {
             AppLogger.e("MainViewModel", "Failed to register contacts observer: ${t.message}", t)
         }
+    }
+
+    private fun unregisterContactsObserverIfNeeded() {
+        if (!isContactsObserverRegistered) return
+        try {
+            appContext.contentResolver.unregisterContentObserver(contactsObserver)
+            isContactsObserverRegistered = false
+        } catch (t: Throwable) {
+            AppLogger.e("MainViewModel", "Failed to unregister contacts observer: ${t.message}", t)
+        }
+    }
+
+    init {
+        prefsNormal.registerOnSharedPreferenceChangeListener(pinnedAppsListener)
+
+        registerContactsObserverIfNeeded()
 
         // Fast immediate load from cache, then background refresh
         getAppList()
@@ -256,7 +279,8 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun callContact(contactItem: ContactListItem, fragment: Fragment) {
-        val phoneNumber = contactItem.phoneNumber // Ensure ContactListItem has a phoneNumber property
+        val phoneNumber =
+            contactItem.phoneNumber // Ensure ContactListItem has a phoneNumber property
         if (phoneNumber.isBlank()) {
             AppLogger.e("CallContact", "No phone number available for ${contactItem.displayName}")
             return
@@ -333,7 +357,12 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         if (appsRefreshing.compareAndSet(false, true)) {
             viewModelScope.launch {
                 try {
-                    val fresh = getAppsList(appContext, includeRegularApps = true, includeHiddenApps, includeRecentApps)
+                    val fresh = getAppsList(
+                        appContext,
+                        includeRegularApps = true,
+                        includeHiddenApps,
+                        includeRecentApps
+                    )
                     appsMemoryCache = fresh
                     saveAppsToFileCache(fresh)
                     // publish on main
@@ -351,6 +380,16 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
      * Public entry: loads contacts from cache instantly and refreshes in background.
      */
     fun getContactList(includeHiddenContacts: Boolean = true) {
+        if (!hasContactsPermission(appContext)) {
+            contactsMemoryCache = null
+            unregisterContactsObserverIfNeeded()
+            _contactScrollMap.postValue(emptyMap())
+            contactList.postValue(emptyList())
+            return
+        }
+
+        registerContactsObserverIfNeeded()
+
         // Fast path: show memory cache
         contactsMemoryCache?.let {
             contactList.postValue(it)
@@ -444,13 +483,8 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     // Clean up listener to prevent memory leaks
     override fun onCleared() {
-        super.onCleared()
         prefsNormal.unregisterOnSharedPreferenceChangeListener(pinnedAppsListener)
-        try {
-            appContext.contentResolver.unregisterContentObserver(contactsObserver)
-        } catch (t: Throwable) {
-            AppLogger.e("MainViewModel", "Failed to unregister contacts observer: ${t.message}", t)
-        }
+        unregisterContactsObserverIfNeeded()
     }
 
     suspend fun <T, R> buildList(
@@ -584,7 +618,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             async {
                 if (privateManager.isPrivateSpaceProfile(profile) && privateManager.isPrivateSpaceLocked()) {
                     AppLogger.d("AppListDebug", "🔒 Skipping locked private profile: $profile")
-                    emptyList<RawApp>()
+                    emptyList()
                 } else {
                     val profileType = when {
                         privateManager.isPrivateSpaceProfile(profile) -> "PRIVATE"
@@ -594,7 +628,11 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
                     runCatching { launcherApps.getActivityList(null, profile) }
                         .getOrElse {
-                            AppLogger.e("AppListDebug", "Failed to get activities for $profile: ${it.message}", it)
+                            AppLogger.e(
+                                "AppListDebug",
+                                "Failed to get activities for $profile: ${it.message}",
+                                it
+                            )
                             emptyList()
                         }
                         .mapNotNull { info ->
@@ -608,10 +646,15 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                             if (!seenAppKeys.add(key)) return@mapNotNull null
 
                             // Skip hidden / regular apps based on toggles
-                            if ((isHidden(pkg, key) && !includeHiddenApps) || (!isHidden(pkg, key) && !includeRegularApps))
+                            if ((isHidden(pkg, key) && !includeHiddenApps) || (!isHidden(
+                                    pkg,
+                                    key
+                                ) && !includeRegularApps)
+                            )
                                 return@mapNotNull null
 
-                            val category = if (pkg in pinnedPackages) AppCategory.PINNED else AppCategory.REGULAR
+                            val category =
+                                if (pkg in pinnedPackages) AppCategory.PINNED else AppCategory.REGULAR
                             RawApp(pkg, cls, info.label.toString(), profile, profileType, category)
                         }
                 }
@@ -659,7 +702,8 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             buildItem = { it },
             // UPDATE: Use the alias here so the scroll index matches the sort
             getLabel = { item ->
-                prefs.getAppAlias(item.activityPackage).takeIf { it.isNotBlank() } ?: item.activityLabel
+                prefs.getAppAlias(item.activityPackage).takeIf { it.isNotBlank() }
+                    ?: item.activityLabel
             },
             normalize = ::normalizeForSort
         )
@@ -673,13 +717,19 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         context: Context,
         includeHiddenContacts: Boolean = false
     ): MutableList<ContactListItem> = withContext(Dispatchers.IO) {
+        if (!hasContactsPermission(context)) {
+            return@withContext mutableListOf()
+        }
 
         val prefs = Prefs(context)
         val hiddenContacts = prefs.hiddenContacts
         val pinnedContacts = prefs.pinnedContacts.toSet()
         val seenContacts = mutableSetOf<String>()
 
-        AppLogger.d("ContactListDebug", "🔄 getContactsList called: includeHiddenContacts=$includeHiddenContacts")
+        AppLogger.d(
+            "ContactListDebug",
+            "🔄 getContactsList called: includeHiddenContacts=$includeHiddenContacts"
+        )
 
         val contentResolver = context.contentResolver
 
@@ -698,9 +748,13 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             )?.use { cursor ->
                 generateSequence {
                     if (cursor.moveToNext()) {
-                        val id = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.Contacts._ID))
-                        val name = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME)) ?: ""
-                        val lookup = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.Contacts.LOOKUP_KEY))
+                        val id =
+                            cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.Contacts._ID))
+                        val name =
+                            cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME))
+                                ?: ""
+                        val lookup =
+                            cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.Contacts.LOOKUP_KEY))
                         Triple(id, name, lookup)
                     } else null
                 }.toList()
@@ -721,13 +775,20 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                     ContactsContract.CommonDataKinds.Phone.CONTACT_ID,
                     ContactsContract.CommonDataKinds.Phone.NUMBER
                 ),
-                "${ContactsContract.CommonDataKinds.Phone.CONTACT_ID} IN (${contactIds.joinToString(",") { "?" }})",
+                "${ContactsContract.CommonDataKinds.Phone.CONTACT_ID} IN (${
+                    contactIds.joinToString(
+                        ","
+                    ) { "?" }
+                })",
                 contactIds.toTypedArray(),
                 null
             )?.use { cursor ->
                 while (cursor.moveToNext()) {
-                    val id = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.CONTACT_ID))
-                    val number = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.NUMBER)) ?: ""
+                    val id =
+                        cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.CONTACT_ID))
+                    val number =
+                        cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.NUMBER))
+                            ?: ""
                     phonesMap.putIfAbsent(id, number)
                 }
             }
@@ -742,13 +803,20 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                     ContactsContract.CommonDataKinds.Email.CONTACT_ID,
                     ContactsContract.CommonDataKinds.Email.ADDRESS
                 ),
-                "${ContactsContract.CommonDataKinds.Email.CONTACT_ID} IN (${contactIds.joinToString(",") { "?" }})",
+                "${ContactsContract.CommonDataKinds.Email.CONTACT_ID} IN (${
+                    contactIds.joinToString(
+                        ","
+                    ) { "?" }
+                })",
                 contactIds.toTypedArray(),
                 null
             )?.use { cursor ->
                 while (cursor.moveToNext()) {
-                    val id = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Email.CONTACT_ID))
-                    val email = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Email.ADDRESS)) ?: ""
+                    val id =
+                        cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Email.CONTACT_ID))
+                    val email =
+                        cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Email.ADDRESS))
+                            ?: ""
                     emailsMap.putIfAbsent(id, email)
                 }
             }
@@ -869,7 +937,8 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                     user = userHandle,
                     profileType = obj.optString("profileType", "SYSTEM"),
                     customTag = obj.optString("customTag", ""),
-                    category = AppCategory.entries.getOrNull(obj.optInt("category", 1)) ?: AppCategory.REGULAR
+                    category = AppCategory.entries.getOrNull(obj.optInt("category", 1))
+                        ?: AppCategory.REGULAR
                 )
                 list.add(item)
             }
@@ -903,6 +972,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     private fun loadContactsFromFileCache(): List<ContactListItem>? {
+        if (!hasContactsPermission(appContext)) return null
         try {
             if (!contactsCacheFile.exists()) return null
             val bytes = FileInputStream(contactsCacheFile).use { it.readBytes() }
@@ -916,7 +986,8 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                     displayName = obj.optString("displayName", ""),
                     phoneNumber = obj.optString("phoneNumber", ""),
                     email = obj.optString("email", ""),
-                    category = ContactCategory.entries.getOrNull(obj.optInt("category", 1)) ?: ContactCategory.REGULAR
+                    category = ContactCategory.entries.getOrNull(obj.optInt("category", 1))
+                        ?: ContactCategory.REGULAR
                 )
                 list.add(item)
             }
