@@ -65,6 +65,7 @@ import com.github.codeworkscreativehub.mlauncher.databinding.FragmentHomeBinding
 import com.github.codeworkscreativehub.mlauncher.helper.FontManager
 import com.github.codeworkscreativehub.mlauncher.helper.IconCacheTarget
 import com.github.codeworkscreativehub.mlauncher.helper.IconPackHelper.getSafeAppIcon
+import com.github.codeworkscreativehub.mlauncher.helper.ShortcutHelper
 import com.github.codeworkscreativehub.mlauncher.helper.WeatherHelper
 import com.github.codeworkscreativehub.mlauncher.helper.analytics.AppUsageMonitor
 import com.github.codeworkscreativehub.mlauncher.helper.formatMillisToHMS
@@ -500,6 +501,15 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
                     updateAppCount(it)
                 }
             }
+            homeAppsChanged.observe(viewLifecycleOwner) {
+                // Rebuild every slot, since the count did not change
+                binding.homeAppsLayout.removeAllViews()
+                if (prefs.appUsageStats) {
+                    updateAppCountWithUsageStats(prefs.homeAppsNum)
+                } else {
+                    updateAppCount(prefs.homeAppsNum)
+                }
+            }
             launcherDefault.observe(viewLifecycleOwner) {
                 binding.setDefaultLauncher.isVisible = it
             }
@@ -864,10 +874,12 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
                     // Set properties of newAppView
                     textSize = prefs.appSize.toFloat() / 1.5f
                     id = i
-                    text = formatMillisToHMS(
+                    val homeApp = prefs.getHomeAppModel(i)
+                    // A shortcut's package is its creator (e.g. the browser), whose usage would be misleading
+                    text = if (homeApp.isShortcut) "" else formatMillisToHMS(
                         appUsageMonitor.getUsageStats(
                             context,
-                            prefs.getHomeAppModel(i).activityPackage
+                            homeApp.activityPackage
                         ), false
                     )
                     getHomeAppsGestureListener()
@@ -1027,7 +1039,7 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
                     text = if (homeApp.activityPackage.isBlank()) {
                         getLocalizedString(R.string.select_app)
                     } else {
-                        prefs.getAppAlias(homeApp.activityPackage).takeIf { it.isNotBlank() } ?: homeApp.activityLabel
+                        prefs.getAppAlias(homeApp.settingsKey).takeIf { it.isNotBlank() } ?: homeApp.activityLabel
                     }
 
                     getHomeAppsGestureListener()
@@ -1053,7 +1065,8 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
                     if (packageName.isNotBlank() && prefs.iconPackHome != Constants.IconPacks.Disabled) {
                         val iconPackPackage = prefs.customIconPackHome
                         // Try to get app icon, possibly using icon pack, with graceful fallback
-                        val nonNullDrawable: Drawable = getSafeAppIcon(
+                        val shortcutIcon = if (appModel.isShortcut) ShortcutHelper.getIcon(context, appModel) else null
+                        val nonNullDrawable: Drawable = shortcutIcon ?: getSafeAppIcon(
                             context = context,
                             packageName = packageName,
                             useIconPack = (iconPackPackage.isNotEmpty() && prefs.iconPackHome == Constants.IconPacks.Custom),

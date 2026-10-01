@@ -16,7 +16,7 @@ object FuzzyFinder {
      */
     fun scoreApp(context: Context, app: AppListItem, searchChars: String, topScore: Int): Int {
         val prefs = Prefs(context)
-        val appLabel = prefs.getAppAlias(app.activityPackage)
+        val appLabel = prefs.getAppAlias(app.settingsKey)
             .takeIf { it.isNotBlank() }
             ?: app.activityLabel
         val normalizedAppLabel = normalizeTarget(appLabel)

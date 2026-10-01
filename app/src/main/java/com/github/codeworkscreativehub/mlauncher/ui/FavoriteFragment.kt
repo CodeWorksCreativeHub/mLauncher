@@ -250,7 +250,7 @@ class FavoriteFragment : BaseFragment() {
         val favoriteLabels = (0 until currentNum).map { index ->
             val app = prefs.getHomeAppModel(index)
             if (app.activityPackage.isNotEmpty() && app.activityClass.isNotEmpty()) {
-                prefs.getAppAlias(app.activityPackage).takeIf { it.isNotBlank() }
+                prefs.getAppAlias(app.settingsKey).takeIf { it.isNotBlank() }
                     ?: app.activityLabel
             } else {
                 getLocalizedString(R.string.empty_favorite)

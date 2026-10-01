@@ -705,6 +705,60 @@ class Prefs(val context: Context) {
         )
     }
 
+    /** Forgets everything stored for a shortcut the user removed. */
+    fun removeShortcutSettings(shortcut: AppListItem) = forgetShortcuts(setOf(shortcut.settingsKey))
+
+    /**
+     * Forgets shortcuts that are no longer pinned, e.g. because the app that created them
+     * was uninstalled or removed them. [pinnedKeys] are the settings keys of all pinned shortcuts.
+     * Returns true when something was removed.
+     */
+    fun pruneShortcutSettings(pinnedKeys: Set<String>): Boolean {
+        val known = mutableSetOf<String>()
+        prefsNormal.all.keys.forEach { key ->
+            SHORTCUT_SETTING_REGEX.matchEntire(key)?.let { known.add(it.groupValues[1]) }
+        }
+        (lockedApps + pinnedApps).filterTo(known) { SHORTCUT_PREFIX in it }
+        hiddenApps.mapNotNullTo(known) { hiddenKeyToSettingsKey(it) }
+        shortcutSlotIds().mapNotNullTo(known) { id -> loadApp(id).takeIf { it.isShortcut }?.settingsKey }
+
+        val orphans = known - pinnedKeys
+        if (orphans.isNotEmpty()) forgetShortcuts(orphans)
+        return orphans.isNotEmpty()
+    }
+
+    /** Hidden apps are stored as "package|class|userHash". */
+    private fun hiddenKeyToSettingsKey(hiddenKey: String): String? {
+        val parts = hiddenKey.split("|")
+        return if (parts.size == 3 && parts[1].startsWith(SHORTCUT_PREFIX)) settingsKeyOf(parts[0], parts[1]) else null
+    }
+
+    private fun shortcutSlotIds(): List<String> = (0 until homeAppsNum).map { "$it" } + GESTURE_SLOT_ACTIONS.keys
+
+    private fun forgetShortcuts(keys: Set<String>) {
+        prefsNormal.edit {
+            prefsNormal.all.keys
+                .filter { key -> SHORTCUT_SETTING_REGEX.matchEntire(key)?.groupValues?.get(1) in keys }
+                .forEach { remove(it) }
+        }
+        lockedApps = lockedApps.filterTo(mutableSetOf()) { it !in keys }
+        pinnedApps = pinnedApps.filterTo(mutableSetOf()) { it !in keys }
+        hiddenApps = hiddenApps.filterTo(mutableSetOf()) { hiddenKeyToSettingsKey(it) !in keys }
+
+        shortcutSlotIds().forEach { id ->
+            val app = loadApp(id)
+            if (app.settingsKey in keys) {
+                storeApp(id, app.copy(activityPackage = emptyString(), activityClass = emptyString()))
+                // A gesture left on "Open app" without an app would silently fall back to another action
+                GESTURE_SLOT_ACTIONS[id]?.let { actionKey ->
+                    if (prefsNormal.getString(actionKey, null) == Constants.Action.OpenApp.name) {
+                        prefsNormal.edit { putString(actionKey, Constants.Action.Disabled.name) }
+                    }
+                }
+            }
+        }
+    }
+
     private fun storeApp(id: String, app: AppListItem) {
         prefsNormal.edit {
             if (app.activityPackage.isNotEmpty() && app.activityClass.isNotEmpty()) {
@@ -974,3 +1028,23 @@ class Prefs(val context: Context) {
         prefsOnboarding.edit { putBoolean(ONBOARDING_COMPLETED, isCompleted) }
     }
 }
+
+/** Matches "<package>/shortcut:<id>_ALIAS" and "<package>/shortcut:<id>_TAG[_<userHash>]". */
+private val SHORTCUT_SETTING_REGEX = Regex("^(.+/${Regex.escape(SHORTCUT_PREFIX)}.+?)_(ALIAS|TAG(_-?\\d+)?)$")
+
+/** Gesture app slots and the action key that decides whether they open the app. */
+private val GESTURE_SLOT_ACTIONS = mapOf(
+    SHORT_SWIPE_UP to SWIPE_UP_ACTION,
+    SHORT_SWIPE_DOWN to SWIPE_DOWN_ACTION,
+    SHORT_SWIPE_LEFT to SWIPE_LEFT_ACTION,
+    SHORT_SWIPE_RIGHT to SWIPE_RIGHT_ACTION,
+    LONG_SWIPE_UP to LONG_SWIPE_UP_ACTION,
+    LONG_SWIPE_DOWN to LONG_SWIPE_DOWN_ACTION,
+    LONG_SWIPE_LEFT to LONG_SWIPE_LEFT_ACTION,
+    LONG_SWIPE_RIGHT to LONG_SWIPE_RIGHT_ACTION,
+    CLICK_CLOCK to CLICK_CLOCK_ACTION,
+    CLICK_USAGE to CLICK_APP_USAGE_ACTION,
+    CLICK_FLOATING to CLICK_FLOATING_ACTION,
+    CLICK_DATE to CLICK_DATE_ACTION,
+    DOUBLE_TAP to DOUBLE_TAP_ACTION
+)

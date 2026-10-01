@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.LauncherApps
+import android.content.pm.ShortcutInfo
 import android.database.ContentObserver
 import android.os.Handler
 import android.os.Looper
@@ -32,7 +33,10 @@ import com.github.codeworkscreativehub.mlauncher.data.Constants.AppDrawerFlag
 import com.github.codeworkscreativehub.mlauncher.data.ContactCategory
 import com.github.codeworkscreativehub.mlauncher.data.ContactListItem
 import com.github.codeworkscreativehub.mlauncher.data.Prefs
+import com.github.codeworkscreativehub.mlauncher.data.SHORTCUT_PREFIX
+import com.github.codeworkscreativehub.mlauncher.data.settingsKeyOf
 import com.github.codeworkscreativehub.mlauncher.helper.ChineseSortHelper
+import com.github.codeworkscreativehub.mlauncher.helper.ShortcutHelper
 import com.github.codeworkscreativehub.mlauncher.helper.hasContactsPermission
 import com.github.codeworkscreativehub.mlauncher.helper.analytics.AppUsageMonitor
 import com.github.codeworkscreativehub.mlauncher.helper.ismlauncherDefault
@@ -49,6 +53,7 @@ import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.nio.charset.Charset
+import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.atomic.AtomicBoolean
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
@@ -62,6 +67,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     private val appContext by lazy { application.applicationContext }
     private val prefs = Prefs(appContext)
+    private val launcherApps = appContext.getSystemService(Context.LAUNCHER_APPS_SERVICE) as LauncherApps
 
     // Cache files
     private val appsCacheFile = File(appContext.cacheDir, "apps_cache.json")
@@ -95,6 +101,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val dailyWordAlignment = MutableLiveData(prefs.dailyWordAlignment)
     val homeAppsAlignment = MutableLiveData(Pair(prefs.homeAlignment, prefs.homeAlignmentBottom))
     val homeAppsNum = MutableLiveData(prefs.homeAppsNum)
+
+    /** Fires when home apps changed in the background, e.g. a removed shortcut was cleared. */
+    val homeAppsChanged = MutableLiveData<Long>()
     val homePagesNum = MutableLiveData(prefs.homePagesNum)
     val opacityNum = MutableLiveData(prefs.opacityNum)
     val filterStrength = MutableLiveData(prefs.filterStrength)
@@ -157,8 +166,31 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    /**
+     * Refreshes the list when one of our pinned shortcuts appears, disappears or is disabled,
+     * e.g. when the browser removes it. Apps update their other shortcuts often, so changes
+     * that do not touch our pinned shortcuts are ignored.
+     */
+    private val shortcutChangeCallback = object : LauncherApps.Callback() {
+        override fun onShortcutsChanged(packageName: String, shortcuts: MutableList<ShortcutInfo>, user: UserHandle) {
+            val pinned = shortcuts.filter { it.isPinned && it.isEnabled }.map { it.id }.toSet()
+            val listed = appsMemoryCache.orEmpty()
+                .filter { it.isShortcut && it.activityPackage == packageName && it.user == user }
+                .map { it.shortcutId }
+                .toSet()
+            if (pinned != listed) getAppList()
+        }
+
+        override fun onPackageRemoved(packageName: String, user: UserHandle) = Unit
+        override fun onPackageAdded(packageName: String, user: UserHandle) = Unit
+        override fun onPackageChanged(packageName: String, user: UserHandle) = Unit
+        override fun onPackagesAvailable(packageNames: Array<out String>, user: UserHandle, replacing: Boolean) = Unit
+        override fun onPackagesUnavailable(packageNames: Array<out String>, user: UserHandle, replacing: Boolean) = Unit
+    }
+
     init {
         prefsNormal.registerOnSharedPreferenceChangeListener(pinnedAppsListener)
+        launcherApps.registerCallback(shortcutChangeCallback, Handler(Looper.getMainLooper()))
 
         registerContactsObserverIfNeeded()
 
@@ -240,7 +272,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
         logActivitiesFromPackage(appContext, packageName)
 
-        if (currentLockedApps.contains(packageName)) {
+        if (currentLockedApps.contains(appListItem.settingsKey)) {
 
             biometricHelper.startBiometricAuth(appListItem, object : BiometricHelper.CallbackApp {
                 override fun onAuthenticationSucceeded(appListItem: AppListItem) {
@@ -278,6 +310,19 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    /** Unpins a shortcut, forgets its settings and drops it from the app list. */
+    fun removeShortcut(shortcut: AppListItem) {
+        viewModelScope.launch(Dispatchers.IO) {
+            if (!ShortcutHelper.removeShortcut(appContext, shortcut)) return@launch
+            prefs.removeShortcutSettings(shortcut)
+            appsMemoryCache?.removeAll { it.settingsKey == shortcut.settingsKey && it.user == shortcut.user }
+            getAppList()
+            withContext(Dispatchers.Main) {
+                appContext.showShortToast(getLocalizedString(R.string.shortcut_removed))
+            }
+        }
+    }
+
     fun callContact(contactItem: ContactListItem, fragment: Fragment) {
         val phoneNumber =
             contactItem.phoneNumber // Ensure ContactListItem has a phoneNumber property
@@ -299,6 +344,13 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     private fun launchUnlockedApp(appListItem: AppListItem) {
+        if (appListItem.isShortcut) {
+            if (!ShortcutHelper.startShortcut(appContext, appListItem)) {
+                appContext.showShortToast(getLocalizedString(R.string.shortcut_launch_failed))
+            }
+            return
+        }
+
         val packageName = appListItem.activityPackage
         val userHandle = appListItem.user
         val launcher = appContext.getSystemService(Context.LAUNCHER_APPS_SERVICE) as LauncherApps
@@ -484,6 +536,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     // Clean up listener to prevent memory leaks
     override fun onCleared() {
         prefsNormal.unregisterOnSharedPreferenceChangeListener(pinnedAppsListener)
+        launcherApps.unregisterCallback(shortcutChangeCallback)
         unregisterContactsObserverIfNeeded()
     }
 
@@ -566,7 +619,8 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         val prefs = Prefs(context)
         val hiddenAppsSet = prefs.hiddenApps
         val pinnedPackages = prefs.pinnedApps.toSet()
-        val seenAppKeys = mutableSetOf<String>()
+        // Filled from several profiles in parallel
+        val seenAppKeys: MutableSet<String> = ConcurrentHashMap.newKeySet()
         val userManager = context.getSystemService(Context.USER_SERVICE) as UserManager
         val profiles = userManager.userProfiles.toList()
         val privateManager = PrivateSpaceManager(context)
@@ -612,12 +666,44 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             }
         }
 
+        // 🔹 Pinned shortcuts (e.g. "Add to home screen" from a browser)
+        // Settings of shortcuts that are gone are only pruned when every profile could be read
+        val pinnedShortcutKeys: MutableSet<String> = ConcurrentHashMap.newKeySet()
+        val allShortcutsRead = AtomicBoolean(true)
+
+        fun shortcutsFor(profile: UserHandle, profileType: String): List<RawApp> {
+            val shortcuts = ShortcutHelper.queryPinnedShortcuts(context, profile)
+            if (shortcuts == null) {
+                allShortcutsRead.set(false)
+                return emptyList()
+            }
+            return shortcuts.mapNotNull { shortcut ->
+                val pkg = shortcut.`package`
+                val cls = SHORTCUT_PREFIX + shortcut.id
+                pinnedShortcutKeys.add(settingsKeyOf(pkg, cls))
+                if (!shortcut.isEnabled) return@mapNotNull null
+
+                val key = appKey(pkg, cls, profile.hashCode())
+                if (!seenAppKeys.add(key)) return@mapNotNull null
+
+                // Only the full key: hiding the browser must not hide its shortcuts
+                val hidden = key in hiddenAppsSet
+                if ((hidden && !includeHiddenApps) || (!hidden && !includeRegularApps)) return@mapNotNull null
+
+                val label = (shortcut.shortLabel ?: shortcut.longLabel ?: shortcut.id).toString()
+                val category =
+                    if (settingsKeyOf(pkg, cls) in pinnedPackages) AppCategory.PINNED else AppCategory.REGULAR
+                RawApp(pkg, cls, label, profile, profileType, category)
+            }
+        }
+
         // 🔹 Profile apps in parallel
         val launcherApps = context.getSystemService(Context.LAUNCHER_APPS_SERVICE) as LauncherApps
         val deferreds = profiles.map { profile ->
             async {
                 if (privateManager.isPrivateSpaceProfile(profile) && privateManager.isPrivateSpaceLocked()) {
                     AppLogger.d("AppListDebug", "🔒 Skipping locked private profile: $profile")
+                    allShortcutsRead.set(false)
                     emptyList()
                 } else {
                     val profileType = when {
@@ -656,12 +742,24 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                             val category =
                                 if (pkg in pinnedPackages) AppCategory.PINNED else AppCategory.REGULAR
                             RawApp(pkg, cls, info.label.toString(), profile, profileType, category)
-                        }
+                        } + shortcutsFor(profile, profileType)
                 }
             }
         }
 
         deferreds.forEach { rawApps.addAll(it.await()) }
+
+        if (allShortcutsRead.get() && prefs.pruneShortcutSettings(pinnedShortcutKeys)) {
+            homeAppsChanged.postValue(System.currentTimeMillis())
+        }
+
+        // Home icons are drawn on the main thread, so load shortcut icons here first
+        if (prefs.iconPackHome != Constants.IconPacks.Disabled) {
+            (0 until prefs.homeAppsNum)
+                .map { prefs.getHomeAppModel(it) }
+                .filter { it.isShortcut }
+                .forEach { ShortcutHelper.getIcon(context, it) }
+        }
 
         // 🔹 Update profile counters
         listOf("SYSTEM", "PRIVATE", "WORK", "USER").forEach { type ->
@@ -676,7 +774,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 activityClass = raw.cls,
                 user = raw.user,
                 profileType = raw.profileType,
-                customTag = prefs.getAppTag(raw.pkg, raw.user),
+                customTag = prefs.getAppTag(settingsKeyOf(raw.pkg, raw.cls), raw.user),
                 category = raw.category
             )
         }
@@ -684,7 +782,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         val sortedApps = allApps.sortedWith(
             compareByDescending<AppListItem> { it.category == AppCategory.PINNED }
                 .thenBy { item ->
-                    val alias = prefs.getAppAlias(item.activityPackage)
+                    val alias = prefs.getAppAlias(item.settingsKey)
                     val displayName = alias.takeIf { it.isNotBlank() } ?: item.activityLabel
                     normalizeForSort(displayName)
                 }
@@ -697,12 +795,12 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             scrollMapLiveData = _appScrollMap,
             includeHidden = includeHiddenApps,
             getKey = { "${it.activityPackage}|${it.activityClass}|${it.user.hashCode()}" },
-            isHidden = { it.activityPackage in hiddenAppsSet },
-            isPinned = { it.activityPackage in pinnedPackages },
+            isHidden = { it.settingsKey in hiddenAppsSet },
+            isPinned = { it.settingsKey in pinnedPackages },
             buildItem = { it },
             // UPDATE: Use the alias here so the scroll index matches the sort
             getLabel = { item ->
-                prefs.getAppAlias(item.activityPackage).takeIf { it.isNotBlank() }
+                prefs.getAppAlias(item.settingsKey).takeIf { it.isNotBlank() }
                     ?: item.activityLabel
             },
             normalize = ::normalizeForSort

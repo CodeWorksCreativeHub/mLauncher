@@ -5,6 +5,11 @@ import android.content.Context
 import android.content.Intent
 import android.widget.Toast
 import com.github.codeworkscreativehub.common.AppLogger
+import com.github.codeworkscreativehub.common.getLocalizedString
+import com.github.codeworkscreativehub.mlauncher.R
+import com.github.codeworkscreativehub.mlauncher.data.Prefs
+import com.github.codeworkscreativehub.mlauncher.helper.ShortcutHelper
+import com.github.codeworkscreativehub.mlauncher.helper.utils.AppReloader
 
 class HomeAppUpdateReceiver : BroadcastReceiver() {
 
@@ -22,6 +27,21 @@ class HomeAppUpdateReceiver : BroadcastReceiver() {
 
             if (packageName.isNullOrEmpty()) {
                 AppLogger.d("HomeAppUpdateReceiver", "No package name provided, aborting launch")
+                return
+            }
+
+            // Shortcuts share their creator's package, so start the shortcut itself
+            val prefs = Prefs(context)
+            val homeApp = prefs.getHomeAppModel(extras.getInt("HOME_SLOT", -1))
+            if (homeApp.isShortcut && homeApp.activityPackage == packageName) {
+                // A locked shortcut needs authentication, which only the launcher can ask for
+                if (homeApp.settingsKey in prefs.lockedApps) {
+                    AppReloader.startApp(context)
+                    return
+                }
+                if (!ShortcutHelper.startShortcut(context, homeApp)) {
+                    Toast.makeText(context, getLocalizedString(R.string.shortcut_launch_failed), Toast.LENGTH_SHORT).show()
+                }
                 return
             }
 
