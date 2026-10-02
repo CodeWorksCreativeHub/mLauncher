@@ -76,6 +76,9 @@
     <string name="show_date">Tarih\'i göster</string>
     <string name="show_day_of_year">Yılın Gösteri Günü</string>
     <string name="show_alarm">Alarmı Göster</string>
+    <string name="alarm_settings">Alarm</string>
+    <string name="bedtime_start_time">Bedtime Start Time</string>
+    <string name="bedtime_end_time">Bedtime End Time</string>
     <string name="show_daily_word">Günlük Kelimeyi Göster</string>
     <string name="show_battery">Pil\'i göster</string>
     <string name="show_battery_icon">Pil simgesini göster</string>
