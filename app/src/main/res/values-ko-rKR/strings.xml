@@ -76,6 +76,9 @@
     <string name="show_date">Show date</string>
     <string name="show_day_of_year">연중 쇼 데이</string>
     <string name="show_alarm">알람 표시</string>
+    <string name="alarm_settings">Alarm</string>
+    <string name="bedtime_start_time">Bedtime Start Time</string>
+    <string name="bedtime_end_time">Bedtime End Time</string>
     <string name="show_daily_word">오늘의 단어 보기</string>
     <string name="show_battery">배터리 표시</string>
     <string name="show_battery_icon">배터리 아이콘 표시</string>
