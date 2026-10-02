@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [1.12.2.0 → Unreleased](https://github.com/CodeWorksCreativeHub/mLauncher/tree/main) - In Development
+
+### :sparkles: Enhancements:
+
+* Add bedtime mode settings with time picker for start and end times ([d6c4f4a5](https://github.com/CodeWorksCreativeHub/mLauncher/commit/d6c4f4a5))
+
 ## [1120200 (1.12.2.0) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.12.2.0) - (02, October 2026)
 
 ### :sparkles: Enhancements:
