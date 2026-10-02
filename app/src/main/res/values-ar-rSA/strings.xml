@@ -307,6 +307,14 @@
     <string name="reset">Reset</string>
     <string name="cancel">إلغاء</string>
     <string name="save">يحفظ</string>
+    <string name="shortcut_add_title">Add shortcut</string>
+    <string name="shortcut_add">Add</string>
+    <string name="shortcut_name">Name</string>
+    <string name="shortcut_added">Shortcut added</string>
+    <string name="shortcut_removed">Shortcut removed</string>
+    <string name="shortcut_launch_failed">Unable to launch shortcut</string>
+    <string name="shortcut_type_web">Web shortcut · %1$s</string>
+    <string name="shortcut_type_app">Shortcut · %1$s</string>
     <string name="disabled">معطل</string>
     <string name="open">يفتح</string>
     <string name="close">أغلق</string>
