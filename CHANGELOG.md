@@ -8,6 +8,10 @@ All notable changes to this project will be documented in this file. See [conven
 
 * Add bedtime mode settings with time picker for start and end times ([d6c4f4a5](https://github.com/CodeWorksCreativeHub/mLauncher/commit/d6c4f4a5))
 
+### :globe_with_meridians: Localization:
+
+* Updated Language Files. ([#1107](https://github.com/CodeWorksCreativeHub/mLauncher/pull/1107)) ([580a6950](https://github.com/CodeWorksCreativeHub/mLauncher/commit/580a6950))
+
 ## [1120200 (1.12.2.0) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.12.2.0) - (02, October 2026)
 
 ### :sparkles: Enhancements:
