@@ -308,6 +308,14 @@
     <string name="reset">Reset</string>
     <string name="cancel">Annulla</string>
     <string name="save">Salva</string>
+    <string name="shortcut_add_title">Aggiungi collegamento</string>
+    <string name="shortcut_add">Aggiungere</string>
+    <string name="shortcut_name">Nome</string>
+    <string name="shortcut_added">Collegamento aggiunto</string>
+    <string name="shortcut_removed">Scorciatoia rimossa</string>
+    <string name="shortcut_launch_failed">Impossibile avviare il collegamento</string>
+    <string name="shortcut_type_web">Collegamento Web · %1$s</string>
+    <string name="shortcut_type_app">Scorciatoia · %1$s</string>
     <string name="disabled">Disabile</string>
     <string name="open">Aprire</string>
     <string name="close">Chiudi</string>

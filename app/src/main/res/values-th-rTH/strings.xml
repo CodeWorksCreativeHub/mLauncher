@@ -309,6 +309,14 @@
     <string name="reset">รีเซ็ต</string>
     <string name="cancel">ยกเลิก</string>
     <string name="save">บันทึก</string>
+    <string name="shortcut_add_title">เพิ่มทางลัด</string>
+    <string name="shortcut_add">เพิ่ม</string>
+    <string name="shortcut_name">ชื่อ</string>
+    <string name="shortcut_added">เพิ่มทางลัดแล้ว</string>
+    <string name="shortcut_removed">ทางลัดถูกลบออกแล้ว</string>
+    <string name="shortcut_launch_failed">ไม่สามารถเรียกใช้ทางลัดได้</string>
+    <string name="shortcut_type_web">ทางลัดเว็บ · %1$s</string>
+    <string name="shortcut_type_app">ทางลัด · %1$s</string>
     <string name="disabled">พิการ</string>
     <string name="open">เปิด</string>
     <string name="close">ปิด</string>

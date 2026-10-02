@@ -308,6 +308,14 @@
     <string name="reset">Reset</string>
     <string name="cancel">Отмена</string>
     <string name="save">Сохранять</string>
+    <string name="shortcut_add_title">Добавить ярлык</string>
+    <string name="shortcut_add">Добавлять</string>
+    <string name="shortcut_name">Имя</string>
+    <string name="shortcut_added">Добавлен ярлык</string>
+    <string name="shortcut_removed">Ярлык удален</string>
+    <string name="shortcut_launch_failed">Не удалось запустить ярлык.</string>
+    <string name="shortcut_type_web">Веб-ярлык · %1$s</string>
+    <string name="shortcut_type_app">Быстрый доступ · %1$s</string>
     <string name="disabled">Отключено</string>
     <string name="open">Открыть</string>
     <string name="close">Закрыть</string>

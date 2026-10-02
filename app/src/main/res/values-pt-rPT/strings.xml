@@ -308,6 +308,14 @@
     <string name="reset">Reinicialização</string>
     <string name="cancel">Cancelar</string>
     <string name="save">Guardar</string>
+    <string name="shortcut_add_title">Adicionar atalho</string>
+    <string name="shortcut_add">Adicionar</string>
+    <string name="shortcut_name">Nome</string>
+    <string name="shortcut_added">Atalho adicionado</string>
+    <string name="shortcut_removed">Atalho removido</string>
+    <string name="shortcut_launch_failed">Não foi possível iniciar o atalho.</string>
+    <string name="shortcut_type_web">Atalho Web · %1$s</string>
+    <string name="shortcut_type_app">Atalho · %1$s</string>
     <string name="disabled">Deficientes</string>
     <string name="open">Aberto</string>
     <string name="close">Perto</string>

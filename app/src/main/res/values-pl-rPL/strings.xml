@@ -308,6 +308,14 @@
     <string name="reset">Reset</string>
     <string name="cancel">Anuluj</string>
     <string name="save">Ratować</string>
+    <string name="shortcut_add_title">Dodaj skrót</string>
+    <string name="shortcut_add">Dodać</string>
+    <string name="shortcut_name">Nazwa</string>
+    <string name="shortcut_added">Dodano skrót</string>
+    <string name="shortcut_removed">Skrót usunięty</string>
+    <string name="shortcut_launch_failed">Nie można uruchomić skrótu</string>
+    <string name="shortcut_type_web">Skrót internetowy · %1$s</string>
+    <string name="shortcut_type_app">Skrót · %1$s</string>
     <string name="disabled">Wyłączone</string>
     <string name="open">Otwarte</string>
     <string name="close">Zamknij</string>

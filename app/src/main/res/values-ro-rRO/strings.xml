@@ -308,6 +308,14 @@
     <string name="reset">Resetare</string>
     <string name="cancel">Anulează</string>
     <string name="save">Salva</string>
+    <string name="shortcut_add_title">Adăugați o comandă rapidă</string>
+    <string name="shortcut_add">Adăuga</string>
+    <string name="shortcut_name">Nume</string>
+    <string name="shortcut_added">Comandă rapidă adăugată</string>
+    <string name="shortcut_removed">Comandă rapidă eliminată</string>
+    <string name="shortcut_launch_failed">Nu se poate lansa comanda rapidă</string>
+    <string name="shortcut_type_web">Comandă rapidă web · %1$s</string>
+    <string name="shortcut_type_app">Comandă rapidă · %1$s</string>
     <string name="disabled">Persoane cu dizabilități</string>
     <string name="open">Deschide</string>
     <string name="close">Aproape</string>

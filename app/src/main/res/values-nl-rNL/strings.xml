@@ -308,6 +308,14 @@
     <string name="reset">Reset</string>
     <string name="cancel">Annuleren</string>
     <string name="save">Redden</string>
+    <string name="shortcut_add_title">Snelkoppeling toevoegen</string>
+    <string name="shortcut_add">Toevoegen</string>
+    <string name="shortcut_name">Naam</string>
+    <string name="shortcut_added">Snelkoppeling toegevoegd</string>
+    <string name="shortcut_removed">Snelkoppeling verwijderd</string>
+    <string name="shortcut_launch_failed">Snelkoppeling kan niet worden gestart</string>
+    <string name="shortcut_type_web">Websnelkoppeling · %1$s</string>
+    <string name="shortcut_type_app">Sneltoets · %1$s</string>
     <string name="disabled">Uitgeschakeld</string>
     <string name="open">Open</string>
     <string name="close">Afsluiten</string>

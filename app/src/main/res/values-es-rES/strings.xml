@@ -308,6 +308,14 @@
     <string name="reset">Restablecer</string>
     <string name="cancel">Cancelar</string>
     <string name="save">Ahorrar</string>
+    <string name="shortcut_add_title">Agregar acceso directo</string>
+    <string name="shortcut_add">Agregar</string>
+    <string name="shortcut_name">Nombre</string>
+    <string name="shortcut_added">Atajo añadido</string>
+    <string name="shortcut_removed">Acceso directo eliminado</string>
+    <string name="shortcut_launch_failed">No se puede ejecutar el acceso directo</string>
+    <string name="shortcut_type_web">Acceso directo web · %1$s</string>
+    <string name="shortcut_type_app">Atajo · %1$s</string>
     <string name="disabled">Desactivado</string>
     <string name="open">Abierto</string>
     <string name="close">Cerrar</string>
