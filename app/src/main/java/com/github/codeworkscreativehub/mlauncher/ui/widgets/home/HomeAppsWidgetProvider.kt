@@ -16,6 +16,7 @@ import com.github.codeworkscreativehub.mlauncher.data.Constants
 import com.github.codeworkscreativehub.mlauncher.data.Prefs
 import com.github.codeworkscreativehub.mlauncher.helper.IconCacheTarget
 import com.github.codeworkscreativehub.mlauncher.helper.IconPackHelper.getSafeAppIcon
+import com.github.codeworkscreativehub.mlauncher.helper.ShortcutHelper
 import com.github.codeworkscreativehub.mlauncher.helper.getSystemIcons
 
 class HomeAppsWidgetProvider : AppWidgetProvider() {
@@ -46,12 +47,15 @@ class HomeAppsWidgetProvider : AppWidgetProvider() {
                     ).toString()
                 } catch (_: Exception) {
                     appModel.activityLabel
+                }.let { label ->
+                    if (appModel.isShortcut) prefs.getAppAlias(appModel.settingsKey).ifBlank { label } else label
                 }
 
                 // --- Get icon safely ---
                 val iconPackPackage = prefs.customIconPackHome
 
-                val nonNullDrawable: Drawable = getSafeAppIcon(
+                val shortcutIcon = if (appModel.isShortcut) ShortcutHelper.getIcon(context, appModel) else null
+                val nonNullDrawable: Drawable = shortcutIcon ?: getSafeAppIcon(
                     context = context,
                     packageName = packageName,
                     useIconPack = (iconPackPackage.isNotEmpty() && prefs.iconPackHome == Constants.IconPacks.Custom),
@@ -124,6 +128,7 @@ class HomeAppsWidgetProvider : AppWidgetProvider() {
                 val clickIntent = Intent(context, HomeAppUpdateReceiver::class.java).apply {
                     action = "HOME_APP_CLICK"
                     putExtra("PACKAGE_NAME", packageName)
+                    putExtra("HOME_SLOT", i)
                 }
                 val pendingIntent = PendingIntent.getBroadcast(
                     context, i, clickIntent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE

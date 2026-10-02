@@ -29,12 +29,12 @@
             <a href='https://github.com/CodeWorksCreativeHub/mLauncher/releases/latest'><img src='https://img.shields.io/github/downloads/CodeWorksCreativeHub/mLauncher/total?color=50fa7b&style=flat-square&label=Overall&logo=github' alt="releases"></a>
             <a href='https://github.com/CodeWorksCreativeHub/mLauncher/releases/latest'><img src="https://img.shields.io/github/downloads/CodeWorksCreativeHub/mLauncher/latest/total?color=50fa7b&style=flat-square&label=Latest&logo=github" alt="GitHub Downloads (all assets, latest release)"></a>
 			<br>
-			<a href='https://play.google.com/store/apps/details?id=app.mlauncher'><img src='https://img.shields.io/endpoint?url=https%3A%2F%2Fplay.cuzi.workers.dev%2Fplay%3Fi%3Dapp.mlauncher%26gl%3DUK%26hl%3Den%26l%3D%24name%26m%3D%24totalinstalls&color=50fa7b&style=flat-square&label=Google%20Play&logo=googleplay' alt='Google Play'></a>
+			<a href='https://play.google.com/store/apps/details?id=app.mlauncher'><img src='https://img.shields.io/endpoint?url=https%3A%2F%2Fplay.codeworkscreativehub.workers.dev%2Fplay%3Fi%3Dapp.mlauncher%26gl%3DUK%26hl%3Den%26l%3D%24name%26m%3D%24totalinstalls&color=50fa7b&style=flat-square&label=Google%20Play&logo=googleplay' alt='Google Play'></a>
             <br>
 	    	<a href='https://apt.izzysoft.de/fdroid/index/apk/app.mlauncher'><img alt="IzzyOnDroid (including pre-releases)" src="https://img.shields.io/endpoint?url=https://apt.izzysoft.de/fdroid/api/v1/shield/app.mlauncher&color=FFB86C&style=flat-square&label=IzzyOnDroid"></a>
             <a href='https://github.com/CodeWorksCreativeHub/mLauncher/releases/latest'><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/CodeWorksCreativeHub/mLauncher?color=FFB86C&style=flat-square&label=Github"></a>
 	    	<br>
-			<a href='https://play.google.com/store/apps/details?id=app.mlauncher'><img src='https://img.shields.io/endpoint?url=https%3A%2F%2Fplay.cuzi.workers.dev%2Fplay%3Fi%3Dapp.mlauncher%26gl%3DUK%26hl%3Den%26l%3D%24name%26m%3D%24version&color=FFB86C&style=flat-square&label=Google%20Play' alt='Google Play'></a>
+			<a href='https://play.google.com/store/apps/details?id=app.mlauncher'><img src='https://img.shields.io/endpoint?url=https%3A%2F%2Fplay.codeworkscreativehub.workers.dev%2Fplay%3Fi%3Dapp.mlauncher%26gl%3DUK%26hl%3Den%26l%3D%24name%26m%3D%24version&color=FFB86C&style=flat-square&label=Google%20Play' alt='Google Play'></a>
             <a href='https://gitlab.com/fdroid/fdroiddata/-/blob/master/metadata/app.mlauncher.yml'><img alt="F-Droid (including pre-releases)" src="https://img.shields.io/f-droid/v/app.mlauncher?color=FFB86C&style=flat-square&label=F-Droid"></a>
             <br>
             <img src='https://img.shields.io/badge/Maintained-yes-FF5555?style=flat-square' alt="Maintained">
@@ -75,7 +75,7 @@ We try to balance customizability and minimalization well still being simple :)<
         - Take A Screenshot
         - Disable Gesture
 - You can also position the clock independently of the home apps.
-- Change alignment of apps in app-drawer independent from homescreen.
+- Change alignment of apps in app-drawer independent of homescreen.
 - Change font size of sections of the homescreen independent of each other.
 - Removed internet permission. You never know what an app developer wants to know about you.
 - Lock settings behind biometrics (toggle)

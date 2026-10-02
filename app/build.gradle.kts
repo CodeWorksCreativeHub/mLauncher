@@ -12,8 +12,8 @@ plugins {
 
 val major = 1
 val minor = 12
-val patch = 0
-val build = 1
+val patch = 2
+val build = 0
 
 val baseVersionName = "$major.$minor.$patch Build $build"
 
@@ -47,6 +47,14 @@ extensions.configure<ApplicationExtension>("android") {
             dimension = "channel"
             applicationId = "app.mlauncher"
             resValue("string", "app_name", "Multi Launcher")
+            resValue("bool", "is_play_store", "false")
+        }
+
+        create("play") {
+            dimension = "channel"
+            applicationId = "app.mlauncher"
+            resValue("string", "app_name", "Multi Launcher")
+            resValue("bool", "is_play_store", "true")
         }
 
         create("beta") {
@@ -54,6 +62,7 @@ extensions.configure<ApplicationExtension>("android") {
             applicationId = "app.mlauncher.beta"
             versionNameSuffix = "-beta"
             resValue("string", "app_name", "Multi Launcher Beta")
+            resValue("bool", "is_play_store", "false")
         }
 
         create("alpha") {
@@ -61,6 +70,7 @@ extensions.configure<ApplicationExtension>("android") {
             applicationId = "app.mlauncher.alpha"
             versionNameSuffix = "-alpha"
             resValue("string", "app_name", "Multi Launcher Alpha")
+            resValue("bool", "is_play_store", "false")
         }
 
         create("nightly") {
@@ -68,6 +78,7 @@ extensions.configure<ApplicationExtension>("android") {
             applicationId = "app.mlauncher.nightly"
             versionNameSuffix = "-nightly"
             resValue("string", "app_name", "Multi Launcher Nightly")
+            resValue("bool", "is_play_store", "false")
         }
     }
 
@@ -94,9 +105,9 @@ extensions.configure<ApplicationExtension>("android") {
             isDebuggable = true
             isMinifyEnabled = false
             applicationIdSuffix = ".debug"
-            signingConfig = signingConfigs["release"]
+            signingConfig = signingConfigs["debug"]
 
-            resValue("string", "app_version", baseVersionCode.toString())
+            resValue("string", "app_version", baseVersionName)
             resValue("string", "app_name", "Multi Launcher Debug")
             resValue("string", "empty", "")
         }

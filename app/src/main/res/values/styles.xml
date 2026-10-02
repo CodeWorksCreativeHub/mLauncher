@@ -42,6 +42,14 @@
         <item name="backgroundDark">@color/background_dark</item>
     </style>
 
+    <!-- Dialog-only activities shown on top of other apps (e.g. pin shortcut confirmation) -->
+    <style name="Theme.mLauncher.Translucent" parent="Theme.mLauncher">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowShowWallpaper">false</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
     <style name="WindowAnimationTransition">
         <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
         <item name="android:windowExitAnimation">@android:anim/fade_out</item>

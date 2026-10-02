@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [1.12.0.1 → Unreleased](https://github.com/CodeWorksCreativeHub/mLauncher/tree/main) - In Development
+
+### :sparkles: Enhancements:
+
+* support pinned shortcuts from "Add to home screen" ([#1104](https://github.com/CodeWorksCreativeHub/mLauncher/pull/1104)) ([6e7a0538](https://github.com/CodeWorksCreativeHub/mLauncher/commit/6e7a0538))
+* add is_play_store resource to differentiate installation source ([50b69c10](https://github.com/CodeWorksCreativeHub/mLauncher/commit/50b69c10))
+* add isInstalledFromGooglePlay helper function and update UI logic based on installation source ([41e4e99e](https://github.com/CodeWorksCreativeHub/mLauncher/commit/41e4e99e))
+
+### :bug: Bug Fixes:
+
+* handle contact permission checks and observer lifecycle ([51601188](https://github.com/CodeWorksCreativeHub/mLauncher/commit/51601188))
+* adjust button margin and improve clearView formatting ([bd8f8d0a](https://github.com/CodeWorksCreativeHub/mLauncher/commit/bd8f8d0a))
+* correct wording in app-drawer alignment description ([6c731908](https://github.com/CodeWorksCreativeHub/mLauncher/commit/6c731908))
+* update Google Play badge URLs to use the correct endpoint ([62cfa25d](https://github.com/CodeWorksCreativeHub/mLauncher/commit/62cfa25d))
+
 ## [1120001 (1.12.0.1) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.12.0.1) - (30, August 2026)
 
 ### :sparkles: Enhancements:

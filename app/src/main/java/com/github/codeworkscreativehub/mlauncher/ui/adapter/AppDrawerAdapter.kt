@@ -42,6 +42,7 @@ import com.github.codeworkscreativehub.mlauncher.data.Prefs
 import com.github.codeworkscreativehub.mlauncher.databinding.AdapterAppDrawerBinding
 import com.github.codeworkscreativehub.mlauncher.helper.IconCacheTarget
 import com.github.codeworkscreativehub.mlauncher.helper.IconPackHelper.getSafeAppIcon
+import com.github.codeworkscreativehub.mlauncher.helper.ShortcutHelper
 import com.github.codeworkscreativehub.mlauncher.helper.dp2px
 import com.github.codeworkscreativehub.mlauncher.helper.emptyString
 import com.github.codeworkscreativehub.mlauncher.helper.getSystemIcons
@@ -122,7 +123,7 @@ class AppDrawerAdapter(
         }
 
         holder.appLock.setOnClickListener {
-            val appName = appModel.activityPackage
+            val appName = appModel.settingsKey
             val currentLockedApps = prefs.lockedApps
 
             if (currentLockedApps.contains(appName)) {
@@ -166,12 +167,12 @@ class AppDrawerAdapter(
             when {
                 currentText.isEmpty() -> { // Reset state
                     AppLogger.d("AppListDebug", "✏️ Resetting ${appModel.activityPackage} to default")
-                    appRenameListener(appModel.activityPackage, emptyString()) // empty string = default
+                    appRenameListener(appModel.settingsKey, emptyString()) // empty string = default
                 }
 
-                currentText != prefs.getAppAlias(appModel.activityPackage) -> { // Rename state
-                    AppLogger.d("AppListDebug", "✏️ Renaming ${appModel.activityPackage} to $currentText")
-                    appRenameListener(appModel.activityPackage, currentText)
+                currentText != prefs.getAppAlias(appModel.settingsKey) -> { // Rename state
+                    AppLogger.d("AppListDebug", "✏️ Renaming ${appModel.settingsKey} to $currentText")
+                    appRenameListener(appModel.settingsKey, currentText)
                 }
             }
 
@@ -192,7 +193,7 @@ class AppDrawerAdapter(
             appModel.customTag = name
             notifyItemChanged(holder.absoluteAdapterPosition)
             AppLogger.d("AppListDebug", "🔁 notifyItemChanged at ${holder.absoluteAdapterPosition}")
-            appTagListener(appModel.activityPackage, appModel.customTag, appModel.user)
+            appTagListener(appModel.settingsKey, appModel.customTag, appModel.user)
         }
 
         autoLaunch(position)
@@ -218,7 +219,7 @@ class AppDrawerAdapter(
                         else FuzzyFinder.scoreApp(context, app, q, Constants.MAX_FILTER_STRENGTH)
                     },
                     labelProvider = { app ->
-                        if (isTagSearch) app.tag else prefs.getAppAlias(app.activityPackage)
+                        if (isTagSearch) app.tag else prefs.getAppAlias(app.settingsKey)
                             .takeIf { it.isNotBlank() }
                             ?: app.activityLabel
                     },
@@ -324,11 +325,12 @@ class AppDrawerAdapter(
             appTagLayout.isVisible = false
 
             val packageName = appListItem.activityPackage
+            val settingsKey = appListItem.settingsKey
 
             // ----------------------------
             // 2️⃣ Precompute lock/pin/hide state
-            val isLocked = prefs.lockedApps.contains(packageName)
-            val isPinned = prefs.pinnedApps.contains(packageName)
+            val isLocked = prefs.lockedApps.contains(settingsKey)
+            val isPinned = prefs.pinnedApps.contains(settingsKey)
             val isHidden = (flag == AppDrawerFlag.HiddenApps)
 
             // ----------------------------
@@ -391,7 +393,7 @@ class AppDrawerAdapter(
             }
 
             appRenameEdit.apply {
-                val activityLabel = prefs.getAppAlias(appListItem.activityPackage).takeIf { it.isNotBlank() }
+                val activityLabel = prefs.getAppAlias(settingsKey).takeIf { it.isNotBlank() }
                     ?: appListItem.activityLabel
 
                 text = Editable.Factory.getInstance().newEditable(activityLabel)
@@ -421,7 +423,7 @@ class AppDrawerAdapter(
 
             // ----------------------------
             // 5️⃣ App title
-            appTitle.text = prefs.getAppAlias(appListItem.activityPackage).takeIf { it.isNotBlank() } ?: appListItem.activityLabel
+            appTitle.text = prefs.getAppAlias(settingsKey).takeIf { it.isNotBlank() } ?: appListItem.activityLabel
             val params = appTitle.layoutParams as FrameLayout.LayoutParams
             params.gravity = appLabelGravity
             appTitle.layoutParams = params
@@ -431,16 +433,17 @@ class AppDrawerAdapter(
             // ----------------------------
             // 6️⃣ Icon loading off main thread
             val placeholderIcon = AppCompatResources.getDrawable(context, R.drawable.ic_default_app)
-            val cachedIcon = iconCache[packageName]
+            val cachedIcon = iconCache[settingsKey]
             setAppTitleIcon(appTitle, cachedIcon ?: placeholderIcon, prefs)
 
             if (cachedIcon == null && packageName.isNotBlank() && prefs.iconPackAppList != Constants.IconPacks.Disabled) {
                 // 1. Tag the view with the package name to prevent "wrong icon" bugs
-                appTitle.tag = packageName
+                appTitle.tag = settingsKey
 
                 iconLoadingScope.launch {
                     val icon = withContext(Dispatchers.IO) {
-                        val nonNullDrawable: Drawable = getSafeAppIcon(
+                        val shortcutIcon = if (appListItem.isShortcut) ShortcutHelper.getIcon(context, appListItem) else null
+                        val nonNullDrawable: Drawable = shortcutIcon ?: getSafeAppIcon(
                             context = context,
                             packageName = packageName,
                             useIconPack = prefs.customIconPackAppList.isNotEmpty() &&
@@ -451,11 +454,11 @@ class AppDrawerAdapter(
                     }
 
                     // 2. Update cache (Ensure iconCache is thread-safe, e.g., ConcurrentHashMap)
-                    iconCache[packageName] = icon
+                    iconCache[settingsKey] = icon
 
                     // 3. ONLY update the UI if the view is still intended for THIS package
                     // This prevents the wrong icon from appearing after scrolling
-                    if (appTitle.tag == packageName) {
+                    if (appTitle.tag == settingsKey) {
                         setAppTitleIcon(appTitle, icon, prefs)
                     }
                 }
@@ -470,7 +473,7 @@ class AppDrawerAdapter(
                     val openApp = flag == AppDrawerFlag.LaunchApp || flag == AppDrawerFlag.HiddenApps
                     if (openApp) {
                         try {
-                            appDelete.alpha = if (context.isSystemApp(packageName)) 0.3f else 1f
+                            appDelete.alpha = if (!appListItem.isShortcut && context.isSystemApp(packageName)) 0.3f else 1f
                             val currentPos = absoluteAdapterPosition
 
                             // Close previously opened menu
@@ -500,12 +503,12 @@ class AppDrawerAdapter(
             // 8️⃣ Lock/Pin toggle actions
             appLock.setOnClickListener {
                 val updated = prefs.lockedApps.toMutableSet()
-                if (isLocked) updated.remove(packageName) else updated.add(packageName)
+                if (isLocked) updated.remove(settingsKey) else updated.add(settingsKey)
                 prefs.lockedApps = updated
             }
             appPin.setOnClickListener {
                 val updated = prefs.pinnedApps.toMutableSet()
-                if (isPinned) updated.remove(packageName) else updated.add(packageName)
+                if (isPinned) updated.remove(settingsKey) else updated.add(settingsKey)
                 prefs.pinnedApps = updated
             }
 

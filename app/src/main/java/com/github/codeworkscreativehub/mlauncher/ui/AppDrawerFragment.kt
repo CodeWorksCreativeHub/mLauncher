@@ -65,6 +65,7 @@ import com.github.codeworkscreativehub.mlauncher.ui.adapter.ContactDrawerAdapter
 class AppDrawerFragment : BaseFragment() {
 
     private lateinit var prefs: Prefs
+    private lateinit var viewModel: MainViewModel
     private lateinit var appsAdapter: AppDrawerAdapter
     private lateinit var contactsAdapter: ContactDrawerAdapter
 
@@ -176,7 +177,7 @@ class AppDrawerFragment : BaseFragment() {
             else -> {}
         }
 
-        val viewModel = activity?.run {
+        viewModel = activity?.run {
             ViewModelProvider(this)[MainViewModel::class.java]
         } ?: throw Exception("Invalid Activity")
 
@@ -419,6 +420,7 @@ class AppDrawerFragment : BaseFragment() {
 
                             }
                         } else {
+                            isVisible = false
                             binding.menuView.displayedChild = 0
                         }
                     }
@@ -547,6 +549,11 @@ class AppDrawerFragment : BaseFragment() {
 
 
     fun switchMenus() {
+        if (!hasContactsPermission(requireContext())) {
+            binding.menuView.displayedChild = 0
+            setAppViewDetails()
+            return
+        }
         binding.apply {
             menuView.showNext()
             when (menuView.displayedChild) {
@@ -657,7 +664,7 @@ class AppDrawerFragment : BaseFragment() {
         observeList(
             viewModel.contactList, contactAdapter.contactsList,
             onPopulate = { populateContactList(it, contactAdapter) },
-            skipCondition = { binding.menuView.displayedChild != 0 }
+            skipCondition = { !hasContactsPermission(requireContext()) || binding.menuView.displayedChild != 0 }
         )
 
         // 🔹 Observe apps
@@ -700,6 +707,15 @@ class AppDrawerFragment : BaseFragment() {
 
     override fun onResume() {
         super.onResume()
+        if (!hasContactsPermission(requireContext())) {
+            if (binding.menuView.displayedChild == 1) {
+                binding.menuView.displayedChild = 0
+                setAppViewDetails()
+            }
+            binding.searchSwitcher.isVisible = false
+        } else {
+            viewModel.getContactList()
+        }
         if (requireContext().hasSoftKeyboard()) {
             binding.search.showKeyboard()
         }
@@ -769,7 +785,10 @@ class AppDrawerFragment : BaseFragment() {
     }
 
     private fun appDeleteListener(): (appListItem: AppListItem) -> Unit = { appModel ->
-        if (requireContext().isSystemApp(appModel.activityPackage))
+        if (appModel.isShortcut) {
+            viewModel.removeShortcut(appModel)
+            findNavController().popBackStack()
+        } else if (requireContext().isSystemApp(appModel.activityPackage))
             showShortToast(getLocalizedString(R.string.can_not_delete_system_apps))
         else {
             val appPackage = appModel.activityPackage
