@@ -76,6 +76,9 @@
     <string name="show_date">הצג תאריך</string>
     <string name="show_day_of_year">הצג יום בשנה</string>
     <string name="show_alarm">הצג שעון מעורר</string>
+    <string name="alarm_settings">Alarm</string>
+    <string name="bedtime_start_time">Bedtime Start Time</string>
+    <string name="bedtime_end_time">Bedtime End Time</string>
     <string name="show_daily_word">הצג מסר יומי</string>
     <string name="show_battery">הצג סוללה</string>
     <string name="show_battery_icon">הצגת סמליל סוללה</string>
