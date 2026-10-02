@@ -76,6 +76,9 @@
     <string name="show_date">Datum představení</string>
     <string name="show_day_of_year">Zobrazit den v roce</string>
     <string name="show_alarm">Zobrazit budík</string>
+    <string name="alarm_settings">Alarm</string>
+    <string name="bedtime_start_time">Bedtime Start Time</string>
+    <string name="bedtime_end_time">Bedtime End Time</string>
     <string name="show_daily_word">Zobrazit denní slovo</string>
     <string name="show_battery">Zobrazit baterii</string>
     <string name="show_battery_icon">Zobrazit ikonu baterie</string>
