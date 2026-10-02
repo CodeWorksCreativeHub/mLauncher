@@ -69,6 +69,12 @@ internal const val SHOW_ALARM = "SHOW_ALARM"
 internal const val SHOW_DAILY_WORD = "SHOW_DAILY_WORD"
 internal const val SHOW_FLOATING = "SHOW_FLOATING"
 
+// Bedtime Mode Settings
+internal const val BEDTIME_START_HOUR = "BEDTIME_START_HOUR"
+internal const val BEDTIME_START_MINUTE = "BEDTIME_START_MINUTE"
+internal const val BEDTIME_END_HOUR = "BEDTIME_END_HOUR"
+internal const val BEDTIME_END_MINUTE = "BEDTIME_END_MINUTE"
+
 // Icons
 internal const val ICON_PACK_HOME = "ICON_PACK_HOME"
 internal const val CUSTOM_ICON_PACK_HOME = "CUSTOM_ICON_PACK_HOME"

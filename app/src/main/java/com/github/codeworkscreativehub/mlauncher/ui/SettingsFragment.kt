@@ -1,6 +1,7 @@
 package com.github.codeworkscreativehub.mlauncher.ui
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
@@ -103,6 +104,8 @@ import com.github.codeworkscreativehub.mlauncher.ui.compose.SettingsComposable.T
 import com.github.codeworkscreativehub.mlauncher.ui.compose.SettingsComposable.TopMainHeader
 import com.github.codeworkscreativehub.mlauncher.ui.iconpack.CustomIconSelectionActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.timepicker.MaterialTimePicker
+import com.google.android.material.timepicker.TimeFormat
 
 
 class SettingsFragment : BaseFragment() {
@@ -162,6 +165,7 @@ class SettingsFragment : BaseFragment() {
         }
     }
 
+    @SuppressLint("DefaultLocale")
     @Composable
     private fun Settings() {
         var selectedSettingsSize by remember { mutableIntStateOf(prefs.settingsSize) }
@@ -215,6 +219,10 @@ class SettingsFragment : BaseFragment() {
         var toggledShowClock by remember { mutableStateOf(prefs.showClock) }
         var toggledShowClockFormat by remember { mutableStateOf(prefs.showClockFormat) }
         var toggledShowAlarm by remember { mutableStateOf(prefs.showAlarm) }
+        var bedtimeStartHour by remember { mutableIntStateOf(prefs.bedtimeStartHour) }
+        var bedtimeStartMinute by remember { mutableIntStateOf(prefs.bedtimeStartMinute) }
+        var bedtimeEndHour by remember { mutableIntStateOf(prefs.bedtimeEndHour) }
+        var bedtimeEndMinute by remember { mutableIntStateOf(prefs.bedtimeEndMinute) }
         var toggledShowDailyWord by remember { mutableStateOf(prefs.showDailyWord) }
         var toggledShowBattery by remember { mutableStateOf(prefs.showBattery) }
         var toggledShowBatteryIcon by remember { mutableStateOf(prefs.showBatteryIcon) }
@@ -1140,6 +1148,57 @@ class SettingsFragment : BaseFragment() {
                     }
 
                     Spacer(modifier = Modifier.height(12.dp))
+                    
+                    if (toggledShowAlarm) {
+
+                        // Alarm
+                        SettingsTitle(
+                            text = getLocalizedString(R.string.alarm_settings),
+                            fontSize = titleFontSize
+                        )
+
+
+                        SettingsSelect(
+                            title = getLocalizedString(R.string.bedtime_start_time),
+                            option = String.format(
+                                "%02d:%02d",
+                                bedtimeStartHour,
+                                bedtimeStartMinute
+                            ),
+                            fontSize = titleFontSize,
+                            onClick = {
+                                showBedtimeTimePicker(
+                                    bedtimeStartHour,
+                                    bedtimeStartMinute
+                                ) { hour, minute ->
+                                    bedtimeStartHour = hour
+                                    bedtimeStartMinute = minute
+                                    prefs.bedtimeStartHour = hour
+                                    prefs.bedtimeStartMinute = minute
+                                }
+                            }
+                        )
+
+                        SettingsSelect(
+                            title = getLocalizedString(R.string.bedtime_end_time),
+                            option = String.format("%02d:%02d", bedtimeEndHour, bedtimeEndMinute),
+                            fontSize = titleFontSize,
+                            onClick = {
+                                showBedtimeTimePicker(
+                                    bedtimeEndHour,
+                                    bedtimeEndMinute
+                                ) { hour, minute ->
+                                    bedtimeEndHour = hour
+                                    bedtimeEndMinute = minute
+                                    prefs.bedtimeEndHour = hour
+                                    prefs.bedtimeEndMinute = minute
+                                }
+                            }
+                        )
+
+                        Spacer(modifier = Modifier.height(12.dp))
+                    }
+
 
                     // Weather
                     SettingsTitle(
@@ -3152,6 +3211,25 @@ class SettingsFragment : BaseFragment() {
         drawable.setBounds(0, 0, canvas.width, canvas.height)
         drawable.draw(canvas)
         return bitmap
+    }
+
+    private fun showBedtimeTimePicker(
+        initialHour: Int,
+        initialMinute: Int,
+        onTimeSet: (hour: Int, minute: Int) -> Unit
+    ) {
+        // Use Material TimePicker (Material Design picker)
+        val materialTimePicker = MaterialTimePicker.Builder()
+            .setTimeFormat(TimeFormat.CLOCK_24H)
+            .setHour(initialHour)
+            .setMinute(initialMinute)
+            .build()
+
+        materialTimePicker.addOnPositiveButtonClickListener {
+            onTimeSet(materialTimePicker.hour, materialTimePicker.minute)
+        }
+
+        materialTimePicker.show(requireActivity().supportFragmentManager, "TIME_PICKER")
     }
 }
 

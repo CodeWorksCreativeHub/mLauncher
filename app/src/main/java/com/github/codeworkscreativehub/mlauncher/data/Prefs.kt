@@ -413,6 +413,22 @@ class Prefs(val context: Context) {
         get() = getSetting(SHOW_FLOATING, true)
         set(value) = prefsNormal.edit { putBoolean(SHOW_FLOATING, value) }
 
+    var bedtimeStartHour: Int
+        get() = getSetting(BEDTIME_START_HOUR, 22)
+        set(value) = prefsNormal.edit { putInt(BEDTIME_START_HOUR, value) }
+
+    var bedtimeStartMinute: Int
+        get() = getSetting(BEDTIME_START_MINUTE, 0)
+        set(value) = prefsNormal.edit { putInt(BEDTIME_START_MINUTE, value) }
+
+    var bedtimeEndHour: Int
+        get() = getSetting(BEDTIME_END_HOUR, 7)
+        set(value) = prefsNormal.edit { putInt(BEDTIME_END_HOUR, value) }
+
+    var bedtimeEndMinute: Int
+        get() = getSetting(BEDTIME_END_MINUTE, 0)
+        set(value) = prefsNormal.edit { putInt(BEDTIME_END_MINUTE, value) }
+
     var showBattery: Boolean
         get() = getSetting(SHOW_BATTERY, true)
         set(value) = prefsNormal.edit { putBoolean(SHOW_BATTERY, value) }

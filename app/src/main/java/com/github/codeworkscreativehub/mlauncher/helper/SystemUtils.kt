@@ -153,8 +153,8 @@ fun getNextAlarm(context: Context, prefs: Prefs): CharSequence {
     val nextAlarmClock = alarmManager.nextAlarmClock ?: return "No alarm is set."
 
     // Filter out Sleep/Bedtime mode alarms from Samsung and Google Clock
-    // These create alarms that aren't actual user-set alarms
-    val isSleepModeAlarm = isSleepModeAlarm(nextAlarmClock)
+    // Uses user-configured bedtime start/end times from settings
+    val isSleepModeAlarm = isSleepModeAlarm(nextAlarmClock, prefs)
 
     if (isSleepModeAlarm) {
         AppLogger.d("AlarmFilter", "Filtered out sleep mode alarm")
@@ -208,29 +208,53 @@ fun getNextAlarm(context: Context, prefs: Prefs): CharSequence {
 
 /**
  * Checks if the given alarm is a sleep mode/bedtime alarm
- * Handles both Samsung Clock and Google Clock bedtime mode using a heuristic approach
- * that avoids reflection to maintain SDK compatibility
+ * Uses user-configured bedtime start/end times from settings
  */
-private fun isSleepModeAlarm(alarmClock: AlarmManager.AlarmClockInfo): Boolean {
+private fun isSleepModeAlarm(alarmClock: AlarmManager.AlarmClockInfo, prefs: Prefs): Boolean {
     return try {
-        // Check if device is Samsung/Google and alarm time is at typical sleep mode hours
-        // This is a heuristic that works without reflection
-        val isSamsungDevice = Build.MANUFACTURER.equals("Samsung", ignoreCase = true) ||
-                Build.BRAND.equals("Samsung", ignoreCase = true)
-        val isGoogleDevice = Build.MANUFACTURER.equals("Google", ignoreCase = true) ||
-                Build.BRAND.equals("Google", ignoreCase = true)
+        val showIntent = alarmClock.showIntent ?: return false
 
-        if (isSamsungDevice || isGoogleDevice) {
+        // Use public API to get the creator package (available since API 31)
+        val creatorPackage = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            showIntent.creatorPackage
+        } else {
+            // For older versions, we can't get the package, so check device manufacturer
+            if (Build.MANUFACTURER.equals("Samsung", ignoreCase = true) ||
+                Build.BRAND.equals("Samsung", ignoreCase = true) ||
+                Build.MANUFACTURER.equals("Google", ignoreCase = true) ||
+                Build.BRAND.equals("Google", ignoreCase = true)) {
+                "samsung_or_google"
+            } else {
+                null
+            }
+        }
+
+        AppLogger.d("AlarmFilter", "Alarm creator package: $creatorPackage")
+
+        // Samsung Clock package: com.sec.android.app.clockpackage
+        // Google Clock package: com.google.android.deskclock
+        val isSamsungClock = creatorPackage == "com.sec.android.app.clockpackage"
+        val isGoogleClock = creatorPackage == "com.google.android.deskclock"
+        val isSamsungOrGoogleDevice = creatorPackage == "samsung_or_google"
+
+        if (isSamsungClock || isGoogleClock || isSamsungOrGoogleDevice) {
             val calendar = Calendar.getInstance()
             calendar.timeInMillis = alarmClock.triggerTime
             val hour = calendar.get(Calendar.HOUR_OF_DAY)
             val minute = calendar.get(Calendar.MINUTE)
 
-            // Sleep mode typically starts at 22:00 or ends at 07:00 (on the hour)
-            val isTypicalSleepTime = (hour == 22 && minute == 0) || (hour == 7 && minute == 0)
+            // Get user-configured bedtime times from settings
+            val bedtimeStartHour = prefs.bedtimeStartHour
+            val bedtimeStartMinute = prefs.bedtimeStartMinute
+            val bedtimeEndHour = prefs.bedtimeEndHour
+            val bedtimeEndMinute = prefs.bedtimeEndMinute
 
-            if (isTypicalSleepTime) {
-                AppLogger.d("AlarmFilter", "Device with typical sleep time: $hour:00")
+            // Check if alarm time matches bedtime start or end time
+            val isBedtimeStart = (hour == bedtimeStartHour && minute == bedtimeStartMinute)
+            val isBedtimeEnd = (hour == bedtimeEndHour && minute == bedtimeEndMinute)
+
+            if (isBedtimeStart || isBedtimeEnd) {
+                AppLogger.d("AlarmFilter", "Alarm matches bedtime time: $hour:$minute")
                 true
             } else {
                 false
