@@ -76,9 +76,9 @@
     <string name="show_date">Data afișajului</string>
     <string name="show_day_of_year">Afișează ziua anului</string>
     <string name="show_alarm">Afișare alarmă</string>
-    <string name="alarm_settings">Alarm</string>
-    <string name="bedtime_start_time">Bedtime Start Time</string>
-    <string name="bedtime_end_time">Bedtime End Time</string>
+    <string name="alarm_settings">Alarma</string>
+    <string name="bedtime_start_time">Ora de începere a orei de culcare</string>
+    <string name="bedtime_end_time">Ora de încheiere a orei de culcare</string>
     <string name="show_daily_word">Afișează Cuvântul Zilnic</string>
     <string name="show_battery">Afișați bateria</string>
     <string name="show_battery_icon">Afișează pictograma bateriei</string>
