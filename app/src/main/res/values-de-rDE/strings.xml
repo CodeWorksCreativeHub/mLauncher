@@ -77,8 +77,8 @@
     <string name="show_day_of_year">Tag der Show im Jahr</string>
     <string name="show_alarm">Alarm anzeigen</string>
     <string name="alarm_settings">Alarm</string>
-    <string name="bedtime_start_time">Bedtime Start Time</string>
-    <string name="bedtime_end_time">Bedtime End Time</string>
+    <string name="bedtime_start_time">Schlafenszeitbeginn</string>
+    <string name="bedtime_end_time">Schlafenszeit Ende</string>
     <string name="show_daily_word">Tägliches Wort anzeigen</string>
     <string name="show_battery">Batterie anzeigen</string>
     <string name="show_battery_icon">Akkusymbol anzeigen</string>
