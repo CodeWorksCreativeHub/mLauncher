@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 ### :sparkles: Enhancements:
 
+* Filter out sleep mode alarms from Samsung and Google Clock ([d4905057](https://github.com/CodeWorksCreativeHub/mLauncher/commit/d4905057))
 * support pinned shortcuts from "Add to home screen" ([#1104](https://github.com/CodeWorksCreativeHub/mLauncher/pull/1104)) ([6e7a0538](https://github.com/CodeWorksCreativeHub/mLauncher/commit/6e7a0538))
 * add is_play_store resource to differentiate installation source ([50b69c10](https://github.com/CodeWorksCreativeHub/mLauncher/commit/50b69c10))
 * add isInstalledFromGooglePlay helper function and update UI logic based on installation source ([41e4e99e](https://github.com/CodeWorksCreativeHub/mLauncher/commit/41e4e99e))
