@@ -310,6 +310,14 @@
     <string name="reset">אפס</string>
     <string name="cancel">בטל</string>
     <string name="save">לְהַצִיל</string>
+    <string name="shortcut_add_title">Add shortcut</string>
+    <string name="shortcut_add">Add</string>
+    <string name="shortcut_name">Name</string>
+    <string name="shortcut_added">Shortcut added</string>
+    <string name="shortcut_removed">Shortcut removed</string>
+    <string name="shortcut_launch_failed">Unable to launch shortcut</string>
+    <string name="shortcut_type_web">Web shortcut · %1$s</string>
+    <string name="shortcut_type_app">Shortcut · %1$s</string>
     <string name="disabled">מושבת</string>
     <string name="open">פתח</string>
     <string name="close">סגור</string>
