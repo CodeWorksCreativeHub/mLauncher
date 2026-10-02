@@ -70,6 +70,7 @@ import java.util.Locale
 import java.util.TimeZone
 import kotlin.system.exitProcess
 
+
 fun emptyString(): String {
     return ""
 }
@@ -151,6 +152,15 @@ fun getNextAlarm(context: Context, prefs: Prefs): CharSequence {
     val is24HourFormat = DateFormat.is24HourFormat(context)
     val nextAlarmClock = alarmManager.nextAlarmClock ?: return "No alarm is set."
 
+    // Filter out Sleep/Bedtime mode alarms from Samsung and Google Clock
+    // These create alarms that aren't actual user-set alarms
+    val isSleepModeAlarm = isSleepModeAlarm(nextAlarmClock)
+
+    if (isSleepModeAlarm) {
+        AppLogger.d("AlarmFilter", "Filtered out sleep mode alarm")
+        return "No alarm is set."
+    }
+
     val alarmTime = nextAlarmClock.triggerTime
     val timezone =
         prefs.appLanguage.locale()  // Assuming this returns a string like "America/New_York"
@@ -193,6 +203,44 @@ fun getNextAlarm(context: Context, prefs: Prefs): CharSequence {
             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         )
         append(" $formattedAlarm")
+    }
+}
+
+/**
+ * Checks if the given alarm is a sleep mode/bedtime alarm
+ * Handles both Samsung Clock and Google Clock bedtime mode using a heuristic approach
+ * that avoids reflection to maintain SDK compatibility
+ */
+private fun isSleepModeAlarm(alarmClock: AlarmManager.AlarmClockInfo): Boolean {
+    return try {
+        // Check if device is Samsung/Google and alarm time is at typical sleep mode hours
+        // This is a heuristic that works without reflection
+        val isSamsungDevice = Build.MANUFACTURER.equals("Samsung", ignoreCase = true) ||
+                Build.BRAND.equals("Samsung", ignoreCase = true)
+        val isGoogleDevice = Build.MANUFACTURER.equals("Google", ignoreCase = true) ||
+                Build.BRAND.equals("Google", ignoreCase = true)
+
+        if (isSamsungDevice || isGoogleDevice) {
+            val calendar = Calendar.getInstance()
+            calendar.timeInMillis = alarmClock.triggerTime
+            val hour = calendar.get(Calendar.HOUR_OF_DAY)
+            val minute = calendar.get(Calendar.MINUTE)
+
+            // Sleep mode typically starts at 22:00 or ends at 07:00 (on the hour)
+            val isTypicalSleepTime = (hour == 22 && minute == 0) || (hour == 7 && minute == 0)
+
+            if (isTypicalSleepTime) {
+                AppLogger.d("AlarmFilter", "Device with typical sleep time: $hour:00")
+                true
+            } else {
+                false
+            }
+        } else {
+            false
+        }
+    } catch (e: Exception) {
+        AppLogger.e("AlarmFilter", "Error checking for sleep mode alarm: ${e.message}", e)
+        false
     }
 }
 
