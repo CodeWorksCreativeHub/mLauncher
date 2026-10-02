@@ -785,7 +785,10 @@ class AppDrawerFragment : BaseFragment() {
     }
 
     private fun appDeleteListener(): (appListItem: AppListItem) -> Unit = { appModel ->
-        if (requireContext().isSystemApp(appModel.activityPackage))
+        if (appModel.isShortcut) {
+            viewModel.removeShortcut(appModel)
+            findNavController().popBackStack()
+        } else if (requireContext().isSystemApp(appModel.activityPackage))
             showShortToast(getLocalizedString(R.string.can_not_delete_system_apps))
         else {
             val appPackage = appModel.activityPackage

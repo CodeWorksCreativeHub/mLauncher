@@ -14,7 +14,7 @@ class AppDiffCallback(
     override fun getNewListSize(): Int = newList.size
 
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return oldList[oldItemPosition].activityPackage == newList[newItemPosition].activityPackage
+        return oldList[oldItemPosition].settingsKey == newList[newItemPosition].settingsKey
     }
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {

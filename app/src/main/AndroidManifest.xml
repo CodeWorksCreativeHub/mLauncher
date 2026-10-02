@@ -106,6 +106,16 @@
             android:name=".ui.iconpack.CustomIconSelectionActivity"
             android:excludeFromRecents="true"
             android:exported="false" />
+        <!-- PINNED SHORTCUTS ("Add to home screen" from browsers and other apps) -->
+        <activity
+            android:name=".ui.shortcuts.PinShortcutActivity"
+            android:excludeFromRecents="true"
+            android:theme="@style/Theme.mLauncher.Translucent"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.content.pm.action.CONFIRM_PIN_SHORTCUT" />
+            </intent-filter>
+        </activity>
         <!-- Accessibility Service -->
         <service
             android:name=".services.ActionService"
