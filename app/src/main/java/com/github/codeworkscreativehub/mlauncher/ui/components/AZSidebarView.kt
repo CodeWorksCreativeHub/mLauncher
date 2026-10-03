@@ -23,7 +23,7 @@ class AZSidebarView @JvmOverloads constructor(
     var onTouchEnd: (() -> Unit)? = null
     var onLetterSelected: ((String) -> Unit)? = null
 
-    private val allLetters = listOf('★') + ('A'..'Z')
+    private val allLetters = listOf('★') + ('A'..'Z').toList()
     private var letters: List<Char> = allLetters
 
     private val baseTextSizeSp = 20f
@@ -128,8 +128,7 @@ class AZSidebarView @JvmOverloads constructor(
     }
 
     private fun handleSelection(index: Int) {
-        if (index == selectedIndex) return
-
+        // Allow callback to fire even on same index for toggle behavior
         selectedIndex = index
         val letter = letters[index].toString()
 

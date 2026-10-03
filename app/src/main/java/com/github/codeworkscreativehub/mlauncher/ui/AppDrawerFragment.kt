@@ -69,6 +69,8 @@ class AppDrawerFragment : BaseFragment() {
     private lateinit var appsAdapter: AppDrawerAdapter
     private lateinit var contactsAdapter: ContactDrawerAdapter
 
+    private var currentFilteredSection: String? = null
+
     private var _binding: FragmentAppDrawerBinding? = null
     private val binding get() = _binding!!
 
@@ -97,7 +99,8 @@ class AppDrawerFragment : BaseFragment() {
 
             // Adjust menuView & sidebarContainer
             val menuParams = binding.menuView.layoutParams as ViewGroup.MarginLayoutParams
-            menuParams.bottomMargin = resources.getDimensionPixelSize(R.dimen.bottom_margin_3_button_nav) + imeInsets.bottom
+            menuParams.bottomMargin =
+                resources.getDimensionPixelSize(R.dimen.bottom_margin_3_button_nav) + imeInsets.bottom
             binding.menuView.layoutParams = menuParams
 
             insets
@@ -109,9 +112,11 @@ class AppDrawerFragment : BaseFragment() {
         binding.apply {
             val params = menuView.layoutParams as ViewGroup.MarginLayoutParams
             if (isGestureNav) {
-                params.bottomMargin = resources.getDimensionPixelSize(R.dimen.bottom_margin_gesture_nav) // or just in px
+                params.bottomMargin =
+                    resources.getDimensionPixelSize(R.dimen.bottom_margin_gesture_nav) // or just in px
             } else {
-                params.bottomMargin = resources.getDimensionPixelSize(R.dimen.bottom_margin_3_button_nav) // or just in px
+                params.bottomMargin =
+                    resources.getDimensionPixelSize(R.dimen.bottom_margin_3_button_nav) // or just in px
             }
             menuView.layoutParams = params
 
@@ -194,26 +199,30 @@ class AppDrawerFragment : BaseFragment() {
             binding.azSidebar.onLetterSelected = { section ->
                 when (binding.menuView.displayedChild) {
                     0 -> {
-                        // Find the position in the current (possibly filtered) adapter list
-                        val position = findPositionForSection(
-                            if (::appsAdapter.isInitialized) appsAdapter.appFilteredList else null,
-                            section
-                        )
-                        if (position != null) {
-                            val layoutManager = binding.appsRecyclerView.layoutManager as? LinearLayoutManager
-                            layoutManager?.scrollToPositionWithOffset(position, 0)
+                        // Filter apps to show only those starting with the selected letter
+                        if (::appsAdapter.isInitialized) {
+                            if (currentFilteredSection == section) {
+                                // Clicked same letter again - reset filter
+                                resetAppFilter()
+                                currentFilteredSection = null
+                            } else {
+                                filterAppsBySection(section)
+                                currentFilteredSection = section
+                            }
                         }
                     }
 
                     1 -> {
-                        // Find the position in the current (possibly filtered) adapter list
-                        val position = findPositionForSection(
-                            if (::contactsAdapter.isInitialized) contactsAdapter.contactsList else null,
-                            section
-                        )
-                        if (position != null) {
-                            val layoutManager = binding.contactsRecyclerView.layoutManager as? LinearLayoutManager
-                            layoutManager?.scrollToPositionWithOffset(position, 0)
+                        // Filter contacts to show only those starting with the selected letter
+                        if (::contactsAdapter.isInitialized) {
+                            if (currentFilteredSection == section) {
+                                // Clicked same letter again - reset filter
+                                resetContactFilter()
+                                currentFilteredSection = null
+                            } else {
+                                filterContactsBySection(section)
+                                currentFilteredSection = section
+                            }
                         }
                     }
                 }
@@ -362,7 +371,8 @@ class AppDrawerFragment : BaseFragment() {
 
                 val item = contactAdapter?.getItemAt(position) ?: return
 
-                val sectionLetter = item.displayName.firstOrNull()?.uppercaseChar()?.toString() ?: return
+                val sectionLetter =
+                    item.displayName.firstOrNull()?.uppercaseChar()?.toString() ?: return
 
                 // Skip redundant updates
                 if (sectionLetter == lastSectionLetter) return
@@ -454,7 +464,8 @@ class AppDrawerFragment : BaseFragment() {
             }
         }
 
-        binding.listEmptyHint.text = applyTextColor(getLocalizedString(R.string.drawer_list_empty_hint), prefs.appColor)
+        binding.listEmptyHint.text =
+            applyTextColor(getLocalizedString(R.string.drawer_list_empty_hint), prefs.appColor)
 
         binding.search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -468,7 +479,11 @@ class AppDrawerFragment : BaseFragment() {
                     when (binding.menuView.displayedChild) {
                         0 -> { // appsAdapter
                             val firstItem = appAdapter?.getFirstInList()
-                            if (firstItem.equals(searchQuery, ignoreCase = true) || prefs.openAppOnEnter) {
+                            if (firstItem.equals(
+                                    searchQuery,
+                                    ignoreCase = true
+                                ) || prefs.openAppOnEnter
+                            ) {
                                 appAdapter?.launchFirstInList()
                             } else {
                                 requireContext().searchOnPlayStore(searchQuery)
@@ -477,7 +492,11 @@ class AppDrawerFragment : BaseFragment() {
 
                         1 -> { // contactsAdapter
                             val firstItem = contactAdapter?.getFirstInList()
-                            if (firstItem.equals(searchQuery, ignoreCase = true) || prefs.openAppOnEnter) {
+                            if (firstItem.equals(
+                                    searchQuery,
+                                    ignoreCase = true
+                                ) || prefs.openAppOnEnter
+                            ) {
                                 contactAdapter?.launchFirstInList()
                             } else {
                                 requireContext().searchOnPlayStore(searchQuery)
@@ -495,6 +514,17 @@ class AppDrawerFragment : BaseFragment() {
                 if (flag == AppDrawerFlag.SetHomeApp) {
                     binding.clearHomeButton.apply {
                         isVisible = newText.isNullOrEmpty()
+                    }
+                }
+
+                // Reset letter filter when user types in search
+                if (!newText.isNullOrEmpty() && currentFilteredSection != null) {
+                    currentFilteredSection = null
+                    if (::appsAdapter.isInitialized) {
+                        resetAppFilter()
+                    }
+                    if (::contactsAdapter.isInitialized) {
+                        resetContactFilter()
                     }
                 }
 
@@ -521,12 +551,14 @@ class AppDrawerFragment : BaseFragment() {
         fun updateProfileUI(profileType: String) {
             currentProfileType = profileType
 
-            val isWorkProfileAvailable = prefs.getProfileCounter("WORK") > 0 && profileType != "WORK"
+            val isWorkProfileAvailable =
+                prefs.getProfileCounter("WORK") > 0 && profileType != "WORK"
             val isPrivateProfileAvailable = prefs.getProfileCounter("PRIVATE") > 0 &&
                     profileType != "PRIVATE" &&
                     !PrivateSpaceManager(requireContext()).isPrivateSpaceLocked() &&
                     ismlauncherDefault(requireContext())
-            val isSystemProfileAvailable = prefs.getProfileCounter("SYSTEM") > 0 && profileType != "SYSTEM"
+            val isSystemProfileAvailable =
+                prefs.getProfileCounter("SYSTEM") > 0 && profileType != "SYSTEM"
 
             binding.workApps.isVisible = isWorkProfileAvailable
             binding.privateApps.isVisible = isPrivateProfileAvailable
@@ -576,11 +608,13 @@ class AppDrawerFragment : BaseFragment() {
                 0 -> {
                     setAppViewDetails()
                     updateAZSidebarForApps(appsAdapter.appsList)
+                    currentFilteredSection = null
                 }
 
                 1 -> {
                     setContactViewDetails()
                     updateAZSidebarForContacts(contactsAdapter.contactsList)
+                    currentFilteredSection = null
                 }
             }
         }
@@ -701,7 +735,11 @@ class AppDrawerFragment : BaseFragment() {
                 // Merge apps based on filter
                 val mergedList = allProfiles.flatMap { profile ->
                     val apps = appsByProfile[profile].orEmpty()
-                    if (apps.isNotEmpty() && (profileFilter == null || profileFilter.equals(profile, true))) {
+                    if (apps.isNotEmpty() && (profileFilter == null || profileFilter.equals(
+                            profile,
+                            true
+                        ))
+                    ) {
                         AppLogger.d("AppMerge", "Adding ${apps.size} $profile apps")
                         apps
                     } else emptyList()
@@ -778,7 +816,10 @@ class AppDrawerFragment : BaseFragment() {
         updateAZSidebarForApps(apps)
     }
 
-    private fun populateContactList(contacts: List<ContactListItem>, contactAdapter: ContactDrawerAdapter) {
+    private fun populateContactList(
+        contacts: List<ContactListItem>,
+        contactAdapter: ContactDrawerAdapter
+    ) {
         val animation =
             AnimationUtils.loadLayoutAnimation(requireContext(), R.anim.layout_anim_from_bottom)
         binding.contactsRecyclerView.layoutAnimation = animation
@@ -815,35 +856,38 @@ class AppDrawerFragment : BaseFragment() {
 
     }
 
-    private fun appRenameListener(): (appPackage: String, appAlias: String) -> Unit = { appPackage, appAlias ->
-        val prefs = Prefs(requireContext())
-        prefs.setAppAlias(appPackage, appAlias)
-        findNavController().popBackStack()
-    }
-
-    private fun appTagListener(): (appPackage: String, appTag: String, appUser: UserHandle) -> Unit = { appPackage, appTag, appUser ->
-        val prefs = Prefs(requireContext())
-        prefs.setAppTag(appPackage, appTag, appUser)
-        findNavController().popBackStack()
-    }
-
-    private fun appShowHideListener(): (flag: AppDrawerFlag, appListItem: AppListItem) -> Unit = { flag, appModel ->
-        val prefs = Prefs(requireContext())
-        val newSet = mutableSetOf<String>()
-        newSet.addAll(prefs.hiddenApps)
-
-        if (flag == AppDrawerFlag.HiddenApps) {
-            newSet.remove(appModel.activityPackage) // for backward compatibility
-            newSet.remove(appModel.activityPackage + "|" + appModel.user.hashCode()) // for backward compatibility
-            newSet.remove(appModel.activityPackage + "|" + appModel.activityClass + "|" + appModel.user.hashCode())
-        } else {
-            newSet.add(appModel.activityPackage + "|" + appModel.activityClass + "|" + appModel.user.hashCode())
+    private fun appRenameListener(): (appPackage: String, appAlias: String) -> Unit =
+        { appPackage, appAlias ->
+            val prefs = Prefs(requireContext())
+            prefs.setAppAlias(appPackage, appAlias)
+            findNavController().popBackStack()
         }
 
-        prefs.hiddenApps = newSet
+    private fun appTagListener(): (appPackage: String, appTag: String, appUser: UserHandle) -> Unit =
+        { appPackage, appTag, appUser ->
+            val prefs = Prefs(requireContext())
+            prefs.setAppTag(appPackage, appTag, appUser)
+            findNavController().popBackStack()
+        }
 
-        if (newSet.isEmpty()) findNavController().popBackStack()
-    }
+    private fun appShowHideListener(): (flag: AppDrawerFlag, appListItem: AppListItem) -> Unit =
+        { flag, appModel ->
+            val prefs = Prefs(requireContext())
+            val newSet = mutableSetOf<String>()
+            newSet.addAll(prefs.hiddenApps)
+
+            if (flag == AppDrawerFlag.HiddenApps) {
+                newSet.remove(appModel.activityPackage) // for backward compatibility
+                newSet.remove(appModel.activityPackage + "|" + appModel.user.hashCode()) // for backward compatibility
+                newSet.remove(appModel.activityPackage + "|" + appModel.activityClass + "|" + appModel.user.hashCode())
+            } else {
+                newSet.add(appModel.activityPackage + "|" + appModel.activityClass + "|" + appModel.user.hashCode())
+            }
+
+            prefs.hiddenApps = newSet
+
+            if (newSet.isEmpty()) findNavController().popBackStack()
+        }
 
     private fun appInfoListener(): (appListItem: AppListItem) -> Unit = { appModel ->
         openAppInfo(
@@ -871,8 +915,9 @@ class AppDrawerFragment : BaseFragment() {
             when (item.category) {
                 AppCategory.PINNED -> letters.add("★")
                 else -> {
-                    val sectionLetter = ChineseSortHelper.sectionKey(item.activityLabel, prefs.appLanguage)
-                        ?: item.activityLabel.firstOrNull()?.uppercaseChar()?.toString()
+                    val sectionLetter =
+                        ChineseSortHelper.sectionKey(item.activityLabel, prefs.appLanguage)
+                            ?: item.activityLabel.firstOrNull()?.uppercaseChar()?.toString()
                     sectionLetter?.let { letters.add(it) }
                 }
             }
@@ -890,34 +935,130 @@ class AppDrawerFragment : BaseFragment() {
     }
 
     /**
-     * Find the adapter position for a given section letter in the current (possibly filtered) list.
-     * This ensures sidebar clicks work correctly even when the list is filtered by search.
+     * Reset app filter to show all apps.
      */
-    private fun findPositionForSection(
-        list: List<*>?,
-        section: String
-    ): Int? {
-        if (list.isNullOrEmpty()) return null
+    private fun resetAppFilter() {
+        val oldList = appsAdapter.appFilteredList.toList()
+        val fullList = appsAdapter.appsList
 
-        return list.indexOfFirst { item ->
-            val sectionLetter = when (item) {
-                is AppListItem -> {
-                    when (item.category) {
-                        AppCategory.PINNED -> "★"
-                        else -> {
+        appsAdapter.appFilteredList = fullList.toMutableList()
+
+        // Calculate diff and notify specific changes
+        val diffResult = androidx.recyclerview.widget.DiffUtil.calculateDiff(
+            object : androidx.recyclerview.widget.DiffUtil.Callback() {
+                override fun getOldListSize(): Int = oldList.size
+                override fun getNewListSize(): Int = fullList.size
+
+                override fun areItemsTheSame(oldPos: Int, newPos: Int): Boolean {
+                    return oldList[oldPos].settingsKey == fullList[newPos].settingsKey
+                }
+
+                override fun areContentsTheSame(oldPos: Int, newPos: Int): Boolean {
+                    return oldList[oldPos] == fullList[newPos]
+                }
+            }
+        )
+        diffResult.dispatchUpdatesTo(appsAdapter)
+    }
+
+    /**
+     * Reset contact filter to show all contacts.
+     */
+    private fun resetContactFilter() {
+        val oldList = contactsAdapter.contactFilteredList.toList()
+        val fullList = contactsAdapter.contactsList
+
+        contactsAdapter.contactFilteredList = fullList.toMutableList()
+
+        // Calculate diff and notify specific changes
+        val diffResult = androidx.recyclerview.widget.DiffUtil.calculateDiff(
+            object : androidx.recyclerview.widget.DiffUtil.Callback() {
+                override fun getOldListSize(): Int = oldList.size
+                override fun getNewListSize(): Int = fullList.size
+
+                override fun areItemsTheSame(oldPos: Int, newPos: Int): Boolean {
+                    return oldList[oldPos].displayName == fullList[newPos].displayName
+                }
+
+                override fun areContentsTheSame(oldPos: Int, newPos: Int): Boolean {
+                    return oldList[oldPos] == fullList[newPos]
+                }
+            }
+        )
+        diffResult.dispatchUpdatesTo(contactsAdapter)
+    }
+
+    /**
+     * Filter apps to show only those starting with the selected section letter.
+     */
+    private fun filterAppsBySection(section: String) {
+        val oldList = appsAdapter.appFilteredList.toList()
+        val fullList = appsAdapter.appsList
+        val filteredList = if (section == "★") {
+            fullList.filter { it.category == AppCategory.PINNED }
+        } else {
+            fullList.filter { item ->
+                when (item.category) {
+                    AppCategory.PINNED -> false
+                    else -> {
+                        val sectionLetter =
                             ChineseSortHelper.sectionKey(item.activityLabel, prefs.appLanguage)
                                 ?: item.activityLabel.firstOrNull()?.uppercaseChar()?.toString()
-                        }
+                        sectionLetter == section
                     }
                 }
-                is ContactListItem -> {
-                    item.displayName.firstOrNull()?.uppercaseChar()?.toString()
-                }
-                else -> return@indexOfFirst false
             }
+        }
 
+        appsAdapter.appFilteredList = filteredList.toMutableList()
+
+        // Calculate diff and notify specific changes
+        val diffResult = androidx.recyclerview.widget.DiffUtil.calculateDiff(
+            object : androidx.recyclerview.widget.DiffUtil.Callback() {
+                override fun getOldListSize(): Int = oldList.size
+                override fun getNewListSize(): Int = filteredList.size
+
+                override fun areItemsTheSame(oldPos: Int, newPos: Int): Boolean {
+                    return oldList[oldPos].settingsKey == filteredList[newPos].settingsKey
+                }
+
+                override fun areContentsTheSame(oldPos: Int, newPos: Int): Boolean {
+                    return oldList[oldPos] == filteredList[newPos]
+                }
+            }
+        )
+        diffResult.dispatchUpdatesTo(appsAdapter)
+    }
+
+    /**
+     * Filter contacts to show only those starting with the selected section letter.
+     */
+    private fun filterContactsBySection(section: String) {
+        val oldList = contactsAdapter.contactFilteredList.toList()
+        val fullList = contactsAdapter.contactsList
+        val filteredList = fullList.filter { item ->
+            val sectionLetter = item.displayName.firstOrNull()?.uppercaseChar()?.toString()
             sectionLetter == section
-        }.takeIf { it >= 0 }
+        }
+
+        contactsAdapter.contactFilteredList = filteredList.toMutableList()
+
+        // Calculate diff and notify specific changes
+        val diffResult = androidx.recyclerview.widget.DiffUtil.calculateDiff(
+            object : androidx.recyclerview.widget.DiffUtil.Callback() {
+                override fun getOldListSize(): Int = oldList.size
+                override fun getNewListSize(): Int = filteredList.size
+
+                override fun areItemsTheSame(oldPos: Int, newPos: Int): Boolean {
+                    return oldList[oldPos].displayName == filteredList[newPos].displayName
+                }
+
+                override fun areContentsTheSame(oldPos: Int, newPos: Int): Boolean {
+                    return oldList[oldPos] == filteredList[newPos]
+                }
+            }
+        )
+        diffResult.dispatchUpdatesTo(contactsAdapter)
     }
 
     private fun createClearApp(): AppListItem {
