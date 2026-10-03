@@ -190,15 +190,31 @@ class AppDrawerFragment : BaseFragment() {
             combinedScrollMaps.value = Pair(viewModel.appScrollMap.value ?: emptyMap(), contactMap)
         }
 
-        combinedScrollMaps.observe(viewLifecycleOwner) { (appMap, contactMap) ->
+        combinedScrollMaps.observe(viewLifecycleOwner) {
             binding.azSidebar.onLetterSelected = { section ->
                 when (binding.menuView.displayedChild) {
-                    0 -> appMap[section]?.let { index ->
-                        binding.appsRecyclerView.smoothScrollToPosition(index)
+                    0 -> {
+                        // Find the position in the current (possibly filtered) adapter list
+                        val position = findPositionForSection(
+                            if (::appsAdapter.isInitialized) appsAdapter.appFilteredList else null,
+                            section
+                        )
+                        if (position != null) {
+                            val layoutManager = binding.appsRecyclerView.layoutManager as? LinearLayoutManager
+                            layoutManager?.scrollToPositionWithOffset(position, 0)
+                        }
                     }
 
-                    1 -> contactMap[section]?.let { index ->
-                        binding.contactsRecyclerView.smoothScrollToPosition(index)
+                    1 -> {
+                        // Find the position in the current (possibly filtered) adapter list
+                        val position = findPositionForSection(
+                            if (::contactsAdapter.isInitialized) contactsAdapter.contactsList else null,
+                            section
+                        )
+                        if (position != null) {
+                            val layoutManager = binding.contactsRecyclerView.layoutManager as? LinearLayoutManager
+                            layoutManager?.scrollToPositionWithOffset(position, 0)
+                        }
                     }
                 }
             }
@@ -871,6 +887,37 @@ class AppDrawerFragment : BaseFragment() {
         }.toSet()
 
         binding.azSidebar.setAvailableLetters(letters)
+    }
+
+    /**
+     * Find the adapter position for a given section letter in the current (possibly filtered) list.
+     * This ensures sidebar clicks work correctly even when the list is filtered by search.
+     */
+    private fun findPositionForSection(
+        list: List<*>?,
+        section: String
+    ): Int? {
+        if (list.isNullOrEmpty()) return null
+
+        return list.indexOfFirst { item ->
+            val sectionLetter = when (item) {
+                is AppListItem -> {
+                    when (item.category) {
+                        AppCategory.PINNED -> "★"
+                        else -> {
+                            ChineseSortHelper.sectionKey(item.activityLabel, prefs.appLanguage)
+                                ?: item.activityLabel.firstOrNull()?.uppercaseChar()?.toString()
+                        }
+                    }
+                }
+                is ContactListItem -> {
+                    item.displayName.firstOrNull()?.uppercaseChar()?.toString()
+                }
+                else -> return@indexOfFirst false
+            }
+
+            sectionLetter == section
+        }.takeIf { it >= 0 }
     }
 
     private fun createClearApp(): AppListItem {
