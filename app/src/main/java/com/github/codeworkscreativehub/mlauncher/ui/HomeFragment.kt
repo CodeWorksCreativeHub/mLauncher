@@ -334,7 +334,7 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
             date.format24Hour = finalPattern
 
 
-            alarm.text = getNextAlarm(requireContext(), prefs)
+            alarm.text = getNextAlarm(requireContext(), prefs, viewModel.showAlarmDate.value ?: true)
             dailyWord.text = wordOfTheDay(prefs)
         }
     }
@@ -529,6 +529,9 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
             }
             showAlarm.observe(viewLifecycleOwner) {
                 binding.alarm.isVisible = it
+            }
+            showAlarmDate.observe(viewLifecycleOwner) {
+                updateTimeAndInfo()
             }
             showDailyWord.observe(viewLifecycleOwner) {
                 binding.dailyWord.isVisible = it

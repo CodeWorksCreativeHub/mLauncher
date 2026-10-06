@@ -1148,7 +1148,7 @@ class SettingsFragment : BaseFragment() {
                     }
 
                     Spacer(modifier = Modifier.height(12.dp))
-                    
+
                     if (toggledShowAlarm) {
 
                         // Alarm
@@ -1193,6 +1193,16 @@ class SettingsFragment : BaseFragment() {
                                     prefs.bedtimeEndHour = hour
                                     prefs.bedtimeEndMinute = minute
                                 }
+                            }
+                        )
+
+                        SettingsSwitch(
+                            text = getLocalizedString(R.string.show_alarm_date),
+                            fontSize = titleFontSize,
+                            defaultState = prefs.showAlarmDate,
+                            onCheckedChange = {
+                                prefs.showAlarmDate = !prefs.showAlarmDate
+                                viewModel.setShowAlarmDate(prefs.showAlarmDate)
                             }
                         )
 

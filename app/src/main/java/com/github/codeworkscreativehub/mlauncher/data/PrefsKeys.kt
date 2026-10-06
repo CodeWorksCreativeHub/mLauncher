@@ -66,6 +66,7 @@ internal const val CLICK_EDIT_DELETE = "CLICK_EDIT_DELETE"
 internal const val SHOW_CLOCK = "SHOW_CLOCK"
 internal const val SHOW_CLOCK_FORMAT = "SHOW_CLOCK_FORMAT"
 internal const val SHOW_ALARM = "SHOW_ALARM"
+internal const val SHOW_ALARM_DATE = "SHOW_ALARM_DATE"
 internal const val SHOW_DAILY_WORD = "SHOW_DAILY_WORD"
 internal const val SHOW_FLOATING = "SHOW_FLOATING"
 

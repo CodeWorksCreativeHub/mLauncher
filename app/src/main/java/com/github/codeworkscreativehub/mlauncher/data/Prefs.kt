@@ -405,6 +405,10 @@ class Prefs(val context: Context) {
         get() = getSetting(SHOW_ALARM, false)
         set(value) = prefsNormal.edit { putBoolean(SHOW_ALARM, value) }
 
+    var showAlarmDate: Boolean
+        get() = getSetting(SHOW_ALARM_DATE, true)
+        set(value) = prefsNormal.edit { putBoolean(SHOW_ALARM_DATE, value) }
+
     var showDailyWord: Boolean
         get() = getSetting(SHOW_DAILY_WORD, false)
         set(value) = prefsNormal.edit { putBoolean(SHOW_DAILY_WORD, value) }

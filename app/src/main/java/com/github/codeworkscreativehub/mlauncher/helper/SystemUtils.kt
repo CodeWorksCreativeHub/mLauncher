@@ -147,7 +147,7 @@ fun getUserHandleFromString(context: Context, userHandleString: String): UserHan
     return Process.myUserHandle()
 }
 
-fun getNextAlarm(context: Context, prefs: Prefs): CharSequence {
+fun getNextAlarm(context: Context, prefs: Prefs, showDate: Boolean = true): CharSequence {
     val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
     val is24HourFormat = DateFormat.is24HourFormat(context)
     val nextAlarmClock = alarmManager.nextAlarmClock ?: return "No alarm is set."
@@ -173,8 +173,11 @@ fun getNextAlarm(context: Context, prefs: Prefs): CharSequence {
     }
     val best24 = DateFormat.getBestDateTimePattern(timezone, "HHmm")
     val formattedTime = if (is24HourFormat) best24 else best12
-    val formattedAlarm =
+    val formattedAlarm = if (showDate) {
         SimpleDateFormat("$formattedDate $formattedTime", Locale.getDefault()).format(alarmTime)
+    } else {
+        SimpleDateFormat(formattedTime, Locale.getDefault()).format(alarmTime)
+    }
 
     val drawable = AppCompatResources.getDrawable(context, R.drawable.ic_alarm_clock)
     val fontSize = TypedValue.applyDimension(
@@ -210,60 +213,43 @@ fun getNextAlarm(context: Context, prefs: Prefs): CharSequence {
  * Checks if the given alarm is a sleep mode/bedtime alarm
  * Uses user-configured bedtime start/end times from settings
  */
-private fun isSleepModeAlarm(alarmClock: AlarmManager.AlarmClockInfo, prefs: Prefs): Boolean {
+private fun isSleepModeAlarm(
+    alarmClock: AlarmManager.AlarmClockInfo,
+    prefs: Prefs
+): Boolean {
     return try {
-        val showIntent = alarmClock.showIntent ?: return false
+        val calendar = Calendar.getInstance()
+        calendar.timeInMillis = alarmClock.triggerTime
 
-        // Use public API to get the creator package (available since API 31)
-        val creatorPackage = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            showIntent.creatorPackage
-        } else {
-            // For older versions, we can't get the package, so check device manufacturer
-            if (Build.MANUFACTURER.equals("Samsung", ignoreCase = true) ||
-                Build.BRAND.equals("Samsung", ignoreCase = true) ||
-                Build.MANUFACTURER.equals("Google", ignoreCase = true) ||
-                Build.BRAND.equals("Google", ignoreCase = true)) {
-                "samsung_or_google"
-            } else {
-                null
-            }
-        }
+        val hour = calendar.get(Calendar.HOUR_OF_DAY)
+        val minute = calendar.get(Calendar.MINUTE)
 
-        AppLogger.d("AlarmFilter", "Alarm creator package: $creatorPackage")
+        val bedtimeStartHour = prefs.bedtimeStartHour
+        val bedtimeStartMinute = prefs.bedtimeStartMinute
+        val bedtimeEndHour = prefs.bedtimeEndHour
+        val bedtimeEndMinute = prefs.bedtimeEndMinute
 
-        // Samsung Clock package: com.sec.android.app.clockpackage
-        // Google Clock package: com.google.android.deskclock
-        val isSamsungClock = creatorPackage == "com.sec.android.app.clockpackage"
-        val isGoogleClock = creatorPackage == "com.google.android.deskclock"
-        val isSamsungOrGoogleDevice = creatorPackage == "samsung_or_google"
+        val isBedtimeStart =
+            hour == bedtimeStartHour && minute == bedtimeStartMinute
 
-        if (isSamsungClock || isGoogleClock || isSamsungOrGoogleDevice) {
-            val calendar = Calendar.getInstance()
-            calendar.timeInMillis = alarmClock.triggerTime
-            val hour = calendar.get(Calendar.HOUR_OF_DAY)
-            val minute = calendar.get(Calendar.MINUTE)
+        val isBedtimeEnd =
+            hour == bedtimeEndHour && minute == bedtimeEndMinute
 
-            // Get user-configured bedtime times from settings
-            val bedtimeStartHour = prefs.bedtimeStartHour
-            val bedtimeStartMinute = prefs.bedtimeStartMinute
-            val bedtimeEndHour = prefs.bedtimeEndHour
-            val bedtimeEndMinute = prefs.bedtimeEndMinute
-
-            // Check if alarm time matches bedtime start or end time
-            val isBedtimeStart = (hour == bedtimeStartHour && minute == bedtimeStartMinute)
-            val isBedtimeEnd = (hour == bedtimeEndHour && minute == bedtimeEndMinute)
-
-            if (isBedtimeStart || isBedtimeEnd) {
-                AppLogger.d("AlarmFilter", "Alarm matches bedtime time: $hour:$minute")
-                true
-            } else {
-                false
-            }
+        if (isBedtimeStart || isBedtimeEnd) {
+            AppLogger.d(
+                "AlarmFilter",
+                "Alarm matches bedtime time: $hour:$minute"
+            )
+            true
         } else {
             false
         }
     } catch (e: Exception) {
-        AppLogger.e("AlarmFilter", "Error checking for sleep mode alarm: ${e.message}", e)
+        AppLogger.e(
+            "AlarmFilter",
+            "Error checking for sleep mode alarm: ${e.message}",
+            e
+        )
         false
     }
 }

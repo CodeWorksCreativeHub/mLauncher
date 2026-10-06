@@ -104,6 +104,7 @@
     <string name="show_date">Show Date</string>
     <string name="show_day_of_year">Show Day Of Year</string>
     <string name="show_alarm">Show Alarm</string>
+    <string name="show_alarm_date">Show Alarm Date</string>
     <string name="alarm_settings">Alarm</string>
     <string name="bedtime_start_time">Bedtime Start Time</string>
     <string name="bedtime_end_time">Bedtime End Time</string>
