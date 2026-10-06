@@ -301,7 +301,7 @@
     <string name="unlock">Kilidi aç</string>
     <string name="locked">Kilitli</string>
     <string name="unlocked">Kilidi Açıldı</string>
-    <string name="pin">Pin</string>
+    <string name="pin">Sabitle</string>
     <string name="unpin">Sabitlemeyi kaldır</string>
     <string name="rename">Yeniden Adlandır</string>
     <string name="tag">Etiket</string>
@@ -334,7 +334,7 @@
     <string name="home_button_photos">Fotoğraflar</string>
     <string name="home_button_web">Web</string>
     <string name="home_button_settings">Ayarlar</string>
-    <string name="home_button_logo">Logo</string>
+    <string name="home_button_logo">MultiLauncher logosu</string>
     <string name="applist_button_web">Web</string>
     <string name="applist_button_contacts">İletişim</string>
     <string name="allow">İzin vermek</string>
