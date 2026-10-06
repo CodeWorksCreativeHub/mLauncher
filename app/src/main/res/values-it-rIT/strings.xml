@@ -76,7 +76,7 @@
     <string name="show_date">Mostra la data</string>
     <string name="show_day_of_year">Mostra il giorno dell\'anno</string>
     <string name="show_alarm">Mostra allarme</string>
-    <string name="show_alarm_date">Show Alarm Date</string>
+    <string name="show_alarm_date">Mostra data dell\'allarme</string>
     <string name="alarm_settings">Allarme</string>
     <string name="bedtime_start_time">Ora di inizio dell\'ora di andare a letto</string>
     <string name="bedtime_end_time">Ora di fine dell\'ora di andare a letto</string>
@@ -309,7 +309,7 @@
     <string name="info">Informazioni</string>
     <string name="okay">Ok</string>
     <string name="apply">Fare domanda a</string>
-    <string name="reset">Reset</string>
+    <string name="reset">Reimposta</string>
     <string name="cancel">Annulla</string>
     <string name="save">Salva</string>
     <string name="shortcut_add_title">Aggiungi collegamento</string>
