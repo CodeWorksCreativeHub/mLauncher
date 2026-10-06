@@ -76,7 +76,7 @@
     <string name="show_date">Mostrar fecha</string>
     <string name="show_day_of_year">Día del espectáculo del año</string>
     <string name="show_alarm">Mostrar alarma</string>
-    <string name="show_alarm_date">Show Alarm Date</string>
+    <string name="show_alarm_date">Mostrar fecha de la alarma</string>
     <string name="alarm_settings">Alarma</string>
     <string name="bedtime_start_time">Hora de inicio de la hora de acostarse</string>
     <string name="bedtime_end_time">Hora de acostarse Fin de la hora</string>
@@ -335,7 +335,7 @@
     <string name="home_button_photos">Fotos</string>
     <string name="home_button_web">Web</string>
     <string name="home_button_settings">Ajustes</string>
-    <string name="home_button_logo">Logo</string>
+    <string name="home_button_logo">Logotipo</string>
     <string name="applist_button_web">Web</string>
     <string name="applist_button_contacts">Contactos</string>
     <string name="allow">Permitir</string>
@@ -403,7 +403,7 @@
         <item>Personal</item>
         <item>Proyectos</item>
         <item>Compras</item>
-        <item>Social</item>
+        <item>Redes sociales</item>
         <item>Estudiar</item>
         <item>Viajar</item>
         <item>Trabajar</item>
