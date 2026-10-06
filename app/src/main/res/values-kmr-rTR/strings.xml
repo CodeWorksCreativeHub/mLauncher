@@ -76,6 +76,7 @@
     <string name="show_date">Dîrokê nîşan bide</string>
     <string name="show_day_of_year">Roja salê nîşan bide</string>
     <string name="show_alarm">Alarmê nîşan bide</string>
+    <string name="show_alarm_date">Show Alarm Date</string>
     <string name="alarm_settings">Alarm</string>
     <string name="bedtime_start_time">Dema Destpêkirinê ya Xewê</string>
     <string name="bedtime_end_time">Dema Dawî ya Razanê</string>
