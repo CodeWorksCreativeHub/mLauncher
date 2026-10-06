@@ -148,22 +148,79 @@ fun getUserHandleFromString(context: Context, userHandleString: String): UserHan
 }
 
 fun getNextAlarm(context: Context, prefs: Prefs, showDate: Boolean = true): CharSequence {
-    val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
     val is24HourFormat = DateFormat.is24HourFormat(context)
-    val nextAlarmClock = alarmManager.nextAlarmClock ?: return "No alarm is set."
+    val timezone = prefs.appLanguage.locale()
 
-    // Filter out Sleep/Bedtime mode alarms from Samsung and Google Clock
-    // Uses user-configured bedtime start/end times from settings
-    val isSleepModeAlarm = isSleepModeAlarm(nextAlarmClock, prefs)
+    // Try to query all alarms from the AlarmClock content provider
+    val alarms = getAllAlarms(context)
 
-    if (isSleepModeAlarm) {
-        AppLogger.d("AlarmFilter", "Filtered out sleep mode alarm")
-        return "No alarm is set."
+    if (alarms.isNotEmpty()) {
+        // Filter out sleep mode alarms and find the next upcoming alarm
+        val nextAlarm = alarms
+            .filter { alarm ->
+                // Filter out disabled alarms
+                if (!alarm.enabled) return@filter false
+
+                // Filter out sleep mode alarms based on time
+                val isSleepMode = isSleepModeAlarmByTime(alarm.hour, alarm.minute, prefs)
+                if (isSleepMode) {
+                    AppLogger.d(
+                        "AlarmFilter",
+                        "Filtered out sleep mode alarm: ${alarm.hour}:${alarm.minute}"
+                    )
+                    return@filter false
+                }
+
+                true
+            }
+            .minByOrNull { alarm ->
+                alarm.getNextTriggerTime()
+            }
+
+        if (nextAlarm != null) {
+            return formatAlarmDisplay(
+                context,
+                prefs,
+                nextAlarm.getNextTriggerTime(),
+                is24HourFormat,
+                timezone,
+                showDate
+            )
+        }
     }
 
-    val alarmTime = nextAlarmClock.triggerTime
-    val timezone =
-        prefs.appLanguage.locale()  // Assuming this returns a string like "America/New_York"
+    // Fallback to AlarmManager.nextAlarmClock if content provider fails or returns no alarms
+    AppLogger.d(
+        "AlarmQuery",
+        "Content provider failed or returned no alarms, using AlarmManager fallback"
+    )
+    val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+    val nextAlarmClock = alarmManager.nextAlarmClock ?: return "No alarm is set."
+
+    // On devices without content provider access, we can only see the next alarm
+    // We cannot distinguish sleep mode from regular alarms or access other alarms
+    // So we show whatever the system reports as the next alarm
+    return formatAlarmDisplay(
+        context,
+        prefs,
+        nextAlarmClock.triggerTime,
+        is24HourFormat,
+        timezone,
+        showDate
+    )
+}
+
+/**
+ * Format the alarm display with icon and text
+ */
+private fun formatAlarmDisplay(
+    context: Context,
+    prefs: Prefs,
+    alarmTime: Long,
+    is24HourFormat: Boolean,
+    timezone: Locale,
+    showDate: Boolean
+): CharSequence {
     val formattedDate = DateFormat.getBestDateTimePattern(timezone, "eeeddMMM")
     val best12 = DateFormat.getBestDateTimePattern(
         timezone,
@@ -210,48 +267,210 @@ fun getNextAlarm(context: Context, prefs: Prefs, showDate: Boolean = true): Char
 }
 
 /**
- * Checks if the given alarm is a sleep mode/bedtime alarm
+ * Data class representing an alarm from the AlarmClock content provider
+ */
+private data class AlarmInfo(
+    val hour: Int,
+    val minute: Int,
+    val daysOfWeek: Int,
+    val enabled: Boolean,
+    val label: String
+) {
+    /**
+     * Calculate the next trigger time for this alarm
+     */
+    fun getNextTriggerTime(): Long {
+        val calendar = Calendar.getInstance()
+        calendar.set(Calendar.HOUR_OF_DAY, hour)
+        calendar.set(Calendar.MINUTE, minute)
+        calendar.set(Calendar.SECOND, 0)
+        calendar.set(Calendar.MILLISECOND, 0)
+
+        val now = Calendar.getInstance()
+
+        // If no days of week set, it's a one-time alarm
+        if (daysOfWeek == 0) {
+            // If the time has already passed today, schedule for tomorrow
+            if (calendar.before(now)) {
+                calendar.add(Calendar.DAY_OF_MONTH, 1)
+            }
+            return calendar.timeInMillis
+        }
+
+        // For recurring alarms, find the next matching day
+        val dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK)
+
+        // Check each day starting from today
+        for (i in 0..6) {
+            val checkDay = (dayOfWeek - 1 + i) % 7 + 1 // Convert to 1-7 format (Sunday=1)
+            val dayBit = 1 shl (checkDay - 1)
+
+            if ((daysOfWeek and dayBit) != 0) {
+                val checkCalendar = Calendar.getInstance()
+                checkCalendar.set(Calendar.HOUR_OF_DAY, hour)
+                checkCalendar.set(Calendar.MINUTE, minute)
+                checkCalendar.set(Calendar.SECOND, 0)
+                checkCalendar.set(Calendar.MILLISECOND, 0)
+                checkCalendar.add(Calendar.DAY_OF_MONTH, i)
+
+                if (checkCalendar.after(now)) {
+                    return checkCalendar.timeInMillis
+                }
+            }
+        }
+
+        // If no future day found (shouldn't happen), schedule for next week
+        calendar.add(Calendar.WEEK_OF_YEAR, 1)
+        return calendar.timeInMillis
+    }
+}
+
+/**
+ * Query all alarms from the AlarmClock content provider
+ */
+private fun getAllAlarms(context: Context): List<AlarmInfo> {
+    val alarms = mutableListOf<AlarmInfo>()
+
+    // Get installed clock apps
+    val installedClockApps = getInstalledClockApps(context)
+    AppLogger.d("AlarmQuery", "Found clock apps: ${installedClockApps.joinToString()}")
+
+    if (installedClockApps.isEmpty()) {
+        AppLogger.d("AlarmQuery", "No clock apps found, skipping content provider queries")
+        return alarms
+    }
+
+    // Map package names to their content provider URIs
+    val packageToUriMap = mapOf(
+        "com.android.deskclock" to "content://com.android.deskclock/alarm",
+        "com.google.android.deskclock" to "content://com.google.android.deskclock/alarm",
+        "com.sec.android.app.clockpackage" to "content://com.sec.android.app.clockpackage/alarm",
+        "com.htc.android.worldclock" to "content://com.htc.android.worldclock/alarm",
+        "com.sonyericsson.organizer" to "content://com.sonyericsson.organizer/alarm",
+        "com.lge.clock" to "content://com.lge.clock/alarm",
+        "com.miui.weather2" to "content://com.miui.weather2/alarm",
+        "com.oneplus.clock" to "content://com.oneplus.clock/alarm"
+    )
+
+    // Only try providers for installed clock apps
+    for (packageName in installedClockApps) {
+        val uriString = packageToUriMap[packageName] ?: continue
+
+        try {
+            // Check if provider exists before querying to avoid system errors
+            val providerInfo = context.packageManager.resolveContentProvider(
+                uriString.toUri().authority ?: continue,
+                0
+            )
+
+            if (providerInfo == null) {
+                AppLogger.d("AlarmQuery", "Provider not available: $uriString")
+                continue
+            }
+
+            val uri = uriString.toUri()
+            val projection = arrayOf(
+                "hour",
+                "minutes",
+                "daysOfWeek",
+                "enabled",
+                "label"
+            )
+
+            val cursor = context.contentResolver.query(
+                uri,
+                projection,
+                null,
+                null,
+                null
+            )
+
+            cursor?.use {
+                val hourIndex = it.getColumnIndex("hour")
+                val minutesIndex = it.getColumnIndex("minutes")
+                val daysOfWeekIndex = it.getColumnIndex("daysOfWeek")
+                val enabledIndex = it.getColumnIndex("enabled")
+                val labelIndex = it.getColumnIndex("label")
+
+                while (it.moveToNext()) {
+                    val hour = it.getInt(hourIndex)
+                    val minute = it.getInt(minutesIndex)
+                    val daysOfWeek = it.getInt(daysOfWeekIndex)
+                    val enabled = it.getInt(enabledIndex) == 1
+                    val label = it.getString(labelIndex) ?: ""
+
+                    alarms.add(AlarmInfo(hour, minute, daysOfWeek, enabled, label))
+                }
+            }
+
+            // If we got alarms from this provider, don't try the next one
+            if (alarms.isNotEmpty()) {
+                AppLogger.d("AlarmQuery", "Found ${alarms.size} alarms from $uriString")
+                break
+            }
+        } catch (e: Exception) {
+            AppLogger.d("AlarmQuery", "No alarms found from $uriString: ${e.message}")
+        }
+    }
+
+    return alarms
+}
+
+/**
+ * Get list of installed clock app package names
+ */
+private fun getInstalledClockApps(context: Context): List<String> {
+    val clockApps = mutableListOf<String>()
+    val packageManager = context.packageManager
+
+    val knownClockPackages = listOf(
+        "com.android.deskclock",  // Google Clock
+        "com.sec.android.app.clockpackage",  // Samsung Clock
+        "com.google.android.deskclock",  // Alternative Google Clock
+        "com.htc.android.worldclock",  // HTC Clock
+        "com.sonyericsson.organizer",  // Sony Clock
+        "com.lge.clock",  // LG Clock
+        "com.miui.weather2",  // Xiaomi Clock
+        "com.oneplus.clock",  // OnePlus Clock
+    )
+
+    for (packageName in knownClockPackages) {
+        try {
+            packageManager.getPackageInfo(packageName, 0)
+            clockApps.add(packageName)
+        } catch (_: PackageManager.NameNotFoundException) {
+            // Package not installed, skip
+        }
+    }
+
+    return clockApps
+}
+
+/**
+ * Checks if the given alarm time is a sleep mode/bedtime alarm
  * Uses user-configured bedtime start/end times from settings
  */
-private fun isSleepModeAlarm(
-    alarmClock: AlarmManager.AlarmClockInfo,
-    prefs: Prefs
-): Boolean {
-    return try {
-        val calendar = Calendar.getInstance()
-        calendar.timeInMillis = alarmClock.triggerTime
+private fun isSleepModeAlarmByTime(hour: Int, minute: Int, prefs: Prefs): Boolean {
+    val bedtimeStartHour = prefs.bedtimeStartHour
+    val bedtimeStartMinute = prefs.bedtimeStartMinute
+    val bedtimeEndHour = prefs.bedtimeEndHour
+    val bedtimeEndMinute = prefs.bedtimeEndMinute
 
-        val hour = calendar.get(Calendar.HOUR_OF_DAY)
-        val minute = calendar.get(Calendar.MINUTE)
+    val isBedtimeStart =
+        hour == bedtimeStartHour && minute == bedtimeStartMinute
 
-        val bedtimeStartHour = prefs.bedtimeStartHour
-        val bedtimeStartMinute = prefs.bedtimeStartMinute
-        val bedtimeEndHour = prefs.bedtimeEndHour
-        val bedtimeEndMinute = prefs.bedtimeEndMinute
+    val isBedtimeEnd =
+        hour == bedtimeEndHour && minute == bedtimeEndMinute
 
-        val isBedtimeStart =
-            hour == bedtimeStartHour && minute == bedtimeStartMinute
-
-        val isBedtimeEnd =
-            hour == bedtimeEndHour && minute == bedtimeEndMinute
-
-        if (isBedtimeStart || isBedtimeEnd) {
-            AppLogger.d(
-                "AlarmFilter",
-                "Alarm matches bedtime time: $hour:$minute"
-            )
-            true
-        } else {
-            false
-        }
-    } catch (e: Exception) {
-        AppLogger.e(
+    if (isBedtimeStart || isBedtimeEnd) {
+        AppLogger.d(
             "AlarmFilter",
-            "Error checking for sleep mode alarm: ${e.message}",
-            e
+            "Alarm matches bedtime time: $hour:$minute"
         )
-        false
+        return true
     }
+
+    return false
 }
 
 fun wordOfTheDay(prefs: Prefs): String {
