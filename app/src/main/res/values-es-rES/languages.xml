@@ -2,7 +2,7 @@
 <resources>
     <string name="lang_arabic">Árabe</string>
     <string name="lang_chinese">Chino</string>
-    <string name="lang_dutch">Holandés</string>
+    <string name="lang_dutch">holandés</string>
     <string name="lang_czech">checo</string>
     <string name="lang_english">Inglés</string>
     <string name="lang_french">Francés</string>
@@ -13,10 +13,10 @@
     <string name="lang_korean">Coreano</string>
     <string name="lang_lithuanian">Lituano</string>
     <string name="lang_polish">Polaco</string>
-    <string name="lang_portuguese">portugués</string>
+    <string name="lang_portuguese">Portugués</string>
     <string name="lang_romanian">rumano</string>
     <string name="lang_russian">Ruso</string>
-    <string name="lang_slovak">eslovaco</string>
+    <string name="lang_slovak">Eslovaco</string>
     <string name="lang_spanish">Español</string>
     <string name="lang_thai">tailandés</string>
     <string name="lang_turkish">Turco</string>
