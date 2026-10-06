@@ -76,6 +76,7 @@
     <string name="show_date">Дата показа</string>
     <string name="show_day_of_year">День выставки в году</string>
     <string name="show_alarm">Показать тревогу</string>
+    <string name="show_alarm_date">Показать дату будильника</string>
     <string name="alarm_settings">Тревога</string>
     <string name="bedtime_start_time">Время отхода ко сну</string>
     <string name="bedtime_end_time">Время отхода ко сну</string>

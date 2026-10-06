@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="lang_arabic">arabština</string>
-    <string name="lang_chinese">čínština</string>
-    <string name="lang_dutch">holandský</string>
-    <string name="lang_czech">čeština</string>
+    <string name="lang_chinese">Čínština</string>
+    <string name="lang_dutch">nizozemština</string>
+    <string name="lang_czech">Čeština</string>
     <string name="lang_english">angličtina</string>
-    <string name="lang_french">francouzština</string>
-    <string name="lang_german">Němec</string>
+    <string name="lang_french">Francouzština</string>
+    <string name="lang_german">němčina</string>
     <string name="lang_hebrew">hebrejština</string>
-    <string name="lang_italian">italština</string>
-    <string name="lang_japanese">japonský</string>
-    <string name="lang_korean">korejština</string>
-    <string name="lang_lithuanian">Litevština</string>
+    <string name="lang_italian">italský</string>
+    <string name="lang_japanese">Japonština</string>
+    <string name="lang_korean">Korejština</string>
+    <string name="lang_lithuanian">litevština</string>
     <string name="lang_polish">polština</string>
     <string name="lang_portuguese">portugalština</string>
     <string name="lang_romanian">rumunština</string>
     <string name="lang_russian">ruština</string>
-    <string name="lang_slovak">Slovák</string>
+    <string name="lang_slovak">slovenský</string>
     <string name="lang_spanish">španělština</string>
-    <string name="lang_thai">Thajština</string>
-    <string name="lang_turkish">turečtina</string>
+    <string name="lang_thai">thajština</string>
+    <string name="lang_turkish">Turečtina</string>
 </resources>

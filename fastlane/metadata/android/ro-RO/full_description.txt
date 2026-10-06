@@ -1,35 +1,35 @@
-<h1>Multi Launcher: Un lansator Android curat și simplu, conceput pentru lizibilitate și control</h1>
+<h1>Multi Launcher: un launcher Android simplu și curat, conceput pentru o mai bună lizibilitate și un control sporit</h1>
 
-<p>Cauți un lansator care să scape de dezordine și să simplifice lucrurile? <strong>Multi Launcher</strong> este un lansator Android puternic, dar minimalist, care înlocuiește pictogramele minuscule cu butoane text clare și ușor de citit, facilitând navigarea pe telefon.</p>
+<p>Cauți un launcher care să elimine aglomerația și să simplifice lucrurile? <strong>Multi Launcher</strong> este un launcher Android puternic, dar minimalist, care înlocuiește pictogramele mici cu butoane cu text clar și ușor de citit, facilitând navigarea pe telefon.</p>
 
-<p>Indiferent dacă doriți un ecran de pornire simplu, aveți nevoie de text mare pentru vizibilitate sau preferați acțiuni rapide bazate pe gesturi, Multi Launcher vă oferă control deplin fără a vă copleși cu opțiuni.</p>
+<p>Fie că îți dorești un ecran de start simplu, ai nevoie de text mare pentru o mai bună vizibilitate sau preferi acțiuni rapide bazate pe gesturi, Multi Launcher îți oferă control deplin fără a te copleși cu opțiuni.</p>
 
-<h2>De ce să alegeți lansatorul multiplu?</h2>
+<h2>De ce să alegi Multi Launcher?</h2>
 <ul>
-    <li><strong>Lansator bazat pe text:</strong> Fără pictograme confuze — doar butoane text etichetate pentru aplicațiile tale.</li>
-    <li><strong>Foarte personalizabil:</strong> Ajustați aspectul, dimensiunile fontului, poziția ceasului și multe altele.</li>
-    <li><strong>Gesturi rapide:</strong> Folosește atingeri, glisări și glisări lungi pentru a deschide aplicații, a bloca ecranul și a accesa notificări.</li>
-    <li><strong>Securitate:</strong> Încuietoare biometrică pentru setări și confidențialitate.</li>
-    <li><strong>Excelent pentru seniori sau pentru iubitorii de simplitate:</strong> Ușor de citit, utilizat și personalizat.</li>
+    <li><strong>Launcher bazat pe text:</strong> Fără pictograme care să creeze confuzie — doar butoane textuale etichetate pentru aplicațiile tale.</li>
+    <li><strong>Foarte personalizabil:</strong> poți regla aspectul, dimensiunile fonturilor, poziția ceasului și multe altele.</li>
+    <li><strong>Gesturi rapide:</strong> Folosește atingeri, glisări și glisări lungi pentru a deschide aplicații, a bloca ecranul și a accesa notificările.</li>
+    <li><strong>Securitate:</strong> Blocare biometrică pentru setări și confidențialitate.</li>
+    <li><strong>Ideal pentru persoanele în vârstă sau pentru cei care apreciază simplitatea:</strong> ușor de citit, de utilizat și de personalizat.</li>
 </ul>
 
-<h2>Caracteristici cheie:</h2>
+<h2>Caracteristici principale:</h2>
 <ul>
-    <li>Nume personalizate ale aplicațiilor: Redenumiți aplicațiile pentru a se potrivi cu modul în care vă gândiți la ele.</li>
-    <li>Aspecte flexibile: Organizați aplicațiile în modul care vă convine.</li>
-    <li>Personalizare ceas și dată: Plasați widget-uri oriunde doriți.</li>
-    <li>Statistici privind utilizarea aplicației: Vedeți cât timp petreceți în fiecare aplicație.</li>
-    <li>Comenzi rapide pentru gesturi: Setați acțiuni personalizate pentru atingeri duble, glisări și multe altele.</li>
+    <li>Denumiri personalizate pentru aplicații: redenumiți aplicațiile astfel încât să corespundă modului în care le percepeți.</li>
+    <li>Aranjări flexibile: Organizează aplicațiile așa cum ți se pare cel mai potrivit.</li>
+    <li>Personalizarea ceasului și a datei: plasează widgeturile oriunde dorești.</li>
+    <li>Statistici privind utilizarea aplicațiilor: Vezi cât timp petreci în fiecare aplicație.</li>
+    <li>Comenzi rapide prin gesturi: Configurează acțiuni personalizate pentru atingeri duble, glisări și multe altele.</li>
 </ul>
 
 <h2>Funcții de accesibilitate:</h2>
-<p>Această aplicație folosește API-ul <strong>AccessibilityService</strong> pentru:</p>
+<p>Această aplicație utilizează <strong>API-ul AccessibilityService</strong> pentru:</p>
 <ul>
-    <li>Blocați ecranul cu un gest</li>
-    <li>Deschideți meniul de pornire</li>
-    <li>Trageți în jos panoul de notificări</li>
+    <li>Blochează ecranul cu o mișcare</li>
+    <li>Deschideți meniul de alimentare</li>
+    <li>Desfășoară bara de notificări</li>
 </ul>
 
-<p><em>Multi Launcher respectă confidențialitatea dvs. Aceste funcții nu colectează și nu partajează date cu caracter personal.</em></p>
+<p><em>Multi Launcher respectă confidențialitatea ta. Aceste funcții nu colectează și nu transmit date cu caracter personal.</em></p>
 
-<p>Dacă te-ai săturat de lansatoarele stridente și aglomerate și vrei ceva simplu, elegant și captivant, <strong>Multi Launcher</strong> este soluția perfectă pentru ecranul de pornire.</p>
+<p>Dacă te-ai săturat de lansatoare stridente și aglomerate și îți dorești ceva simplu, elegant și care să-ți ofere control deplin, <strong>Multi Launcher</strong> este soluția perfectă pentru ecranul tău de start.</p>

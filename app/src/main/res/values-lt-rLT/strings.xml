@@ -76,6 +76,7 @@
     <string name="show_date">Rodyti datą</string>
     <string name="show_day_of_year">Rodyti metų dieną</string>
     <string name="show_alarm">Rodyti signalą</string>
+    <string name="show_alarm_date">Rodyti žadintuvo datą</string>
     <string name="alarm_settings">Signalizacija</string>
     <string name="bedtime_start_time">Miego pradžios laikas</string>
     <string name="bedtime_end_time">Miego pabaigos laikas</string>

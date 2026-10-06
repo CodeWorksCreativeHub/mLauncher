@@ -1,35 +1,35 @@
-<h1>Multi Launcher: Čistý a jednoduchý launcher pro Android, vytvořený pro snadnou čitelnost a snadné ovládání</h1>
+<h1>Multi Launcher: Přehledný a jednoduchý launcher pro Android, navržený s důrazem na přehlednost a ovládání</h1>
 
-<p>Hledáte launcher, který se zbaví nepořádku a usnadní práci? <strong>Multi Launcher</strong> je výkonný, ale minimalistický launcher pro Android, který nahrazuje drobné ikony jasnými a čitelnými textovými tlačítky, což usnadňuje navigaci v telefonu.</p>
+<p>Hledáte spouštěč, který se zbavuje zbytečností a zachovává jednoduchost? <strong>Multi Launcher</strong> je výkonný a zároveň minimalistický spouštěč pro Android, který nahrazuje malé ikony jasnými a čitelnými textovými tlačítky, díky čemuž se v telefonu snáze orientujete.</p>
 
-<p>Ať už chcete jednoduchou domovskou obrazovku, potřebujete velký text pro lepší viditelnost nebo dáváte přednost rychlým akcím pomocí gest, Multi Launcher vám poskytne plnou kontrolu, aniž by vás zahltil možnostmi.</p>
+<p>Ať už chcete jednoduchou domovskou obrazovku, potřebujete větší písmo pro lepší čitelnost nebo dáváte přednost rychlým akcím pomocí gest, Multi Launcher vám poskytne plnou kontrolu, aniž by vás zahlcoval množstvím možností.</p>
 
-<h2>Proč zvolit Multi Launcher?</h2>
+<h2>Proč si vybrat Multi Launcher?</h2>
 <ul>
-    <li><strong>Textový spouštěč:</strong> Žádné matoucí ikony – pouze textová tlačítka pro vaše aplikace.</li>
-    <li><strong>Vysoce přizpůsobitelné:</strong> Upravte rozvržení, velikost písma, polohu hodin a další.</li>
-    <li><strong>Rychlá gesta:</strong> Klepnutím, přejetím prstem a dlouhým přejetím prstem otevírejte aplikace, zamykejte obrazovku a zobrazujte oznámení.</li>
-    <li><strong>Zabezpečení:</strong> Biometrický zámek pro nastavení a soukromí.</li>
-    <li><strong>Skvělé pro seniory nebo milovníky jednoduchosti:</strong> Snadno se čte, používá a přizpůsobuje.</li>
+    <li><strong>Textový spouštěč:</strong> Žádné matoucí ikony – pouze textová tlačítka s popisky pro vaše aplikace.</li>
+    <li><strong>Široké možnosti přizpůsobení:</strong> Upravte rozložení, velikost písma, polohu hodin a další parametry.</li>
+    <li><strong>Rychlá gesta:</strong> Pomocí klepnutí, přejetí prstem a dlouhých přejetí prstem můžete otevírat aplikace, uzamknout obrazovku a zobrazit oznámení.</li>
+    <li><strong>Zabezpečení:</strong> Biometrický zámek pro nastavení a ochranu soukromí.</li>
+    <li><strong>Skvělé pro seniory i milovníky jednoduchosti:</strong> Snadno se čte, používá a přizpůsobuje.</li>
 </ul>
 
-<h2>Klíčové vlastnosti:</h2>
+<h2>Hlavní vlastnosti:</h2>
 <ul>
-    <li>Vlastní názvy aplikací: Přejmenujte aplikace tak, aby odpovídaly vašemu vnímání.</li>
-    <li>Flexibilní rozvržení: Uspořádejte si aplikace tak, jak vám to vyhovuje.</li>
-    <li>Přizpůsobení hodin a data: Umístěte widgety, kam chcete.</li>
-    <li>Přehledy používání aplikací: Podívejte se, kolik času trávíte v jednotlivých aplikacích.</li>
-    <li>Zkratky gest: Nastavte si vlastní akce pro dvojité klepnutí, přejetí prstem a další.</li>
+    <li>Vlastní názvy aplikací: Přejmenujte aplikace tak, aby odpovídaly tomu, jak si je představujete.</li>
+    <li>Flexibilní uspořádání: Uspořádejte si aplikace tak, jak vám to nejlépe vyhovuje.</li>
+    <li>Přizpůsobení času a data: Umístěte widgety kamkoli chcete.</li>
+    <li>Přehledy o používání aplikací: Podívejte se, kolik času trávíte v jednotlivých aplikacích.</li>
+    <li>Gestové zkratky: Nastavte si vlastní akce pro dvojité klepnutí, přejetí prstem a další gesta.</li>
 </ul>
 
-<h2>Funkce usnadnění přístupu:</h2>
-<p>Tato aplikace používá rozhraní <strong>AccessibilityService API</strong> k:</p>
+<h2>Funkce pro usnadnění přístupu:</h2>
+<p>Tato aplikace využívá rozhraní <strong>API AccessibilityService</strong> k:</p>
 <ul>
-    <li>Zamknutí obrazovky gestem</li>
+    <li>Zamkněte obrazovku gestem</li>
     <li>Otevřete nabídku napájení</li>
-    <li>Stáhněte dolů panel oznámení</li>
+    <li>Rozbalte panel s oznámeními</li>
 </ul>
 
 <p><em>Multi Launcher respektuje vaše soukromí. Tyto funkce neshromažďují ani nesdílejí osobní údaje.</em></p>
 
-<p>Pokud vás nebaví okázalé a přeplněné launchery a chcete něco přímočarého, stylového a výkonného, <strong>Multi Launcher</strong> je pro vás ideálním řešením pro domovskou obrazovku.</p>
+<p>Pokud už máte dost okázalých a přeplněných spouštěčů a hledáte něco jednoduchého, stylového a praktického, je <strong>Multi Launcher</strong> ideálním řešením pro vaši domovskou obrazovku.</p>

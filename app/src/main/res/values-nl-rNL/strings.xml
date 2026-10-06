@@ -76,6 +76,7 @@
     <string name="show_date">Datum weergeven</string>
     <string name="show_day_of_year">Toon de dag van het jaar</string>
     <string name="show_alarm">Alarm weergeven</string>
+    <string name="show_alarm_date">Alarmdatum weergeven</string>
     <string name="alarm_settings">Alarm</string>
     <string name="bedtime_start_time">Bedtijd aanvangstijd</string>
     <string name="bedtime_end_time">Bedtijd Eindtijd</string>
@@ -155,7 +156,7 @@
     <string name="show_notifications">Toon melding</string>
     <string name="show_app_list">Toon App Lijst</string>
     <string name="show_widget_page">Widgetpagina weergeven</string>
-    <string name="show_notes_manager">Show Notes Manager</string>
+    <string name="show_notes_manager">Show Notes-beheerder</string>
     <string name="show_digital_wellbeing">Toon digitaal welzijn</string>
     <string name="open_quick_settings">Snelle Instellingen</string>
     <string name="show_recents">Toon recente apps</string>
@@ -196,7 +197,7 @@
     <string name="advanced_settings_backup_restore_clear_description">Weet u zeker dat u dit wilt doen?</string>
     <string name="advanced_settings_theme_title">Thema creaties</string>
     <string name="advanced_settings_theme_description">Pas thema\'s aan uw wensen aan.</string>
-    <string name="advanced_settings_theme_download">Download</string>
+    <string name="advanced_settings_theme_download">Downloaden</string>
     <string name="advanced_settings_theme_export">Exporteren</string>
     <string name="advanced_settings_theme_import">Importeren</string>
     <string name="advanced_settings_theme_clear">Duidelijk</string>
@@ -204,7 +205,7 @@
     <string name="advanced_settings_theme_clear_description">Weet je zeker dat je alle thema-instellingen wilt resetten?</string>
     <string name="advanced_settings_wotd_title">Woord van de dag</string>
     <string name="advanced_settings_wotd_description">Importeer een aangepaste lijst met het Woord van de Dag.</string>
-    <string name="advanced_settings_wotd_download">Download</string>
+    <string name="advanced_settings_wotd_download">Downloaden</string>
     <string name="advanced_settings_wotd_import">Importeren</string>
     <string name="advanced_settings_wotd_clear">Duidelijk</string>
     <string name="advanced_settings_wotd_clear_title">Woord van de dag opnieuw instellen</string>
@@ -377,7 +378,7 @@
     <string name="settings_applist_buttons_title">Applijstknoppen</string>
     <string name="settings_source_code">Broncode</string>
     <string name="settings_donations">Donaties</string>
-    <string name="settings_credits">Credits</string>
+    <string name="settings_credits">Colofon</string>
     <string-array name="priorities">
         <item>Laag</item>
         <item>Medium</item>

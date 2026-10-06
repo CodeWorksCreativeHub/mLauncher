@@ -1,35 +1,35 @@
-<h1>Kelių paleidimo priemonė: švari, paprasta „Android“ paleidimo priemonė, sukurta lengvam skaitomumui ir valdymui</h1>
+<h1>„Multi Launcher“: švarus, paprastas „Android“ paleidimo ekranas, sukurtas siekiant užtikrinti aiškumą ir valdymo patogumą</h1>
 
-<p>Ieškote paleidimo priemonės, kuri pašalintų netvarką ir palengvintų darbą? <strong>„Multi Launcher“</strong> yra galinga, tačiau minimalistinė „Android“ paleidimo priemonė, kuri pakeičia mažas piktogramas aiškiais, įskaitomais teksto mygtukais, todėl telefone lengviau naršyti.</p>
+<p>Ieškote paleidimo programos, kuri atsikratytų nereikalingų elementų ir užtikrintų paprastumą? <strong>„Multi Launcher“</strong> – tai galinga, tačiau minimalistinė „Android“ paleidimo programa, kuri mažas piktogramas pakeičia aiškiais, lengvai įskaitomais tekstiniais mygtukais, todėl telefone lengviau orientuotis.</p>
 
-<p>Nesvarbu, ar norite paprasto pagrindinio ekrano, ar didelio teksto, kad jis būtų matomas, ar teikiate pirmenybę greitiems gestais pagrįstiems veiksmams, „Multi Launcher“ suteikia jums visišką valdymą neapkraunant jūsų pasirinkimų gausa.</p>
+<p>Nesvarbu, ar norite paprasto pagrindinio ekrano, ar jums reikalingas didelis tekstas, kad būtų geriau matomas, ar teikiate pirmenybę greitiems gestais valdomiems veiksmams – „Multi Launcher“ suteikia jums visišką kontrolę, neapkraudamas jūsų pernelyg daugybe parinkčių.</p>
 
-<h2>Kodėl verta rinktis kelių paleidimo priemonių rinkinį?</h2>
+<h2>Kodėl verta rinktis „Multi Launcher“?</h2>
 <ul>
-    <li><strong>Tekstinis paleidimo įrankis:</strong> Jokių painių piktogramų – tik pažymėti tekstiniai mygtukai jūsų programėlėms.</li>
-    <li><strong>Labai pritaikoma:</strong> Koreguokite išdėstymą, šrifto dydžius, laikrodžio padėtį ir kt.</li>
-    <li><strong>Greitieji gestai:</strong> Norėdami atidaryti programas, užrakinti ekraną ir pasiekti pranešimus, naudokite bakstelėjimus, braukimus ir ilgus braukimus.</li>
-    <li><strong>Saugu:</strong> Biometrinis užraktas nustatymams ir privatumui.</li>
-    <li><strong>Puikiai tinka senjorams arba paprastumo mėgėjams:</strong> Lengva skaityti, naudoti ir pritaikyti.</li>
+    <li><strong>Tekstinis paleidimo meniu:</strong> jokių painių piktogramų – tik paženklinti tekstiniai mygtukai jūsų programėlėms.</li>
+    <li><strong>Lengvai pritaikoma:</strong> galite keisti išdėstymą, šriftų dydžius, laikrodžio padėtį ir dar daugiau.</li>
+    <li><strong>Greiti gestai:</strong> bakstelėkite, braukite ir ilgai braukite, kad atidarytumėte programas, užrakintumėte ekraną ir peržiūrėtumėte pranešimus.</li>
+    <li><strong>Saugumas:</strong> biometrinė užraktas, užtikrinantis nustatymų ir privatumo apsaugą.</li>
+    <li><strong>Puikiai tinka vyresnio amžiaus žmonėms arba paprastumo mėgėjams:</strong> lengva skaityti, naudoti ir pritaikyti savo poreikiams.</li>
 </ul>
 
 <h2>Pagrindinės savybės:</h2>
 <ul>
-    <li>Pasirinktiniai programų pavadinimai: pervadinkite programas pagal savo supratimą.</li>
+    <li>Individualūs programėlių pavadinimai: pervardykite programėles taip, kaip jums patogu jas įsivaizduoti.</li>
     <li>Lankstūs išdėstymai: tvarkykite programas taip, kaip jums patogiau.</li>
-    <li>Laikrodžio ir datos pritaikymas: Valdiklius galite patalpinti bet kur.</li>
-    <li>Programėlių naudojimo įžvalgos: peržiūrėkite, kiek laiko praleidžiate kiekvienoje programėlėje.</li>
-    <li>Gestų spartieji klavišai: nustatykite pasirinktinius veiksmus dvigubiems bakstelėjimams, braukimams ir kt.</li>
+    <li>Laiko ir datos nustatymas: valdiklius galite išdėstyti ten, kur norite.</li>
+    <li>Programėlių naudojimo statistika: sužinokite, kiek laiko praleidžiate kiekvienoje programėlėje.</li>
+    <li>Gestų sparčiosios klavišų kombinacijos: nustatykite pasirinktinius veiksmus dvigubam bakstelėjimui, braukimui ir kt.</li>
 </ul>
 
 <h2>Prieinamumo funkcijos:</h2>
-<p>Ši programėlė naudoja <strong>Prieinamumo paslaugų API</strong> , kad galėtų:</p>
+<p>Ši programa naudoja <strong>„AccessibilityService“ API</strong>, kad:</p>
 <ul>
-    <li>Užrakinti ekraną gestu</li>
+    <li>Užrakinkite ekraną gestu</li>
     <li>Atidarykite maitinimo meniu</li>
-    <li>Nuleiskite pranešimų skydelį</li>
+    <li>Išskleiskite pranešimų juostą</li>
 </ul>
 
-<p><em>„Multi Launcher“ gerbia jūsų privatumą. Šios funkcijos nerenka ir nebendrina asmens duomenų.</em></p>
+<p><em>„Multi Launcher“ gerbia jūsų privatumą. Šios funkcijos nerenka ir neperduoda asmens duomenų.</em></p>
 
-<p>Jei pavargote nuo prašmatnių, netvarkingų paleidimo priemonių ir norite kažko paprasto, stilingo ir įkvepiančio, <strong>Kelių paleidimo priemonių programa</strong> yra puikus jūsų pagrindinio ekrano sprendimas.</p>
+<p>Jei esate pavargę nuo prašmatnių, perkrautų paleidimo programų ir norite ko nors paprasto, stilingo ir suteikiančio daugiau galimybių, <strong>„Multi Launcher“</strong> – tai puikus sprendimas jūsų pagrindiniam ekranui.</p>

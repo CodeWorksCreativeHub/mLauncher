@@ -76,6 +76,7 @@
     <string name="show_date">Data afișajului</string>
     <string name="show_day_of_year">Afișează ziua anului</string>
     <string name="show_alarm">Afișare alarmă</string>
+    <string name="show_alarm_date">Afișează data alarmei</string>
     <string name="alarm_settings">Alarma</string>
     <string name="bedtime_start_time">Ora de începere a orei de culcare</string>
     <string name="bedtime_end_time">Ora de încheiere a orei de culcare</string>
