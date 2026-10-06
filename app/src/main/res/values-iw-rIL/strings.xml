@@ -76,7 +76,7 @@
     <string name="show_date">הצג תאריך</string>
     <string name="show_day_of_year">הצג יום בשנה</string>
     <string name="show_alarm">הצג שעון מעורר</string>
-    <string name="show_alarm_date">Show Alarm Date</string>
+    <string name="show_alarm_date">הצג תאריך ההתראה</string>
     <string name="alarm_settings">אַזעָקָה</string>
     <string name="bedtime_start_time">שעת תחילת שעת השינה</string>
     <string name="bedtime_end_time">שעת סיום שעת השינה</string>
