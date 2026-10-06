@@ -39,7 +39,7 @@
     <string name="settings_hidden_apps_description">Spravovať skryté aplikácie – v prípade potreby odkryte ľubovoľnú aplikáciu z tohto zoznamu.</string>
     <string name="settings_advanced_title">Rozšírené nastavenia</string>
     <string name="settings_advanced_description">Prístup k informáciám o aplikácii, predvolenému spúšťaču, nástrojom na zálohovanie a ďalším funkciám.</string>
-    <string name="settings_expert_title">Expert</string>
+    <string name="settings_expert_title">Odborník</string>
     <string name="settings_expert_description">Odomknite skryté možnosti a pokročilé vylepšenia.</string>
     <string name="settings_exit_mlauncher_title">Ukončite MultiLauncher</string>
     <string name="settings_exit_mlauncher_description">Dočasne prepnite na predvolený spúšťač.</string>
@@ -76,7 +76,7 @@
     <string name="show_date">Zobraziť dátum</string>
     <string name="show_day_of_year">Zobraziť deň v roku</string>
     <string name="show_alarm">Zobraziť budík</string>
-    <string name="show_alarm_date">Show Alarm Date</string>
+    <string name="show_alarm_date">Zobraziť dátum budíka</string>
     <string name="alarm_settings">Budík</string>
     <string name="bedtime_start_time">Čas začiatku večerky</string>
     <string name="bedtime_end_time">Čas ukončenia večerky</string>
@@ -220,7 +220,7 @@
     <!-- Strings used for about settings -->
     <string name="about_settings_title">Približne %1$s</string>
     <!-- Strings used for expert settings -->
-    <string name="expert_settings_title">Expert</string>
+    <string name="expert_settings_title">Odborník</string>
     <string name="toggleable_items">Prepínateľné položky</string>
     <string name="threshold">Prahová hodnota</string>
     <string name="expert_options_display">Zobraziť možnosti pre expertov</string>
