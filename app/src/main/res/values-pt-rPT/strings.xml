@@ -76,7 +76,7 @@
     <string name="show_date">Mostrar data</string>
     <string name="show_day_of_year">Dia de exibição do ano</string>
     <string name="show_alarm">Mostrar alarme</string>
-    <string name="show_alarm_date">Show Alarm Date</string>
+    <string name="show_alarm_date">Mostrar data do alarme</string>
     <string name="alarm_settings">Alarme</string>
     <string name="bedtime_start_time">Hora de começar a dormir</string>
     <string name="bedtime_end_time">Hora de dormir</string>
