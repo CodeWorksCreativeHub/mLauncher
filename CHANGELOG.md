@@ -6,6 +6,8 @@ All notable changes to this project will be documented in this file. See [conven
 
 ### :sparkles: Enhancements:
 
+* Query clock content providers to filter upcoming alarms ([62414aec](https://github.com/CodeWorksCreativeHub/mLauncher/commit/62414aec))
+* Add setting to toggle alarm date display ([6e135097](https://github.com/CodeWorksCreativeHub/mLauncher/commit/6e135097))
 * Filter apps and contacts by letter selection in A-Z sidebar ([066ba0db](https://github.com/CodeWorksCreativeHub/mLauncher/commit/066ba0db))
 * Add bedtime mode settings with time picker for start and end times ([d6c4f4a5](https://github.com/CodeWorksCreativeHub/mLauncher/commit/d6c4f4a5))
 
