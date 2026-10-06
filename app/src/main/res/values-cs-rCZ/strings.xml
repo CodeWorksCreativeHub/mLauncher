@@ -39,7 +39,7 @@
     <string name="settings_hidden_apps_description">Spravovat skryté aplikace – v případě potřeby zobrazí jakoukoli aplikaci v tomto seznamu.</string>
     <string name="settings_advanced_title">Moderní</string>
     <string name="settings_advanced_description">Přístup k informacím o aplikacích, výchozímu spouštěči, nástrojům pro zálohování a dalším funkcím.</string>
-    <string name="settings_expert_title">Expert</string>
+    <string name="settings_expert_title">Odborník</string>
     <string name="settings_expert_description">Odemkněte skryté možnosti a pokročilá vylepšení.</string>
     <string name="settings_exit_mlauncher_title">Ukončit MultiLauncher</string>
     <string name="settings_exit_mlauncher_description">Dočasně přepněte na výchozí spouštěč.</string>
@@ -76,7 +76,7 @@
     <string name="show_date">Datum představení</string>
     <string name="show_day_of_year">Zobrazit den v roce</string>
     <string name="show_alarm">Zobrazit budík</string>
-    <string name="show_alarm_date">Show Alarm Date</string>
+    <string name="show_alarm_date">Zobrazit datum alarmu</string>
     <string name="alarm_settings">Poplach</string>
     <string name="bedtime_start_time">Čas zahájení večerky</string>
     <string name="bedtime_end_time">Konec doby spánku</string>
@@ -220,7 +220,7 @@
     <!-- Strings used for about settings -->
     <string name="about_settings_title">O %1$s</string>
     <!-- Strings used for expert settings -->
-    <string name="expert_settings_title">Expert</string>
+    <string name="expert_settings_title">Odborník</string>
     <string name="toggleable_items">Přepínatelné položky</string>
     <string name="threshold">Práh</string>
     <string name="expert_options_display">Zobrazit možnosti pro experty</string>
@@ -297,7 +297,7 @@
     <string name="restart_launcher">Restartujte spouštěč</string>
     <string name="delete">Vymazat</string>
     <string name="hide">Skrýt</string>
-    <string name="show">Show</string>
+    <string name="show">Zobrazit</string>
     <string name="lock">Zámek</string>
     <string name="unlock">Odemknout</string>
     <string name="locked">Zamčeno</string>
@@ -324,7 +324,7 @@
     <string name="open">OTEVŘENO</string>
     <string name="close">Blízko</string>
     <string name="next">Další</string>
-    <string name="start">Start</string>
+    <string name="start">Začátek</string>
     <string name="copy">Kopie</string>
     <string name="none">Žádný</string>
     <string name="celsius">Celsia</string>
