@@ -77,12 +77,12 @@
     <string name="show_day_of_year">Roja salê nîşan bide</string>
     <string name="show_alarm">Alarmê nîşan bide</string>
     <string name="alarm_settings">Alarm</string>
-    <string name="bedtime_start_time">Bedtime Start Time</string>
-    <string name="bedtime_end_time">Bedtime End Time</string>
+    <string name="bedtime_start_time">Dema Destpêkirinê ya Xewê</string>
+    <string name="bedtime_end_time">Dema Dawî ya Razanê</string>
     <string name="show_daily_word">Peyva rojê nîşan bide</string>
     <string name="show_battery">Betariyê nîşan bide</string>
     <string name="show_battery_icon">Îkona betariyê nîşan bide</string>
-    <string name="show_private_spaces">Show Private Spaces Icon</string>
+    <string name="show_private_spaces">Îkona Qadên Taybet Nîşan Bide</string>
     <string name="weather">Rewşa bayê</string>
     <string name="show_weather">Rewşa bayê nîşan bide</string>
     <string name="gps_location">Cihê GPS</string>
@@ -233,14 +233,14 @@
     <string name="favorite_apps">Sepanên bijarte</string>
     <string name="clear_home_app">Sepana dîmendera sereke pak bike</string>
     <!-- Favorite management strings -->
-    <string name="add_app">Add App</string>
-    <string name="remove_app">Remove App</string>
-    <string name="max_apps_reached">Maximum number of home apps reached</string>
-    <string name="min_apps_reached">Minimum number of home apps reached</string>
-    <string name="no_apps_to_remove">No apps to remove</string>
-    <string name="select_app_to_remove">Select app to remove</string>
-    <string name="empty_favorite">Unused</string>
-    <string name="confirm_remove_favorite">Are you sure you want to remove this app from favorites?</string>
+    <string name="add_app">Sepanê lê zêde bike</string>
+    <string name="remove_app">Sepanê rake</string>
+    <string name="max_apps_reached">Hejmara herî zêde ya sepanên malê hat gihîştin</string>
+    <string name="min_apps_reached">Hejmara herî kêm a sepanên malê hate gihîştin</string>
+    <string name="no_apps_to_remove">Sepanên ji bo rakirinê tune ne</string>
+    <string name="select_app_to_remove">Sepanê ji bo rakirinê hilbijêre</string>
+    <string name="empty_favorite">Nayê bikaranîn</string>
+    <string name="confirm_remove_favorite">Ma tu piştrast î ku dixwazî vê sepanê ji favoriyan derxî?</string>
     <!-- Accessibility/Help Strings -->
     <string name="accessibility_service_name">Rajeyên çalakiyê yên MultiLauncher</string>
     <string name="accessibility_service_why_we_need">Çima pêwistiya me bi mafê gihîştinê heye</string>
@@ -310,14 +310,14 @@
     <string name="reset">Ji nû ve saz bike</string>
     <string name="cancel">Têk bibe</string>
     <string name="save">Tomar bike</string>
-    <string name="shortcut_add_title">Add shortcut</string>
-    <string name="shortcut_add">Add</string>
-    <string name="shortcut_name">Name</string>
-    <string name="shortcut_added">Shortcut added</string>
-    <string name="shortcut_removed">Shortcut removed</string>
-    <string name="shortcut_launch_failed">Unable to launch shortcut</string>
-    <string name="shortcut_type_web">Web shortcut · %1$s</string>
-    <string name="shortcut_type_app">Shortcut · %1$s</string>
+    <string name="shortcut_add_title">Kurterêyê lê zêde bike</string>
+    <string name="shortcut_add">Zêde bike</string>
+    <string name="shortcut_name">Nav</string>
+    <string name="shortcut_added">Kurteya nû hate zêdekirin</string>
+    <string name="shortcut_removed">Kurteya rakirî</string>
+    <string name="shortcut_launch_failed">Kurteya rê napeyî</string>
+    <string name="shortcut_type_web">Kurteya malperê · %1$s</string>
+    <string name="shortcut_type_app">Kurte · %1$s</string>
     <string name="disabled">Neçalakkirî</string>
     <string name="open">Veke</string>
     <string name="close">Bigire</string>
@@ -325,15 +325,15 @@
     <string name="start">Dest pê bike</string>
     <string name="copy">Jê bigire</string>
     <string name="none">Ne yek</string>
-    <string name="celsius">Celsius</string>
-    <string name="fahrenheit">Fahrenheit</string>
+    <string name="celsius">Sêlsiyus</string>
+    <string name="fahrenheit">Farenhayt</string>
     <string name="home_button_phone">Telefon</string>
     <string name="home_button_messages">Peyam</string>
     <string name="home_button_camera">Kamera</string>
     <string name="home_button_photos">Wêne</string>
     <string name="home_button_web">Tevn</string>
     <string name="home_button_settings">Sazkarî</string>
-    <string name="home_button_logo">Logo</string>
+    <string name="home_button_logo">Nîşan</string>
     <string name="applist_button_web">Tevn</string>
     <string name="applist_button_contacts">Têkilî</string>
     <string name="allow">Mafê bide</string>
@@ -390,7 +390,7 @@
         <item>Karên malê</item>
         <item>Afirîner</item>
         <item>Şahî</item>
-        <item></item>
+        <item>Karûbar</item>
         <item>Fînans</item>
         <item>Spor</item>
         <item>Armanc</item>
