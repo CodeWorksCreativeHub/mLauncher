@@ -76,6 +76,7 @@
     <string name="show_date">Datum weergeven</string>
     <string name="show_day_of_year">Toon de dag van het jaar</string>
     <string name="show_alarm">Alarm weergeven</string>
+    <string name="show_alarm_date">Show Alarm Date</string>
     <string name="alarm_settings">Alarm</string>
     <string name="bedtime_start_time">Bedtijd aanvangstijd</string>
     <string name="bedtime_end_time">Bedtijd Eindtijd</string>
