@@ -76,6 +76,7 @@
     <string name="show_date">Zobraziť dátum</string>
     <string name="show_day_of_year">Zobraziť deň v roku</string>
     <string name="show_alarm">Zobraziť budík</string>
+    <string name="show_alarm_date">Show Alarm Date</string>
     <string name="alarm_settings">Budík</string>
     <string name="bedtime_start_time">Čas začiatku večerky</string>
     <string name="bedtime_end_time">Čas ukončenia večerky</string>
