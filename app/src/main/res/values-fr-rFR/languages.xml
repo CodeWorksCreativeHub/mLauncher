@@ -2,7 +2,7 @@
 <resources>
     <string name="lang_arabic">Arabe</string>
     <string name="lang_chinese">Chinois</string>
-    <string name="lang_dutch">Néerlandais</string>
+    <string name="lang_dutch">néerlandais</string>
     <string name="lang_czech">tchèque</string>
     <string name="lang_english">anglais</string>
     <string name="lang_french">français</string>
@@ -18,6 +18,6 @@
     <string name="lang_russian">Russe</string>
     <string name="lang_slovak">slovaque</string>
     <string name="lang_spanish">espagnol</string>
-    <string name="lang_thai">thaïlandais</string>
-    <string name="lang_turkish">turc</string>
+    <string name="lang_thai">thaï</string>
+    <string name="lang_turkish">Turc</string>
 </resources>
