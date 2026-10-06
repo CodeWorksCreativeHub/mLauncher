@@ -17,6 +17,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 ### :globe_with_meridians: Localization:
 
+* Updated Language Files. ([#1113](https://github.com/CodeWorksCreativeHub/mLauncher/pull/1113)) ([1de3a029](https://github.com/CodeWorksCreativeHub/mLauncher/commit/1de3a029))
 * Updated Language Files. ([#1112](https://github.com/CodeWorksCreativeHub/mLauncher/pull/1112)) ([d80d14e2](https://github.com/CodeWorksCreativeHub/mLauncher/commit/d80d14e2))
 * Updated Language Files. ([#1107](https://github.com/CodeWorksCreativeHub/mLauncher/pull/1107)) ([580a6950](https://github.com/CodeWorksCreativeHub/mLauncher/commit/580a6950))
 
