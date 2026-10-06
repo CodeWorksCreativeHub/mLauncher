@@ -76,7 +76,7 @@
     <string name="show_date">Pokaż datę</string>
     <string name="show_day_of_year">Pokaż dzień roku</string>
     <string name="show_alarm">Pokaż alarm</string>
-    <string name="show_alarm_date">Show Alarm Date</string>
+    <string name="show_alarm_date">Pokaż datę alarmu</string>
     <string name="alarm_settings">Alarm</string>
     <string name="bedtime_start_time">Czas rozpoczęcia snu</string>
     <string name="bedtime_end_time">Czas zakończenia snu</string>
@@ -199,14 +199,14 @@
     <string name="advanced_settings_theme_description">Dostosuj motywy do swoich potrzeb.</string>
     <string name="advanced_settings_theme_download">Pobierać</string>
     <string name="advanced_settings_theme_export">Eksport</string>
-    <string name="advanced_settings_theme_import">Import</string>
+    <string name="advanced_settings_theme_import">Importuj</string>
     <string name="advanced_settings_theme_clear">Jasne</string>
     <string name="advanced_settings_theme_clear_title">Zresetuj motyw</string>
     <string name="advanced_settings_theme_clear_description">Czy na pewno chcesz zresetować wszystkie ustawienia motywu?</string>
     <string name="advanced_settings_wotd_title">Słowo dnia</string>
     <string name="advanced_settings_wotd_description">Importuj niestandardową listę Słów dnia.</string>
     <string name="advanced_settings_wotd_download">Pobierać</string>
-    <string name="advanced_settings_wotd_import">Import</string>
+    <string name="advanced_settings_wotd_import">Importuj</string>
     <string name="advanced_settings_wotd_clear">Jasne</string>
     <string name="advanced_settings_wotd_clear_title">Zresetuj Słowo Dnia</string>
     <string name="advanced_settings_wotd_clear_description">Czy na pewno chcesz zresetować tablicę Słowa Dnia?</string>
