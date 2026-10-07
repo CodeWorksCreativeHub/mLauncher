@@ -908,6 +908,11 @@ class Prefs(val context: Context) {
         prefsNormal.edit { putString("${appPackage}_ALIAS", appAlias) }
     }
 
+    /** The name to show for [app]: the alias the user gave it, or its own label. */
+    fun getAppDisplayName(app: AppListItem): String {
+        return getAppAlias(app.settingsKey).takeIf { it.isNotBlank() } ?: app.activityLabel
+    }
+
     fun setProfileCounter(profile: String, counter: Int) {
         prefsNormal.edit { putInt(profile, counter) }
     }

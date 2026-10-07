@@ -48,7 +48,7 @@ class HomeAppsWidgetProvider : AppWidgetProvider() {
                 } catch (_: Exception) {
                     appModel.activityLabel
                 }.let { label ->
-                    if (appModel.isShortcut) prefs.getAppAlias(appModel.settingsKey).ifBlank { label } else label
+                    prefs.getAppAlias(appModel.settingsKey).ifBlank { label }
                 }
 
                 // --- Get icon safely ---
