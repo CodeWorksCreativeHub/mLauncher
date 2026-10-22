@@ -13,6 +13,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 ### :bug: Bug Fixes:
 
+* Show app alias on home screen, favorites and widget ([#1115](https://github.com/CodeWorksCreativeHub/mLauncher/pull/1115)) ([345a66c6](https://github.com/CodeWorksCreativeHub/mLauncher/commit/345a66c6))
 * Fix A-Z sidebar positioning for filtered lists ([2af0862a](https://github.com/CodeWorksCreativeHub/mLauncher/commit/2af0862a))
 
 ### :globe_with_meridians: Localization:
