@@ -857,7 +857,7 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
                     // Set properties of existingAppView
                     textSize = prefs.appSize.toFloat()
                     id = i
-                    text = prefs.getHomeAppModel(i).activityLabel
+                    text = prefs.getAppDisplayName(prefs.getHomeAppModel(i))
                     getHomeAppsGestureListener()
                     setOnClickListener(this@HomeFragment)
                     if (!prefs.extendHomeAppsArea) {
@@ -1042,7 +1042,7 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
                     text = if (homeApp.activityPackage.isBlank()) {
                         getLocalizedString(R.string.select_app)
                     } else {
-                        prefs.getAppAlias(homeApp.settingsKey).takeIf { it.isNotBlank() } ?: homeApp.activityLabel
+                        prefs.getAppDisplayName(homeApp)
                     }
 
                     getHomeAppsGestureListener()
@@ -1138,7 +1138,7 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
 
                                 this.text = if (count > 0) {
                                     val circledNumber = getCircledDigit(count)
-                                    val newText = "${appModel.activityLabel} $circledNumber"
+                                    val newText = "${prefs.getAppDisplayName(appModel)} $circledNumber"
                                     val spannable = SpannableString(newText)
 
                                     val start = newText.indexOf(circledNumber)
@@ -1168,7 +1168,7 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
 
                                     spannable
                                 } else {
-                                    appModel.activityLabel
+                                    prefs.getAppDisplayName(appModel)
                                 }
 
                                 AppLogger.d("HomeFragment", "Notification count updated for $packageName: $count")
