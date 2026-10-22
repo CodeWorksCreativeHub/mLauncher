@@ -37,7 +37,7 @@ class FavoriteAdapter(
         val appItem = apps[position]
 
         // Set the label text from the app item
-        holder.appTextView.text = appItem.activityLabel
+        holder.appTextView.text = prefs.getAppDisplayName(appItem)
 
         // Set the text size and color dynamically using prefs
         holder.appTextView.setTextColor(prefs.appColor)  // Get color from prefs
