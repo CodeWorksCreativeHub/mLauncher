@@ -510,7 +510,11 @@ class WidgetFragment : Fragment() {
                 putExtra(AppWidgetManager.EXTRA_APPWIDGET_PROVIDER, widgetInfo.provider)
             }
 
-            (requireActivity() as WidgetActivity).launchWidgetPermission(intent) { resultCode, returnedId, _ ->
+            val widgetActivity = activity as? WidgetActivity ?: run {
+                AppLogger.w(TAG, "⚠️ Host is not WidgetActivity, cannot request widget permission")
+                return
+            }
+            widgetActivity.launchWidgetPermission(intent) { resultCode, returnedId, _ ->
                 handleWidgetResult(resultCode, returnedId)
             }
         }
@@ -577,11 +581,17 @@ class WidgetFragment : Fragment() {
 
 
     fun createWidgetWrapperSafe(widgetInfo: AppWidgetProviderInfo, appWidgetId: Int) {
-        if (!isAdded) {
-            AppLogger.w(TAG, "⚠️ Skipping widget creation, fragment not attached")
+        // isAdded can stay true after the view is destroyed, and `binding` throws once it is gone
+        if (!isAdded || !isViewCreated()) {
+            AppLogger.w(TAG, "⚠️ Skipping widget creation, fragment not attached or view destroyed")
             return
         }
         binding.widgetGrid.post {
+            // The view may be destroyed between posting and running this
+            if (!isAdded || !isViewCreated()) {
+                AppLogger.w(TAG, "⚠️ Skipping queued widget creation, view destroyed")
+                return@post
+            }
             createWidgetWrapper(widgetInfo, appWidgetId)
         }
     }
