@@ -17,6 +17,7 @@ const commitParsers = [
 	{ message: /^chore\(pull\)/i, skip: true },
 	{ message: /^fixes/i, skip: true },
 	{ message: /^build/i, skip: true },
+	{ message: /^chore/i, skip: true },
 
 	// Skip all CI-scoped commits
 	{ message: /^(ci|changelog)(:|$)|^[a-z]+\((ci|changelog)\)(:|$)/i, skip: true },
