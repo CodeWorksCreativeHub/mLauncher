@@ -69,7 +69,7 @@ class WidgetFragment : Fragment() {
     companion object {
         private const val TAG = "WidgetFragment"
         private val APP_WIDGET_HOST_ID = getLocalizedString(R.string.app_name).hashCode().absoluteValue
-        private const val GRID_COLUMNS = 14
+        private const val GRID_COLUMNS = 6
         private const val CELL_MARGIN = 16
 
         // Minimum cell count per widget
@@ -288,11 +288,8 @@ class WidgetFragment : Fragment() {
             isEditingWidgets = !isEditingWidgets
 
             if (isEditingWidgets) {
-                // Add a visible border to the widget grid
-                val border = GradientDrawable().apply {
-                    setStroke(4, "#FFF5A97F".toColorInt())
-                }
-                binding.widgetGrid.background = border
+                // Outline every grid cell so widgets can be lined up
+                binding.widgetGrid.background = GridCellsDrawable(GRID_COLUMNS, CELL_MARGIN, "#88F5A97F".toColorInt())
             } else {
                 // Remove the border
                 binding.widgetGrid.background = null
@@ -544,7 +541,8 @@ class WidgetFragment : Fragment() {
                 return
             }
             widgetActivity.launchWidgetPermission(intent) { resultCode, returnedId, _ ->
-                handleWidgetResult(resultCode, returnedId)
+                // Use the ID we allocated: config screens often return no ID, so returnedId is -1
+                handleWidgetResult(resultCode, widgetId)
             }
         }
     }
@@ -575,15 +573,11 @@ class WidgetFragment : Fragment() {
             }
 
             (activity as? WidgetActivity)?.let { widgetActivity ->
-                widgetActivity.launchWidgetPermission(intent) { resultCode, returnedId, _ ->
-                    if (resultCode == Activity.RESULT_OK) {
-                        AppLogger.i(TAG, "✅ Widget configured, creating wrapper: $returnedId")
-                        // Ensure widgetInfo is captured properly in the lambda
-                        widgetActivity.safeCreateWidget(widgetInfo, returnedId)
-                    } else {
-                        AppLogger.w(TAG, "❌ Widget config canceled, removing: $returnedId")
-                        safeRemoveWidget(returnedId)
-                    }
+                // The widget is already bound, so add it whatever the settings screen returns. Some providers
+                // report "canceled" even after saving, and the widget works with its default settings.
+                widgetActivity.launchWidgetPermission(intent) { resultCode, _, _ ->
+                    AppLogger.i(TAG, "⚙️ Config finished with resultCode=$resultCode, adding widget: $widgetId")
+                    widgetActivity.safeCreateWidget(widgetInfo, widgetId)
                 }
             }
         } else {
@@ -597,6 +591,14 @@ class WidgetFragment : Fragment() {
         cellWidth: Int,
         cellHeight: Int
     ): Pair<Int, Int> {
+        // Prefer the provider's suggested size (Android 12+). Its minimum is often a single cell.
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S &&
+            widgetInfo.targetCellWidth > 0 && widgetInfo.targetCellHeight > 0
+        ) {
+            return widgetInfo.targetCellWidth.coerceAtLeast(MIN_CELL_W) to
+                    widgetInfo.targetCellHeight.coerceAtLeast(MIN_CELL_H)
+        }
+
         val cellsW = ceil(widgetInfo.minWidth.toDouble() / (cellWidth + CELL_MARGIN))
             .toInt()
             .coerceAtLeast(MIN_CELL_W)
@@ -879,9 +881,14 @@ class WidgetFragment : Fragment() {
                             saved.cellsH.coerceAtLeast(MIN_CELL_H)
                         )
 
-                        wrapper.translationX = saved.col * (cellWidth + CELL_MARGIN).toFloat()
+                        // Positions and sizes are stored in cells, so they follow the current grid size.
+                        // Clamp the column so a widget saved on a wider grid stays on screen.
+                        val col = saved.col.coerceIn(0, (GRID_COLUMNS - saved.cellsW).coerceAtLeast(0))
+                        val widthPx = saved.cellsW * cellWidth + (saved.cellsW - 1) * CELL_MARGIN
+                        val heightPx = saved.cellsH * cellHeight + (saved.cellsH - 1) * CELL_MARGIN
+                        wrapper.translationX = col * (cellWidth + CELL_MARGIN).toFloat()
                         wrapper.translationY = saved.row * (cellHeight + CELL_MARGIN).toFloat()
-                        wrapper.layoutParams = FrameLayout.LayoutParams(saved.width, saved.height)
+                        wrapper.layoutParams = FrameLayout.LayoutParams(widthPx, heightPx)
 
                         addWrapperSafely(wrapper)
 
