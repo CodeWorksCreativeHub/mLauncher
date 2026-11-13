@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [1.12.3.0 → Unreleased](https://github.com/CodeWorksCreativeHub/mLauncher/tree/main) - In Development
+
+### :bug: Bug Fixes:
+
+* Restore the window's original soft-input mode after renaming ([258bbc7f](https://github.com/CodeWorksCreativeHub/mLauncher/commit/258bbc7f))
+
 ## [1120300 (1.12.3.0) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.12.3.0) - (13, November 2026)
 
 ### :sparkles: Enhancements:
