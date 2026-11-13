@@ -113,9 +113,7 @@ class WidgetFragment : Fragment() {
             val resizeWidget = widgetWrappers.firstOrNull { it.isResizeMode }
             if (resizeWidget != null) {
                 AppLogger.i(TAG, "🔄 Exiting resize mode for widgetId=${resizeWidget.hostView.appWidgetId}")
-                resizeWidget.isResizeMode = false
-                resizeWidget.setHandlesVisible(false)
-                resizeWidget.reloadActivity()
+                resizeWidget.exitResizeMode()
             } else {
                 // Disable this callback so the system default back behavior can run
                 isEnabled = false
@@ -611,6 +609,13 @@ class WidgetFragment : Fragment() {
     }
 
 
+    /** Smallest size a widget can be resized to, from the provider's minimum size */
+    private fun minCells(widgetInfo: AppWidgetProviderInfo, cellWidth: Int, cellHeight: Int): Pair<Int, Int> {
+        val cellsW = ceil(widgetInfo.minWidth.toDouble() / (cellWidth + CELL_MARGIN)).toInt().coerceAtLeast(MIN_CELL_W)
+        val cellsH = ceil(widgetInfo.minHeight.toDouble() / (cellHeight + CELL_MARGIN)).toInt().coerceAtLeast(MIN_CELL_H)
+        return cellsW to cellsH
+    }
+
     fun createWidgetWrapperSafe(widgetInfo: AppWidgetProviderInfo, appWidgetId: Int) {
         // isAdded can stay true after the view is destroyed, and `binding` throws once it is gone
         if (!isAdded || !isViewCreated()) {
@@ -663,7 +668,9 @@ class WidgetFragment : Fragment() {
             return
         }
 
-        AppLogger.d(TAG, "🖼️ Creating wrapper for widgetId=$appWidgetId, provider=${widgetInfo.provider.packageName}")
+        // A new ID may have been allocated above, so the wrapper must use the ID the host view actually has
+        val widgetId = hostView.appWidgetId
+        AppLogger.d(TAG, "🖼️ Creating wrapper for widgetId=$widgetId, provider=${widgetInfo.provider.packageName}")
 
         val cellWidth = (binding.widgetGrid.width - (GRID_COLUMNS - 1) * CELL_MARGIN) / GRID_COLUMNS
         val cellHeight = cellWidth // assuming square cells — adjust if not
@@ -684,11 +691,13 @@ class WidgetFragment : Fragment() {
             widgetInfo,
             appWidgetHost,
             { saveWidgets() },
-            { deleteWidget(appWidgetId) },
+            { deleteWidget(widgetId) },
             GRID_COLUMNS,
             CELL_MARGIN,
             defaultCellsW,
-            defaultCellsH
+            defaultCellsH,
+            minCells(widgetInfo, cellWidth, cellHeight).first,
+            minCells(widgetInfo, cellWidth, cellHeight).second
         )
 
         addWrapperToGrid(wrapper)
@@ -803,8 +812,8 @@ class WidgetFragment : Fragment() {
         val savedList = widgetWrappers.mapIndexed { index, wrapper ->
             val col = ((wrapper.translationX + cellWidth / 2) / (cellWidth + CELL_MARGIN)).toInt().coerceIn(0, GRID_COLUMNS - 1)
             val row = ((wrapper.translationY + cellHeight / 2) / (cellHeight + CELL_MARGIN)).toInt().coerceAtLeast(0)
-            val cellsW = ((wrapper.width + CELL_MARGIN) / (cellWidth + CELL_MARGIN)).coerceAtLeast(wrapper.defaultCellsW)
-            val cellsH = ((wrapper.height + CELL_MARGIN) / (cellHeight + CELL_MARGIN)).coerceAtLeast(wrapper.defaultCellsH)
+            val cellsW = ((wrapper.width + CELL_MARGIN) / (cellWidth + CELL_MARGIN)).coerceAtLeast(wrapper.minCellsW)
+            val cellsH = ((wrapper.height + CELL_MARGIN) / (cellHeight + CELL_MARGIN)).coerceAtLeast(wrapper.minCellsH)
             val widgetWidth = (cellWidth * cellsW).coerceAtLeast(cellWidth)
             val widgetHeight = (cellHeight * cellsH).coerceAtLeast(cellHeight)
 
@@ -813,7 +822,10 @@ class WidgetFragment : Fragment() {
                 "💾 SAVE #$index → id=${wrapper.hostView.appWidgetId} | Pinned -> col=${col}, row=${row} | Size -> width=${wrapper.width}, height=${wrapper.height} | Cells -> width=${cellsW}, height=${cellsH}"
             )
 
-            SavedWidgetEntity(wrapper.hostView.appWidgetId, col, row, widgetWidth, widgetHeight, cellsW, cellsH)
+            SavedWidgetEntity(
+                wrapper.hostView.appWidgetId, col, row, widgetWidth, widgetHeight, cellsW, cellsH,
+                wrapper.widgetInfo.provider.packageName
+            )
         }
 
 
@@ -846,7 +858,21 @@ class WidgetFragment : Fragment() {
                     savedWidgets.forEach { saved ->
                         val info = appWidgetManager.getAppWidgetInfo(saved.appWidgetId)
                         if (info == null) {
-                            // Keep the saved entry: this can fail transiently (e.g. the provider is updating)
+                            // Only drop the entry when its provider is really gone. A null info can also be a
+                            // transient failure (e.g. the provider is updating), and deleting then loses the widget.
+                            val providerGone = saved.providerPackage.isNotEmpty() &&
+                                    appWidgetManager.installedProviders.none {
+                                        it.provider.packageName == saved.providerPackage
+                                    }
+                            if (providerGone) {
+                                AppLogger.w(TAG, "🗑️ Provider ${saved.providerPackage} is gone, removing id=${saved.appWidgetId}")
+                                appWidgetHost.deleteAppWidgetId(saved.appWidgetId)
+                                dbScope.launch {
+                                    dbMutex.withLock { widgetDao.deleteById(saved.appWidgetId) }
+                                }
+                                return@forEach
+                            }
+                            // Otherwise keep the saved entry and skip it for now
                             AppLogger.w(TAG, "⚠️ No AppWidgetInfo for id=${saved.appWidgetId}, skipping for now")
                             return@forEach
                         }
@@ -878,7 +904,9 @@ class WidgetFragment : Fragment() {
                             GRID_COLUMNS,
                             CELL_MARGIN,
                             saved.cellsW.coerceAtLeast(MIN_CELL_W),
-                            saved.cellsH.coerceAtLeast(MIN_CELL_H)
+                            saved.cellsH.coerceAtLeast(MIN_CELL_H),
+                            minCells(info, cellWidth, cellHeight).first,
+                            minCells(info, cellWidth, cellHeight).second
                         )
 
                         // Positions and sizes are stored in cells, so they follow the current grid size.

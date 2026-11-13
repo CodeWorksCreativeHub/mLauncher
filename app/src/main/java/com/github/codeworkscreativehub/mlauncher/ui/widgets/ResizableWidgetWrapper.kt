@@ -38,7 +38,10 @@ class ResizableWidgetWrapper(
     private val gridColumns: Int,
     private val cellMargin: Int,
     val defaultCellsW: Int = 1,
-    val defaultCellsH: Int = 1
+    val defaultCellsH: Int = 1,
+    // Smallest size the user can resize to. Separate from the default, so a widget can shrink below it.
+    val minCellsW: Int = 1,
+    val minCellsH: Int = 1
 ) : FrameLayout(context) {
 
     companion object {
@@ -463,13 +466,15 @@ class ResizableWidgetWrapper(
         val newX = (col * (cellWidth + cellMargin)).coerceIn(0, maxX)
         val newY = (row * (cellHeight + cellMargin)).coerceIn(0, maxY)
 
-        ghostView?.layoutParams = (ghostView?.layoutParams as LayoutParams).apply {
+        // The ghost is removed on touch-up, so a move event can arrive with no ghost or a non-frame layout
+        val ghost = ghostView ?: return
+        ghost.layoutParams = ((ghost.layoutParams as? LayoutParams) ?: LayoutParams(width, height)).apply {
             leftMargin = newX
             topMargin = newY
             width = this@ResizableWidgetWrapper.width
             height = this@ResizableWidgetWrapper.height
         }
-        ghostView?.requestLayout()
+        ghost.requestLayout()
     }
 
     fun snapToGrid() {
@@ -615,9 +620,7 @@ class ResizableWidgetWrapper(
 
         if (isResizeMode) {
             addMenuItem(getLocalizedString(R.string.widgets_exit_resize)) {
-                isResizeMode = false
-                setHandlesVisible(false)
-                reloadActivity()
+                exitResizeMode()
             }
         } else {
             addMenuItem(getLocalizedString(R.string.widgets_resize)) {
@@ -687,27 +690,12 @@ class ResizableWidgetWrapper(
         dialog.show()
     }
 
-    fun reloadActivity() {
-        val activity = context as? Activity ?: return
-
-        val intent = activity.intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-        activity.finish()
-
-        if (android.os.Build.VERSION.SDK_INT >= 34) {
-            activity.overrideActivityTransition(Activity.OVERRIDE_TRANSITION_CLOSE, 0, 0)
-        } else {
-            @Suppress("DEPRECATION")
-            activity.overridePendingTransition(0, 0)
-        }
-
-        activity.startActivity(intent)
-
-        if (android.os.Build.VERSION.SDK_INT >= 34) {
-            activity.overrideActivityTransition(Activity.OVERRIDE_TRANSITION_OPEN, 0, 0)
-        } else {
-            @Suppress("DEPRECATION")
-            activity.overridePendingTransition(0, 0)
-        }
+    /** Leave resize mode and re-fit the widget in place. Saves the new size. */
+    fun exitResizeMode() {
+        isResizeMode = false
+        setHandlesVisible(false)
+        fillHostView(width, height)
+        onUpdate()
     }
 
     override fun onInterceptTouchEvent(ev: MotionEvent?): Boolean {

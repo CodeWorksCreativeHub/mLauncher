@@ -29,6 +29,7 @@ class WidgetActivity : AppCompatActivity() {
     private lateinit var widgetPermissionLauncher: ActivityResultLauncher<Intent>
     private var widgetResultCallback: ((Int, Int, Intent?) -> Unit)? = null
     private val pendingWidgets = mutableListOf<Pair<AppWidgetProviderInfo, Int>>()
+    private var awaitingViewForFlush = false
 
     // ───────────────────────────────────────────────
     // Lifecycle
@@ -64,7 +65,10 @@ class WidgetActivity : AppCompatActivity() {
         widgetPermissionLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 AppLogger.v(TAG, "🎬 Received ActivityResult: resultCode=${result.resultCode}, data=${result.data}")
-                widgetResultCallback?.invoke(
+                // Clear before invoking: the callback may launch another step that sets a new callback
+                val callback = widgetResultCallback
+                widgetResultCallback = null
+                callback?.invoke(
                     result.resultCode,
                     result.data?.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, -1) ?: -1,
                     result.data
@@ -129,7 +133,8 @@ class WidgetActivity : AppCompatActivity() {
 
         val fragment = supportFragmentManager.findFragmentById(R.id.mainActivityLayout) as? WidgetFragment
 
-        if (fragment != null && fragment.isAdded) {
+        // Queue unless the view exists: a widget created while the view is gone would otherwise be dropped
+        if (fragment != null && fragment.isAdded && fragment.isViewCreated()) {
             AppLogger.i(TAG, "✅ WidgetFragment is attached, creating widget wrapper immediately")
             fragment.createWidgetWrapperSafe(widgetInfo, appWidgetId)
         } else {
@@ -156,12 +161,15 @@ class WidgetActivity : AppCompatActivity() {
         if (!fragment.isAdded || !fragment.isViewCreated()) {
             AppLogger.w(TAG, "⚠️ Fragment not ready, will retry when view is created")
 
-            // Observe the fragment's view lifecycle owner
+            // Observe the fragment's view lifecycle once; repeated calls would stack observers
+            if (awaitingViewForFlush) return
+            awaitingViewForFlush = true
             fragment.viewLifecycleOwnerLiveData.observe(this) { owner ->
                 owner?.lifecycle?.addObserver(object : androidx.lifecycle.DefaultLifecycleObserver {
                     override fun onCreate(owner: androidx.lifecycle.LifecycleOwner) {
                         owner.lifecycle.removeObserver(this)
                         AppLogger.i(TAG, "✅ Fragment view is now created, retrying flush")
+                        awaitingViewForFlush = false
                         flushPendingWidgets() // Retry
                     }
                 })
