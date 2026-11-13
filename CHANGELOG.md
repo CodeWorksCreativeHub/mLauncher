@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
-## [1120300 (1.12.3.0) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.12.3.0) - (13, November 2026)
+## [1.12.3.0](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.12.3.0) - (13, November 2026)
 
 ### :sparkles: Enhancements:
 
@@ -32,7 +32,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 * Bump patch version to 1.12.3 ([083fe469](https://github.com/CodeWorksCreativeHub/mLauncher/commit/083fe469))
 
-## [1120200 (1.12.2.0) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.12.2.0) - (02, October 2026)
+## [1.12.2.0](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.12.2.0) - (02, October 2026)
 
 ### :sparkles: Enhancements:
 
@@ -52,7 +52,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 * Updated Language Files. ([#1105](https://github.com/CodeWorksCreativeHub/mLauncher/pull/1105)) ([a32529ed](https://github.com/CodeWorksCreativeHub/mLauncher/commit/a32529ed))
 
-## [1120001 (1.12.0.1) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.12.0.1) - (30, August 2026)
+## [1.12.0.1](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.12.0.1) - (30, August 2026)
 
 ### :sparkles: Enhancements:
 
@@ -83,7 +83,7 @@ All notable changes to this project will be documented in this file. See [conven
 * enable translation and reorganize favorite management strings ([1f0e70fc](https://github.com/CodeWorksCreativeHub/mLauncher/commit/1f0e70fc))
 * configure commit message template ([cd11e8d2](https://github.com/CodeWorksCreativeHub/mLauncher/commit/cd11e8d2))
 
-## [1120000 (1.12.0.0) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.12.0.0) - (11, June 2026)
+## [1.12.0.0](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.12.0.0) - (11, June 2026)
 
 ### :sparkles: Enhancements:
 
@@ -103,7 +103,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 * Updated Language Files. ([#1049](https://github.com/CodeWorksCreativeHub/mLauncher/pull/1049)) ([d29baf00](https://github.com/CodeWorksCreativeHub/mLauncher/commit/d29baf00))
 
-## [1110403 (1.11.4.3) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.4.3) - (21, April 2026)
+## [1.11.4.3](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.4.3) - (21, April 2026)
 
 ### :sparkles: Enhancements:
 
@@ -124,14 +124,14 @@ All notable changes to this project will be documented in this file. See [conven
 
 * Revert "Add Kurmanji Kurdish translation ([#1029](https://github.com/CodeWorksCreativeHub/mLauncher/pull/1029))" ([#1033](https://github.com/CodeWorksCreativeHub/mLauncher/pull/1033)) ([cb0b6a16](https://github.com/CodeWorksCreativeHub/mLauncher/commit/cb0b6a16))
 
-## [1110402 (1.11.4.2) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.4.2) - (16, February 2026)
+## [1.11.4.2](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.4.2) - (16, February 2026)
 
 ### :sparkles: Enhancements:
 
 * Prioritize app aliases for none fuzzy search ([fe592f71](https://github.com/CodeWorksCreativeHub/mLauncher/commit/fe592f71))
 * Prioritize app aliases for fuzzy search only ([ed61269a](https://github.com/CodeWorksCreativeHub/mLauncher/commit/ed61269a))
 
-## [1110305 (1.11.3.5) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.3.5) - (03, February 2026)
+## [1.11.3.5](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.3.5) - (03, February 2026)
 
 ### :sparkles: Enhancements:
 
@@ -150,7 +150,7 @@ All notable changes to this project will be documented in this file. See [conven
 * Refactor settings font and icon sizing logic ([f70b7d67](https://github.com/CodeWorksCreativeHub/mLauncher/commit/f70b7d67))
 * Refactor BatteryReceiver to improve reliability and efficiency ([99345c31](https://github.com/CodeWorksCreativeHub/mLauncher/commit/99345c31))
 
-## [1110304 (1.11.3.4) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.3.4) - (13, January 2026)
+## [1.11.3.4](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.3.4) - (13, January 2026)
 
 ### :sparkles: Enhancements:
 
@@ -175,7 +175,7 @@ All notable changes to this project will be documented in this file. See [conven
 * Remove redundant theme logic in SettingsFragment ([f2ea3277](https://github.com/CodeWorksCreativeHub/mLauncher/commit/f2ea3277))
 * Improve app drawer context menu and keyboard behavior ([e09b4411](https://github.com/CodeWorksCreativeHub/mLauncher/commit/e09b4411))
 
-## [1110303 (1.11.3.3) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.3.3) - (06, January 2026)
+## [1.11.3.3](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.11.3.3) - (06, January 2026)
 
 ### :sparkles: Enhancements:
 
