@@ -70,6 +70,28 @@ class AppDrawerAdapter(
     private lateinit var prefs: Prefs
     private var appFilter = createAppFilter()
     private var openedContextMenuPosition = RecyclerView.NO_POSITION
+
+    // Settings key of the entry whose rename panel is open. Tracked by key (not position) so the
+    // panel survives rebinds caused by the IME resizing the list.
+    private var renamingKey: String? = null
+        set(value) {
+            if (field == value) return
+            field = value
+            // While renaming, pan the window instead of resizing it when the keyboard opens. A resize
+            // makes the list relayout and drop focus from the rename field; panning leaves the list alone.
+            val adjust = if (value != null) {
+                android.view.WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN
+            } else {
+                android.view.WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE
+            }
+            fragment.activity?.window?.setSoftInputMode(
+                adjust or android.view.WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN
+            )
+        }
+
+    // Entry for which the keyboard has already been re-shown after the list rebound. Limited to once per
+    // rename session so a resize-triggered focus loss can't cause a show/hide loop.
+    private var renameAutoFocusKey: String? = null
     var appsList: MutableList<AppListItem> = mutableListOf()
     var appFilteredList: MutableList<AppListItem> = mutableListOf()
     private lateinit var binding: AdapterAppDrawerBinding
@@ -162,6 +184,7 @@ class AppDrawerAdapter(
         }
 
         holder.appSaveRename.setOnClickListener {
+            renamingKey = null
             val currentText = holder.appRenameEdit.text.toString().trim()
 
             when {
@@ -181,6 +204,7 @@ class AppDrawerAdapter(
         }
 
         holder.appSaveCancel.setOnClickListener {
+            renamingKey = null
             AppLogger.d("AppListDebug", "✏️ Cancel rename for ${appModel.activityPackage}")
 
             notifyItemChanged(holder.absoluteAdapterPosition)
@@ -303,6 +327,10 @@ class AppDrawerAdapter(
         private val appInfo: TextView = itemView.appInfo
         private val appDelete: TextView = itemView.appDelete
 
+        // Settings key of the entry this row's rename EditText currently holds text for. Recycled rows can
+        // still contain another entry's text, so typed text is only kept for the same entry.
+        private var renameEditKey: String? = null
+
         @SuppressLint("RtlHardcoded", "NewApi")
         fun bind(
             flag: AppDrawerFlag,
@@ -321,11 +349,22 @@ class AppDrawerAdapter(
             // ----------------------------
             // 1️⃣ Hide optional layouts (state-driven)
             appHideLayout.isVisible = absoluteAdapterPosition == openedContextMenuPosition
-            appRenameLayout.isVisible = false
             appTagLayout.isVisible = false
 
             val packageName = appListItem.activityPackage
             val settingsKey = appListItem.settingsKey
+
+            // Keep the rename panel open (and its typed text) across rebinds while it is being edited
+            val isRenaming = renamingKey != null && renamingKey == settingsKey
+            appRenameLayout.isVisible = isRenaming
+            if (isRenaming) appHideLayout.isVisible = false
+
+            // The list rebinds when the keyboard resizes it, which drops focus from the rename field.
+            // Bring the keyboard back once so the user doesn't have to tap the field again.
+            if (isRenaming && renameAutoFocusKey != settingsKey) {
+                renameAutoFocusKey = settingsKey
+                if (!appRenameEdit.hasFocus()) appRenameEdit.post { appRenameEdit.showKeyboard() }
+            }
 
             // ----------------------------
             // 2️⃣ Precompute lock/pin/hide state
@@ -373,6 +412,8 @@ class AppDrawerAdapter(
             appRename.apply {
                 isVisible = contextMenuFlags[3]
                 setOnClickListener {
+                    this@AppDrawerAdapter.renamingKey = settingsKey
+                    this@AppDrawerAdapter.renameAutoFocusKey = null
                     appRenameEdit.hint = appListItem.activityLabel
                     appRenameLayout.isVisible = true
                     appHideLayout.isVisible = false
@@ -393,10 +434,14 @@ class AppDrawerAdapter(
             }
 
             appRenameEdit.apply {
-                val activityLabel = prefs.getAppAlias(settingsKey).takeIf { it.isNotBlank() }
-                    ?: appListItem.activityLabel
+                // Keep typed text only if this row is still editing this same entry
+                if (!(isRenaming && renameEditKey == settingsKey)) {
+                    val activityLabel = prefs.getAppAlias(settingsKey).takeIf { it.isNotBlank() }
+                        ?: appListItem.activityLabel
 
-                text = Editable.Factory.getInstance().newEditable(activityLabel)
+                    text = Editable.Factory.getInstance().newEditable(activityLabel)
+                }
+                renameEditKey = settingsKey
             }
 
             appTagEdit.apply {
@@ -476,7 +521,8 @@ class AppDrawerAdapter(
                             appDelete.alpha = if (!appListItem.isShortcut && context.isSystemApp(packageName)) 0.3f else 1f
                             val currentPos = absoluteAdapterPosition
 
-                            // Close previously opened menu
+                            // Close previously opened menu (and any rename panel)
+                            renamingKey = null
                             if (openedContextMenuPosition != RecyclerView.NO_POSITION &&
                                 openedContextMenuPosition != currentPos
                             ) {
@@ -557,7 +603,11 @@ class AppDrawerAdapter(
         }
     }
 
+    val isContextMenuOpen: Boolean
+        get() = openedContextMenuPosition != RecyclerView.NO_POSITION
+
     fun closeOpenedMenu() {
+        renamingKey = null
         if (openedContextMenuPosition != RecyclerView.NO_POSITION) {
             val oldPosition = openedContextMenuPosition
             openedContextMenuPosition = RecyclerView.NO_POSITION

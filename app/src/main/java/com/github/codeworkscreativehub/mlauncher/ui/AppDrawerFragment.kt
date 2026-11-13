@@ -320,9 +320,12 @@ class AppDrawerFragment : BaseFragment() {
 
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
-                appAdapter?.closeOpenedMenu()
                 when (newState) {
                     RecyclerView.SCROLL_STATE_DRAGGING -> {
+                        // Only close the context menu on a user-initiated scroll. Programmatic
+                        // scrolls (e.g. the RecyclerView scrolling a focused rename field into view
+                        // when the IME opens on bottom-half items) must not dismiss it.
+                        appAdapter?.closeOpenedMenu()
                         onTop = !recyclerView.canScrollVertically(-1)
                         if (onTop) {
                             if (requireContext().hasSoftKeyboard()) {
@@ -335,12 +338,15 @@ class AppDrawerFragment : BaseFragment() {
                     }
 
                     RecyclerView.SCROLL_STATE_IDLE -> {
+                        // While a rename/tag panel is open, the search bar must not take focus or
+                        // hide the IME, or the rename field loses its input and the panel is lost.
+                        val menuOpen = appAdapter?.isContextMenuOpen == true
                         if (!recyclerView.canScrollVertically(1)) {
-                            binding.search.hideKeyboard()
+                            if (!menuOpen) binding.search.hideKeyboard()
                         } else if (!recyclerView.canScrollVertically(-1)) {
                             if (onTop) {
                                 findNavController().popBackStack()
-                            } else {
+                            } else if (!menuOpen) {
                                 if (requireContext().hasSoftKeyboard()) {
                                     binding.search.showKeyboard()
                                 }
