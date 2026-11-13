@@ -13,6 +13,7 @@ All notable changes to this project will be documented in this file. See [conven
 
 ### :bug: Bug Fixes:
 
+* Add widgets that need settings, use larger cells, outline grid in edit mode ([5aed5797](https://github.com/CodeWorksCreativeHub/mLauncher/commit/5aed5797))
 * Stop widgets disappearing, reloading and reappearing ([a73a61e4](https://github.com/CodeWorksCreativeHub/mLauncher/commit/a73a61e4))
 * Guard widget creation against a destroyed view ([6ce6b382](https://github.com/CodeWorksCreativeHub/mLauncher/commit/6ce6b382))
 * Keep rename panel open and focused when editing bottom-half entries ([fe03b1de](https://github.com/CodeWorksCreativeHub/mLauncher/commit/fe03b1de))
