@@ -39,6 +39,9 @@ import com.github.codeworkscreativehub.mlauncher.databinding.FragmentWidgetBindi
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import kotlin.math.absoluteValue
 import kotlin.math.ceil
 
@@ -51,6 +54,9 @@ data class AppWidgetGroup(
 class WidgetFragment : Fragment() {
 
     private lateinit var prefs: Prefs
+
+    // True once widgets have been restored for the current view, so resuming doesn't rebuild them all
+    private var widgetsRestored = false
 
     private var _binding: FragmentWidgetBinding? = null
     private val binding get() = _binding!!
@@ -69,6 +75,15 @@ class WidgetFragment : Fragment() {
         // Minimum cell count per widget
         private const val MIN_CELL_W = 2
         private const val MIN_CELL_H = 1
+
+        // All widget DB writes go through this scope. A single thread plus the mutex means writes run in
+        // the order they were queued, so a save can't re-insert a widget whose delete was queued after it.
+        private val dbScope = CoroutineScope(SupervisorJob() + Dispatchers.IO.limitedParallelism(1))
+        private val dbMutex = Mutex()
+
+        // Orphan cleanup runs once per process, so it can't race with a widget that is being added
+        @Volatile
+        private var orphanCleanupDone = false
 
         var isEditingWidgets: Boolean = false
     }
@@ -163,21 +178,33 @@ class WidgetFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        restoreWidgets()
-        AppLogger.i(TAG, "🔄 WidgetFragment onResume, widgets restored")
+        // Restore once per view. The grid already reflects adds and removes since then, and rebuilding
+        // every widget on each resume reloads them.
+        if (!widgetsRestored) {
+            widgetsRestored = true
+            restoreWidgets()
+        }
+        AppLogger.i(TAG, "🔄 WidgetFragment onResume")
         updateEmptyPlaceholder(widgetWrappers)
     }
 
     fun cleanupOrphanedWidgets() {
-        CoroutineScope(Dispatchers.IO).launch {
-            // Get the list of all saved widget IDs from your database
-            val savedIds = widgetDao.getAll().map { it.appWidgetId }.toSet()
+        if (orphanCleanupDone) return
+        orphanCleanupDone = true
 
-            val allocatedIds = appWidgetHost.appWidgetIds
-            for (id in allocatedIds) {
-                if (id !in savedIds) {
-                    appWidgetHost.deleteAppWidgetId(id)
-                    AppLogger.i(TAG, "🗑️ Deleted orphaned widgetId=$id")
+        // Widgets on screen or queued to show aren't orphans, even if they aren't saved yet
+        val liveIds = (widgetWrappers.map { it.hostView.appWidgetId } + pendingWidgetsList.map { it.second }).toSet()
+
+        dbScope.launch {
+            dbMutex.withLock {
+                val savedIds = widgetDao.getAll().map { it.appWidgetId }.toSet()
+
+                val allocatedIds = appWidgetHost.appWidgetIds
+                for (id in allocatedIds) {
+                    if (id !in savedIds && id !in liveIds) {
+                        appWidgetHost.deleteAppWidgetId(id)
+                        AppLogger.i(TAG, "🗑️ Deleted orphaned widgetId=$id")
+                    }
                 }
             }
         }
@@ -313,15 +340,17 @@ class WidgetFragment : Fragment() {
         }
 
         // 3️⃣ Delete from database + log how many remain
-        CoroutineScope(Dispatchers.IO).launch {
-            try {
-                widgetDao.deleteById(widgetId)
-                AppLogger.d(TAG, "🗑️ Deleted widgetId=$widgetId from DB")
+        dbScope.launch {
+            dbMutex.withLock {
+                try {
+                    widgetDao.deleteById(widgetId)
+                    AppLogger.d(TAG, "🗑️ Deleted widgetId=$widgetId from DB")
 
-                val remainingCount = widgetDao.getAll().size
-                AppLogger.i(TAG, "📊 Widgets remaining in DB: $remainingCount")
-            } catch (e: Exception) {
-                AppLogger.e(TAG, "⚠️ Failed to delete or count widgets", e)
+                    val remainingCount = widgetDao.getAll().size
+                    AppLogger.i(TAG, "📊 Widgets remaining in DB: $remainingCount")
+                } catch (e: Exception) {
+                    AppLogger.e(TAG, "⚠️ Failed to delete or count widgets", e)
+                }
             }
         }
     }
@@ -786,9 +815,11 @@ class WidgetFragment : Fragment() {
         }
 
 
-        // Save asynchronously
-        lifecycleScope.launch {
-            widgetDao.insertAll(savedList)
+        // Snapshot taken now; the write is queued behind any delete queued before it
+        dbScope.launch {
+            dbMutex.withLock {
+                widgetDao.insertAll(savedList)
+            }
             AppLogger.i(TAG, "💾 Widgets saved to Room: ${savedList.size}")
         }
     }
@@ -813,8 +844,8 @@ class WidgetFragment : Fragment() {
                     savedWidgets.forEach { saved ->
                         val info = appWidgetManager.getAppWidgetInfo(saved.appWidgetId)
                         if (info == null) {
-                            AppLogger.e(TAG, "❌ No AppWidgetInfo for id=${saved.appWidgetId}, removing")
-                            safeRemoveWidget(saved.appWidgetId)
+                            // Keep the saved entry: this can fail transiently (e.g. the provider is updating)
+                            AppLogger.w(TAG, "⚠️ No AppWidgetInfo for id=${saved.appWidgetId}, skipping for now")
                             return@forEach
                         }
 
@@ -830,8 +861,8 @@ class WidgetFragment : Fragment() {
 
                             appWidgetHost.createView(widgetContext, saved.appWidgetId, info)
                         } catch (e: Exception) {
-                            AppLogger.e(TAG, "⚠️ Failed to restore widgetId=${saved.appWidgetId}, removing", e)
-                            safeRemoveWidget(saved.appWidgetId)
+                            // Keep the saved entry so a transient failure doesn't delete the widget for good
+                            AppLogger.e(TAG, "⚠️ Failed to restore widgetId=${saved.appWidgetId}, skipping for now", e)
                             return@forEach
                         }
 
@@ -936,6 +967,11 @@ class WidgetFragment : Fragment() {
             appWidgetHost.startListening()
             AppLogger.i(TAG, "🟢 Initialized AppWidgetHost")
         }
+    }
+
+    override fun onDestroyView() {
+        widgetsRestored = false
+        super.onDestroyView()
     }
 
     override fun onDestroy() {
