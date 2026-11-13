@@ -34,10 +34,6 @@ All notable changes to this project will be documented in this file. See [conven
 * Updated Language Files. ([#1112](https://github.com/CodeWorksCreativeHub/mLauncher/pull/1112)) ([d80d14e2](https://github.com/CodeWorksCreativeHub/mLauncher/commit/d80d14e2))
 * Updated Language Files. ([#1107](https://github.com/CodeWorksCreativeHub/mLauncher/pull/1107)) ([580a6950](https://github.com/CodeWorksCreativeHub/mLauncher/commit/580a6950))
 
-### :broom: Maintenance & Cleanup:
-
-* Bump patch version to 1.12.3 ([083fe469](https://github.com/CodeWorksCreativeHub/mLauncher/commit/083fe469))
-
 ## [1120200 (1.12.2.0) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.12.2.0) - (02, October 2026)
 
 ### :sparkles: Enhancements:
@@ -83,11 +79,6 @@ All notable changes to this project will be documented in this file. See [conven
 * New translations Chinese Simplified/full_description.txt from Crowdin ([#1069](https://github.com/CodeWorksCreativeHub/mLauncher/pull/1069)) ([cef1ae32](https://github.com/CodeWorksCreativeHub/mLauncher/commit/cef1ae32))
 * Updated Language Files. ([#1064](https://github.com/CodeWorksCreativeHub/mLauncher/pull/1064)) ([afae571b](https://github.com/CodeWorksCreativeHub/mLauncher/commit/afae571b))
 * Updated Language Files. ([#1063](https://github.com/CodeWorksCreativeHub/mLauncher/pull/1063)) ([12811d33](https://github.com/CodeWorksCreativeHub/mLauncher/commit/12811d33))
-
-### :broom: Maintenance & Cleanup:
-
-* enable translation and reorganize favorite management strings ([1f0e70fc](https://github.com/CodeWorksCreativeHub/mLauncher/commit/1f0e70fc))
-* configure commit message template ([cd11e8d2](https://github.com/CodeWorksCreativeHub/mLauncher/commit/cd11e8d2))
 
 ## [1120000 (1.12.0.0) - Multi Launcher ‧ Home Screen](https://github.com/CodeWorksCreativeHub/mLauncher/tree/1.12.0.0) - (11, June 2026)
 
