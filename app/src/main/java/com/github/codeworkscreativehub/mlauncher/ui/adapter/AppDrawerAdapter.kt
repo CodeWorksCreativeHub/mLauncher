@@ -74,19 +74,23 @@ class AppDrawerAdapter(
     // Settings key of the entry whose rename panel is open. Tracked by key (not position) so the
     // panel survives rebinds caused by the IME resizing the list.
     private var renamingKey: String? = null
+    private var originalSoftInputMode: Int? = null
         set(value) {
             if (field == value) return
             field = value
             // While renaming, pan the window instead of resizing it when the keyboard opens. A resize
             // makes the list relayout and drop focus from the rename field; panning leaves the list alone.
-            val adjust = if (value != null) {
-                android.view.WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN
+            // The original mode is saved and restored, so the manifest's setting is kept.
+            val window = fragment.activity?.window ?: return
+            if (value != null) {
+                if (originalSoftInputMode == null) originalSoftInputMode = window.attributes.softInputMode
+                window.setSoftInputMode(
+                    android.view.WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN or
+                            android.view.WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN
+                )
             } else {
-                android.view.WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE
+                originalSoftInputMode?.let { window.setSoftInputMode(it) }
             }
-            fragment.activity?.window?.setSoftInputMode(
-                adjust or android.view.WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN
-            )
         }
 
     // Entry for which the keyboard has already been re-shown after the list rebound. Limited to once per
