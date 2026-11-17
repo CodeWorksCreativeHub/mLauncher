@@ -2,7 +2,7 @@
 
 [versions]
 agp = "9.5.1"
-kotlin = "2.4.21-439"
+kotlin = "2.5.0-RC"
 viewpager2 = "1.1.0"
 junit = "4.13.2"
 
